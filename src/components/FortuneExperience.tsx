@@ -230,17 +230,18 @@ export default function FortuneExperience() {
             {surface.choices.map(([name, caption, art], i) => (
               <button
                 key={name}
-                className={`reading-choice tone-${i % 5}`}
+                className="reading-choice"
                 onClick={() => {
                   setTopic(name);
                   setStage("input");
                 }}
               >
                 <img
-                  src={`/assets/fortune/${art}.webp`}
+                  src={`/assets/fortune/${art}-illustration.webp`}
                   alt=""
-                  width={280}
-                  height={250}
+                  width={560}
+                  height={560}
+                  decoding="async"
                   loading={i < 2 ? "eager" : "lazy"}
                 />
                 <div>

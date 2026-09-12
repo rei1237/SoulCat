@@ -1,0 +1,422 @@
+[
+  {
+    "width": 360,
+    "domain": "saju",
+    "artwork": [
+      {
+        "src": "/assets/fortune/saju-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/love-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/luck-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/work-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/money-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 360,
+    "domain": "sukuyo",
+    "artwork": [
+      {
+        "src": "/assets/fortune/sukuyo-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/love-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 360,
+    "domain": "vedic",
+    "artwork": [
+      {
+        "src": "/assets/fortune/vedic-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/luck-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 360,
+    "domain": "astrology",
+    "artwork": [
+      {
+        "src": "/assets/fortune/astrology-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/work-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 360,
+    "domain": "ziwei",
+    "artwork": [
+      {
+        "src": "/assets/fortune/ziwei-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/money-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 390,
+    "domain": "saju",
+    "artwork": [
+      {
+        "src": "/assets/fortune/saju-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/love-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/luck-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/work-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/money-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 390,
+    "domain": "sukuyo",
+    "artwork": [
+      {
+        "src": "/assets/fortune/sukuyo-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/love-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 390,
+    "domain": "vedic",
+    "artwork": [
+      {
+        "src": "/assets/fortune/vedic-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/luck-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 390,
+    "domain": "astrology",
+    "artwork": [
+      {
+        "src": "/assets/fortune/astrology-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/work-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 390,
+    "domain": "ziwei",
+    "artwork": [
+      {
+        "src": "/assets/fortune/ziwei-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/money-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 430,
+    "domain": "saju",
+    "artwork": [
+      {
+        "src": "/assets/fortune/saju-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/love-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/luck-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/work-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/money-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 430,
+    "domain": "sukuyo",
+    "artwork": [
+      {
+        "src": "/assets/fortune/sukuyo-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/love-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 430,
+    "domain": "vedic",
+    "artwork": [
+      {
+        "src": "/assets/fortune/vedic-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/luck-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 430,
+    "domain": "astrology",
+    "artwork": [
+      {
+        "src": "/assets/fortune/astrology-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/work-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 430,
+    "domain": "ziwei",
+    "artwork": [
+      {
+        "src": "/assets/fortune/ziwei-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/money-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 1280,
+    "domain": "saju",
+    "artwork": [
+      {
+        "src": "/assets/fortune/saju-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/love-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/luck-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/work-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/money-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 1280,
+    "domain": "sukuyo",
+    "artwork": [
+      {
+        "src": "/assets/fortune/sukuyo-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/love-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 1280,
+    "domain": "vedic",
+    "artwork": [
+      {
+        "src": "/assets/fortune/vedic-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/luck-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 1280,
+    "domain": "astrology",
+    "artwork": [
+      {
+        "src": "/assets/fortune/astrology-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/work-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 1280,
+    "domain": "ziwei",
+    "artwork": [
+      {
+        "src": "/assets/fortune/ziwei-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      },
+      {
+        "src": "/assets/fortune/money-illustration.webp",
+        "loaded": true,
+        "blend": "normal"
+      }
+    ],
+    "overflow": false,
+    "accessibilityViolations": 0
+  }
+]
