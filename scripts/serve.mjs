@@ -25,8 +25,13 @@ http
         res.end();
         return;
       }
-      if ((await stat(target)).isDirectory())
-        target = path.join(target, "index.html");
+      try {
+        if ((await stat(target)).isDirectory()) target = path.join(target, "index.html");
+      } catch (error) {
+        if (error.code !== "ENOENT" || path.extname(target)) throw error;
+        // Next static export emits clean routes as room.html / fortune.html.
+        target += ".html";
+      }
       const body = await readFile(target);
       res.writeHead(200, {
         "Content-Type":

@@ -17,6 +17,43 @@ const files = {
   'fortune/luck': '각운세보는영냥이/영냥이 사주보는 대운.webp',
   'fortune/loading': '각운세보는영냥이/영냥이 사주보는 2.webp',
 };
+const loadingFiles = {
+  'fortune/loading-default': {
+    source: '각운세보는영냥이/신들린 영냥이4-Photoroom.webp',
+  },
+  'fortune/loading-saju': {
+    source: '각운세보는영냥이/영냥이 사주보는 3.webp',
+    crop: [0, 0, 255, 264],
+  },
+  'fortune/loading-sukuyo': {
+    source: '각운세보는영냥이/타로보는 영냥이4-Photoroom.webp',
+  },
+  'fortune/loading-vedic': {
+    source: '각운세보는영냥이/신들린 영냥이4-Photoroom.webp',
+  },
+  'fortune/loading-astrology': {
+    source: '각운세보는영냥이/점성술보는 영냥이4.webp',
+    crop: [0, 0, 463, 354],
+  },
+  'fortune/loading-ziwei': {
+    source: '각운세보는영냥이/자미두수보는 영냥이4.webp',
+    crop: [0, 0, 511, 366],
+  },
+  'fortune/loading-love': {
+    source: '각운세보는영냥이/타로보는 영냥이4-Photoroom.webp',
+  },
+  'fortune/loading-luck': {
+    source: '각운세보는영냥이/영냥이 사주보는 대운.webp',
+    crop: [0, 0, 255, 264],
+  },
+  'fortune/loading-work': {
+    source: '각운세보는영냥이/핵심 포인트 짚는 영냥이.webp',
+    crop: [0, 0, 283, 286],
+  },
+  'fortune/loading-money': {
+    source: '각운세보는영냥이/주산하는 영냥이-Photoroom.webp',
+  },
+};
 const manifestPath = 'docs/fortune-asset-manifest.json';
 const illustrationsOnly = process.argv.includes('--illustrations-only');
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
@@ -30,6 +67,47 @@ for (const [id, relative] of Object.entries(illustrationsOnly ? {} : files)) {
   fs.mkdirSync(output.slice(0, output.lastIndexOf('/')), { recursive: true });
   const meta = await sharp(`${root}/${relative}`).resize(id.startsWith('fish') ? 240 : 560, undefined, { withoutEnlargement: true }).webp({ quality: 82 }).toFile(output);
   record({ source: `${root}/${relative}`, output, width: meta.width, height: meta.height });
+}
+for (const [id, config] of Object.entries(illustrationsOnly ? {} : loadingFiles)) {
+  const output = `public/assets/${id}.webp`;
+  fs.mkdirSync(output.slice(0, output.lastIndexOf('/')), { recursive: true });
+  let pipeline = sharp(`${root}/${config.source}`);
+  if (config.crop) {
+    pipeline = pipeline.extract({
+      left: config.crop[0],
+      top: config.crop[1],
+      width: config.crop[2],
+      height: config.crop[3],
+    });
+  }
+  const meta = await pipeline
+    .resize(520, 520, {
+      fit: 'contain',
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    })
+    .webp({ quality: 84, effort: 5 })
+    .toFile(output);
+  record({
+    source: `${root}/${config.source}`,
+    output,
+    width: meta.width,
+    height: meta.height,
+    bytes: meta.size,
+    crop: config.crop || null,
+    loading: true,
+  });
+  fs.writeFileSync(
+    `${output}.json`,
+    JSON.stringify(
+      {
+        source: `${root}/${config.source}`,
+        crop: config.crop || null,
+        prompt: 'User-supplied artwork. Mechanical crop/resize only. No image generation. White fur is preserved.',
+      },
+      null,
+      2,
+    ),
+  );
 }
 // Generated artwork has separate, versioned inputs. Legacy preparation cannot
 // overwrite these derivatives with the former illustrated UI cards.

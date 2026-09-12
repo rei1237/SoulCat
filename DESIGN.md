@@ -201,7 +201,7 @@ The dock has five icon-and-label controls, a raised cat-avatar center and gold a
 
 ### Native Dialogs and Notices
 
-One native dialog hosts daily advice, the four-scene prologue, service/fusion introductions, account entrance, report-library preparation, concerns and notifications. It uses a sticky title/close row, native modal behavior, Escape dismissal, body scroll locking and focus return to the opener.
+One native dialog hosts daily advice, the eight-scene prologue, service/fusion introductions, account entrance, report-library preparation, concerns and notifications. It uses a sticky title/close row, native modal behavior, Escape dismissal, body scroll locking and focus return to the opener.
 
 Availability notes are softly bordered purple blocks. They clearly state when detailed reports, authentication or live consultation are still being prepared. There are no implemented input fields or credentials forms to document.
 
@@ -211,7 +211,7 @@ The daily panel is an editorial message selected by KST date, with a copy action
 
 The hero tap cycles three speech lines and triggers a 650ms nuzzle/heart response. The room-stage control cycles three expressions and triggers a six-frame walk: a 0.6-second stepped strip played twice, ending after 1.2 seconds. Neither is an autoplay loop. The room uses day artwork at KST 07:00–18:59 and night artwork otherwise when initialized.
 
-The four-scene story advances explicitly, with progress segments and previous/next/exit controls. It uses the study, forbidden revelation, mirror and reopened room scenes. Under reduced motion, animations/transitions and smooth scrolling stop; expression changes remain, the resting cat stays visible and walking does not start.
+The eight-scene story advances explicitly, with progress segments and previous/next/exit controls. It follows two fictional presidential predictions, heavenly judgment, transformation, protest, fish and the reopened room. Under reduced motion, animations/transitions and smooth scrolling stop; expression changes remain, the resting cat stays visible and walking does not start.
 
 ## Do's and Don'ts
 
@@ -231,3 +231,13 @@ The four-scene story advances explicitly, with progress segments and previous/ne
 - **Don't** invent inputs, live AI, authentication, payment functionality, unlimited access, fish currency or example pricing from roadmap material.
 - **Don't** turn the home page's specific section order into a mandatory layout for every future screen.
 
+
+### Cinematic Prologue
+
+The prologue uses eight manually advanced scenes about two unnamed fictional presidents, heaven's curse, transformation and a fish-loving cat's reopened room. Its mobile dialog occupies 100dvh with safe-area padding, a contained illustration, independently scrollable prose and persistent controls. At 760px it becomes a 1060px maximum theater with a 52/48 illustration/reading split. Supplied transparent portraits are capped near source resolution. Scene-specific art is configured in story data rather than step-number conditions. Three paired poses crossfade once after 1.3 seconds; reduced motion shows the final pose. Next-scene artwork is prefetched only while the story is open. The final CTA opens the existing editorial daily panel, retaining the original opener for focus restoration. No storage or payment behavior is introduced.
+
+### Yeongnyang's Room (/room/)
+
+Home room entrances and the chat dock lead to a dedicated room. A large seated cat and existing moonlit scenery anchor the room; mobile stacks the conversation below, desktop places it alongside. Freeform input and prompt starters currently provide clearly labeled local reflection guidance, not live AI replies; no server transmission or persistence is added. The eight-scene prologue opens inside the room and returns focus to its entry without losing the draft. The final reading CTA goes to /fortune/.
+
+The footer and room use CatMotion with six individually measured, normalized 240×230 walking crops. They play twice at 110ms per frame, then show a reading, resting, coffee or sleeping pose. Reduced motion skips walking. The three-eared yawning pose is excluded. The reading crop ends before neighboring pillow artwork; the coffee crop is from the separate coffee sheet to avoid clipped sun/ray fragments.

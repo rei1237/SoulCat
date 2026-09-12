@@ -191,22 +191,25 @@ try {
       await page.screenshot({ path: `${output}/signup.png` });
       await page.keyboard.press("Escape");
       await page.locator(".prologue-banner").click();
-      for (let i = 0; i < 4; i++) {
+      await expect(page).toHaveURL(/\/room\/?$/);
+      await page.locator(".room-prologue-entry").click();
+      for (let i = 0; i < 8; i++) {
         await expect(page.locator(".story-progress")).toHaveAttribute(
           "aria-label",
-          `${i + 1} / 4 장면`,
+          `${i + 1} / 8 장면`,
         );
         await settle();
         await page.screenshot({ path: `${output}/story-${i + 1}.png` });
-        if (i < 3)
+        if (i < 7)
           await page
             .getByRole("button", { name: "다음 이야기", exact: true })
             .click();
       }
       await page
-        .getByRole("button", { name: "점술방으로", exact: true })
+        .getByRole("button", { name: "점술방으로 돌아가기", exact: true })
         .click();
       await expect(page.locator("dialog")).not.toBeVisible();
+      await page.goto("http://127.0.0.1:3000/", { waitUntil: "networkidle" });
       await page.getByRole("button", { name: "돈", exact: true }).click();
       await expect(page.locator(".concern-answer")).toContainText("돈 얘기");
       await expect(page.locator(".service-card.is-recommended")).toHaveCount(2);
@@ -216,8 +219,8 @@ try {
       await page.locator(".expression-button").scrollIntoViewIfNeeded();
       await page.locator(".expression-button").click();
       await expect(
-        page.locator(".expression-button img.active"),
-      ).toHaveAttribute("src", "/assets/expression-wink.webp");
+        page.locator(".cat-motion-canvas img.motion-active"),
+      ).toHaveAttribute("src", "/assets/prologue-cat.webp");
       await settle();
       await page.screenshot({ path: `${output}/white-sheet-motion.png` });
       await page.getByRole("button", { name: "다음 추천 보기" }).click();
@@ -238,7 +241,7 @@ try {
       ).toBe("none");
       results.push({
         interactions:
-          "PASS: cat tap, no daily storage, library preparation, Escape/focus return, auth tabs, 4-scene story, concern mapping, white-sheet expression, carousel, reduced motion",
+          "PASS: cat tap, no daily storage, library preparation, Escape/focus return, auth tabs, 8-scene story, concern mapping, white-sheet expression, carousel, reduced motion",
       });
     }
     await context.close();

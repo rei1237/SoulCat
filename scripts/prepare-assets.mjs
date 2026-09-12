@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { mkdir, writeFile, readdir, stat } from "node:fs/promises";
+import { mkdir, writeFile, readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 
 const source =
@@ -9,7 +9,7 @@ const output = path.resolve("public/assets");
 await mkdir(output, { recursive: true });
 await mkdir("docs", { recursive: true });
 const manifest = [];
-async function asset(name, file, width, crop) {
+async function asset(name, file, width, crop, canvas) {
   let pipeline = sharp(path.join(source, file));
   if (crop)
     pipeline = pipeline.extract({
@@ -20,7 +20,7 @@ async function asset(name, file, width, crop) {
     });
   const origin = `User-supplied artwork: ${file}; mechanical crop ${JSON.stringify(crop || null)} and resize only; no generated art.`;
   await pipeline
-    .resize({ width, withoutEnlargement: true })
+    .resize(canvas ? { width: canvas[0], height: canvas[1], fit: "contain", background: "#ffffff", withoutEnlargement: true } : { width, withoutEnlargement: true })
     .webp({ quality: 84, effort: 5 })
     .withXmp(
       `<x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/" dc:source="${origin.replaceAll("&", "&amp;").replaceAll('"', "&quot;")}"/></rdf:RDF></x:xmpmeta>`,
@@ -58,8 +58,8 @@ for (const [name, x, y] of cards)
 await asset("ziwei", "자미두수 보는 영냥이.webp", 480, [7, 0, 475, 450]);
 await asset("login", "회원가입 로그인.webp", 440, [590, 0, 450, 570]);
 await asset("signup", "회원가입 로그인.webp", 440, [0, 0, 565, 572]);
-await asset("night-read", "밤 영냥이.webp", 340, [916, 90, 310, 325]);
-await asset("day-drink", "낮 영냥이.webp", 300, [515, 90, 255, 260]);
+await asset("night-read", "밤 영냥이.webp", 340, [916, 90, 300, 325]);
+await asset("day-drink", "커피 마시는 영냥이.webp", 300, [8,100,250,278]);
 await asset("expression-calm", "낮 영냥이.webp", 160, [15, 353, 165, 155]);
 await asset("expression-wink", "낮 영냥이.webp", 160, [350, 353, 165, 155]);
 await asset("expression-happy", "낮 영냥이.webp", 160, [840, 353, 165, 155]);
@@ -105,13 +105,32 @@ await asset("recommend-love", "각운세카드.webp", 400, [398, 735, 350, 266])
 await asset("recommend-wealth", "각운세카드.webp", 400, [1164, 209, 350, 334]);
 await asset("recommend-year", "각운세카드.webp", 400, [784, 744, 350, 257]);
 await asset("recommend-past", "각운세카드.webp", 400, [26, 746, 340, 259]);
+// Individually supplied transparent prologue art. Originals remain untouched.
+const prologue = "영냥이 프롤로그 스토리/";
+await asset("prologue-human-calm", prologue + "영냥이 인간시절 스프라이트-Photoroom.webp", 292, [0, 0, 292, 262]);
+await asset("prologue-human-smile", prologue + "영냥이 인간시절 스프라이트-Photoroom.webp", 292, [292, 0, 292, 262]);
+for (const [name, file] of [
+  ["curse", "고양이로변하는4"],
+  ["changing", "고양이로변하는7"],
+  ["changed", "고양이로변하는11"],
+  ["protest", "신에게따지는영냥이"],
+  ["resigned", "체념한영냥이"],
+  ["fish", "고등어를 받는 영냥이"],
+  ["fish-scent", "고등어냄새맡는 영냥이"],
+  ["cat", "영냥이 과거 회상1"],
+]) await asset("prologue-" + name, prologue + file + "-Photoroom.webp", 520);
+// Measured individually: variable-width poses must never be played as a raw sheet.
+const walkCrops = [[32,508,200,191],[235,508,220,191],[494,508,190,191],[707,508,200,191],[930,508,200,191],[1135,508,190,191]];
+for (const [index, crop] of walkCrops.entries()) await asset(`walk-pose-${index + 1}`, "낮 영냥이.webp", 240, crop, [240, 230]);
+await asset("room-sleep", "밤 영냥이.webp", 320, [1219,126,316,284]);
+await asset("room-study", "밤 영냥이.webp", 320, [916,98,300,315]);
 await writeFile("docs/asset-manifest.json", JSON.stringify(manifest, null, 2));
 // Portable provenance sidecars accompany formats whose metadata is not read by all tools.
 for (const item of manifest) {
-  await writeFile(path.join(output, `${item.file}.json`), JSON.stringify({
-    prompt: `User-supplied original: ${item.source}. Mechanical crop/resize only. Crop: ${JSON.stringify(item.crop)}. No image generation.`,
-    createdAt: new Date().toISOString(),
-  }, null, 2));
+  const sidecar = path.join(output, `${item.file}.json`);
+  const prompt = `User-supplied original: ${item.source}. Mechanical crop/resize only. Crop: ${JSON.stringify(item.crop)}. No image generation.`;
+  const existing = await readFile(sidecar, "utf8").then(JSON.parse).catch(() => null);
+  if (existing?.prompt !== prompt) await writeFile(sidecar, JSON.stringify({ prompt, createdAt: new Date().toISOString() }, null, 2));
 }
 // A contact sheet is development evidence only; never shipped to visitors.
 const originals = (await readdir(source)).filter((x) => x.endsWith(".webp"));

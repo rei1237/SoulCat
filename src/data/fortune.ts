@@ -49,3 +49,56 @@ export const fortuneSurfaces = {
   },
 } as const;
 export type FortuneDomainId = keyof typeof fortuneSurfaces;
+
+export const fortuneLoadingArt = {
+  default: {
+    image: "loading-default.webp",
+    alt: "상담 흐름을 살펴보는 영냥이",
+    title: "영냥이가 흐름을 정리하고 있어.",
+  },
+  saju: {
+    image: "loading-saju.webp",
+    alt: "사주 흐름을 살펴보는 영냥이",
+    title: "영냥이가 네 사주의 결을 살펴보고 있어.",
+  },
+  sukuyo: {
+    image: "loading-sukuyo.webp",
+    alt: "두 사람의 인연을 살펴보는 영냥이",
+    title: "영냥이가 두 사람 사이의 거리를 읽고 있어.",
+  },
+  vedic: {
+    image: "loading-vedic.webp",
+    alt: "베다 차트를 짚어보는 영냥이",
+    title: "영냥이가 마음의 별자리를 맞춰보고 있어.",
+  },
+  astrology: {
+    image: "loading-astrology.webp",
+    alt: "별 지도를 짚는 영냥이",
+    title: "영냥이가 태어난 순간의 하늘을 펼치고 있어.",
+  },
+  ziwei: {
+    image: "loading-ziwei.webp",
+    alt: "자미두수 명반을 살펴보는 영냥이",
+    title: "영냥이가 별들이 그린 방을 하나씩 열고 있어.",
+  },
+  love: {
+    image: "loading-love.webp",
+    alt: "마음의 흐름을 들여다보는 영냥이",
+    title: "영냥이가 마음이 움직인 자리를 조심스럽게 보고 있어.",
+  },
+  luck: {
+    image: "loading-luck.webp",
+    alt: "운의 흐름을 살펴보는 영냥이",
+    title: "영냥이가 다가오는 변화의 결을 짚고 있어.",
+  },
+  work: {
+    image: "loading-work.webp",
+    alt: "핵심 포인트를 짚는 영냥이",
+    title: "영냥이가 네 힘이 쓰일 자리를 정리하고 있어.",
+  },
+  money: {
+    image: "loading-money.webp",
+    alt: "재물 흐름을 계산하는 영냥이",
+    title: "영냥이가 돈의 흐름과 지키는 힘을 맞춰보고 있어.",
+  },
+} as const;

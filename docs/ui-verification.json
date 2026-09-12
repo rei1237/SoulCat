@@ -23,10 +23,10 @@
       "height": 72,
       "bottom": 800
     },
-    "dom": 380,
+    "dom": 383,
     "metrics": {
       "cls": 0,
-      "lcp": 536
+      "lcp": 872
     },
     "assets": [
       {
@@ -42,10 +42,6 @@
         "bytes": 82594
       },
       {
-        "name": "walk-strip.webp",
-        "bytes": 40080
-      },
-      {
         "name": "story-mirror.webp",
         "bytes": 83456
       },
@@ -58,12 +54,12 @@
         "bytes": 37740
       },
       {
-        "name": "tarot.webp",
-        "bytes": 26820
-      },
-      {
         "name": "ziwei.webp",
         "bytes": 43042
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
       },
       {
         "name": "astrology.webp",
@@ -88,9 +84,12 @@
       "http://127.0.0.1:3000/assets/recommend-year.webp",
       "http://127.0.0.1:3000/assets/recommend-past.webp",
       "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/expression-calm.webp",
-      "http://127.0.0.1:3000/assets/expression-wink.webp",
-      "http://127.0.0.1:3000/assets/expression-happy.webp"
+      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -120,10 +119,10 @@
       "height": 72,
       "bottom": 812
     },
-    "dom": 379,
+    "dom": 385,
     "metrics": {
       "cls": 0,
-      "lcp": 204
+      "lcp": 308
     },
     "assets": [
       {
@@ -139,32 +138,28 @@
         "bytes": 82594
       },
       {
-        "name": "walk-strip.webp",
-        "bytes": 40080
-      },
-      {
         "name": "story-mirror.webp",
         "bytes": 83456
-      },
-      {
-        "name": "saju.webp",
-        "bytes": 37740
       },
       {
         "name": "surprised.webp",
         "bytes": 66462
       },
       {
+        "name": "saju.webp",
+        "bytes": 37740
+      },
+      {
         "name": "tarot.webp",
         "bytes": 26820
       },
       {
-        "name": "ziwei.webp",
-        "bytes": 43042
-      },
-      {
         "name": "astrology.webp",
         "bytes": 40750
+      },
+      {
+        "name": "ziwei.webp",
+        "bytes": 43042
       },
       {
         "name": "vedic.webp",
@@ -185,9 +180,12 @@
       "http://127.0.0.1:3000/assets/recommend-year.webp",
       "http://127.0.0.1:3000/assets/recommend-past.webp",
       "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/expression-calm.webp",
-      "http://127.0.0.1:3000/assets/expression-wink.webp",
-      "http://127.0.0.1:3000/assets/expression-happy.webp"
+      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -217,10 +215,10 @@
       "height": 72,
       "bottom": 844
     },
-    "dom": 379,
+    "dom": 385,
     "metrics": {
       "cls": 0,
-      "lcp": 196
+      "lcp": 280
     },
     "assets": [
       {
@@ -236,20 +234,16 @@
         "bytes": 82594
       },
       {
-        "name": "walk-strip.webp",
-        "bytes": 40080
-      },
-      {
-        "name": "saju.webp",
-        "bytes": 37740
-      },
-      {
         "name": "story-mirror.webp",
         "bytes": 83456
       },
       {
         "name": "surprised.webp",
         "bytes": 66462
+      },
+      {
+        "name": "saju.webp",
+        "bytes": 37740
       },
       {
         "name": "tarot.webp",
@@ -282,16 +276,19 @@
       "http://127.0.0.1:3000/assets/recommend-year.webp",
       "http://127.0.0.1:3000/assets/recommend-past.webp",
       "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/expression-calm.webp",
-      "http://127.0.0.1:3000/assets/expression-wink.webp",
-      "http://127.0.0.1:3000/assets/expression-happy.webp"
+      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
     "accessibility": []
   },
   {
-    "interactions": "PASS: cat tap, no daily storage, library preparation, Escape/focus return, auth tabs, 4-scene story, concern mapping, white-sheet expression, carousel, reduced motion"
+    "interactions": "PASS: cat tap, no daily storage, library preparation, Escape/focus return, auth tabs, 8-scene story, concern mapping, white-sheet expression, carousel, reduced motion"
   },
   {
     "viewport": "412x915",
@@ -317,10 +314,10 @@
       "height": 72,
       "bottom": 915
     },
-    "dom": 380,
+    "dom": 385,
     "metrics": {
       "cls": 0,
-      "lcp": 292
+      "lcp": 244
     },
     "assets": [
       {
@@ -334,10 +331,6 @@
       {
         "name": "room-780.webp",
         "bytes": 82594
-      },
-      {
-        "name": "walk-strip.webp",
-        "bytes": 40080
       },
       {
         "name": "story-mirror.webp",
@@ -382,9 +375,12 @@
       "http://127.0.0.1:3000/assets/recommend-year.webp",
       "http://127.0.0.1:3000/assets/recommend-past.webp",
       "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/expression-calm.webp",
-      "http://127.0.0.1:3000/assets/expression-wink.webp",
-      "http://127.0.0.1:3000/assets/expression-happy.webp"
+      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -414,10 +410,10 @@
       "height": 72,
       "bottom": 932
     },
-    "dom": 380,
+    "dom": 382,
     "metrics": {
       "cls": 0,
-      "lcp": 192
+      "lcp": 276
     },
     "assets": [
       {
@@ -433,28 +429,24 @@
         "bytes": 82594
       },
       {
-        "name": "walk-strip.webp",
-        "bytes": 40080
-      },
-      {
         "name": "story-mirror.webp",
         "bytes": 83456
-      },
-      {
-        "name": "surprised.webp",
-        "bytes": 66462
       },
       {
         "name": "saju.webp",
         "bytes": 37740
       },
       {
-        "name": "tarot.webp",
-        "bytes": 26820
+        "name": "surprised.webp",
+        "bytes": 66462
       },
       {
         "name": "ziwei.webp",
         "bytes": 43042
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
       },
       {
         "name": "astrology.webp",
@@ -479,9 +471,12 @@
       "http://127.0.0.1:3000/assets/recommend-year.webp",
       "http://127.0.0.1:3000/assets/recommend-past.webp",
       "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/expression-calm.webp",
-      "http://127.0.0.1:3000/assets/expression-wink.webp",
-      "http://127.0.0.1:3000/assets/expression-happy.webp"
+      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -511,10 +506,10 @@
       "height": 72,
       "bottom": 1024
     },
-    "dom": 378,
+    "dom": 383,
     "metrics": {
-      "cls": 0.0014902373853450022,
-      "lcp": 208
+      "cls": 0.0011895547698562343,
+      "lcp": 328
     },
     "assets": [
       {
@@ -528,10 +523,6 @@
       {
         "name": "room-1440.webp",
         "bytes": 180758
-      },
-      {
-        "name": "walk-strip.webp",
-        "bytes": 40080
       },
       {
         "name": "story-mirror.webp",
@@ -576,9 +567,12 @@
       "http://127.0.0.1:3000/assets/recommend-year.webp",
       "http://127.0.0.1:3000/assets/recommend-past.webp",
       "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/expression-calm.webp",
-      "http://127.0.0.1:3000/assets/expression-wink.webp",
-      "http://127.0.0.1:3000/assets/expression-happy.webp"
+      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -608,10 +602,10 @@
       "height": 72,
       "bottom": 1000
     },
-    "dom": 378,
+    "dom": 382,
     "metrics": {
-      "cls": 0.0009684595555434993,
-      "lcp": 196
+      "cls": 0.0012978900975356869,
+      "lcp": 244
     },
     "assets": [
       {
@@ -627,12 +621,12 @@
         "bytes": 180758
       },
       {
-        "name": "walk-strip.webp",
-        "bytes": 40080
-      },
-      {
         "name": "story-mirror.webp",
         "bytes": 83456
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
       },
       {
         "name": "saju.webp",
@@ -641,10 +635,6 @@
       {
         "name": "surprised.webp",
         "bytes": 66462
-      },
-      {
-        "name": "tarot.webp",
-        "bytes": 26820
       },
       {
         "name": "ziwei.webp",
@@ -673,9 +663,12 @@
       "http://127.0.0.1:3000/assets/recommend-year.webp",
       "http://127.0.0.1:3000/assets/recommend-past.webp",
       "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/expression-calm.webp",
-      "http://127.0.0.1:3000/assets/expression-wink.webp",
-      "http://127.0.0.1:3000/assets/expression-happy.webp"
+      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],

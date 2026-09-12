@@ -1,0 +1,56 @@
+import { chromium, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+import { mkdir, writeFile } from 'node:fs/promises';
+const output='docs/screenshots/room';
+await mkdir(output,{recursive:true});
+const browser=await chromium.launch({channel:'chrome',headless:true});
+const results=[];
+try {
+  for(const [width,height] of [[360,800],[390,844],[430,932],[1440,1000]]) {
+    const context=await browser.newContext({viewport:{width,height}});
+    const page=await context.newPage();
+    const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+    await page.goto('http://127.0.0.1:3000/room/',{waitUntil:'networkidle'});
+    await page.evaluate(async()=>{await document.fonts.ready;for(const i of document.images)i.loading='eager';await Promise.all([...document.images].map(i=>i.decode()));});
+    await page.screenshot({path:`${output}/${width}.png`});
+    await page.screenshot({path:`${output}/${width}-full.png`,fullPage:true});
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);
+    await expect(page.getByRole('button',{name:'고민 정리하기',exact:true})).toBeDisabled();
+    await page.getByRole('button',{name:'요즘 마음이 복잡해',exact:true}).click();
+    await expect(page.locator('textarea')).toHaveValue('요즘 마음이 복잡해');
+    await page.locator('textarea').fill('내일 중요한 발표가 있어서 걱정돼.');
+    await page.locator('.room-prologue-entry').click();
+    await expect(page.locator('.story-panel')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('textarea')).toHaveValue('내일 중요한 발표가 있어서 걱정돼.');
+    await expect(page.locator('.room-prologue-entry')).toBeFocused();
+    await page.getByRole('button',{name:'고민 정리하기',exact:true}).click();
+    await expect(page.locator('.room-question')).toContainText('내일 중요한 발표');
+    await expect(page.locator('.room-guide')).toContainText('고민을 정리하는 질문');
+    await expect(page.locator('textarea')).toHaveValue('');
+    await page.screenshot({path:`${output}/${width}-question.png`});
+    const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
+    expect(axe.violations).toEqual([]);
+    await page.locator('.expression-button').scrollIntoViewIfNeeded();
+    await page.locator('.expression-button').click();
+    await expect(page.locator('.walk-pose.motion-active')).toHaveCount(1);
+    await page.screenshot({path:`${output}/${width}-walk.png`});
+    await expect(page.locator('.cat-motion-canvas .motion-active')).toHaveAttribute('src','/assets/prologue-cat.webp');
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.locator('.expression-button').click();
+    await expect(page.locator('.cat-motion-canvas .motion-active')).toHaveAttribute('src','/assets/day-drink.webp');
+    await page.locator('.expression-button').click();
+    await expect(page.locator('.cat-motion-canvas .motion-active')).toHaveAttribute('src','/assets/room-sleep.webp');
+    await expect(page.locator('img[src*="room-wave"]')).toHaveCount(0);
+    await expect(page.locator('.walking-cat')).toHaveCount(0);
+    expect(errors).toEqual([]);
+    await page.getByRole('link',{name:'메인으로 돌아가기'}).click();
+    await page.getByRole('button',{name:'수다방',exact:true}).click();
+    await expect(page).toHaveURL(/\/room\/?$/);
+    expect(errors).toEqual([]);
+    results.push({width,height,overflow:false,axe:0,errors,interactions:'PASS: room navigation, prompt, draft retained through prologue, local guidance, measured walk ends, reduced motion, excluded pose absent'});
+    await context.close();
+  }
+  await writeFile('docs/room-verification.json',JSON.stringify(results,null,2));
+  console.log(JSON.stringify(results));
+} finally {await browser.close();}

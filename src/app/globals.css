@@ -1069,78 +1069,6 @@ svg {
   line-height: 1.7;
   margin-top: 17px;
 }
-.story-visual {
-  position: relative;
-  height: 270px;
-  overflow: hidden;
-}
-.story-visual > img:first-child {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.story-visual::after {
-  position: absolute;
-  inset: 70% 0 0;
-  content: "";
-  background: linear-gradient(transparent, #291a3a);
-}
-.story-visual .story-character {
-  position: absolute;
-  bottom: -15px;
-  right: 15%;
-  height: 85%;
-  width: auto;
-  object-fit: contain;
-}
-.story-text {
-  padding: 10px 24px 8px;
-}
-.story-progress {
-  display: flex;
-  gap: 6px;
-  margin: 0 0 21px;
-}
-.story-progress span {
-  flex: 1;
-  height: 2px;
-  background: #6f5170;
-}
-.story-progress .read {
-  background: var(--gold);
-}
-.story-text h2 {
-  font-family: var(--serif);
-  font-size: 24px;
-}
-.story-text blockquote {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--gold);
-  margin: 16px 0;
-}
-.story-text p {
-  font-size: 13px;
-  line-height: 1.95;
-  color: #ddcde2;
-  word-break: keep-all;
-}
-.story-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 12px 18px 0;
-}
-.story-next {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 44px;
-  font-size: 12px;
-  color: var(--gold);
-}
 .auth-panel {
   text-align: center;
 }
@@ -1875,3 +1803,89 @@ svg {
     visibility: visible;
   }
 }
+
+/* The prologue is a focused reading stage; other dialogs keep their sheet layout. */
+.experience-dialog.story-dialog {
+  inset: 0;
+  transform: none;
+  width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: auto;
+  border: 0;
+  border-radius: 0;
+  background: #21172f;
+  overflow: hidden;
+}
+.story-dialog .dialog-inner { height: 100%; padding: 0; display: flex; flex-direction: column; }
+.story-dialog .dialog-header {
+  flex-shrink: 0;
+  background: #21172f;
+  padding-top: max(7px, env(safe-area-inset-top));
+}
+.story-panel { flex: 1; min-height: 0; display: grid; grid-template-rows: minmax(200px, 0.95fr) minmax(240px, 1fr) auto; }
+.story-visual { position: relative; min-height: 0; overflow: hidden; background: #251b36; }
+.story-background { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: .68; }
+.story-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, #21172f, transparent 36%, #21172f22); pointer-events: none; }
+.mood-gold .story-background, .mood-warm .story-background { opacity: .92; }
+.mood-storm .story-background { filter: saturate(.7); opacity: .62; }
+.story-cast { position: absolute; inset: 12px 20px 14px; display: grid; place-items: center; }
+.story-character { grid-area: 1 / 1; width: 100%; height: 100%; max-width: 330px; max-height: 320px; object-fit: contain; filter: drop-shadow(0 12px 14px #10071b70); }
+.is-portrait .story-character { max-width: 292px; max-height: 262px; }
+.story-scene-caption { position: absolute; bottom: 16px; left: 24px; z-index: 1; color: #ebd5b6; font-size: 10px; letter-spacing: .12em; }
+.story-reading { min-height: 0; overflow-y: auto; padding: 14px 24px 6px; scrollbar-color: #826883 #21172f; }
+.story-progress { display: flex; gap: 5px; margin-bottom: 21px; }
+.story-progress span { flex: 1; height: 2px; background: #5a465f; }
+.story-progress .read { background: var(--gold); }
+.story-text { position: relative; }
+.story-text h2 { font-family: var(--serif); font-size: clamp(22px, 5.8vw, 27px); line-height: 1.4; margin: 0 0 16px; padding-right: 50px; text-wrap: balance; }
+.story-page-number { position: absolute; right: 0; top: 7px; font-size: 10px; color: #cbb5d1; font-variant-numeric: tabular-nums; }
+.story-text p { font-size: 14px; line-height: 1.95; color: #ddcde2; word-break: keep-all; overflow-wrap: break-word; margin: 0; }
+.story-text blockquote { font-family: var(--serif); font-size: 18px; line-height: 1.65; color: var(--gold); margin: 20px 0 12px; word-break: keep-all; }
+.story-controls { display: grid; grid-template-columns: 44px 1fr; gap: 4px 12px; padding: 12px 24px max(10px, env(safe-area-inset-bottom)); border-top: 1px solid #ac86612b; background: #21172f; }
+.story-controls .icon-button { align-self: center; border: 1px solid #765a75; border-radius: 12px; }
+.story-controls .icon-button:disabled { opacity: .35; cursor: default; }
+.story-next { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; border: 1px solid #b99a6f; border-radius: 12px; background: #49305e; color: #fff0d8; font-size: 13px; }
+.story-next:hover { background: #583c6f; }
+.story-exit { grid-column: 1 / -1; min-height: 34px; justify-self: center; color: #cbb5d1; font-size: 11px; padding: 4px 16px; }
+.story-exit:hover { color: var(--ivory); }
+@keyframes story-frame-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes story-frame-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  .story-reading, .story-cast { animation: story-frame-in .3s ease-out both; }
+  .has-transition .first-frame { animation: story-frame-out .45s 1.3s ease-out both; }
+  .has-transition .final-frame { animation: story-frame-in .45s 1.3s ease-out both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .has-transition .first-frame { visibility: hidden; }
+}
+@media (min-width: 760px) {
+  .experience-dialog.story-dialog { width: min(1060px, calc(100% - 64px)); height: min(730px, 90dvh); border: 1px solid #92735c; border-radius: 20px; }
+  .story-panel { grid-template-columns: 52% 48%; grid-template-rows: minmax(0, 1fr) auto; }
+  .story-visual { grid-row: 1 / 3; }
+  .story-visual::after { background: linear-gradient(90deg, transparent 65%, #21172f), linear-gradient(0deg, #21172f88, transparent 35%); }
+  .story-cast { inset: 40px 30px; }
+  .story-character { max-width: 360px; max-height: 380px; }
+  .is-portrait .story-character { max-width: 292px; max-height: 262px; }
+  .story-reading { padding: 36px 32px 10px; }
+  .story-progress { margin-bottom: 32px; }
+  .story-text h2 { font-size: 28px; }
+  .story-text p { font-size: 15px; line-height: 2; }
+  .story-text blockquote { margin-top: 28px; font-size: 21px; }
+  .story-controls { padding: 16px 32px 18px; }
+  .story-scene-caption { bottom: 28px; left: 30px; }
+}
+@media (max-height: 650px) and (max-width: 759px) {
+  .story-panel { grid-template-rows: minmax(110px, .6fr) minmax(150px, 1fr) auto; }
+  .story-reading { padding-top: 8px; }
+  .story-controls { padding-top: 6px; }
+}
+
+/* Each walking frame is a measured standalone crop, never a translated sprite sheet. */
+.measured-motion { padding: 12px 6px 48px; }
+.cat-motion-canvas { height: 145px; position: relative; }
+.cat-motion-canvas img { position: absolute; inset: 0; margin: auto; width: 100%; height: 100%; object-fit: contain; visibility: hidden; mix-blend-mode: multiply; }
+.cat-motion-canvas img.motion-active { visibility: visible; }
+.measured-motion .expression-button { display: flex; align-items: center; justify-content: center; gap: 6px; width: calc(100% - 12px); max-width: 125px; min-height: 44px; bottom: 3px; height: 44px; font-size: 10px; color: #674778; }
+.measured-motion .expression-button > svg { position: static; }
+.measured-motion .expression-button:disabled { cursor: default; }

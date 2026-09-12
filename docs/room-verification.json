@@ -1,0 +1,34 @@
+[
+  {
+    "width": 360,
+    "height": 800,
+    "overflow": false,
+    "axe": 0,
+    "errors": [],
+    "interactions": "PASS: room navigation, prompt, draft retained through prologue, local guidance, measured walk ends, reduced motion, excluded pose absent"
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "axe": 0,
+    "errors": [],
+    "interactions": "PASS: room navigation, prompt, draft retained through prologue, local guidance, measured walk ends, reduced motion, excluded pose absent"
+  },
+  {
+    "width": 430,
+    "height": 932,
+    "overflow": false,
+    "axe": 0,
+    "errors": [],
+    "interactions": "PASS: room navigation, prompt, draft retained through prologue, local guidance, measured walk ends, reduced motion, excluded pose absent"
+  },
+  {
+    "width": 1440,
+    "height": 1000,
+    "overflow": false,
+    "axe": 0,
+    "errors": [],
+    "interactions": "PASS: room navigation, prompt, draft retained through prologue, local guidance, measured walk ends, reduced motion, excluded pose absent"
+  }
+]

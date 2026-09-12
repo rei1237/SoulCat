@@ -1,5 +1,11 @@
 # 영냥이 구현 인수인계 — 2026-09-12
 
+## 최신 사용자 지시 — 다음 세션 우선순위 변경
+
+사용자가 현재 운세 카드의 색상별 배경/이미지 구성을 거부했다. 대표 영냥이 이미지를 참조해 AI가 직접 새 일러스트를 그리고 통일된 화면에 적용하는 것이 다음 작업이다. 비용을 줄이기 위해 이번에는 이미지 생성/적용 없이 인수인계만 작성했다.
+
+**다음 세션은 `YEONGNYANGI_VISUAL_REDESIGN_HANDOFF.md`부터 읽는다.** 복사용 요청은 `YEONGNYANGI_NEXT_SESSION_PROMPT.txt`. 기존 로그인/결제/영속 Job 작업을 자동으로 먼저 재개하지 않는다. 아래 Architecture·검증 기록은 종전 상태이며, 색색의 카드 방향은 더 이상 승인된 디자인이 아니다.
+
 ## 현재 Architecture
 
 실행 repo: `C:/Users/user/Desktop/SoulCatProject`, main. 원본 에셋: `C:/Users/user/Desktop/사주보는 고양이 영냥이`. 계산 출처: `D:/Development/code-destiny` HEAD `09544df6453584376931d695b53c5a7d27bd0143`.

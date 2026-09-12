@@ -203,26 +203,26 @@
     "crop": [
       916,
       90,
-      310,
+      300,
       325
     ],
-    "width": 310,
+    "width": 300,
     "height": 325,
-    "bytes": 22550,
+    "bytes": 21938,
     "alpha": false
   },
   {
     "file": "day-drink.webp",
-    "source": "낮 영냥이.webp",
+    "source": "커피 마시는 영냥이.webp",
     "crop": [
-      515,
-      90,
-      255,
-      260
+      8,
+      100,
+      250,
+      278
     ],
-    "width": 255,
-    "height": 260,
-    "bytes": 13942,
+    "width": 250,
+    "height": 278,
+    "bytes": 13172,
     "alpha": false
   },
   {
@@ -330,6 +330,218 @@
     "width": 340,
     "height": 259,
     "bytes": 26876,
+    "alpha": false
+  },
+  {
+    "file": "prologue-human-calm.webp",
+    "source": "영냥이 프롤로그 스토리/영냥이 인간시절 스프라이트-Photoroom.webp",
+    "crop": [
+      0,
+      0,
+      292,
+      262
+    ],
+    "width": 292,
+    "height": 262,
+    "bytes": 16252,
+    "alpha": true
+  },
+  {
+    "file": "prologue-human-smile.webp",
+    "source": "영냥이 프롤로그 스토리/영냥이 인간시절 스프라이트-Photoroom.webp",
+    "crop": [
+      292,
+      0,
+      292,
+      262
+    ],
+    "width": 292,
+    "height": 262,
+    "bytes": 15946,
+    "alpha": true
+  },
+  {
+    "file": "prologue-curse.webp",
+    "source": "영냥이 프롤로그 스토리/고양이로변하는4-Photoroom.webp",
+    "crop": null,
+    "width": 307,
+    "height": 341,
+    "bytes": 40510,
+    "alpha": true
+  },
+  {
+    "file": "prologue-changing.webp",
+    "source": "영냥이 프롤로그 스토리/고양이로변하는7-Photoroom.webp",
+    "crop": null,
+    "width": 272,
+    "height": 341,
+    "bytes": 31820,
+    "alpha": true
+  },
+  {
+    "file": "prologue-changed.webp",
+    "source": "영냥이 프롤로그 스토리/고양이로변하는11-Photoroom.webp",
+    "crop": null,
+    "width": 307,
+    "height": 341,
+    "bytes": 18696,
+    "alpha": true
+  },
+  {
+    "file": "prologue-protest.webp",
+    "source": "영냥이 프롤로그 스토리/신에게따지는영냥이-Photoroom.webp",
+    "crop": null,
+    "width": 313,
+    "height": 342,
+    "bytes": 17474,
+    "alpha": true
+  },
+  {
+    "file": "prologue-resigned.webp",
+    "source": "영냥이 프롤로그 스토리/체념한영냥이-Photoroom.webp",
+    "crop": null,
+    "width": 307,
+    "height": 341,
+    "bytes": 16328,
+    "alpha": true
+  },
+  {
+    "file": "prologue-fish.webp",
+    "source": "영냥이 프롤로그 스토리/고등어를 받는 영냥이-Photoroom.webp",
+    "crop": null,
+    "width": 506,
+    "height": 342,
+    "bytes": 27408,
+    "alpha": true
+  },
+  {
+    "file": "prologue-fish-scent.webp",
+    "source": "영냥이 프롤로그 스토리/고등어냄새맡는 영냥이-Photoroom.webp",
+    "crop": null,
+    "width": 288,
+    "height": 293,
+    "bytes": 15372,
+    "alpha": true
+  },
+  {
+    "file": "prologue-cat.webp",
+    "source": "영냥이 프롤로그 스토리/영냥이 과거 회상1-Photoroom.webp",
+    "crop": null,
+    "width": 389,
+    "height": 515,
+    "bytes": 33604,
+    "alpha": true
+  },
+  {
+    "file": "walk-pose-1.webp",
+    "source": "낮 영냥이.webp",
+    "crop": [
+      32,
+      508,
+      200,
+      191
+    ],
+    "width": 240,
+    "height": 230,
+    "bytes": 6962,
+    "alpha": false
+  },
+  {
+    "file": "walk-pose-2.webp",
+    "source": "낮 영냥이.webp",
+    "crop": [
+      235,
+      508,
+      220,
+      191
+    ],
+    "width": 240,
+    "height": 230,
+    "bytes": 7002,
+    "alpha": false
+  },
+  {
+    "file": "walk-pose-3.webp",
+    "source": "낮 영냥이.webp",
+    "crop": [
+      494,
+      508,
+      190,
+      191
+    ],
+    "width": 240,
+    "height": 230,
+    "bytes": 6982,
+    "alpha": false
+  },
+  {
+    "file": "walk-pose-4.webp",
+    "source": "낮 영냥이.webp",
+    "crop": [
+      707,
+      508,
+      200,
+      191
+    ],
+    "width": 240,
+    "height": 230,
+    "bytes": 6976,
+    "alpha": false
+  },
+  {
+    "file": "walk-pose-5.webp",
+    "source": "낮 영냥이.webp",
+    "crop": [
+      930,
+      508,
+      200,
+      191
+    ],
+    "width": 240,
+    "height": 230,
+    "bytes": 6554,
+    "alpha": false
+  },
+  {
+    "file": "walk-pose-6.webp",
+    "source": "낮 영냥이.webp",
+    "crop": [
+      1135,
+      508,
+      190,
+      191
+    ],
+    "width": 240,
+    "height": 230,
+    "bytes": 6856,
+    "alpha": false
+  },
+  {
+    "file": "room-sleep.webp",
+    "source": "밤 영냥이.webp",
+    "crop": [
+      1219,
+      126,
+      316,
+      284
+    ],
+    "width": 316,
+    "height": 284,
+    "bytes": 19294,
+    "alpha": false
+  },
+  {
+    "file": "room-study.webp",
+    "source": "밤 영냥이.webp",
+    "crop": [
+      916,
+      98,
+      300,
+      315
+    ],
+    "width": 300,
+    "height": 315,
+    "bytes": 22036,
     "alpha": false
   }
 ]

@@ -1,0 +1,594 @@
+<script src="/_next/static/chunks/webpack-a28b467626321354.js" id="_R_" async="">
+</script>
+<script>(self.__next_f=self.__next_f||[]).push([0])</script>
+<script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[9766,[],\"\"]\n3:I[8924,[],\"\"]\n4:I[4957,[\"619\",\"static/chunks/619-ba102abea3e3d0e4.js\",\"384\",\"static/chunks/384-1363dbb786204051.js\",\"974\",\"static/chunks/app/page-e2108d0fb77b4854.js\"],\"default\"]\n5:I[4431,[],\"OutletBoundary\"]\n7:I[5278,[],\"AsyncMetadataOutlet\"]\n9:I[4431,[],\"ViewportBoundary\"]\nb:I[4431,[],\"MetadataBoundary\"]\nc:\"$Sreact.suspense\"\ne:I[7150,[],\"\"]\n:HL[\"/_next/static/css/be98a34a00bc56b5.css\",\"style\"]\n:HL[\"/_next/static/css/516a37fdf90e5903.css\",\"style\"]\n:HL[\"/_next/static/css/9f182eb1f6f45f1c.css\",\"style\"]\n"])</script>
+<script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"97Q84OIdAZ4w3HFysiF5E\",\"p\":\"\",\"c\":[\"\",\"\"],\"i\":false,\"f\":[[[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],[\"\",[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/be98a34a00bc56b5.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/516a37fdf90e5903.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"2\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/9f182eb1f6f45f1c.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"ko\",\"children\":[\"$\",\"body\",null,{\"children\":[\"$\",\"$L2\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L3\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]]}],{\"children\":[\"__PAGE__\",[\"$\",\"$1\",\"c\",{\"children\":[[\"$\",\"$L4\",null,{}],null,[\"$\",\"$L5\",null,{\"children\":[\"$L6\",[\"$\",\"$L7\",null,{\"promise\":\"$@8\"}]]}]]}],{},null,false]},null,false],[\"$\",\"$1\",\"h\",{\"children\":[null,[[\"$\",\"$L9\",null,{\"children\":\"$La\"}],null],[\"$\",\"$Lb\",null,{\"children\":[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$c\",null,{\"fallback\":null,\"children\":\"$Ld\"}]}]}]]}],false]],\"m\":\"$undefined\",\"G\":[\"$e\",[]],\"s\":false,\"S\":true}\n"])</script>
+<script>self.__next_f.push([1,"a:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1, viewport-fit=cover\"}],[\"$\",\"meta\",\"2\",{\"name\":\"theme-color\",\"content\":\"#211432\"}]]\n6:null\n"])</script>
+<script>self.__next_f.push([1,"8:{\"metadata\":[[\"$\",\"title\",\"0\",{\"children\":\"사주보는 영냥이 · 네 운명의 이야기를 읽어줄게\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"달빛이 머무는 작은 점술방. 도도하지만 다정한 고양이 영냥이와 오늘의 한마디, 사주, 타로, 별의 이야기를 만나보세요.\"}],[\"$\",\"meta\",\"2\",{\"name\":\"robots\",\"content\":\"noindex, nofollow\"}]],\"error\":null,\"digest\":\"$undefined\"}\n"])</script>
+<script>self.__next_f.push([1,"d:\"$8:metadata\"\n"])</script>
+<div hidden="">
+</div>
+<a class="skip-link" href="#readings">운세 목록으로 건너뛰기</a>
+<div class="site-shell" id="home">
+<header class="header">
+<a href="#home" class="brand">
+<img width="42" height="34" alt="" src="/assets/avatar.webp">
+<span>사주보는 <strong>영냥이</strong>
+<small>FORTUNE SOUL CAT</small>
+</span>
+</a>
+<nav class="desktop-nav" aria-label="주 메뉴">
+<a href="#readings">운세 골라보기</a>
+<button>영냥이의 방</button>
+<a href="#recommendations">영냥이 추천</a>
+</nav>
+<div class="header-actions">
+<button class="icon-button bell" aria-label="알림 보기">
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell" aria-hidden="true">
+<path d="M10.268 21a2 2 0 0 0 3.464 0">
+</path>
+<path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326">
+</path>
+</svg>
+</button>
+<button class="login-button">로그인</button>
+</div>
+</header>
+<main>
+<section class="hero" aria-labelledby="hero-title">
+<picture class="hero-room">
+<source media="(min-width: 700px)" srcset="/assets/room-1440.webp">
+<img width="780" height="439" alt="" fetchpriority="high" src="/assets/room-780.webp">
+</picture>
+<div class="hero-copy">
+<h1 id="hero-title">네 운명의 이야기,<br>
+<span>내가 읽어줄게.</span>
+</h1>
+<p>달빛이 머무는 작은 점술방</p>
+<div class="desktop-intro">모습은 고양이, 실력은 여전하지.<br>복잡한 마음은 잠깐 내려놓고 들어와.</div>
+</div>
+<div class="cat-stage">
+<span class="star star-one" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles" aria-hidden="true">
+<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z">
+</path>
+<path d="M20 2v4">
+</path>
+<path d="M22 4h-4">
+</path>
+<circle cx="4" cy="20" r="2">
+</circle>
+</svg>
+</span>
+<span class="star star-two" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles" aria-hidden="true">
+<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z">
+</path>
+<path d="M20 2v4">
+</path>
+<path d="M22 4h-4">
+</path>
+<circle cx="4" cy="20" r="2">
+</circle>
+</svg>
+</span>
+<div class="speech-bubble" aria-live="polite">
+<span>무슨 고민이야?</span>
+<span>어디 한번 볼까.</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print" aria-hidden="true">
+<circle cx="11" cy="4" r="2">
+</circle>
+<circle cx="18" cy="8" r="2">
+</circle>
+<circle cx="20" cy="16" r="2">
+</circle>
+<path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
+</path>
+</svg>
+</div>
+<button class="hero-cat " aria-label="영냥이 쓰다듬기">
+<img sizes="(min-width: 900px) 480px, 90vw" width="800" height="800" alt="보라색 마법사 모자를 쓰고 턱을 괸 흰 고양이 영냥이" fetchpriority="high" srcset="/assets/hero-480.webp 480w, /assets/hero-800.webp 800w" src="/assets/hero-800.webp">
+<span class="pet-heart" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart" aria-hidden="true">
+<path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5">
+</path>
+</svg>
+</span>
+</button>
+<span class="cat-caption">
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print" aria-hidden="true">
+<circle cx="11" cy="4" r="2">
+</circle>
+<circle cx="18" cy="8" r="2">
+</circle>
+<circle cx="20" cy="16" r="2">
+</circle>
+<path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
+</path>
+</svg> 영냥이를 살짝 눌러봐</span>
+</div>
+<div class="hero-action">
+<button class="primary-cta">
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print" aria-hidden="true">
+<circle cx="11" cy="4" r="2">
+</circle>
+<circle cx="18" cy="8" r="2">
+</circle>
+<circle cx="20" cy="16" r="2">
+</circle>
+<path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
+</path>
+</svg>
+<span>무료 운세 보기</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</button>
+<p>오늘의 한마디부터 가볍게 만나봐요</p>
+</div>
+</section>
+<div class="main-content">
+<button class="prologue-banner">
+<img alt="" width="460" height="300" loading="lazy" decoding="async" class="prologue-backdrop" src="/assets/story-mirror.webp">
+<span class="prologue-copy">
+<span class="small-label">
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true">
+<path d="m9 18 6-6-6-6">
+</path>
+</svg> 영냥이의 방 · 프롤로그</span>
+<strong>두 대통령의 운명을 맞힌 밤, <br>나는 고양이가 됐다.</strong>
+<span class="text-link">그날의 이야기 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</span>
+<img alt="" width="480" height="640" loading="lazy" decoding="async" class="prologue-cat" src="/assets/surprised.webp">
+</button>
+<section class="concern-section" aria-labelledby="concern-title">
+<div class="section-heading">
+<h2 id="concern-title">지금 뭐가 궁금해?</h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print gold" aria-hidden="true">
+<circle cx="11" cy="4" r="2">
+</circle>
+<circle cx="18" cy="8" r="2">
+</circle>
+<circle cx="20" cy="16" r="2">
+</circle>
+<path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
+</path>
+</svg>
+</div>
+<p class="section-description">어려운 건 몰라도 돼. 네 고민부터 골라봐.</p>
+<div class="concern-chips">
+<button aria-pressed="false">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart" aria-hidden="true">
+<path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5">
+</path>
+</svg>
+<span>연애</span>
+</button>
+<button aria-pressed="false">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet" aria-hidden="true">
+<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1">
+</path>
+<path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4">
+</path>
+</svg>
+<span>돈</span>
+</button>
+<button aria-pressed="false">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle" aria-hidden="true">
+<circle cx="12" cy="12" r="10">
+</circle>
+</svg>
+<span>결혼</span>
+</button>
+<button aria-pressed="false">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase-business" aria-hidden="true">
+<path d="M12 12h.01">
+</path>
+<path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2">
+</path>
+<path d="M22 13a18.15 18.15 0 0 1-20 0">
+</path>
+<rect width="20" height="14" x="2" y="6" rx="2">
+</rect>
+</svg>
+<span>직업</span>
+</button>
+<button aria-pressed="false">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true">
+<path d="m9 18 6-6-6-6">
+</path>
+</svg>
+<span>시험</span>
+</button>
+<button aria-pressed="false">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye" aria-hidden="true">
+<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+</path>
+<circle cx="12" cy="12" r="3">
+</circle>
+</svg>
+<span>그 사람</span>
+</button>
+<button aria-pressed="false">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles" aria-hidden="true">
+<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z">
+</path>
+<path d="M20 2v4">
+</path>
+<path d="M22 4h-4">
+</path>
+<circle cx="4" cy="20" r="2">
+</circle>
+</svg>
+<span>올해 운세</span>
+</button>
+</div>
+</section>
+<section class="readings-section" id="readings" aria-labelledby="readings-title">
+<div class="section-heading">
+<h2 id="readings-title">운세 골라보기</h2>
+<span class="section-aside">여섯 가지 운명의 언어</span>
+</div>
+<div class="service-grid">
+<button class="service-card  ">
+<div class="service-image">
+<img alt="사주를 보는 영냥이" width="460" height="300" loading="lazy" decoding="async" class="" src="/assets/saju.webp">
+<span class="card-ornament" aria-hidden="true">✧</span>
+</div>
+<div class="service-copy">
+<h3>사주</h3>
+<p>타고난 나를 만나는 시간</p>
+<span>보러가기 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</div>
+</button>
+<button class="service-card  ">
+<div class="service-image">
+<img alt="타로를 보는 영냥이" width="460" height="300" loading="lazy" decoding="async" class="" src="/assets/tarot.webp">
+<span class="card-ornament" aria-hidden="true">✧</span>
+</div>
+<div class="service-copy">
+<h3>타로</h3>
+<p>마음이 망설이는 순간</p>
+<span>보러가기 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</div>
+</button>
+<button class="service-card ivory-art ">
+<div class="service-image">
+<img alt="자미두수를 보는 영냥이" width="460" height="300" loading="lazy" decoding="async" class="" src="/assets/ziwei.webp">
+<span class="card-ornament" aria-hidden="true">✧</span>
+</div>
+<div class="service-copy">
+<h3>자미두수</h3>
+<p>별에 담긴 인생의 지도</p>
+<span>보러가기 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</div>
+</button>
+<button class="service-card  ">
+<div class="service-image">
+<img alt="점성술를 보는 영냥이" width="460" height="300" loading="lazy" decoding="async" class="" src="/assets/astrology.webp">
+<span class="card-ornament" aria-hidden="true">✧</span>
+</div>
+<div class="service-copy">
+<h3>점성술</h3>
+<p>나를 비추는 별의 언어</p>
+<span>보러가기 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</div>
+</button>
+<button class="service-card  ">
+<div class="service-image">
+<img alt="베다점를 보는 영냥이" width="460" height="300" loading="lazy" decoding="async" class="" src="/assets/vedic.webp">
+<span class="card-ornament" aria-hidden="true">✧</span>
+</div>
+<div class="service-copy">
+<h3>베다점</h3>
+<p>오래된 지혜가 건네는 길</p>
+<span>보러가기 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</div>
+</button>
+<button class="service-card  ">
+<div class="service-image">
+<img alt="숙요를 보는 영냥이" width="460" height="300" loading="lazy" decoding="async" class="" src="/assets/sukuyo.webp">
+<span class="card-ornament" aria-hidden="true">✧</span>
+</div>
+<div class="service-copy">
+<h3>숙요</h3>
+<p>너와 나, 그 사이의 인연</p>
+<span>보러가기 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</div>
+</button>
+</div>
+</section>
+<section class="fusion-section" aria-labelledby="fusion-title">
+<div class="fusion-card">
+<img alt="" width="460" height="300" loading="lazy" decoding="async" class="fusion-art" src="/assets/story-curse.webp">
+<div class="fusion-shade">
+</div>
+<div class="fusion-top">
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles" aria-hidden="true">
+<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z">
+</path>
+<path d="M20 2v4">
+</path>
+<path d="M22 4h-4">
+</path>
+<circle cx="4" cy="20" r="2">
+</circle>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" aria-hidden="true">
+<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401">
+</path>
+</svg>
+</div>
+<h2 id="fusion-title">흩어진 운명을,<br>
+<span>하나의 이야기로.</span>
+</h2>
+<p class="fusion-name">영냥이의 초융합 운세</p>
+<p class="fusion-description">서로 다른 운세의 시선을 모아<br>나를 더 깊이 이해하는 시간.</p>
+<div class="fusion-systems">사주 · 자미두수 · 점성술 · 숙요 · 베다</div>
+<button class="outlined-cta">내 운명 깊게 보기 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</button>
+</div>
+</section>
+<section class="recommendations-section" id="recommendations" aria-labelledby="recommendations-title">
+<div class="section-heading">
+<h2 id="recommendations-title">영냥이가 골라봤어</h2>
+<button class="icon-button" aria-label="다음 추천 보기">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</button>
+</div>
+<div class="recommendation-carousel" tabindex="0" aria-label="추천 운세 가로 목록">
+<button class="recommendation-card">
+<img alt="" width="460" height="300" loading="lazy" decoding="async" class="" src="/assets/recommend-love.webp">
+<span class="recommendation-copy">
+<span>연애운</span>
+<strong>마음이 닿는 순간</strong>
+<span class="recommendation-link">이야기 살펴보기 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</span>
+</button>
+<button class="recommendation-card">
+<img alt="" width="460" height="300" loading="lazy" decoding="async" class="" src="/assets/recommend-wealth.webp">
+<span class="recommendation-copy">
+<span>재물운</span>
+<strong>나의 재물 흐름</strong>
+<span class="recommendation-link">이야기 살펴보기 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</span>
+</button>
+<button class="recommendation-card">
+<img alt="" width="460" height="300" loading="lazy" decoding="async" class="" src="/assets/recommend-year.webp">
+<span class="recommendation-copy">
+<span>올해 운세</span>
+<strong>올해, 남은 이야기</strong>
+<span class="recommendation-link">이야기 살펴보기 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</span>
+</button>
+<button class="recommendation-card">
+<img alt="" width="460" height="300" loading="lazy" decoding="async" class="" src="/assets/recommend-past.webp">
+<span class="recommendation-copy">
+<span>인연 이야기</span>
+<strong>낯익은 인연의 비밀</strong>
+<span class="recommendation-link">이야기 살펴보기 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true">
+<path d="M5 12h14">
+</path>
+<path d="m12 5 7 7-7 7">
+</path>
+</svg>
+</span>
+</span>
+</button>
+</div>
+</section>
+<section class="room-section" id="room" aria-labelledby="room-title">
+<div class="section-heading">
+<h2>운세가 끝나도, 머물러도 돼.</h2>
+</div>
+<div class="room-note">
+<div class="ivory-stage measured-motion">
+<div class="cat-motion-canvas" aria-hidden="true">
+<img width="320" height="320" alt="" class="motion-active" loading="lazy" src="/assets/night-read.webp">
+<img width="240" height="230" alt="" class="walk-pose" loading="lazy" src="/assets/walk-pose-1.webp">
+<img width="240" height="230" alt="" class="walk-pose" loading="lazy" src="/assets/walk-pose-2.webp">
+<img width="240" height="230" alt="" class="walk-pose" loading="lazy" src="/assets/walk-pose-3.webp">
+<img width="240" height="230" alt="" class="walk-pose" loading="lazy" src="/assets/walk-pose-4.webp">
+<img width="240" height="230" alt="" class="walk-pose" loading="lazy" src="/assets/walk-pose-5.webp">
+<img width="240" height="230" alt="" class="walk-pose" loading="lazy" src="/assets/walk-pose-6.webp">
+</div>
+<button class="expression-button" aria-label="영냥이 표정 바꾸기">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print" aria-hidden="true">
+<circle cx="11" cy="4" r="2">
+</circle>
+<circle cx="18" cy="8" r="2">
+</circle>
+<circle cx="20" cy="16" r="2">
+</circle>
+<path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
+</path>
+</svg>
+<span>표정 바꾸기</span>
+</button>
+</div>
+<div class="room-note-copy">
+<span class="room-time">
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" aria-hidden="true">
+<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401">
+</path>
+</svg>모두 잠든 뒤의 점술방</span>
+<h3 id="room-title">…한마디 더 해줄까.</h3>
+<p>운명은 읽는 거지만,<br>네 하루를 사는 건 너니까.</p>
+<button class="text-link">영냥이의 방 들어가기 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open" aria-hidden="true">
+<path d="M12 7v14">
+</path>
+<path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z">
+</path>
+</svg>
+</button>
+</div>
+</div>
+</section>
+<footer class="footer">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print" aria-hidden="true">
+<circle cx="11" cy="4" r="2">
+</circle>
+<circle cx="18" cy="8" r="2">
+</circle>
+<circle cx="20" cy="16" r="2">
+</circle>
+<path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
+</path>
+</svg>
+<strong>사주보는 영냥이</strong>
+<p>네 이야기에, 작은 달빛 하나.</p>
+<span>FORTUNE SOUL CAT</span>
+<a href="#home">처음으로 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down up-arrow" aria-hidden="true">
+<path d="M12 5v14">
+</path>
+<path d="m19 12-7 7-7-7">
+</path>
+</svg>
+</a>
+</footer>
+</div>
+</main>
+</div>
+<nav class="bottom-nav" aria-label="하단 메뉴">
+<button class=" active" aria-current="page">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house" aria-hidden="true">
+<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8">
+</path>
+<path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z">
+</path>
+</svg>
+<span>홈</span>
+</button>
+<button class=" ">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-compass" aria-hidden="true">
+<circle cx="12" cy="12" r="10">
+</circle>
+<path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z">
+</path>
+</svg>
+<span>운세</span>
+</button>
+<button class="center-nav ">
+<span class="nav-avatar">
+<img width="45" height="38" alt="" src="/assets/avatar.webp">
+</span>
+<span>영냥이</span>
+</button>
+<button class=" ">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle" aria-hidden="true">
+<path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719">
+</path>
+</svg>
+<span>수다방</span>
+</button>
+<button class=" ">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark" aria-hidden="true">
+<path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z">
+</path>
+</svg>
+<span>보관함</span>
+</button>
+</nav>
+<dialog class="experience-dialog" aria-labelledby="panel-title">
+<div class="dialog-inner">
+<div class="dialog-header">
+<span>
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print" aria-hidden="true">
+<circle cx="11" cy="4" r="2">
+</circle>
+<circle cx="18" cy="8" r="2">
+</circle>
+<circle cx="20" cy="16" r="2">
+</circle>
+<path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z">
+</path>
+</svg>
+<span id="panel-title">
+</span>
+</span>
+<button class="icon-button" aria-label="닫기">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" aria-hidden="true">
+<path d="M18 6 6 18">
+</path>
+<path d="m6 6 12 12">
+</path>
+</svg>
+</button>
+</div>
+</div>
+</dialog>
+<next-route-announcer style="position: absolute;">
+</next-route-announcer>

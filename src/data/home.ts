@@ -180,29 +180,65 @@ export const dailyMessages = [
     action: "최근에 잘해낸 일 세 가지 적기",
   },
 ];
-export const story = [
+export type StoryScene = {
+  title: string;
+  background: string;
+  character: string;
+  after?: string;
+  portrait?: boolean;
+  mood: "quiet" | "gold" | "storm" | "warm";
+  line: string;
+  text: string;
+};
+
+// Fictional prologue: no real presidents, events or commercial accuracy claims.
+export const story: StoryScene[] = [
   {
-    title: "하늘의 비밀을 읽던 사람",
-    image: "story-room",
-    line: "“……그래서 결국, 다 맞았잖아.”",
-    text: "영묘진인. 사람들은 그를 그렇게 불렀다. 운명의 흐름을 읽는 일만큼은 누구에게도 뒤지지 않았다. 그날 밤, 입 밖으로 꺼내서는 안 될 이야기를 하기 전까지는.",
+    title: "하늘을 읽는 사람",
+    background: "story-room", character: "prologue-human-calm", portrait: true, mood: "quiet",
+    line: "“운명이 어려운 게 아니야. 읽을 줄 아는 사람이 드문 거지.”",
+    text: "사람들은 그를 영묘진인이라 불렀다. 달빛 아래 책장을 펼치면, 남들에게는 뒤엉킨 우연이 그에게는 한 줄의 문장처럼 읽혔다. 닫힌 서재의 문을 두드리는 이들 중에는, 한 나라를 손에 쥐고 싶은 사람도 있었다.",
   },
   {
-    title: "천기누설의 대가",
-    image: "story-curse",
-    line: "“그 한마디가, 그렇게 큰 죄였어?”",
-    text: "하늘의 비밀을 너무 멀리 읽어버린 밤. 익숙하던 방 위로 낯선 빛이 쏟아졌다. 책장이 흔들리고, 운명을 읽던 손끝이 빛 속으로 사라졌다.",
+    title: "첫 번째 대통령",
+    background: "story-room", character: "prologue-human-smile", portrait: true, mood: "gold",
+    line: "“그 자리에 앉게 될 거야. 네가 생각한 것보다 오래 기다린 뒤에.”",
+    text: "아직 아무도 승리를 믿지 않던 사람에게, 그는 대통령이 될 운명을 일러주었다. 계절이 바뀌고 마침내 예언이 이루어지자, 사람들은 그의 이름을 낮은 목소리로 주고받았다. 그날 밤, 서재의 촛불 하나가 바람도 없이 꺼졌다.",
   },
   {
-    title: "거울 속의 낯선 나",
-    image: "story-mirror",
-    line: "“……야. 내 손 어디 갔어.”",
-    text: "눈을 뜨자 발이 네 개였다. 수염도, 꼬리도 생겼다. 달라지지 않은 것은 딱 하나. 여전히 사람들의 운명을 읽을 수 있다는 것.",
+    title: "두 번째 대통령",
+    background: "story-curse", character: "prologue-human-calm", portrait: true, mood: "storm",
+    line: "“둘 다 맞았는데. 그게 문제였나?”",
+    text: "이번에는 권좌에 앉아 있던 다른 대통령이었다. 영묘진인이 말한 대로 그가 자리에서 내려오던 밤, 하늘에는 별 하나 보이지 않았다. 두 사람의 운명을 맞혔다는 환호가 서재에 닿기도 전에, 천둥이 먼저 문을 두드렸다.",
   },
   {
-    title: "달빛 아래, 다시 문을 열다",
-    image: "room-780",
-    line: "“흥, 궁금한 거 있으면 앉아.”",
-    text: "이름은 이제 영냥이. 자존심은 여전하고, 생선 앞에서는 조금 약해졌다. 그래도 누군가의 힘든 이야기를 듣고 나면, 몰래 한마디를 더 보태는 고양이. 오늘은 네 이야기를 기다린다.",
+    title: "하늘의 판결",
+    background: "story-curse", character: "prologue-curse", mood: "storm",
+    line: "“보는 눈은 남겨두겠다. 그 눈으로 누리던 것은 가져가마.”",
+    text: "하늘은 틀린 말을 벌한 것이 아니었다. 두 번이나 제 비밀을 세상에 흘린 입을 벌한 것이었다. 운명을 읽는 재주는 그대로 두되, 그 재주로 쌓은 위세와 부는 다시 누리지 못하리라는 판결이 떨어졌다.",
+  },
+  {
+    title: "내 손 어디 갔어",
+    background: "story-mirror", character: "prologue-changing", after: "prologue-changed", mood: "storm",
+    line: "“잠깐. 설명은 듣고 바꿔야 할 거 아니야.”",
+    text: "책을 붙잡던 손가락이 오므라들고, 귓가로 낯선 털이 솟았다. 항의하려던 목소리는 짧은 울음으로 새어 나왔다. 갈라진 거울 속에는, 자기보다 훨씬 억울한 얼굴을 한 작은 고양이가 서 있었다.",
+  },
+  {
+    title: "항의는 받지 않습니다",
+    background: "story-mirror", character: "prologue-protest", after: "prologue-resigned", mood: "quiet",
+    line: "“세상에서 제일 잘 보는데, 복채가 이게 뭐야.”",
+    text: "앞발을 치켜들고 따져도 하늘은 잠잠했다. 세상에서 가장 운세를 잘 보는 자가, 가장 헐값에 운세를 봐야 하는 고양이가 된 것이다. 남의 앞날은 훤히 보이는데, 제 저녁밥만은 도무지 해결되지 않았다.",
+  },
+  {
+    title: "고등어라는 약점",
+    background: "room-780", character: "prologue-fish", after: "prologue-fish-scent", mood: "warm",
+    line: "“돈 때문은 아니야. …그 생선, 어디서 샀어?”",
+    text: "그때, 문틈으로 고등어 냄새가 들어왔다. 이 정도 복채로는 어림없다던 앞발이, 어느새 생선을 제 쪽으로 끌어당겼다. 하늘도 꺾지 못한 자존심에 생각보다 작고 맛있는 약점이 생긴 셈이었다.",
+  },
+  {
+    title: "오늘은 네 차례",
+    background: "room-780", character: "prologue-cat", mood: "warm",
+    line: "“앉아. 네 얘기는 아직 안 끝났잖아.”",
+    text: "그렇게 달빛 아래 작은 점술방이 열렸다. 이제 영냥이가 들여다보는 것은 권좌보다, 답장 하나에 잠 못 이루고 내일을 걱정하는 사람들의 밤이다. 상담이 끝나도 힘없이 일어서는 손님에게는, 꼭 한마디를 더 보태곤 한다.",
   },
 ];

@@ -26,20 +26,18 @@ import {
   Wallet,
   X,
 } from "lucide-react";
+import CatMotion from "./CatMotion";
 import {
   concerns,
   dailyMessages,
   recommendations,
   services,
-  story,
 } from "@/data/home";
 
 type Panel =
   | "daily"
-  | "story"
   | "auth"
   | "library"
-  | "chat"
   | "notifications"
   | "service"
   | "fusion"
@@ -108,9 +106,6 @@ export default function FortuneHome() {
   const [concern, setConcern] = useState<string | null>(null);
   const [bubble, setBubble] = useState(0);
   const [petting, setPetting] = useState(false);
-  const [expression, setExpression] = useState(0);
-  const [walking, setWalking] = useState(false);
-  const [storyStep, setStoryStep] = useState(0);
   const [authMode, setAuthMode] = useState<"login" | "signup">("login");
   const [notice, setNotice] = useState("");
   const [today, setToday] = useState("");
@@ -124,7 +119,6 @@ export default function FortuneHome() {
   const selectedConcern = concerns.find((item) => item.id === concern);
   const service = services.find((item) => item.id === serviceId) || services[0];
   const message = dailyMessages[dayIndex];
-  const currentStory = story[storyStep];
 
   useEffect(() => {
     const now = new Date();
@@ -173,7 +167,6 @@ export default function FortuneHome() {
 
   function openPanel(next: Panel) {
     setNotice("");
-    if (next === "story") setStoryStep(0);
     setPanel(next);
   }
   function closePanel() {
@@ -191,6 +184,7 @@ export default function FortuneHome() {
     openPanel("service");
   }
   function navigate(id: string) {
+    if (id === "chat") { window.location.assign("/room/"); return; }
     if (id === "home" || id === "readings") {
       closePanel();
       setActiveNav(id);
@@ -203,7 +197,7 @@ export default function FortuneHome() {
         });
     } else {
       setActiveNav(id);
-      openPanel(id === "cat" ? "daily" : id === "chat" ? "chat" : "library");
+      openPanel(id === "cat" ? "daily" : "library");
     }
   }
   function petCat() {
@@ -225,10 +219,8 @@ export default function FortuneHome() {
 
   const titles: Record<Exclude<Panel, null>, string> = {
     daily: "영냥이의 오늘 한마디",
-    story: "영냥이의 방",
     auth: "달빛 점술방의 문",
     library: "나의 보관함",
-    chat: "영냥이와 수다",
     notifications: "점술방 소식",
     service: service.name,
     fusion: "영냥이의 초융합 운세",
@@ -250,7 +242,7 @@ export default function FortuneHome() {
           </a>
           <nav className="desktop-nav" aria-label="주 메뉴">
             <a href="#readings">운세 골라보기</a>
-            <button onClick={() => openPanel("story")}>영냥이의 방</button>
+            <button onClick={() => window.location.assign("/room/")}>영냥이의 방</button>
             <a href="#recommendations">영냥이 추천</a>
           </nav>
           <div className="header-actions">
@@ -352,7 +344,7 @@ export default function FortuneHome() {
           <div className="main-content">
             <button
               className="prologue-banner"
-              onClick={() => openPanel("story")}
+              onClick={() => window.location.assign("/room/")}
             >
               <Art name="story-mirror" className="prologue-backdrop" />
               <span className="prologue-copy">
@@ -360,7 +352,7 @@ export default function FortuneHome() {
                   <BookOpen size={14} /> 영냥이의 방 · 프롤로그
                 </span>
                 <strong>
-                  인간이었던 내가, <br />왜 고양이가 됐을까?
+                  두 대통령의 운명을 맞힌 밤, <br />나는 고양이가 됐다.
                 </strong>
                 <span className="text-link">
                   그날의 이야기 <ArrowRight size={15} />
@@ -540,42 +532,7 @@ export default function FortuneHome() {
             >
               <SectionHeading>운세가 끝나도, 머물러도 돼.</SectionHeading>
               <div className="room-note">
-                <div className={`ivory-stage ${walking ? "is-walking" : ""}`}>
-                  <span
-                    className="walking-cat"
-                    aria-hidden="true"
-                    onAnimationEnd={() => setWalking(false)}
-                  />
-                  <Art
-                    name={timeOfDay === "day" ? "day-drink" : "night-read"}
-                    width={310}
-                    height={325}
-                  />
-                  <button
-                    className="expression-button"
-                    aria-label="영냥이 표정 바꾸기"
-                    onClick={() => {
-                      setExpression((x) => (x + 1) % 3);
-                      if (
-                        !matchMedia("(prefers-reduced-motion: reduce)").matches
-                      )
-                        setWalking(true);
-                    }}
-                  >
-                    {["calm", "wink", "happy"].map((name, i) => (
-                      <img
-                        key={name}
-                        src={imagePath(`expression-${name}`)}
-                        alt=""
-                        width="160"
-                        height="150"
-                        loading="lazy"
-                        className={expression === i ? "active" : ""}
-                      />
-                    ))}
-                    <PawPrint size={14} />
-                  </button>
-                </div>
+                <CatMotion daytime={timeOfDay === "day"} />
                 <div className="room-note-copy">
                   <span className="room-time">
                     {timeOfDay === "day" ? (
@@ -594,9 +551,9 @@ export default function FortuneHome() {
                   </p>
                   <button
                     className="text-link"
-                    onClick={() => openPanel("story")}
+                    onClick={() => window.location.assign("/room/")}
                   >
-                    영냥이의 이야기 <ChevronRight size={15} />
+                    영냥이의 방 들어가기 <ChevronRight size={15} />
                   </button>
                 </div>
               </div>
@@ -643,7 +600,7 @@ export default function FortuneHome() {
 
       <dialog
         ref={dialogRef}
-        className={`experience-dialog ${panel === "story" ? "story-dialog" : ""}`}
+        className="experience-dialog"
         aria-labelledby="panel-title"
         onCancel={closePanel}
         onClick={(event) => {
@@ -689,77 +646,6 @@ export default function FortuneHome() {
                 <Copy size={18} />
                 문구 복사하기
               </button>
-            </div>
-          )}
-
-          {panel === "story" && (
-            <div className="story-panel">
-              <div className="story-visual">
-                <Art
-                  eager
-                  name={currentStory.image}
-                  width={900}
-                  height={506}
-                  alt={currentStory.title}
-                />
-                {storyStep === 2 && (
-                  <Art
-                    eager
-                    name="surprised"
-                    className="story-character"
-                    width={480}
-                    height={640}
-                  />
-                )}
-                {storyStep === 3 && (
-                  <Art
-                    eager
-                    name="hero-480"
-                    className="story-character"
-                    width={480}
-                    height={480}
-                  />
-                )}
-              </div>
-              <div className="story-text" aria-live="polite">
-                <div
-                  className="story-progress"
-                  aria-label={`${storyStep + 1} / ${story.length} 장면`}
-                >
-                  {story.map((_, i) => (
-                    <span className={i <= storyStep ? "read" : ""} key={i} />
-                  ))}
-                </div>
-                <h2>{currentStory.title}</h2>
-                <blockquote>{currentStory.line}</blockquote>
-                <p>{currentStory.text}</p>
-              </div>
-              <div className="story-controls">
-                <button
-                  className="icon-button"
-                  aria-label="이전 장면"
-                  disabled={storyStep === 0}
-                  onClick={() => setStoryStep((x) => x - 1)}
-                >
-                  <ArrowLeft size={20} />
-                </button>
-                <button className="text-link" onClick={closePanel}>
-                  이야기 나가기
-                </button>
-                <button
-                  className="story-next"
-                  onClick={() =>
-                    storyStep === story.length - 1
-                      ? closePanel()
-                      : setStoryStep((x) => x + 1)
-                  }
-                >
-                  {storyStep === story.length - 1
-                    ? "점술방으로"
-                    : "다음 이야기"}
-                  <ArrowRight size={17} />
-                </button>
-              </div>
             </div>
           )}
 
@@ -915,52 +801,6 @@ export default function FortuneHome() {
             </div>
           )}
 
-          {panel === "chat" && (
-            <div className="chat-panel panel-body">
-              <Art
-                eager
-                name="day-drink"
-                className="empty-art"
-                width={255}
-                height={260}
-              />
-              <h2>그래서, 무슨 이야기야?</h2>
-              <p>
-                말이 잘 정리되지 않아도 괜찮아.
-                <br />
-                가장 마음에 걸리는 것부터 골라봐.
-              </p>
-              <div className="chat-concerns">
-                {concerns.slice(0, 4).map((item) => (
-                  <button
-                    key={item.id}
-                    aria-pressed={concern === item.id}
-                    onClick={() => setConcern(item.id)}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-              {selectedConcern && (
-                <p className="chat-answer" aria-live="polite">
-                  {selectedConcern.line}
-                </p>
-              )}
-              <div className="availability-note">
-                실시간 상담은 준비 중이에요.
-                <br />
-                지금은 고민에 맞는 운세를 둘러볼 수 있어요.
-              </div>
-              <button
-                className="outlined-cta"
-                onClick={() => navigate("readings")}
-              >
-                고민에 맞는 운세 보기
-                <ArrowRight size={18} />
-              </button>
-            </div>
-          )}
-
           {panel === "notifications" && (
             <div className="panel-body notifications-panel">
               <Moon size={38} className="gold" />
@@ -972,7 +812,7 @@ export default function FortuneHome() {
               </p>
               <button
                 className="outlined-cta"
-                onClick={() => openPanel("story")}
+                onClick={() => window.location.assign("/room/")}
               >
                 영냥이의 이야기 보기
                 <ArrowRight size={18} />

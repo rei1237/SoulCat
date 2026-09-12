@@ -2,7 +2,11 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, BookOpen } from "lucide-react";
-import { fortuneSurfaces, FortuneDomainId } from "@/data/fortune";
+import {
+  fortuneLoadingArt,
+  fortuneSurfaces,
+  FortuneDomainId,
+} from "@/data/fortune";
 import "./fortune.css";
 
 interface Product {
@@ -76,6 +80,12 @@ export default function FortuneExperience() {
   const product = products.find(
     (p) => p.domain === domain && p.fishId === fish,
   );
+  const topicArt = surface.choices.find(([name]) => name === topic)?.[2];
+  const loadingKey = (topicArt ?? domain) as keyof typeof fortuneLoadingArt;
+  const loadingArt =
+    fortuneLoadingArt[loadingKey] ??
+    fortuneLoadingArt[domain] ??
+    fortuneLoadingArt.default;
   useEffect(() => {
     const selected = new URLSearchParams(window.location.search).get("domain");
     if (selected && selected in fortuneSurfaces)
@@ -364,15 +374,20 @@ export default function FortuneExperience() {
       )}
       {stage === "loading" && (
         <section className="fortune-loading" aria-live="polite">
-          <img
-            src="/assets/fortune/loading.webp"
-            width={280}
-            height={280}
-            alt="자료를 들여다보는 영냥이"
-          />
-          <h1>조금만 기다려봐.</h1>
+          <div className="fortune-loading-stage">
+            <span className="fortune-loading-orbit" aria-hidden="true" />
+            <img
+              src={`/assets/fortune/${loadingArt.image}`}
+              width={520}
+              height={520}
+              alt={loadingArt.alt}
+            />
+          </div>
+          <h1>{loadingArt.title}</h1>
           <p>{progress || "저장된 상담 상태를 확인하고 있어."}</p>
-          <p>이 화면을 닫아도 보관함에서 진행 상태를 확인할 수 있어요.</p>
+          <p className="fortune-loading-note">
+            이 화면을 닫아도 보관함에서 진행 상태를 확인할 수 있어요.
+          </p>
           <Link href="/library/">보관함으로 이동</Link>
         </section>
       )}

@@ -199,5 +199,120 @@
     "originalWidth": 1254,
     "originalHeight": 1254,
     "prompt": "Use case: illustration-story. Create ONE square finished game illustration, no montage. Reference image is the exact character identity: Yeongnyangi, fluffy WHITE cat, half-lidded violet-to-gold eyes, tiny pink nose, proud slightly unimpressed but caring expression, navy floppy crescent-and-stars gold-trim wizard hat with tassel, navy violet robe with gold celestial embroidery, violet gem brooch, white curled tail. Match reference's polished anime illustration, fur and proportions faithfully. Chest/waist-up cat prominent, complete hat within frame, lower foreground props, generous safe margins. Same intimate dark muted plum violet fortune-telling room, softly blurred shelves, warm candle-gold light and ivory paper in every illustration. No colored pastel backdrop, no UI, no border, no words, no letters or numbers, no label, no watermark; replace written name tag with plain gold charm. Props are evocative illustrations, not actual calculated results. Cat carefully arranges a modest few brass coins beside a closed ivory ledger and small cloth purse, reflective prudent expression, no piles of treasure or wealth promises."
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/신들린 영냥이4-Photoroom.webp",
+    "output": "public/assets/fortune/loading-default.webp",
+    "width": 520,
+    "height": 520,
+    "bytes": 62716,
+    "crop": null,
+    "loading": true
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/영냥이 사주보는 3.webp",
+    "output": "public/assets/fortune/loading-saju.webp",
+    "width": 520,
+    "height": 520,
+    "bytes": 32600,
+    "crop": [
+      0,
+      0,
+      255,
+      264
+    ],
+    "loading": true
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/타로보는 영냥이4-Photoroom.webp",
+    "output": "public/assets/fortune/loading-sukuyo.webp",
+    "width": 520,
+    "height": 520,
+    "bytes": 46818,
+    "crop": null,
+    "loading": true
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/신들린 영냥이4-Photoroom.webp",
+    "output": "public/assets/fortune/loading-vedic.webp",
+    "width": 520,
+    "height": 520,
+    "bytes": 62716,
+    "crop": null,
+    "loading": true
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/점성술보는 영냥이4.webp",
+    "output": "public/assets/fortune/loading-astrology.webp",
+    "width": 520,
+    "height": 520,
+    "bytes": 39908,
+    "crop": [
+      0,
+      0,
+      463,
+      354
+    ],
+    "loading": true
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/자미두수보는 영냥이4.webp",
+    "output": "public/assets/fortune/loading-ziwei.webp",
+    "width": 520,
+    "height": 520,
+    "bytes": 30392,
+    "crop": [
+      0,
+      0,
+      511,
+      366
+    ],
+    "loading": true
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/타로보는 영냥이4-Photoroom.webp",
+    "output": "public/assets/fortune/loading-love.webp",
+    "width": 520,
+    "height": 520,
+    "bytes": 46818,
+    "crop": null,
+    "loading": true
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/영냥이 사주보는 대운.webp",
+    "output": "public/assets/fortune/loading-luck.webp",
+    "width": 520,
+    "height": 520,
+    "bytes": 30802,
+    "crop": [
+      0,
+      0,
+      255,
+      264
+    ],
+    "loading": true
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/핵심 포인트 짚는 영냥이.webp",
+    "output": "public/assets/fortune/loading-work.webp",
+    "width": 520,
+    "height": 520,
+    "bytes": 32336,
+    "crop": [
+      0,
+      0,
+      283,
+      286
+    ],
+    "loading": true
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/주산하는 영냥이-Photoroom.webp",
+    "output": "public/assets/fortune/loading-money.webp",
+    "width": 520,
+    "height": 520,
+    "bytes": 43882,
+    "crop": null,
+    "loading": true
   }
 ]
