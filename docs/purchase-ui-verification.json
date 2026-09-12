@@ -1,0 +1,9 @@
+{
+  "mockPurchase": true,
+  "generated": true,
+  "reload": true,
+  "libraryReopen": true,
+  "stableRequest": true,
+  "actualPayment": false,
+  "actualLLM": false
+}

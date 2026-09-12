@@ -3,7 +3,8 @@
   "name": "soulcat",
   "pages_build_output_dir": "./out",
   "compatibility_date": "2026-09-12",
-  "ai": {
-    "binding": "AI"
-  }
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": { "APP_ENV": "preview", "LLM_PROVIDER": "mock", "ALLOW_LIVE_LLM": "false", "PAYMENTS_ENABLED": "false" },
+  "ai": { "binding": "AI" },
+  "d1_databases": [{ "binding": "DB", "database_name": "soulcat-fortune", "database_id": "172413ab-7ddf-4538-a7ec-8238b92efa35", "migrations_dir": "server/db/migrations" }]
 }

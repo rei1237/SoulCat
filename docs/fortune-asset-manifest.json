@@ -1,0 +1,86 @@
+[
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/가격별생선/고등어-Photoroom.webp",
+    "output": "public/assets/fish/mackerel.webp",
+    "width": 240,
+    "height": 160
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/가격별생선/연어-Photoroom.webp",
+    "output": "public/assets/fish/salmon.webp",
+    "width": 240,
+    "height": 166
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/가격별생선/광어-Photoroom.webp",
+    "output": "public/assets/fish/flounder.webp",
+    "width": 240,
+    "height": 163
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/가격별생선/참치-Photoroom.webp",
+    "output": "public/assets/fish/tuna.webp",
+    "width": 240,
+    "height": 152
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각 운세 진입화면/사주 진입.webp",
+    "output": "public/assets/fortune/saju.webp",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각 운세 진입화면/숙요 진입.webp",
+    "output": "public/assets/fortune/sukuyo.webp",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각 운세 진입화면/베다 진입.webp",
+    "output": "public/assets/fortune/vedic.webp",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각 운세 진입화면/점성술 진입.webp",
+    "output": "public/assets/fortune/astrology.webp",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각 운세 진입화면/자미두수 진입.webp",
+    "output": "public/assets/fortune/ziwei.webp",
+    "width": 560,
+    "height": 560
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/카테고리별운세/연애운 카테고리.webp",
+    "output": "public/assets/fortune/love.webp",
+    "width": 307,
+    "height": 512
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/카테고리별운세/직업운 카테고리.webp",
+    "output": "public/assets/fortune/work.webp",
+    "width": 307,
+    "height": 512
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/카테고리별운세/재물운 카테고리.webp",
+    "output": "public/assets/fortune/money.webp",
+    "width": 307,
+    "height": 512
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/영냥이 사주보는 대운.webp",
+    "output": "public/assets/fortune/luck.webp",
+    "width": 255,
+    "height": 304
+  },
+  {
+    "source": "C:/Users/user/Desktop/사주보는 고양이 영냥이/각운세보는영냥이/영냥이 사주보는 2.webp",
+    "output": "public/assets/fortune/loading.webp",
+    "width": 255,
+    "height": 329
+  }
+]

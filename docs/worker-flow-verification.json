@@ -1,0 +1,32 @@
+[
+  {
+    "domain": "saju",
+    "persisted": true,
+    "privateResult": true,
+    "provider": "mock"
+  },
+  {
+    "domain": "sukuyo",
+    "persisted": true,
+    "privateResult": true,
+    "provider": "mock"
+  },
+  {
+    "domain": "vedic",
+    "persisted": true,
+    "privateResult": true,
+    "provider": "mock"
+  },
+  {
+    "domain": "astrology",
+    "persisted": true,
+    "privateResult": true,
+    "provider": "mock"
+  },
+  {
+    "domain": "ziwei",
+    "persisted": true,
+    "privateResult": true,
+    "provider": "mock"
+  }
+]

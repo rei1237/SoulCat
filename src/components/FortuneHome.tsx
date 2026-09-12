@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import Link from "next/link";
 import {
   ArrowDown,
   ArrowLeft,
@@ -826,6 +827,7 @@ export default function FortuneHome() {
                 alt={`${service.name}를 보는 영냥이`}
               />
               <h2>{service.subtitle}</h2>
+              {service.id !== 'tarot' && <Link className="outlined-cta" href={`/fortune/?domain=${service.id}`}>상담 살펴보기 <ArrowRight size={18} /></Link>}
               <p>{service.description}</p>
               <ul>
                 {service.details.map((item) => (
