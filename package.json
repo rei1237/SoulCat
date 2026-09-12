@@ -12,20 +12,24 @@
     "test:ui": "node scripts/verify-ui.mjs"
   },
   "dependencies": {
+    "@fontsource-variable/noto-sans-kr": "^5.2.9",
+    "@fontsource/nanum-myeongjo": "^5.2.5",
+    "astronomy-engine": "^2.1.19",
+    "lucide-react": "^0.577.0",
     "next": "15.5.25",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "lucide-react": "^0.577.0",
-    "@fontsource/nanum-myeongjo": "^5.2.5",
-    "@fontsource-variable/noto-sans-kr": "^5.2.9"
+    "sweph-wasm": "^2.6.9"
   },
   "devDependencies": {
-    "typescript": "^5.9.3",
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "1.63.0",
     "@types/node": "^22.19.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "sharp": "0.35.4",
-    "@playwright/test": "1.63.0",
-    "@axe-core/playwright": "^4.11.1"
+    "tsx": "^4.23.13",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.131.1"
   }
 }
