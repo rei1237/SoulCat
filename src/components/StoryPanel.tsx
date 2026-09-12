@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, PawPrint } from "lucide-react";
 import { story } from "@/data/home";
 
-const assetPath = (name: string) => `/assets/${name}.webp`;
+const assetPath = (name: string) => `/_soulcat/assets/${name}.webp`;
 
 export default function StoryPanel({ step, onPrevious, onNext, onClose, onReading }: {
   step: number;

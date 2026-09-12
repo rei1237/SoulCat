@@ -52,11 +52,11 @@ export default function YeongnyangRoom() {
     </header>
     <div className="room-layout">
       <section className="room-presence" aria-label="달빛 아래 영냥이의 점술방">
-        <img className="room-scenery" src="/assets/room-1440.webp" srcSet="/assets/room-780.webp 780w, /assets/room-1440.webp 1440w" sizes="(min-width: 900px) 58vw, 100vw" width={1440} height={810} alt="" fetchPriority="high" />
+        <img className="room-scenery" src="/_soulcat/assets/room-1440.webp" srcSet="/_soulcat/assets/room-780.webp 780w, /_soulcat/assets/room-1440.webp 1440w" sizes="(min-width: 900px) 58vw, 100vw" width={1440} height={810} alt="" fetchPriority="high" />
         <div className="room-welcome"><Moon size={14} />잠깐, 여기서 쉬어가.</div>
         <div className="room-cat-speech" aria-live="polite">{reaction ? <>말이 좀 엉켜도 괜찮아.<br />천천히 풀어보자.</> : <>어서 와.<br />오늘은 무슨 이야기야?</>}</div>
         <button className="room-resident" aria-label="영냥이 쓰다듬기" onClick={() => setReaction(value => value ? 0 : 1)}>
-          <img src={reaction ? "/assets/prologue-cat.webp" : "/assets/hero-800.webp"} width={480} height={480} alt="방석 위에서 이야기를 기다리는 영냥이" />
+          <img src={reaction ? "/_soulcat/assets/prologue-cat.webp" : "/_soulcat/assets/hero-800.webp"} width={480} height={480} alt="방석 위에서 이야기를 기다리는 영냥이" />
         </button>
         <p className="room-presence-caption">거창한 고민이 아니어도 돼.</p>
       </section>
@@ -79,7 +79,7 @@ export default function YeongnyangRoom() {
       <section className="room-stories" aria-labelledby="room-story-title">
         <div className="room-story-heading"><BookOpen size={19}/><h2 id="room-story-title">내 얘기도, 들어볼래?</h2></div>
         <button ref={storyButton} className="room-prologue-entry" onClick={() => { setStep(0); setStoryOpen(true); }}>
-          <img src="/assets/story-mirror.webp" width={480} height={270} alt="" loading="lazy" />
+          <img src="/_soulcat/assets/story-mirror.webp" width={480} height={270} alt="" loading="lazy" />
           <span><strong>두 대통령의 운명을 맞힌 밤,<br />나는 고양이가 됐다.</strong><span>영묘진인에서 영냥이로. 그날의 이야기.</span><b>프롤로그 보기 <ArrowRight size={16}/></b></span>
         </button>
       </section>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/noto-sans-kr/wght.css";
 import "@fontsource/nanum-myeongjo/700.css";
 import "./globals.css";
+import ServiceNavigation from "@/components/ServiceNavigation";
 
 export const metadata: Metadata = {
   title: "사주보는 영냥이 · 네 운명의 이야기를 읽어줄게",
@@ -20,7 +21,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>{children}<ServiceNavigation /></body>
     </html>
   );
 }

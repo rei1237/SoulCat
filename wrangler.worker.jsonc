@@ -1,0 +1,42 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "soulcat-service",
+  "main": "server/edge.ts",
+  "compatibility_date": "2026-09-12",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "vars": {
+    "APP_ENV": "unconfigured", "PAYMENTS_ENABLED": "false",
+    "LLM_PROVIDER": "mock", "ALLOW_LIVE_LLM": "false"
+  },
+  "env": {
+    "staging": {
+      "name": "soulcat-service-staging",
+      "workers_dev": false,
+      "preview_urls": false,
+      "vars": {
+        "APP_ENV": "staging", "PUBLIC_ORIGIN": "https://staging.code-destiny.com",
+        "PAYMENTS_ENABLED": "false", "LLM_PROVIDER": "mock", "ALLOW_LIVE_LLM": "false"
+      },
+      "services": [{ "binding": "AUTH_SERVICE", "service": "code-destiny-web-staging" }],
+      "d1_databases": [{ "binding": "DB", "database_name": "soulcat-fortune-staging", "database_id": "e80d79b1-8f5e-4337-a713-b1b9d1a01f06", "migrations_dir": "server/db/migrations" }],
+      "routes": [
+        { "pattern": "staging.code-destiny.com/fortune*", "zone_name": "code-destiny.com" },
+        { "pattern": "staging.code-destiny.com/room*", "zone_name": "code-destiny.com" },
+        { "pattern": "staging.code-destiny.com/library*", "zone_name": "code-destiny.com" },
+        { "pattern": "staging.code-destiny.com/_soulcat/*", "zone_name": "code-destiny.com" },
+        { "pattern": "staging.code-destiny.com/api/yeongnyangi/*", "zone_name": "code-destiny.com" }
+      ]
+    },
+    "production": {
+      "workers_dev": false,
+      "preview_urls": false,
+      "vars": {
+        "APP_ENV": "production", "PUBLIC_ORIGIN": "https://code-destiny.com",
+        "PAYMENTS_ENABLED": "false", "LLM_PROVIDER": "mock", "ALLOW_LIVE_LLM": "false"
+      },
+      "services": [{ "binding": "AUTH_SERVICE", "service": "code-destiny-web" }]
+    }
+  }
+}

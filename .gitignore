@@ -6,3 +6,6 @@ out/
 .env*
 .dev.vars*
 .wrangler/
+
+.next-*/
+.integration/

@@ -2,6 +2,7 @@ import http from "node:http";
 import path from "node:path";
 import { readFile, stat } from "node:fs/promises";
 const root = path.resolve("out");
+const port = Number(process.env.PORT || 3000);
 const types = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css",
@@ -44,6 +45,6 @@ http
       res.end("Not found");
     }
   })
-  .listen(3000, "127.0.0.1", () =>
-    console.log("Soul Cat preview: http://127.0.0.1:3000"),
+  .listen(port, "127.0.0.1", () =>
+    console.log(`Soul Cat preview: http://127.0.0.1:${port}`),
   );

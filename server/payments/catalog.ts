@@ -15,7 +15,7 @@ export const products = domains.flatMap((domain) =>
     fishName: fishCatalog[fishId].name,
     priceKRW: fishCatalog[fishId].priceKRW,
     currency: "KRW" as const,
-    image: `/assets/fish/${fishId}.webp`,
+    image: `/_soulcat/assets/fish/${fishId}.webp`,
     resultType: "consultation-v1",
     enabled: false,
   })),

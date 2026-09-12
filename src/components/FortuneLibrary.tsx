@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { fortuneSurfaces, FortuneDomainId } from "@/data/fortune";
 import "./fortune.css";
 export default function FortuneLibrary() {
@@ -9,7 +8,7 @@ export default function FortuneLibrary() {
   >([]);
   const [notice, setNotice] = useState("보관함을 확인하고 있어요.");
   useEffect(() => {
-    fetch("/api/library", { credentials: "same-origin" })
+    fetch("/api/yeongnyangi/library", { credentials: "same-origin" })
       .then(async (response) => {
         const data = await response.json();
         if (!response.ok) {
@@ -30,7 +29,7 @@ export default function FortuneLibrary() {
   return (
     <main className="fortune-shell">
       <header className="fortune-header">
-        <Link href="/">점술방으로</Link>
+        <a href="/">Code Destiny 홈</a>
         <span>나의 보관함</span>
       </header>
       <div className="fortune-intro">
@@ -39,10 +38,10 @@ export default function FortuneLibrary() {
       </div>
       {rows.map((r) => (
         <p key={r.id}>
-          <Link href={`/fortune/?domain=${r.domain}&request=${r.id}`}>
+          <a href={`/fortune/?domain=${r.domain}&request=${r.id}`}>
             {fortuneSurfaces[r.domain]?.name} ·{" "}
             {r.status === "SUCCEEDED" ? "결과 보기" : "진행 상태 확인"}
-          </Link>
+          </a>
         </p>
       ))}
     </main>

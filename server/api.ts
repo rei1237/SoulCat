@@ -5,8 +5,9 @@ import { prepareGeneration, runGeneration } from "./fortune/generation";
 import { ProviderEnv, createProvider } from "./providers/provider-factory";
 import { createOrder, grantPaidOrder } from "./payments/orders";
 import { PaymentEnv, PaymentOrder, lookupPayment } from "./payments/portone";
-import { getProduct } from "./payments/catalog";
-export interface Env extends ProviderEnv, PaymentEnv {
+import { getProduct, products } from "./payments/catalog";
+import { AuthEnv, sharedUser } from "./auth";
+export interface Env extends ProviderEnv, PaymentEnv, AuthEnv {
   DB?: Database;
   APP_ENV?: string;
 }
@@ -41,7 +42,8 @@ async function user(db: Database, request: Request) {
   return row.user_id;
 }
 const messages: Record<string, string> = {
-  SESSION_REQUIRED: "이 브라우저의 보관함 연결이 필요해요. 다시 시작해 주세요.",
+  SESSION_REQUIRED: "Code Destiny 로그인 후 다시 확인해 주세요.",
+  AUTH_UNAVAILABLE: "로그인 상태를 확인하지 못했어요. 잠시 후 다시 시도해 주세요.",
   ENTITLEMENT_REQUIRED:
     "확인된 구매 내역이 없어요. 결제 내역을 먼저 확인해 주세요.",
   PAYMENTS_UNAVAILABLE: "결제 연결을 준비하고 있어요. 아직 구매할 수 없어요.",
@@ -58,7 +60,9 @@ export async function handleApi(
 ) {
   try {
     const url = new URL(request.url);
-    const path = url.pathname.replace(/^\/api\//, "").replace(/\/$/, "");
+    const path = url.pathname.replace(/^\/api\/(?:yeongnyangi\/)?/, "").replace(/\/$/, "");
+    if (path === "products" && request.method === "GET")
+      return json({ products, mode: env.APP_ENV === "local" && env.LLM_PROVIDER === "mock" ? "local-mock" : "preview" });
     if (!env.DB) throw new FortuneError("DATABASE_NOT_CONFIGURED", 503);
     const db = env.DB;
     let body: Record<string, unknown> = {};
@@ -81,9 +85,13 @@ export async function handleApi(
         throw new FortuneError("INVALID_JSON");
     }
     if (path === "session" && request.method === "POST") {
-      // Temporary browser-bound preview identity; never presented as social login.
-      if (env.APP_ENV !== "local")
-        throw new FortuneError("AUTH_INTEGRATION_PENDING", 503);
+      if (env.APP_ENV !== "local") {
+        const id = await sharedUser(request, env);
+        await db.prepare("INSERT INTO users (id,created_at) VALUES (?,?) ON CONFLICT(id) DO NOTHING")
+          .bind(id, Date.now()).run();
+        return json({ userId: id });
+      }
+      // Temporary identity is available only in explicit local mock runs.
       try {
         return json({ userId: await user(db, request) });
       } catch (e) {
@@ -109,6 +117,8 @@ export async function handleApi(
       });
     }
     if (path === "payments/webhook" && request.method === "POST") {
+      // Real PG integration remains gated until the separate MID is approved.
+      if (env.PAYMENTS_ENABLED !== "true") throw new FortuneError("PAYMENTS_UNAVAILABLE", 503);
       // Untrusted webhook is only a lookup hint. Never trust its reported status.
       const paymentId = (body.data as { paymentId?: unknown } | undefined)
         ?.paymentId;
@@ -136,7 +146,7 @@ export async function handleApi(
       } else if (pg.status === "PAID") await grantPaidOrder(db, order, pg, env);
       return json({ ok: true });
     }
-    const userId = await user(db, request);
+    const userId = env.APP_ENV === "local" ? await user(db, request) : await sharedUser(request, env);
     if (path === "profiles" && request.method === "POST") {
       const domain = body.domain;
       if (typeof domain !== "string" || !Object.hasOwn(domains, domain))
@@ -227,7 +237,7 @@ export async function handleApi(
       );
       waitUntil(
         runGeneration(db, pending.id, createProvider(env), {
-          SWISS_EPHEMERIS_FILES_BASE_URL: `${url.origin}/ephe/`,
+          SWISS_EPHEMERIS_FILES_BASE_URL: `${url.origin}/_soulcat/ephe/`,
         }),
       );
       return json(pending, 202);
@@ -270,7 +280,7 @@ export async function handleApi(
       if (!row) throw new FortuneError("RETRY_UNAVAILABLE", 409);
       waitUntil(
         runGeneration(db, row.id, createProvider(env), {
-          SWISS_EPHEMERIS_FILES_BASE_URL: `${url.origin}/ephe/`,
+          SWISS_EPHEMERIS_FILES_BASE_URL: `${url.origin}/_soulcat/ephe/`,
         }),
       );
       return json({ id: row.id }, 202);

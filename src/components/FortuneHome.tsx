@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import Link from "next/link";
 import {
   ArrowDown,
   ArrowLeft,
@@ -42,7 +41,7 @@ type Panel =
   | "service"
   | "fusion"
   | null;
-const imagePath = (name: string) => `/assets/${name}.webp`;
+const imagePath = (name: string) => `/_soulcat/assets/${name}.webp`;
 const bubbles = [
   "무슨 고민이야?\n어디 한번 볼까.",
   "쓰다듬는 건…\n딱 한 번만이야.",
@@ -713,7 +712,7 @@ export default function FortuneHome() {
                 alt={`${service.name}를 보는 영냥이`}
               />
               <h2>{service.subtitle}</h2>
-              {service.id !== 'tarot' && <Link className="outlined-cta" href={`/fortune/?domain=${service.id}`}>상담 살펴보기 <ArrowRight size={18} /></Link>}
+              {service.id !== 'tarot' && <a className="outlined-cta" href={`/fortune/?domain=${service.id}`}>상담 살펴보기 <ArrowRight size={18} /></a>}
               <p>{service.description}</p>
               <ul>
                 {service.details.map((item) => (

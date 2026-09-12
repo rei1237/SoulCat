@@ -15,8 +15,8 @@ export default function CatMotion({ daytime = false }: { daytime?: boolean }) {
   const still = pose === 0 && daytime ? "day-drink" : poses[pose];
   return <div className="ivory-stage measured-motion">
     <div className="cat-motion-canvas" aria-hidden="true">
-      <img src={`/assets/${still}.webp`} width={320} height={320} alt="" className={frame === null ? "motion-active" : ""} loading="lazy" />
-      {[1,2,3,4,5,6].map(i => <img key={i} src={`/assets/walk-pose-${i}.webp`} width={240} height={230} alt="" className={frame !== null && frame % 6 === i - 1 ? "motion-active walk-pose" : "walk-pose"} loading="lazy" />)}
+      <img src={`/_soulcat/assets/${still}.webp`} width={320} height={320} alt="" className={frame === null ? "motion-active" : ""} loading="lazy" />
+      {[1,2,3,4,5,6].map(i => <img key={i} src={`/_soulcat/assets/walk-pose-${i}.webp`} width={240} height={230} alt="" className={frame !== null && frame % 6 === i - 1 ? "motion-active walk-pose" : "walk-pose"} loading="lazy" />)}
     </div>
     <button className="expression-button" aria-label="영냥이 표정 바꾸기" disabled={frame !== null} onClick={() => {
       setPose(value => (value + 1) % poses.length);

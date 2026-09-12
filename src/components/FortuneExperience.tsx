@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, BookOpen } from "lucide-react";
 import {
   fortuneLoadingArt,
@@ -41,7 +40,7 @@ const cities = [
   { name: "직접 입력", latitude: 0, longitude: 0, timezone: "" },
 ];
 async function api(path: string, body?: object) {
-  const response = await fetch(`/api/${path}`, {
+  const response = await fetch(`/api/yeongnyangi/${path}`, {
     credentials: "same-origin",
     ...(body
       ? {
@@ -220,13 +219,13 @@ export default function FortuneExperience() {
   return (
     <main className="fortune-shell">
       <header className="fortune-header">
-        <Link href="/" aria-label="영냥이 홈으로">
+        <a href="/" aria-label="Code Destiny 홈으로">
           <ArrowLeft size={20} /> 점술방
-        </Link>
+        </a>
         <span>{surface.name}</span>
-        <Link href="/library/" aria-label="나의 결과 보관함">
+        <a href="/library/" aria-label="나의 결과 보관함">
           <BookOpen size={21} />
-        </Link>
+        </a>
       </header>
       {stage === "choose" && (
         <>
@@ -247,7 +246,7 @@ export default function FortuneExperience() {
                 }}
               >
                 <img
-                  src={`/assets/fortune/${art}-illustration.webp`}
+                  src={`/_soulcat/assets/fortune/${art}-illustration.webp`}
                   alt=""
                   width={560}
                   height={560}
@@ -259,7 +258,7 @@ export default function FortuneExperience() {
                   <p>{caption}</p>
                   <span>
                     <img
-                      src="/assets/fish/mackerel.webp"
+                      src="/_soulcat/assets/fish/mackerel.webp"
                       alt=""
                       width={40}
                       height={32}
@@ -377,7 +376,7 @@ export default function FortuneExperience() {
           <div className="fortune-loading-stage">
             <span className="fortune-loading-orbit" aria-hidden="true" />
             <img
-              src={`/assets/fortune/${loadingArt.image}`}
+              src={`/_soulcat/assets/fortune/${loadingArt.image}`}
               width={520}
               height={520}
               alt={loadingArt.alt}
@@ -388,7 +387,7 @@ export default function FortuneExperience() {
           <p className="fortune-loading-note">
             이 화면을 닫아도 보관함에서 진행 상태를 확인할 수 있어요.
           </p>
-          <Link href="/library/">보관함으로 이동</Link>
+          <a href="/library/">보관함으로 이동</a>
         </section>
       )}
       {stage === "result" && result && (

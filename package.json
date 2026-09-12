@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
-    "build": "next build",
+    "build": "next build && node scripts/prepare-release.mjs",
     "start": "node scripts/serve.mjs",
     "preview": "node scripts/serve.mjs",
     "typecheck": "tsc --noEmit",
     "assets": "node scripts/prepare-assets.mjs",
     "test:ui": "node scripts/verify-ui.mjs",
     "test": "npx tsx --test tests/*.test.ts",
-    "test:domains": "tsx --test tests/domains.test.ts"
+    "test:domains": "tsx --test tests/domains.test.ts",
+    "test:integration": "tsx --test tests/integration.test.ts"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans-kr": "^5.2.9",

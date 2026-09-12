@@ -1,0 +1,84 @@
+# Code Destiny / 영냥이 분리 운영 인계
+
+## 승인 경계
+
+운영 배포·운영 라우트·실결제는 승인되지 않았다. `PAYMENTS_ENABLED=false`,
+`ALLOW_LIVE_LLM=false`, 모든 상품 `enabled=false`를 유지한다.
+PG 신규 계약 승인과 안전한 키 등록 이후에만 실제 PG 구현을 검토한다.
+
+## 구조와 경로
+
+기존 `rei1237/codedestiny`와 `rei1237/SoulCat`은 별도 저장소다.
+기존 Pages/DNS/API/MongoDB/결제/약관은 유지한다. 영냥이는 독립 Worker/D1을 사용한다.
+
+| 경로 | 소유자 |
+|---|---|
+| `/`, 기존 `/fortune/…`, 기존 `/api/*` | 기존 Code Destiny |
+| `/fortune/`, `/room/`, `/library/` | 영냥이 정확한 pathname만 |
+| `/api/yeongnyangi/*` | 영냥이 API |
+| `/_soulcat/_next/static/*`, `/_soulcat/assets/*`, `/_soulcat/ephe/*` | 고정 Pages 배포 자산 |
+| `/_soulcat/version.json` | 고정 Pages SHA |
+| `/terms/`, `/privacy/`, `/refund/` | 기존 문서 및 canonical 유지 |
+
+접두 Worker route에 걸린 다른 경로는 원래 origin으로 통과한다. slash 301은 query를
+보존한다. 정적 upstream에는 cookie·authorization·query를 전달하지 않는다.
+모든 영냥이 화면은 noindex이고 기존 sitemap/robots를 대체하지 않는다.
+앱 사이 이동은 일반 상대경로 링크다. 분석 SDK를 추가하지 않아 pageview를 중복 발행하지 않는다.
+
+## 인증과 상품
+
+Service Binding으로 기존 `/api/auth/me`만 호출한다. 기존 쿠키 중 인증 쿠키만 전달하고
+사용자 ID는 서버 응답에서 검증한다. JWT/Atlas 비밀값은 복제하지 않는다.
+DB 장애 시 token fallback 응답은 차단한다. 기존 쿠키 domain/path/SameSite는 변경하지 않는다.
+staging binding은 `code-destiny-web-staging`이며 운영 binding과 분리된다.
+D1 사용자 키는 `codedestiny:<검증된 ID>`로 임시 preview 사용자와 분리한다.
+기존 이용권·월정석·주문·결과는 이관하지 않는다.
+
+5개 운세 체계의 상담 상품은 서버 catalog에 있는 고등어 1,000원, 연어 3,000원,
+광어 5,000원, 참치 10,000원이다. 충전 화폐가 아니며 기존 이용권·월정석이 적용되지 않는다.
+주문/결과/권한의 기존 Mock 검증을 유지하고 실 PG 웹훅·취소·환불은 승인 후 별도 검증해야 한다.
+
+## Cloudflare 준비 상태
+
+- SoulCat Pages: main 자동 운영 배포를 대시보드에서 비활성화했다. preview 자동 배포는 유지한다.
+- staging 전용 D1 `soulcat-fortune-staging`을 생성하고 0001 migration만 적용했다.
+- `wrangler.worker.jsonc`: workers.dev 및 preview_urls 비활성화, staging 기존 도메인 경로만 등록.
+- production 환경은 routes와 DB가 없으므로 승인 후 별도 운영 설정이 필요하다.
+- 정적 origin은 8자리 불변 Pages 배포 ID로만 지정한다. rolling alias는 런타임이 거부한다.
+- 운영 DNS·기존 Worker·기존 DB·운영 키는 변경하지 않는다.
+
+## 재현 및 staging 전달
+
+```powershell
+npm ci
+npm run typecheck
+npm test
+npm run test:domains
+npm run build
+npx wrangler deploy --config wrangler.worker.jsonc --env staging --dry-run --outdir .integration/worker
+# 검증·커밋 후 다시 build하여 HEAD를 version.json에 기록한다.
+npm run build
+# 반드시 main이 아닌 preview branch를 사용한다.
+npx wrangler pages deploy out --project-name soulcat --branch integration-preview --commit-dirty=false
+# 위 명령으로 나온 불변 URL을 아래 인자로 사용한다.
+node scripts/deploy-staging.mjs https://DEPLOYMENT_ID.soulcat.pages.dev
+```
+
+배포 스크립트는 clean tree, Pages SHA=HEAD, 결제 off, staging route/service를 확인한다.
+릴리스 증거에는 SoulCat SHA/Pages ID/Worker version과 기존 저장소 Pages/Worker SHA를 각각 기록한다.
+preview 성공을 운영 배포 성공으로 보고하지 않는다. 실제 모바일, 로그인된 사용자,
+실 PG, 운영 DB는 별도 증거 없이는 검증하지 못함으로 기록한다.
+
+## PG 신청 현재 정지 위치
+
+PortOne `https://admin.portone.io/application/request?mode=custom&step=confirm`의 최종 확인 화면.
+신청 목적은 같은 사업자로 영냥이 전용 별도 KG이니시스 계약/MID다.
+KG이니시스 국내 신용카드 일반결제를 선택했고 사이트명은 `Code Destiny · 사주보는 영냥이`,
+서비스 URL은 기존 `https://code-destiny.com/`이다.
+**화면 하단 `결정했어요!` 버튼은 누르지 않았다. 신규 신청은 완료되지 않았다.**
+사전 점검에서 사주/운세 업종에 추가 심사 확인이 필요하다는 안내가 나타났다.
+사용자가 직접 사업자 정보, 대표자/연락처, 정산 계좌, 고객센터, 정책 적합성, 심사 답변을 확인해야 한다.
+사업자등록증·계좌 사본·대표자 확인 서류 등은 사업자 유형별 PG 공식 안내로 최종 확정한다.
+법적 동의·서류 업로드·본인 인증·OTP·계좌 등록은 자동 진행하지 않는다.
+최종 내용 검토 후 사용자가 `최종 신청 제출 승인`이라고 명시한 경우에만 처리 가능한 다음 단계로 간다.
+신청 제출 승인과 운영 활성화 승인은 별개다.
