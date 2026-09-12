@@ -1,0 +1,335 @@
+[
+  {
+    "file": "hero-480.webp",
+    "source": "사주 보는 고양이 영냥이.webp",
+    "crop": null,
+    "width": 480,
+    "height": 480,
+    "bytes": 46648,
+    "alpha": true
+  },
+  {
+    "file": "hero-800.webp",
+    "source": "사주 보는 고양이 영냥이.webp",
+    "crop": null,
+    "width": 800,
+    "height": 800,
+    "bytes": 100692,
+    "alpha": true
+  },
+  {
+    "file": "avatar.webp",
+    "source": "사주 보는 고양이 영냥이.webp",
+    "crop": [
+      130,
+      0,
+      920,
+      710
+    ],
+    "width": 112,
+    "height": 86,
+    "bytes": 6228,
+    "alpha": true
+  },
+  {
+    "file": "room-780.webp",
+    "source": "영냥이 고양이 방.webp",
+    "crop": null,
+    "width": 780,
+    "height": 439,
+    "bytes": 82294,
+    "alpha": false
+  },
+  {
+    "file": "room-1440.webp",
+    "source": "영냥이 고양이 방.webp",
+    "crop": null,
+    "width": 1440,
+    "height": 810,
+    "bytes": 180458,
+    "alpha": false
+  },
+  {
+    "file": "story-room.webp",
+    "source": "영냥이의 방.webp",
+    "crop": null,
+    "width": 1000,
+    "height": 563,
+    "bytes": 116300,
+    "alpha": false
+  },
+  {
+    "file": "story-curse.webp",
+    "source": "천기누설벌.webp",
+    "crop": null,
+    "width": 900,
+    "height": 507,
+    "bytes": 113996,
+    "alpha": false
+  },
+  {
+    "file": "story-mirror.webp",
+    "source": "영냥이의방 부서짐.webp",
+    "crop": null,
+    "width": 900,
+    "height": 507,
+    "bytes": 83156,
+    "alpha": false
+  },
+  {
+    "file": "surprised.webp",
+    "source": "고양이 된 영냥이.webp",
+    "crop": null,
+    "width": 480,
+    "height": 640,
+    "bytes": 66162,
+    "alpha": true
+  },
+  {
+    "file": "saju.webp",
+    "source": "각종운세 진입.webp",
+    "crop": [
+      26,
+      24,
+      460,
+      300
+    ],
+    "width": 460,
+    "height": 300,
+    "bytes": 37440,
+    "alpha": false
+  },
+  {
+    "file": "tarot.webp",
+    "source": "각종운세 진입.webp",
+    "crop": [
+      536,
+      24,
+      460,
+      300
+    ],
+    "width": 460,
+    "height": 300,
+    "bytes": 26520,
+    "alpha": false
+  },
+  {
+    "file": "astrology.webp",
+    "source": "각종운세 진입.webp",
+    "crop": [
+      1050,
+      24,
+      460,
+      300
+    ],
+    "width": 460,
+    "height": 300,
+    "bytes": 40450,
+    "alpha": false
+  },
+  {
+    "file": "sukuyo.webp",
+    "source": "각종운세 진입.webp",
+    "crop": [
+      26,
+      536,
+      460,
+      300
+    ],
+    "width": 460,
+    "height": 300,
+    "bytes": 36470,
+    "alpha": false
+  },
+  {
+    "file": "vedic.webp",
+    "source": "각종운세 진입.webp",
+    "crop": [
+      536,
+      536,
+      460,
+      300
+    ],
+    "width": 460,
+    "height": 300,
+    "bytes": 29480,
+    "alpha": false
+  },
+  {
+    "file": "ziwei.webp",
+    "source": "자미두수 보는 영냥이.webp",
+    "crop": [
+      7,
+      0,
+      475,
+      450
+    ],
+    "width": 475,
+    "height": 450,
+    "bytes": 42742,
+    "alpha": false
+  },
+  {
+    "file": "login.webp",
+    "source": "회원가입 로그인.webp",
+    "crop": [
+      590,
+      0,
+      450,
+      570
+    ],
+    "width": 440,
+    "height": 557,
+    "bytes": 77740,
+    "alpha": true
+  },
+  {
+    "file": "signup.webp",
+    "source": "회원가입 로그인.webp",
+    "crop": [
+      0,
+      0,
+      565,
+      572
+    ],
+    "width": 440,
+    "height": 445,
+    "bytes": 59722,
+    "alpha": true
+  },
+  {
+    "file": "night-read.webp",
+    "source": "밤 영냥이.webp",
+    "crop": [
+      916,
+      90,
+      310,
+      325
+    ],
+    "width": 310,
+    "height": 325,
+    "bytes": 22550,
+    "alpha": false
+  },
+  {
+    "file": "day-drink.webp",
+    "source": "낮 영냥이.webp",
+    "crop": [
+      515,
+      90,
+      255,
+      260
+    ],
+    "width": 255,
+    "height": 260,
+    "bytes": 13942,
+    "alpha": false
+  },
+  {
+    "file": "expression-calm.webp",
+    "source": "낮 영냥이.webp",
+    "crop": [
+      15,
+      353,
+      165,
+      155
+    ],
+    "width": 160,
+    "height": 150,
+    "bytes": 5628,
+    "alpha": false
+  },
+  {
+    "file": "expression-wink.webp",
+    "source": "낮 영냥이.webp",
+    "crop": [
+      350,
+      353,
+      165,
+      155
+    ],
+    "width": 160,
+    "height": 150,
+    "bytes": 5480,
+    "alpha": false
+  },
+  {
+    "file": "expression-happy.webp",
+    "source": "낮 영냥이.webp",
+    "crop": [
+      840,
+      353,
+      165,
+      155
+    ],
+    "width": 160,
+    "height": 150,
+    "bytes": 5832,
+    "alpha": false
+  },
+  {
+    "file": "walk-strip.webp",
+    "source": "낮 영냥이.webp",
+    "crop": "six measured poses at y=518,height=177; x/width: 7/220,237/210,464/210,687/215,914/207,1130/204; each fitted to 240x210",
+    "width": 1440,
+    "height": 210,
+    "bytes": 39780,
+    "alpha": false
+  },
+  {
+    "file": "recommend-love.webp",
+    "source": "각운세카드.webp",
+    "crop": [
+      398,
+      735,
+      350,
+      266
+    ],
+    "width": 350,
+    "height": 266,
+    "bytes": 25050,
+    "alpha": false
+  },
+  {
+    "file": "recommend-wealth.webp",
+    "source": "각운세카드.webp",
+    "crop": [
+      1164,
+      209,
+      350,
+      334
+    ],
+    "width": 350,
+    "height": 334,
+    "bytes": 34230,
+    "alpha": false
+  },
+  {
+    "file": "recommend-year.webp",
+    "source": "각운세카드.webp",
+    "crop": [
+      784,
+      744,
+      350,
+      257
+    ],
+    "width": 350,
+    "height": 257,
+    "bytes": 22472,
+    "alpha": false
+  },
+  {
+    "file": "recommend-past.webp",
+    "source": "각운세카드.webp",
+    "crop": [
+      26,
+      746,
+      340,
+      259
+    ],
+    "width": 340,
+    "height": 259,
+    "bytes": 26876,
+    "alpha": false
+  }
+]

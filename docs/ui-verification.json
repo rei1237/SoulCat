@@ -1,0 +1,684 @@
+[
+  {
+    "viewport": "360x800",
+    "overflow": false,
+    "cta": {
+      "x": 20,
+      "y": 543,
+      "width": 320,
+      "height": 60,
+      "bottom": 603
+    },
+    "cat": {
+      "x": 25,
+      "y": 208,
+      "width": 310,
+      "height": 310,
+      "bottom": 518
+    },
+    "nav": {
+      "x": 0,
+      "y": 728,
+      "width": 360,
+      "height": 72,
+      "bottom": 800
+    },
+    "dom": 380,
+    "metrics": {
+      "cls": 0,
+      "lcp": 536
+    },
+    "assets": [
+      {
+        "name": "avatar.webp",
+        "bytes": 6528
+      },
+      {
+        "name": "hero-480.webp",
+        "bytes": 46948
+      },
+      {
+        "name": "room-780.webp",
+        "bytes": 82594
+      },
+      {
+        "name": "walk-strip.webp",
+        "bytes": 40080
+      },
+      {
+        "name": "story-mirror.webp",
+        "bytes": 83456
+      },
+      {
+        "name": "surprised.webp",
+        "bytes": 66462
+      },
+      {
+        "name": "saju.webp",
+        "bytes": 37740
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
+      },
+      {
+        "name": "ziwei.webp",
+        "bytes": 43042
+      },
+      {
+        "name": "astrology.webp",
+        "bytes": 40750
+      },
+      {
+        "name": "vedic.webp",
+        "bytes": 29780
+      },
+      {
+        "name": "sukuyo.webp",
+        "bytes": 36770
+      },
+      {
+        "name": "story-curse.webp",
+        "bytes": 114296
+      }
+    ],
+    "deferredImages": [
+      "http://127.0.0.1:3000/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/assets/night-read.webp",
+      "http://127.0.0.1:3000/assets/expression-calm.webp",
+      "http://127.0.0.1:3000/assets/expression-wink.webp",
+      "http://127.0.0.1:3000/assets/expression-happy.webp"
+    ],
+    "brokenImages": [],
+    "errors": [],
+    "accessibility": []
+  },
+  {
+    "viewport": "375x812",
+    "overflow": false,
+    "cta": {
+      "x": 22,
+      "y": 571,
+      "width": 331,
+      "height": 60,
+      "bottom": 631
+    },
+    "cat": {
+      "x": 22.5,
+      "y": 218.5,
+      "width": 330,
+      "height": 330,
+      "bottom": 548.5
+    },
+    "nav": {
+      "x": 0,
+      "y": 740,
+      "width": 375,
+      "height": 72,
+      "bottom": 812
+    },
+    "dom": 379,
+    "metrics": {
+      "cls": 0,
+      "lcp": 204
+    },
+    "assets": [
+      {
+        "name": "avatar.webp",
+        "bytes": 6528
+      },
+      {
+        "name": "hero-480.webp",
+        "bytes": 46948
+      },
+      {
+        "name": "room-780.webp",
+        "bytes": 82594
+      },
+      {
+        "name": "walk-strip.webp",
+        "bytes": 40080
+      },
+      {
+        "name": "story-mirror.webp",
+        "bytes": 83456
+      },
+      {
+        "name": "saju.webp",
+        "bytes": 37740
+      },
+      {
+        "name": "surprised.webp",
+        "bytes": 66462
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
+      },
+      {
+        "name": "ziwei.webp",
+        "bytes": 43042
+      },
+      {
+        "name": "astrology.webp",
+        "bytes": 40750
+      },
+      {
+        "name": "vedic.webp",
+        "bytes": 29780
+      },
+      {
+        "name": "sukuyo.webp",
+        "bytes": 36770
+      },
+      {
+        "name": "story-curse.webp",
+        "bytes": 114296
+      }
+    ],
+    "deferredImages": [
+      "http://127.0.0.1:3000/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/assets/night-read.webp",
+      "http://127.0.0.1:3000/assets/expression-calm.webp",
+      "http://127.0.0.1:3000/assets/expression-wink.webp",
+      "http://127.0.0.1:3000/assets/expression-happy.webp"
+    ],
+    "brokenImages": [],
+    "errors": [],
+    "accessibility": []
+  },
+  {
+    "viewport": "390x844",
+    "overflow": false,
+    "cta": {
+      "x": 22,
+      "y": 571,
+      "width": 346,
+      "height": 60,
+      "bottom": 631
+    },
+    "cat": {
+      "x": 30,
+      "y": 218.5,
+      "width": 330,
+      "height": 330,
+      "bottom": 548.5
+    },
+    "nav": {
+      "x": 0,
+      "y": 772,
+      "width": 390,
+      "height": 72,
+      "bottom": 844
+    },
+    "dom": 379,
+    "metrics": {
+      "cls": 0,
+      "lcp": 196
+    },
+    "assets": [
+      {
+        "name": "avatar.webp",
+        "bytes": 6528
+      },
+      {
+        "name": "hero-480.webp",
+        "bytes": 46948
+      },
+      {
+        "name": "room-780.webp",
+        "bytes": 82594
+      },
+      {
+        "name": "walk-strip.webp",
+        "bytes": 40080
+      },
+      {
+        "name": "saju.webp",
+        "bytes": 37740
+      },
+      {
+        "name": "story-mirror.webp",
+        "bytes": 83456
+      },
+      {
+        "name": "surprised.webp",
+        "bytes": 66462
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
+      },
+      {
+        "name": "ziwei.webp",
+        "bytes": 43042
+      },
+      {
+        "name": "astrology.webp",
+        "bytes": 40750
+      },
+      {
+        "name": "vedic.webp",
+        "bytes": 29780
+      },
+      {
+        "name": "sukuyo.webp",
+        "bytes": 36770
+      },
+      {
+        "name": "story-curse.webp",
+        "bytes": 114296
+      }
+    ],
+    "deferredImages": [
+      "http://127.0.0.1:3000/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/assets/night-read.webp",
+      "http://127.0.0.1:3000/assets/expression-calm.webp",
+      "http://127.0.0.1:3000/assets/expression-wink.webp",
+      "http://127.0.0.1:3000/assets/expression-happy.webp"
+    ],
+    "brokenImages": [],
+    "errors": [],
+    "accessibility": []
+  },
+  {
+    "interactions": "PASS: cat tap, no daily storage, library preparation, Escape/focus return, auth tabs, 4-scene story, concern mapping, white-sheet expression, carousel, reduced motion"
+  },
+  {
+    "viewport": "412x915",
+    "overflow": false,
+    "cta": {
+      "x": 24,
+      "y": 608,
+      "width": 364,
+      "height": 60,
+      "bottom": 668
+    },
+    "cat": {
+      "x": 27,
+      "y": 227,
+      "width": 358,
+      "height": 358,
+      "bottom": 585
+    },
+    "nav": {
+      "x": 0,
+      "y": 843,
+      "width": 412,
+      "height": 72,
+      "bottom": 915
+    },
+    "dom": 380,
+    "metrics": {
+      "cls": 0,
+      "lcp": 292
+    },
+    "assets": [
+      {
+        "name": "avatar.webp",
+        "bytes": 6528
+      },
+      {
+        "name": "hero-480.webp",
+        "bytes": 46948
+      },
+      {
+        "name": "room-780.webp",
+        "bytes": 82594
+      },
+      {
+        "name": "walk-strip.webp",
+        "bytes": 40080
+      },
+      {
+        "name": "story-mirror.webp",
+        "bytes": 83456
+      },
+      {
+        "name": "surprised.webp",
+        "bytes": 66462
+      },
+      {
+        "name": "saju.webp",
+        "bytes": 37740
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
+      },
+      {
+        "name": "ziwei.webp",
+        "bytes": 43042
+      },
+      {
+        "name": "astrology.webp",
+        "bytes": 40750
+      },
+      {
+        "name": "vedic.webp",
+        "bytes": 29780
+      },
+      {
+        "name": "sukuyo.webp",
+        "bytes": 36770
+      },
+      {
+        "name": "story-curse.webp",
+        "bytes": 114296
+      }
+    ],
+    "deferredImages": [
+      "http://127.0.0.1:3000/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/assets/night-read.webp",
+      "http://127.0.0.1:3000/assets/expression-calm.webp",
+      "http://127.0.0.1:3000/assets/expression-wink.webp",
+      "http://127.0.0.1:3000/assets/expression-happy.webp"
+    ],
+    "brokenImages": [],
+    "errors": [],
+    "accessibility": []
+  },
+  {
+    "viewport": "430x932",
+    "overflow": false,
+    "cta": {
+      "x": 24,
+      "y": 608,
+      "width": 382,
+      "height": 60,
+      "bottom": 668
+    },
+    "cat": {
+      "x": 36,
+      "y": 227,
+      "width": 358,
+      "height": 358,
+      "bottom": 585
+    },
+    "nav": {
+      "x": 0,
+      "y": 860,
+      "width": 430,
+      "height": 72,
+      "bottom": 932
+    },
+    "dom": 380,
+    "metrics": {
+      "cls": 0,
+      "lcp": 192
+    },
+    "assets": [
+      {
+        "name": "avatar.webp",
+        "bytes": 6528
+      },
+      {
+        "name": "hero-480.webp",
+        "bytes": 46948
+      },
+      {
+        "name": "room-780.webp",
+        "bytes": 82594
+      },
+      {
+        "name": "walk-strip.webp",
+        "bytes": 40080
+      },
+      {
+        "name": "story-mirror.webp",
+        "bytes": 83456
+      },
+      {
+        "name": "surprised.webp",
+        "bytes": 66462
+      },
+      {
+        "name": "saju.webp",
+        "bytes": 37740
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
+      },
+      {
+        "name": "ziwei.webp",
+        "bytes": 43042
+      },
+      {
+        "name": "astrology.webp",
+        "bytes": 40750
+      },
+      {
+        "name": "vedic.webp",
+        "bytes": 29780
+      },
+      {
+        "name": "sukuyo.webp",
+        "bytes": 36770
+      },
+      {
+        "name": "story-curse.webp",
+        "bytes": 114296
+      }
+    ],
+    "deferredImages": [
+      "http://127.0.0.1:3000/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/assets/night-read.webp",
+      "http://127.0.0.1:3000/assets/expression-calm.webp",
+      "http://127.0.0.1:3000/assets/expression-wink.webp",
+      "http://127.0.0.1:3000/assets/expression-happy.webp"
+    ],
+    "brokenImages": [],
+    "errors": [],
+    "accessibility": []
+  },
+  {
+    "viewport": "768x1024",
+    "overflow": false,
+    "cta": {
+      "x": 186,
+      "y": 656,
+      "width": 396,
+      "height": 60,
+      "bottom": 716
+    },
+    "cat": {
+      "x": 191.5,
+      "y": 248.5,
+      "width": 385,
+      "height": 385,
+      "bottom": 633.5
+    },
+    "nav": {
+      "x": 114,
+      "y": 952,
+      "width": 540,
+      "height": 72,
+      "bottom": 1024
+    },
+    "dom": 378,
+    "metrics": {
+      "cls": 0.0014902373853450022,
+      "lcp": 208
+    },
+    "assets": [
+      {
+        "name": "avatar.webp",
+        "bytes": 6528
+      },
+      {
+        "name": "hero-800.webp",
+        "bytes": 100992
+      },
+      {
+        "name": "room-1440.webp",
+        "bytes": 180758
+      },
+      {
+        "name": "walk-strip.webp",
+        "bytes": 40080
+      },
+      {
+        "name": "story-mirror.webp",
+        "bytes": 83456
+      },
+      {
+        "name": "surprised.webp",
+        "bytes": 66462
+      },
+      {
+        "name": "saju.webp",
+        "bytes": 37740
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
+      },
+      {
+        "name": "ziwei.webp",
+        "bytes": 43042
+      },
+      {
+        "name": "astrology.webp",
+        "bytes": 40750
+      },
+      {
+        "name": "vedic.webp",
+        "bytes": 29780
+      },
+      {
+        "name": "sukuyo.webp",
+        "bytes": 36770
+      },
+      {
+        "name": "story-curse.webp",
+        "bytes": 114296
+      }
+    ],
+    "deferredImages": [
+      "http://127.0.0.1:3000/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/assets/night-read.webp",
+      "http://127.0.0.1:3000/assets/expression-calm.webp",
+      "http://127.0.0.1:3000/assets/expression-wink.webp",
+      "http://127.0.0.1:3000/assets/expression-happy.webp"
+    ],
+    "brokenImages": [],
+    "errors": [],
+    "accessibility": []
+  },
+  {
+    "viewport": "1440x1000",
+    "overflow": false,
+    "cta": {
+      "x": 205,
+      "y": 456,
+      "width": 365,
+      "height": 60,
+      "bottom": 516
+    },
+    "cat": {
+      "x": 765,
+      "y": 143.5,
+      "width": 490,
+      "height": 490,
+      "bottom": 633.5
+    },
+    "nav": {
+      "x": 460,
+      "y": 928,
+      "width": 520,
+      "height": 72,
+      "bottom": 1000
+    },
+    "dom": 378,
+    "metrics": {
+      "cls": 0.0009684595555434993,
+      "lcp": 196
+    },
+    "assets": [
+      {
+        "name": "avatar.webp",
+        "bytes": 6528
+      },
+      {
+        "name": "hero-480.webp",
+        "bytes": 46948
+      },
+      {
+        "name": "room-1440.webp",
+        "bytes": 180758
+      },
+      {
+        "name": "walk-strip.webp",
+        "bytes": 40080
+      },
+      {
+        "name": "story-mirror.webp",
+        "bytes": 83456
+      },
+      {
+        "name": "saju.webp",
+        "bytes": 37740
+      },
+      {
+        "name": "surprised.webp",
+        "bytes": 66462
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
+      },
+      {
+        "name": "ziwei.webp",
+        "bytes": 43042
+      },
+      {
+        "name": "astrology.webp",
+        "bytes": 40750
+      },
+      {
+        "name": "vedic.webp",
+        "bytes": 29780
+      },
+      {
+        "name": "sukuyo.webp",
+        "bytes": 36770
+      },
+      {
+        "name": "story-curse.webp",
+        "bytes": 114296
+      }
+    ],
+    "deferredImages": [
+      "http://127.0.0.1:3000/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/assets/night-read.webp",
+      "http://127.0.0.1:3000/assets/expression-calm.webp",
+      "http://127.0.0.1:3000/assets/expression-wink.webp",
+      "http://127.0.0.1:3000/assets/expression-happy.webp"
+    ],
+    "brokenImages": [],
+    "errors": [],
+    "accessibility": []
+  }
+]

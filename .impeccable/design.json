@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-12T11:09:01.096Z",
+  "title": "Design System: 사주보는 고양이 영냥이",
+  "extensions": {
+    "colorMeta": {
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "tonalRamp": [
+          "oklch(15.00% 0.05802 301.96)",
+          "oklch(26.43% 0.05802 301.96)",
+          "oklch(37.86% 0.05802 301.96)",
+          "oklch(49.29% 0.05802 301.96)",
+          "oklch(60.71% 0.05802 301.96)",
+          "oklch(72.14% 0.05802 301.96)",
+          "oklch(83.57% 0.05802 301.96)",
+          "oklch(95.00% 0.05802 301.96)"
+        ]
+      },
+      "deep": {
+        "role": "neutral",
+        "displayName": "Deep",
+        "tonalRamp": [
+          "oklch(15.00% 0.04670 291.35)",
+          "oklch(26.43% 0.04670 291.35)",
+          "oklch(37.86% 0.04670 291.35)",
+          "oklch(49.29% 0.04670 291.35)",
+          "oklch(60.71% 0.04670 291.35)",
+          "oklch(72.14% 0.04670 291.35)",
+          "oklch(83.57% 0.04670 291.35)",
+          "oklch(95.00% 0.04670 291.35)"
+        ]
+      },
+      "violet": {
+        "role": "primary",
+        "displayName": "Violet",
+        "tonalRamp": [
+          "oklch(15.00% 0.16697 302.89)",
+          "oklch(26.43% 0.16697 302.89)",
+          "oklch(37.86% 0.16697 302.89)",
+          "oklch(49.29% 0.16697 302.89)",
+          "oklch(60.71% 0.16697 302.89)",
+          "oklch(72.14% 0.16697 302.89)",
+          "oklch(83.57% 0.16697 302.89)",
+          "oklch(95.00% 0.16697 302.89)"
+        ]
+      },
+      "gold": {
+        "role": "primary",
+        "displayName": "Candle Gold",
+        "tonalRamp": [
+          "oklch(15.00% 0.08403 80.53)",
+          "oklch(26.43% 0.08403 80.53)",
+          "oklch(37.86% 0.08403 80.53)",
+          "oklch(49.29% 0.08403 80.53)",
+          "oklch(60.71% 0.08403 80.53)",
+          "oklch(72.14% 0.08403 80.53)",
+          "oklch(83.57% 0.08403 80.53)",
+          "oklch(95.00% 0.08403 80.53)"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Ivory",
+        "tonalRamp": [
+          "oklch(15.00% 0.02589 76.80)",
+          "oklch(26.43% 0.02589 76.80)",
+          "oklch(37.86% 0.02589 76.80)",
+          "oklch(49.29% 0.02589 76.80)",
+          "oklch(60.71% 0.02589 76.80)",
+          "oklch(72.14% 0.02589 76.80)",
+          "oklch(83.57% 0.02589 76.80)",
+          "oklch(95.00% 0.02589 76.80)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.03996 316.59)",
+          "oklch(26.43% 0.03996 316.59)",
+          "oklch(37.86% 0.03996 316.59)",
+          "oklch(49.29% 0.03996 316.59)",
+          "oklch(60.71% 0.03996 316.59)",
+          "oklch(72.14% 0.03996 316.59)",
+          "oklch(83.57% 0.03996 316.59)",
+          "oklch(95.00% 0.03996 316.59)"
+        ]
+      },
+      "paper": {
+        "role": "secondary",
+        "displayName": "Ivory Paper",
+        "tonalRamp": [
+          "oklch(15.00% 0.01306 71.33)",
+          "oklch(26.43% 0.01306 71.33)",
+          "oklch(37.86% 0.01306 71.33)",
+          "oklch(49.29% 0.01306 71.33)",
+          "oklch(60.71% 0.01306 71.33)",
+          "oklch(72.14% 0.01306 71.33)",
+          "oklch(83.57% 0.01306 71.33)",
+          "oklch(95.00% 0.01306 71.33)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Hero Display",
+        "purpose": "Base mobile hero; responsive sizes are documented in DESIGN.md."
+      },
+      "headline": {
+        "displayName": "Section Headline",
+        "purpose": "Sans-serif section headings."
+      },
+      "title": {
+        "displayName": "Service Title",
+        "purpose": "Serif service names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Base Korean prose and controls."
+      },
+      "label": {
+        "displayName": "Small Label",
+        "purpose": "Contextual labels; not a universal minimum."
+      }
+    },
+    "shadows": [
+      {
+        "name": "primary-action",
+        "value": "0 4px 18px #13092b55, inset 0 0 0 3px #b686c21a",
+        "purpose": "Primary action depth."
+      },
+      {
+        "name": "speech",
+        "value": "0 4px 18px #1b0e3a33",
+        "purpose": "Speech bubble separation."
+      },
+      {
+        "name": "dock",
+        "value": "0 -4px 18px #180e2429",
+        "purpose": "Fixed navigation."
+      },
+      {
+        "name": "dialog",
+        "value": "0 -8px 45px #0f071f80",
+        "purpose": "Native modal separation."
+      },
+      {
+        "name": "recommended",
+        "value": "0 0 0 2px #ddb0693b",
+        "purpose": "Concern-based recommendation state."
+      }
+    ],
+    "motion": [
+      {
+        "name": "cat-nuzzle",
+        "value": "0.65s ease-out",
+        "purpose": "Tap-triggered rotation/vertical nuzzle and rising heart; timer clears at 650ms."
+      },
+      {
+        "name": "cat-stride",
+        "value": "0.6s steps(6) 2",
+        "purpose": "Six-frame sprite, two iterations, 1.2 seconds total; animation end returns to resting art."
+      },
+      {
+        "name": "card-hover",
+        "value": "border-color 0.2s, transform 0.2s",
+        "purpose": "2px upward card hover."
+      },
+      {
+        "name": "image-hover",
+        "value": "transform 0.25s ease-out",
+        "purpose": "Desktop service image scale to 1.025."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Disable animation, transitions and smooth scrolling; keep static cat and expression updates."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-mobile",
+        "value": "(max-width: 374px)"
+      },
+      {
+        "name": "large-mobile",
+        "value": "(min-width: 410px) and (max-width: 699px)"
+      },
+      {
+        "name": "mobile-legibility",
+        "value": "(max-width: 699px)"
+      },
+      {
+        "name": "tablet",
+        "value": "(min-width: 700px)"
+      },
+      {
+        "name": "desktop",
+        "value": "(min-width: 1000px)"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main action; at least 60px high.",
+      "html": "<button class=\"ds-primary\">오늘의 한마디 보기 <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\"/></svg></button>",
+      "css": ".ds-primary{font-family:var(--sans);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;position:relative;width:100%;min-height:60px;border:1px solid var(--gold);border-radius:13px;background:linear-gradient(110deg,#8046b2,#553188 60%,#633494);box-shadow:0 4px 18px #13092b55,inset 0 0 0 3px #b686c21a;color:#fff4e2;font-size:18px;font-weight:650}.ds-primary:hover{background:#7645a1}.ds-primary:active{transform:translateY(1px)}.ds-primary:focus-visible{outline:2px solid var(--gold);outline-offset:5px}"
+    },
+    {
+      "name": "Outlined Button",
+      "kind": "button",
+      "refersTo": "button-outlined",
+      "description": "Secondary full-width action.",
+      "html": "<button class=\"ds-outlined\">문구 복사하기 <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\"/></svg></button>",
+      "css": ".ds-outlined{font-family:var(--sans);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;min-height:47px;width:100%;border:1px solid #b18a67;border-radius:9px;color:var(--gold);font-size:13px;background:#22132e8c}.ds-outlined:hover{background:#4d315c}.ds-outlined:focus-visible{outline:2px solid var(--gold);outline-offset:5px}.ds-outlined:disabled{opacity:.45;cursor:not-allowed}"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "Accessible close/action control.",
+      "html": "<button class=\"ds-icon\" aria-label=\"닫기\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><path d=\"m18 6-12 12M6 6l12 12\"/></svg></button>",
+      "css": ".ds-icon{font-family:var(--sans);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:0;border-radius:50%;background:none;color:var(--ivory)}.ds-icon:hover{background:#ffffff0b}.ds-icon:focus-visible{outline:2px solid var(--gold);outline-offset:5px}"
+    },
+    {
+      "name": "Login Pill",
+      "kind": "button",
+      "refersTo": "button-login",
+      "description": "Header account entrance; opens an honest preparation panel.",
+      "html": "<button class=\"ds-login\">로그인</button>",
+      "css": ".ds-login{font-family:var(--sans);cursor:pointer;border:1px solid #9e7daf;border-radius:20px;min-height:36px;padding:3px 14px;font-size:12px;background:none;color:var(--ivory)}.ds-login:focus-visible{outline:2px solid var(--gold);outline-offset:5px}"
+    },
+    {
+      "name": "Text Action",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Quiet inline navigation.",
+      "html": "<button class=\"ds-text\">그날의 이야기 <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\"/></svg></button>",
+      "css": ".ds-text{font-family:var(--sans);cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:30px;font-size:12px;color:var(--gold);padding:0;background:none;border:0}.ds-text:focus-visible{outline:2px solid var(--gold);outline-offset:5px}"
+    },
+    {
+      "name": "Concern Chip",
+      "kind": "chip",
+      "refersTo": "concern-chip",
+      "description": "Editorial concern selector; aria-pressed carries the selected state.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"true\">연애</button><button class=\"ds-chip\" aria-pressed=\"false\">돈</button>",
+      "css": ".ds-chip{font-family:var(--sans);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:43px;border:1px solid #76558380;border-radius:23px;padding:8px 13px;background:#342243;font-size:12px;color:var(--ivory);margin:4px}.ds-chip:hover,.ds-chip[aria-pressed=true]{border-color:var(--gold);background:#573657}.ds-chip:focus-visible{outline:2px solid var(--gold);outline-offset:5px}"
+    },
+    {
+      "name": "Service Card Frame",
+      "kind": "card",
+      "refersTo": "service-card",
+      "description": "Text/frame specimen of the illustrated service card; supplied raster art is intentionally omitted from this self-contained snippet.",
+      "html": "<button class=\"ds-card\"><span class=\"ds-card-copy\"><strong>사주</strong><span>타고난 나를 만나는 시간</span><span class=\"ds-card-action\">보러가기 <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\"/></svg></span></span></button>",
+      "css": ".ds-card{font-family:var(--sans);cursor:pointer;position:relative;overflow:hidden;padding:0;text-align:left;width:220px;border:1px solid #9c785d;border-radius:13px;background:#2b1a3d;transition:border-color .2s,transform .2s}.ds-card:after{content:\"\";position:absolute;inset:4px;border:1px solid #b485552a;border-radius:9px;pointer-events:none}.ds-card:hover{border-color:var(--gold);transform:translateY(-2px)}.ds-card:focus-visible{outline:2px solid var(--gold);outline-offset:5px}.ds-card-copy{display:block;padding:10px 13px 13px}.ds-card-copy strong{display:block;font-family:var(--serif);font-size:22px;color:#f1d3a3;font-weight:700;line-height:1.35}.ds-card-copy>span{display:block;font-size:12px;color:#d8c7df;margin:5px 0 12px}.ds-card-copy .ds-card-action{display:flex;align-items:center;justify-content:space-between;color:#e9d7be}@media(prefers-reduced-motion:reduce){.ds-card{transition:none}}"
+    },
+    {
+      "name": "Navigation Item",
+      "kind": "nav",
+      "description": "Selected non-center dock item; specimen omits the raster avatar and fixed viewport positioning.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"하단 메뉴 예시\"><button aria-current=\"page\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><path d=\"m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-8H9v8H4a1 1 0 0 1-1-1z\"/></svg>홈</button></nav>",
+      "css": ".ds-nav{display:flex;justify-content:center;background:#21172feb;border-top:1px solid #a57c573d;padding:5px 10px 6px;min-height:72px;box-shadow:0 -4px 18px #180e2429}.ds-nav button{font-family:var(--sans);cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:57px;min-width:64px;padding:0;border:0;background:none;color:#c5adc9;font-size:11px}.ds-nav button[aria-current=page]{color:var(--gold)}.ds-nav button[aria-current=page]:after{content:\"\";position:absolute;bottom:-6px;width:17px;height:2px;background:var(--gold)}.ds-nav button:focus-visible{outline:2px solid var(--gold);outline-offset:5px}"
+    },
+    {
+      "name": "Availability Note",
+      "kind": "custom",
+      "refersTo": "availability-note",
+      "description": "Truthful service preparation notice.",
+      "html": "<div class=\"ds-note\">상세 리포트는 준비 중이에요.<br>먼저 오늘의 한마디를 만나보세요.</div>",
+      "css": ".ds-note{font-family:var(--sans);background:#392647;border:1px solid #8c699452;padding:14px;border-radius:9px;font-size:11px;line-height:1.9;color:#d4bddc;text-align:left}"
+    }
+  ],
+  "narrative": {
+    "northStar": "영냥이의 달빛 점술방",
+    "overview": "The supplied white cat and painted violet room are the visual authority. Candle-gold edges, ivory Korean lettering and restrained purple surfaces make the interface feel like entering the cat's own room. The character is proud but caring; UI language remains short, direct and free of the “~냥” suffix.\n\nKeep the painted illustrations distinct and recognizable. New surfaces should inherit the room's materials and hierarchy without copying the home page's exact composition. This scan documents the finished implementation in `src/app/globals.css`, `src/components/FortuneHome.tsx` and `src/data/home.ts`; the home-specific sequence remains in `docs/home-brief.md`. Qualitative direction comes from the already confirmed world in that brief and `PRODUCT.md`.",
+    "keyCharacteristics": [
+      "White cat identity, violet night surfaces and candle-gold edges.",
+      "Korean serif for narrative emphasis; Korean sans for navigation and explanatory copy.",
+      "Framed illustration cards, short paragraphs and touch-first controls.",
+      "Brief, user-triggered reactions with a static reduced-motion alternative."
+    ],
+    "rules": [
+      {
+        "name": "The White Fur Rule",
+        "body": "White-background artwork belongs on an ivory stage with the implemented multiply treatment where appropriate. Never remove white pixels indiscriminately: the character's white fur is part of the identity.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do reuse the supplied white-cat identity and existing art; retain original files and derivative provenance.",
+      "Do use ivory stages to preserve white-background illustrations and white fur.",
+      "Do keep Korean reading hierarchy, short mobile paragraphs, visible focus and safe-area clearance.",
+      "Do keep short character reactions user-triggered and provide a static reduced-motion experience.",
+      "Do describe absent services truthfully while offering the working daily-message and story experiences."
+    ],
+    "donts": [
+      "Don't replace the supplied white cat with the gray-cat description from an older character document.",
+      "Don't reintroduce the two rejected human-back-view recollection scenes into this delivery.",
+      "Don't put the removed eyebrow above the hero headline or restore the removed SPECIAL label.",
+      "Don't invent inputs, live AI, authentication, payment functionality, unlimited access, fish currency or example pricing from roadmap material.",
+      "Don't turn the home page's specific section order into a mandatory layout for every future screen."
+    ]
+  }
+}
