@@ -1,0 +1,838 @@
+import { buildLifeBookExpertFactors } from "./saju-expert-factors.js";
+import { daeun } from "../../lib/korean-calendar/index.js";
+// 🔴 명리 상수 표(納音·十神·지장간·오행·十二運星·旬空)는 달력이 아니라 문자열 조회 표다.
+// lunar-javascript 의 LunarUtil 에서 그대로 옮겨 왔고, verify:myeongri-tables 가 매번 잔차 0 을 다시 증명한다.
+import {
+  CHANG_SHENG,
+  CHANG_SHENG_OFFSET,
+  NAYIN,
+  SHI_SHEN,
+  WU_XING_GAN,
+  WU_XING_ZHI,
+  ZHI_HIDE_GAN,
+  getXun,
+  getXunKong,
+} from "../../lib/saju/myeongri-tables.js";
+
+// 🔴 년주·월주의 절기 경계는 전부 코어에서 나온다. lunar-javascript 의 절기 시각은 **중국 표준시(CST)
+// 벽시계**라, 생시를 KST 벽시계로 넘기면 월건 경계가 정확히 60분 이르다.
+// 실측 2026-08-27: 節 경계 오프셋별 월주 불일치 −61분 0/72 · **−30분 72/72 · −1분 72/72** ·
+// +1/+30/+61분 0/72 (1970·1985·1997·2004·2013·2024 × 12節).
+// 🔴 일주·시주도 이제 코어에서 나온다(PR-F2). 야자시 축은 **keep-day** 로 명시한다 —
+// 23시대도 당일 일진을 쓴다는 뜻이고, 그래야 일간이 안 움직여 십신·용신·격국·대운이 그대로다.
+// 실측 2026-08-28(표본 18,090건, 1900~2100): 23시 **밖**은 어느 정책이든 전건 불변이고,
+// 23시대만 갈린다. 이관 전 lunar-javascript sect 2 는 **일주 keep-day + 시주 shift-day 혼종**이라
+// (일진은 안 밀면서 시주 천간만 민 날의 일간으로 뽑았다) 어느 정책으로도 그대로 재현되지 않는다.
+// 🔴 그래서 23시대 시주는 여기서 **바뀐다**. 그 혼종은 인정된 유파가 아니라 그 라이브러리의
+// 구현 특성이고, 셸(js/saju-engine.js)·앱·destiny-bias 도 각자 일관된 축을 쓴다.
+import {
+  BRANCH_HANJA,
+  NIGHT_ZI_POLICY,
+  STEM_HANJA,
+  ganji,
+  lunarToSolar,
+  sexagenaryYearIndexes,
+} from "../../lib/korean-calendar/index.js";
+
+const STEMS = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
+const BRANCHES = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+const ELEMENTS = ["목", "화", "토", "금", "수"];
+export const STEM_ELEMENT = {
+  甲: "목", 乙: "목",
+  丙: "화", 丁: "화",
+  戊: "토", 己: "토",
+  庚: "금", 辛: "금",
+  壬: "수", 癸: "수",
+};
+const STEM_POLARITY = {
+  甲: "yang", 丙: "yang", 戊: "yang", 庚: "yang", 壬: "yang",
+  乙: "yin", 丁: "yin", 己: "yin", 辛: "yin", 癸: "yin",
+};
+export const BRANCH_ELEMENT = {
+  子: "수", 丑: "토", 寅: "목", 卯: "목", 辰: "토", 巳: "화",
+  午: "화", 未: "토", 申: "금", 酉: "금", 戌: "토", 亥: "수",
+};
+// 🔴 지장간은 정본 표 하나만 둔다. 예전에는 여기 사본이 한 벌 더 있었고 巳 만 순서가 갈려 있었다
+// (사본 丙戊庚 · 정본 丙庚戊). 같은 pillarDetails 안에서 hiddenStems 는 사본을, branchTenGods 는
+// 정본을 읽어 **한 기둥 안에서 두 순서가 섞였다**(집합은 같아 눈에 안 띄었다). 정기→중기→여기 규칙은
+// 寅(甲丙戊)·申(庚壬戊)이 따르는 것과 같고 巳 는 丙庚戊 다. 값 한 글자를 고치면 또 갈리므로 사본을 없앤다.
+export const HIDDEN_STEMS = ZHI_HIDE_GAN;
+const PRODUCES = { 목: "화", 화: "토", 토: "금", 금: "수", 수: "목" };
+const CONTROLS = { 목: "토", 토: "수", 수: "화", 화: "금", 금: "목" };
+const CHINESE_TEN_GOD_TO_KO = {
+  比肩: "비견",
+  劫财: "겁재",
+  食神: "식신",
+  伤官: "상관",
+  偏财: "편재",
+  正财: "정재",
+  七杀: "편관",
+  偏官: "편관",
+  正官: "정관",
+  偏印: "편인",
+  正印: "정인",
+  日主: "일간",
+};
+const PILLAR_LABELS = {
+  year: "년주",
+  month: "월주",
+  day: "일주",
+  hour: "시주",
+};
+const BRANCH_SEASON = {
+  寅: { season: "봄", element: "목", climate: "생기가 열리는 초봄", adjustment: "화 기운으로 드러내고 토 기운으로 안정시킵니다." },
+  卯: { season: "봄", element: "목", climate: "목기가 왕한 한봄", adjustment: "화 기운으로 표현하고 금 기운으로 다듬습니다." },
+  辰: { season: "봄의 끝", element: "토", climate: "습토가 목기를 갈무리하는 때", adjustment: "화 기운으로 온기를 더하고 토의 방향을 정리합니다." },
+  巳: { season: "여름", element: "화", climate: "열기가 오르는 초여름", adjustment: "수 기운으로 열을 식히고 금 기운으로 결을 세웁니다." },
+  午: { season: "여름", element: "화", climate: "화기가 왕한 한여름", adjustment: "수 기운으로 조후를 맞추고 토 기운으로 열을 받아 냅니다." },
+  未: { season: "여름의 끝", element: "토", climate: "건토가 열기를 머금는 때", adjustment: "수 기운으로 건조함을 풀고 목 기운으로 순환을 엽니다." },
+  申: { season: "가을", element: "금", climate: "금기가 열리는 초가을", adjustment: "화 기운으로 금을 단련하고 수 기운으로 흐름을 냅니다." },
+  酉: { season: "가을", element: "금", climate: "금기가 왕한 한가을", adjustment: "화 기운으로 차가움을 덜고 목 기운으로 생기를 더합니다." },
+  戌: { season: "가을의 끝", element: "토", climate: "건토가 금기를 갈무리하는 때", adjustment: "수 기운으로 마른 기운을 적시고 목 기운으로 풀어 줍니다." },
+  亥: { season: "겨울", element: "수", climate: "수기가 열리는 초겨울", adjustment: "화 기운으로 온기를 세우고 목 기운으로 생장을 잇습니다." },
+  子: { season: "겨울", element: "수", climate: "수기가 왕한 한겨울", adjustment: "화 기운으로 온도를 맞추고 토 기운으로 흐름을 잡습니다." },
+  丑: { season: "겨울의 끝", element: "토", climate: "습토가 수기를 품은 때", adjustment: "화 기운으로 얼어 있는 기운을 풀고 목 기운으로 움직임을 엽니다." },
+};
+const STEM_COMBINATION_PAIRS = [
+  ["甲", "己", "갑기합", "토"],
+  ["乙", "庚", "을경합", "금"],
+  ["丙", "辛", "병신합", "수"],
+  ["丁", "壬", "정임합", "목"],
+  ["戊", "癸", "무계합", "화"],
+];
+const STEM_CLASH_PAIRS = [
+  ["甲", "庚", "갑경충"],
+  ["乙", "辛", "을신충"],
+  ["丙", "壬", "병임충"],
+  ["丁", "癸", "정계충"],
+];
+export const BRANCH_COMBINATION_PAIRS = [
+  ["子", "丑", "자축합", "토"],
+  ["寅", "亥", "인해합", "목"],
+  ["卯", "戌", "묘술합", "화"],
+  ["辰", "酉", "진유합", "금"],
+  ["巳", "申", "사신합", "수"],
+  ["午", "未", "오미합", "토"],
+];
+export const BRANCH_CLASH_PAIRS = [
+  ["子", "午", "자오충"],
+  ["丑", "未", "축미충"],
+  ["寅", "申", "인신충"],
+  ["卯", "酉", "묘유충"],
+  ["辰", "戌", "진술충"],
+  ["巳", "亥", "사해충"],
+];
+const BRANCH_HARM_PAIRS = [
+  ["子", "未", "자미해"],
+  ["丑", "午", "축오해"],
+  ["寅", "巳", "인사해"],
+  ["卯", "辰", "묘진해"],
+  ["申", "亥", "신해해"],
+  ["酉", "戌", "유술해"],
+];
+const BRANCH_BREAK_PAIRS = [
+  ["子", "酉", "자유파"],
+  ["丑", "辰", "축진파"],
+  ["寅", "亥", "인해파"],
+  ["卯", "午", "묘오파"],
+  ["巳", "申", "사신파"],
+  ["未", "戌", "미술파"],
+];
+const BRANCH_PUNISHMENT_GROUPS = [
+  { branches: ["寅", "巳", "申"], label: "인사신형" },
+  { branches: ["丑", "戌", "未"], label: "축술미형" },
+  { branches: ["子", "卯"], label: "자묘형" },
+  { branches: ["辰"], label: "진진형" },
+  { branches: ["午"], label: "오오형" },
+  { branches: ["酉"], label: "유유형" },
+  { branches: ["亥"], label: "해해형" },
+];
+const THREE_HARMONY_GROUPS = [
+  { branches: ["申", "子", "辰"], label: "신자진 삼합", element: "수" },
+  { branches: ["亥", "卯", "未"], label: "해묘미 삼합", element: "목" },
+  { branches: ["寅", "午", "戌"], label: "인오술 삼합", element: "화" },
+  { branches: ["巳", "酉", "丑"], label: "사유축 삼합", element: "금" },
+];
+const DIRECTIONAL_GROUPS = [
+  { branches: ["寅", "卯", "辰"], label: "인묘진 방합", element: "목" },
+  { branches: ["巳", "午", "未"], label: "사오미 방합", element: "화" },
+  { branches: ["申", "酉", "戌"], label: "신유술 방합", element: "금" },
+  { branches: ["亥", "子", "丑"], label: "해자축 방합", element: "수" },
+];
+const LIFE_FORTUNE_CHAPTER_EVIDENCE = [
+  { title: "타고난 명식의 중심", refs: ["dayMaster", "monthPillar", "pillarDetails.month", "seasonalBalance", "strength"] },
+  { title: "성격과 마음의 결", refs: ["dayMaster", "tenGodsByPillar.day", "tenGods", "fiveElements", "pillarDetails.day"] },
+  { title: "재능과 일의 방향", refs: ["tenGods", "tenGodsByPillar.month", "tenGodsByPillar.hour", "fiveElements", "fortuneFacts.strongestTenGods"] },
+  { title: "재물과 생활 기반", refs: ["tenGods", "fiveElements", "usefulGod", "unfavorableGod", "natalInteractions"] },
+  { title: "사랑과 인연의 흐름", refs: ["pillarDetails.day", "natalInteractions.branchCombinations", "natalInteractions.branchClashes", "tenGodsByPillar"] },
+  { title: "관계와 가족의 장", refs: ["pillarDetails.year", "pillarDetails.month", "natalInteractions", "relationSummary"] },
+  { title: "건강과 생활 리듬", refs: ["seasonalBalance", "fiveElements", "strength", "calculationMeta.timeUnknown"] },
+  { title: "대운으로 보는 큰 전환", refs: ["majorLuck.direction", "majorLuck.startSolarDate", "majorLuck.currentCycle", "majorLuck.cycles"] },
+  { title: "가까운 세운의 흐름", refs: ["yearlyLuck", "majorLuck.currentCycle", "yearlyLuck.natalInteractions"] },
+  { title: "앞으로 열릴 선택", refs: ["fortuneFacts", "interpretationPlan", "usefulGod", "majorLuck.currentCycle", "yearlyLuck"] },
+];
+
+function clean(value, maxLength = 0) {
+  const text = String(value ?? "").trim();
+  return maxLength > 0 ? text.slice(0, maxLength) : text;
+}
+
+function parseDate(value) {
+  const raw = clean(value, 10);
+  const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) return null;
+  if (year < 1900 || year > 2100) return null;
+  return { year, month, day };
+}
+
+function parseTime(value, fallbackHour = 12) {
+  const raw = clean(value, 5);
+  const match = raw.match(/^([01]\d|2[0-3]):([0-5]\d)$/);
+  if (!match) return { hour: fallbackHour, minute: 0, valid: false };
+  return { hour: Number(match[1]), minute: Number(match[2]), valid: true };
+}
+
+function pillarStem(pillar = "") {
+  return clean(pillar).slice(0, 1);
+}
+
+function pillarBranch(pillar = "") {
+  return clean(pillar).slice(1, 2);
+}
+
+function emptyElementCounts() {
+  return ELEMENTS.reduce((acc, element) => ({ ...acc, [element]: 0 }), {});
+}
+
+function addElement(counts, element, weight = 1) {
+  if (!element || !Object.prototype.hasOwnProperty.call(counts, element)) return;
+  counts[element] = Number((counts[element] + weight).toFixed(2));
+}
+
+// 일간 대비 다른 천간의 십성. 오늘의 일진 판정(worker/lib/saju-day-fortune.js)이
+// 같은 규칙을 다시 쓰지 않도록 이 정본 하나만 내보낸다.
+export function tenGodFor(dayStem, targetStem) {
+  const dayElement = STEM_ELEMENT[dayStem];
+  const targetElement = STEM_ELEMENT[targetStem];
+  const samePolarity = STEM_POLARITY[dayStem] === STEM_POLARITY[targetStem];
+  if (!dayElement || !targetElement) return "";
+  if (targetElement === dayElement) return samePolarity ? "비견" : "겁재";
+  if (PRODUCES[dayElement] === targetElement) return samePolarity ? "식신" : "상관";
+  if (CONTROLS[dayElement] === targetElement) return samePolarity ? "편재" : "정재";
+  if (CONTROLS[targetElement] === dayElement) return samePolarity ? "편관" : "정관";
+  if (PRODUCES[targetElement] === dayElement) return samePolarity ? "편인" : "정인";
+  return "";
+}
+
+function normalizeTenGodName(value) {
+  const text = clean(value, 20);
+  return CHINESE_TEN_GOD_TO_KO[text] || text;
+}
+
+function buildHiddenStemDetails(dayStem, branch) {
+  return (HIDDEN_STEMS[branch] || []).map((stem) => ({
+    stem,
+    element: STEM_ELEMENT[stem] || "",
+    tenGod: tenGodFor(dayStem, stem),
+  }));
+}
+
+/**
+ * 기둥 문자열 + 일간만으로 파생 필드를 내는 어댑터.
+ *
+ * 🔴 예전에는 년·월주만 이 어댑터를 쓰고 일·시주는 lunar-javascript 의 `EightChar` 객체에서
+ * 파생 필드를 뽑았다. 그 객체의 필드는 **CST 절기로 잡은 기둥**에 붙어 있어, 기둥이 갈리는
+ * 節 직전 60분 창에서 한 응답 안에 두 프레임이 섞였다. 지금은 네 기둥 전부 여기를 지난다.
+ * 쓰는 명리 표(lib/saju/myeongri-tables.js)는 전부 **문자열 조회**라 시간대와 무관하다 —
+ * 절기를 다시 재지 않는다.
+ */
+function pillarFacts(key, pillar, dayStem) {
+  const prefix = key.charAt(0).toUpperCase() + key.slice(1);
+  const stem = pillarStem(pillar);
+  const branch = pillarBranch(pillar);
+  const dayStemIndex = STEMS.indexOf(dayStem);
+  const branchIndex = BRANCHES.indexOf(branch);
+  const changShengOffset = CHANG_SHENG_OFFSET[dayStem];
+  let diShi = "";
+  if (dayStemIndex >= 0 && branchIndex >= 0 && Number.isFinite(changShengOffset)) {
+    const raw = changShengOffset + (dayStemIndex % 2 === 0 ? branchIndex : -branchIndex);
+    diShi = CHANG_SHENG[((raw % 12) + 12) % 12];
+  }
+  const hiddenGans = ZHI_HIDE_GAN[branch] || [];
+  return {
+    [`get${prefix}ShiShenZhi`]: () => hiddenGans.map((gan) => SHI_SHEN[`${dayStem}${gan}`]).filter(Boolean),
+    [`get${prefix}WuXing`]: () => `${WU_XING_GAN[stem] || ""}${WU_XING_ZHI[branch] || ""}`,
+    [`get${prefix}NaYin`]: () => NAYIN[pillar] || "",
+    [`get${prefix}DiShi`]: () => diShi,
+    [`get${prefix}Xun`]: () => getXun(pillar),
+    [`get${prefix}XunKong`]: () => getXunKong(pillar),
+  };
+}
+
+/**
+ * 코어가 내는 네 기둥(한자). 지원 범위(1900~2100) 밖이면 던진다.
+ *
+ * 🔴 야자시 정책을 **명시해서** 넘긴다. 코어 기본값은 shift-day(출생 원국의 셸 축)지만
+ * 이 소비자는 keep-day 다 — 기본값에 기대면 코어 기본값이 바뀌는 날 여기 값이 조용히 따라간다.
+ */
+function corePillars(at) {
+  const core = ganji(at, { nightZiPolicy: NIGHT_ZI_POLICY.KEEP_DAY });
+  if (!core) {
+    // parseDate 가 1900~2100 으로 자르므로 여기 오면 표가 깨진 것이다.
+    // 조용히 CST 달력으로 떨어지지 않는다.
+    const error = new Error(`korean-calendar core returned no ganji for ${at.year}-${at.month}-${at.day}`);
+    error.code = "CALENDAR_OUT_OF_RANGE";
+    throw error;
+  }
+  const pillar = (p) => `${STEM_HANJA[p.stemIndex]}${BRANCH_HANJA[p.branchIndex]}`;
+  return { year: pillar(core.year), month: pillar(core.month), day: pillar(core.day), hour: pillar(core.hour) };
+}
+
+/** 서기 연도의 세차(한자). 세운은 입춘이 지난 뒤를 보므로 연도만으로 닫힌다. */
+function coreSexagenaryYear(year) {
+  const indexes = sexagenaryYearIndexes(year);
+  return `${STEM_HANJA[indexes.stemIndex]}${BRANCH_HANJA[indexes.branchIndex]}`;
+}
+
+/**
+ * @param {object} facts `pillarFacts()` 가 만든 파생 필드 게터 묶음.
+ *
+ * 🔴 예전에는 `options.detached` 로 이 필드들을 비우는 길이 있었다 — 진태양시로 보정된 시주를
+ * 호출부가 넘길 때(love-secret), 파생 필드가 **보정 전 시각에 묶인 `EightChar` 객체**에서 나와
+ * 틀렸기 때문이다. 지금 `facts` 는 `pillarFacts()` 가 만들고 그건 (기둥 문자열 + 일간) 순수 조회라
+ * 보정된 기둥에서도 값이 맞는다. 그래서 비울 이유가 사라졌고 게이트를 없앴다 —
+ * 같은 레코드의 `hiddenStems`·`stemTenGod` 은 애초에 비운 적이 없어 모순 상태이기도 했다.
+ */
+function buildPillarDetail(key, pillar, facts, dayStem) {
+  if (!pillar) return null;
+  const methodPrefix = key.charAt(0).toUpperCase() + key.slice(1);
+  const stem = pillarStem(pillar);
+  const branch = pillarBranch(pillar);
+  const rawBranchTenGods = typeof facts?.[`get${methodPrefix}ShiShenZhi`] === "function"
+    ? facts[`get${methodPrefix}ShiShenZhi`]()
+    : [];
+  return {
+    key,
+    label: PILLAR_LABELS[key] || key,
+    pillar,
+    heavenlyStem: stem,
+    earthlyBranch: branch,
+    stemElement: STEM_ELEMENT[stem] || "",
+    branchElement: BRANCH_ELEMENT[branch] || "",
+    hiddenStems: buildHiddenStemDetails(dayStem, branch),
+    stemTenGod: key === "day" ? "일간" : tenGodFor(dayStem, stem),
+    branchTenGods: Array.isArray(rawBranchTenGods)
+      ? rawBranchTenGods.map(normalizeTenGodName).filter(Boolean)
+      : [],
+    elementPair: typeof facts?.[`get${methodPrefix}WuXing`] === "function" ? clean(facts[`get${methodPrefix}WuXing`](), 20) : "",
+    naYin: typeof facts?.[`get${methodPrefix}NaYin`] === "function" ? clean(facts[`get${methodPrefix}NaYin`](), 40) : "",
+    twelveStage: typeof facts?.[`get${methodPrefix}DiShi`] === "function" ? clean(facts[`get${methodPrefix}DiShi`](), 20) : "",
+    xun: typeof facts?.[`get${methodPrefix}Xun`] === "function" ? clean(facts[`get${methodPrefix}Xun`](), 20) : "",
+    xunKong: typeof facts?.[`get${methodPrefix}XunKong`] === "function" ? clean(facts[`get${methodPrefix}XunKong`](), 20) : "",
+  };
+}
+
+function buildTenGodDistribution(dayStem, pillars) {
+  const counts = {};
+  for (const pillar of pillars.filter(Boolean)) {
+    const stem = pillarStem(pillar);
+    const branch = pillarBranch(pillar);
+    const main = tenGodFor(dayStem, stem);
+    if (main) counts[main] = (counts[main] || 0) + 1;
+    for (const hidden of HIDDEN_STEMS[branch] || []) {
+      const hiddenGod = tenGodFor(dayStem, hidden);
+      if (hiddenGod) counts[hiddenGod] = Number(((counts[hiddenGod] || 0) + 0.35).toFixed(2));
+    }
+  }
+  return counts;
+}
+
+function buildElementDistribution(pillars) {
+  const counts = emptyElementCounts();
+  for (const pillar of pillars.filter(Boolean)) {
+    addElement(counts, STEM_ELEMENT[pillarStem(pillar)], 1);
+    addElement(counts, BRANCH_ELEMENT[pillarBranch(pillar)], 1);
+  }
+  return counts;
+}
+
+function judgeStrength(dayStem, fiveElements) {
+  const dayElement = STEM_ELEMENT[dayStem] || "";
+  const total = Object.values(fiveElements || {}).reduce((sum, value) => sum + Number(value || 0), 0);
+  const own = Number(fiveElements?.[dayElement] || 0);
+  const ratio = total > 0 ? own / total : 0;
+  if (ratio >= 0.34) return "일간의 기운이 강한 편";
+  if (ratio <= 0.18) return "일간의 기운이 약한 편";
+  return "일간의 기운이 비교적 균형을 이룬 편";
+}
+
+function pickBalancingElement(fiveElements) {
+  const entries = Object.entries(fiveElements || {}).sort((a, b) => Number(a[1]) - Number(b[1]));
+  return entries[0]?.[0] || "";
+}
+
+function pickDominantElement(fiveElements) {
+  const entries = Object.entries(fiveElements || {}).sort((a, b) => Number(b[1]) - Number(a[1]));
+  return entries[0]?.[0] || "";
+}
+
+function sortedCountEntries(counts = {}) {
+  return Object.entries(counts)
+    .map(([name, value]) => ({ name, value: Number(value || 0) }))
+    .filter((entry) => entry.name && Number.isFinite(entry.value))
+    .sort((a, b) => b.value - a.value);
+}
+
+function buildSeasonalBalance(monthBranch, fiveElements, dayStem) {
+  const month = BRANCH_SEASON[monthBranch] || {};
+  const dayElement = STEM_ELEMENT[dayStem] || "";
+  const sortedElements = sortedCountEntries(fiveElements);
+  const dominant = sortedElements[0] || null;
+  const deficient = [...sortedElements].reverse()[0] || null;
+  let dayMasterSeasonalState = "월령과 일간의 관계를 계산할 수 없습니다.";
+  if (month.element && dayElement) {
+    if (month.element === dayElement) dayMasterSeasonalState = "월령이 일간과 같은 기운을 품어 뿌리가 있는 편입니다.";
+    else if (PRODUCES[month.element] === dayElement) dayMasterSeasonalState = "월령이 일간을 생하여 회복의 바탕을 줍니다.";
+    else if (PRODUCES[dayElement] === month.element) dayMasterSeasonalState = "일간이 월령으로 기운을 흘려 표현과 소모가 함께 생깁니다.";
+    else if (CONTROLS[month.element] === dayElement) dayMasterSeasonalState = "월령이 일간을 제어하여 책임과 압박의 결이 생깁니다.";
+    else if (CONTROLS[dayElement] === month.element) dayMasterSeasonalState = "일간이 월령을 다루려 하여 현실 장악의 욕구가 생깁니다.";
+  }
+  return {
+    monthBranch,
+    season: month.season || "",
+    seasonElement: month.element || "",
+    climate: month.climate || "",
+    adjustment: month.adjustment || "",
+    dayElement,
+    dayMasterSeasonalState,
+    dominantElement: dominant?.name || "",
+    dominantElementScore: dominant?.value || 0,
+    deficientElement: deficient?.name || "",
+    deficientElementScore: deficient?.value || 0,
+  };
+}
+
+function buildTenGodByPillar(pillarDetails = {}) {
+  return Object.fromEntries(Object.entries(pillarDetails).map(([key, detail]) => {
+    if (!detail) return [key, null];
+    return [key, {
+      label: detail.label,
+      pillar: detail.pillar,
+      stemTenGod: detail.stemTenGod,
+      branchTenGods: detail.branchTenGods,
+      hiddenStemTenGods: (detail.hiddenStems || []).map((hidden) => ({
+        stem: hidden.stem,
+        tenGod: hidden.tenGod,
+        element: hidden.element,
+      })),
+      primaryHiddenTenGod: detail.hiddenStems?.[0]?.tenGod || "",
+    }];
+  }));
+}
+
+function pillarEntries(pillarDetails = {}) {
+  return Object.entries(pillarDetails)
+    .filter(([, detail]) => detail?.pillar)
+    .map(([key, detail]) => ({
+      key,
+      label: detail.label || PILLAR_LABELS[key] || key,
+      pillar: detail.pillar,
+      stem: detail.heavenlyStem,
+      branch: detail.earthlyBranch,
+    }));
+}
+
+function pairMatches(pair, first, second) {
+  return (pair[0] === first && pair[1] === second) || (pair[0] === second && pair[1] === first);
+}
+
+function buildPairInteractions(entries, pairs, field, type) {
+  const found = [];
+  for (let i = 0; i < entries.length; i += 1) {
+    for (let j = i + 1; j < entries.length; j += 1) {
+      const first = entries[i]?.[field];
+      const second = entries[j]?.[field];
+      const pair = pairs.find((candidate) => pairMatches(candidate, first, second));
+      if (!pair) continue;
+      found.push({
+        type,
+        label: pair[2],
+        element: pair[3] || "",
+        pillars: [entries[i].key, entries[j].key],
+        pillarLabels: [entries[i].label, entries[j].label],
+        values: [first, second],
+      });
+    }
+  }
+  return found;
+}
+
+function collectGroupInteractions(entries, groups, type) {
+  const branchToEntries = new Map();
+  for (const entry of entries) {
+    if (!entry.branch) continue;
+    if (!branchToEntries.has(entry.branch)) branchToEntries.set(entry.branch, []);
+    branchToEntries.get(entry.branch).push(entry);
+  }
+  return groups.flatMap((group) => {
+    const matched = group.branches.flatMap((branch) => branchToEntries.get(branch) || []);
+    const uniqueKeys = new Set(matched.map((entry) => entry.key));
+    if (group.branches.length === 1 ? matched.length < 2 : !group.branches.every((branch) => branchToEntries.has(branch))) return [];
+    return [{
+      type,
+      label: group.label,
+      element: group.element || "",
+      branches: group.branches,
+      pillars: [...uniqueKeys],
+      pillarLabels: matched.map((entry) => entry.label),
+    }];
+  });
+}
+
+// 명리 관계성은 결과 문장 생성 전에 JSON 근거로만 고정해 LLM이 임의로 합충을 만들지 못하게 합니다.
+function buildNatalInteractions(pillarDetails = {}) {
+  const entries = pillarEntries(pillarDetails);
+  return {
+    stemCombinations: buildPairInteractions(entries, STEM_COMBINATION_PAIRS, "stem", "천간합"),
+    stemClashes: buildPairInteractions(entries, STEM_CLASH_PAIRS, "stem", "천간충"),
+    branchCombinations: buildPairInteractions(entries, BRANCH_COMBINATION_PAIRS, "branch", "지지육합"),
+    branchClashes: buildPairInteractions(entries, BRANCH_CLASH_PAIRS, "branch", "지지충"),
+    branchHarms: buildPairInteractions(entries, BRANCH_HARM_PAIRS, "branch", "지지해"),
+    branchBreaks: buildPairInteractions(entries, BRANCH_BREAK_PAIRS, "branch", "지지파"),
+    branchPunishments: collectGroupInteractions(entries, BRANCH_PUNISHMENT_GROUPS, "지지형"),
+    threeHarmony: collectGroupInteractions(entries, THREE_HARMONY_GROUPS, "삼합"),
+    directionalGroups: collectGroupInteractions(entries, DIRECTIONAL_GROUPS, "방합"),
+  };
+}
+
+function buildLuckNatalInteractions(luckPillar, pillarDetails = {}) {
+  const luckStem = pillarStem(luckPillar);
+  const luckBranch = pillarBranch(luckPillar);
+  const entries = pillarEntries(pillarDetails);
+  const luckEntry = { key: "luck", label: "운", pillar: luckPillar, stem: luckStem, branch: luckBranch };
+  const combinedEntries = [luckEntry, ...entries];
+  return {
+    stemCombinations: buildPairInteractions(combinedEntries, STEM_COMBINATION_PAIRS, "stem", "천간합").filter((item) => item.pillars.includes("luck")),
+    stemClashes: buildPairInteractions(combinedEntries, STEM_CLASH_PAIRS, "stem", "천간충").filter((item) => item.pillars.includes("luck")),
+    branchCombinations: buildPairInteractions(combinedEntries, BRANCH_COMBINATION_PAIRS, "branch", "지지육합").filter((item) => item.pillars.includes("luck")),
+    branchClashes: buildPairInteractions(combinedEntries, BRANCH_CLASH_PAIRS, "branch", "지지충").filter((item) => item.pillars.includes("luck")),
+    branchHarms: buildPairInteractions(combinedEntries, BRANCH_HARM_PAIRS, "branch", "지지해").filter((item) => item.pillars.includes("luck")),
+    branchBreaks: buildPairInteractions(combinedEntries, BRANCH_BREAK_PAIRS, "branch", "지지파").filter((item) => item.pillars.includes("luck")),
+  };
+}
+
+function summarizeRelations(interactions = {}) {
+  const support = [
+    ...(interactions.stemCombinations || []),
+    ...(interactions.branchCombinations || []),
+    ...(interactions.threeHarmony || []),
+    ...(interactions.directionalGroups || []),
+  ];
+  const tension = [
+    ...(interactions.stemClashes || []),
+    ...(interactions.branchClashes || []),
+    ...(interactions.branchHarms || []),
+    ...(interactions.branchBreaks || []),
+    ...(interactions.branchPunishments || []),
+  ];
+  return {
+    supportCount: support.length,
+    tensionCount: tension.length,
+    supportLabels: support.map((item) => item.label).slice(0, 8),
+    tensionLabels: tension.map((item) => item.label).slice(0, 8),
+    mainPattern: support[0]?.label || tension[0]?.label || "두드러진 합충형파해가 강하지 않은 편",
+  };
+}
+
+function buildInterpretationPlan() {
+  return LIFE_FORTUNE_CHAPTER_EVIDENCE.map((chapter, index) => ({
+    chapterNumber: index + 1,
+    title: chapter.title,
+    evidenceRefs: chapter.refs,
+  }));
+}
+
+function buildFortuneFacts({ dayMaster, monthPillar, fiveElements, tenGods, seasonalBalance, strength, usefulGod, unfavorableGod, majorLuck, yearlyLuck, relationSummary }) {
+  return {
+    readingBase: {
+      dayMaster,
+      monthBranch: pillarBranch(monthPillar),
+      monthPillar,
+      strength,
+      usefulGod,
+      unfavorableGod,
+    },
+    elementBalance: {
+      dominantElement: seasonalBalance.dominantElement,
+      deficientElement: seasonalBalance.deficientElement,
+      seasonalAdjustment: seasonalBalance.adjustment,
+    },
+    strongestTenGods: sortedCountEntries(tenGods).slice(0, 5),
+    currentLuck: {
+      majorLuck: majorLuck?.currentCycle || null,
+      nextYears: Array.isArray(yearlyLuck) ? yearlyLuck.slice(0, 5) : [],
+    },
+    relationSummary,
+  };
+}
+
+function sexagenaryIndex(pillar) {
+  const stem = pillarStem(pillar);
+  const branch = pillarBranch(pillar);
+  for (let i = 0; i < 60; i += 1) {
+    if (STEMS[i % 10] === stem && BRANCHES[i % 12] === branch) return i;
+  }
+  return -1;
+}
+
+function nextPillar(index, offset) {
+  const next = (index + offset + 600) % 60;
+  return `${STEMS[next % 10]}${BRANCHES[next % 12]}`;
+}
+
+function normalizeGenderCode(gender) {
+  const value = clean(gender).toLowerCase();
+  if (value === "male" || value === "m" || value === "남성") return 1;
+  if (value === "female" || value === "f" || value === "여성") return 0;
+  return null;
+}
+
+const SEXAGENARY_CYCLE = Array.from({ length: 60 }, (_, index) => `${STEMS[index % 10]}${BRANCHES[index % 12]}`);
+
+/**
+ * 대운. 🔴 순역·나이·간지 전부 한국 음양력 코어에서 나온다.
+ * 코어의 daeun() 은 lunar-javascript `getYun()` sect 1 을 **그대로 재현**한 것이라
+ * 관례는 안 바뀌고 節의 시간대만 KST 로 바뀐다(가드가 잔차 0 으로 증명한다).
+ */
+function buildMajorLuck({ birth, birthYear, currentYear, gender, dayMaster, pillarDetails, monthPillar }) {
+  const genderCode = normalizeGenderCode(gender);
+  if (genderCode === null) {
+    return {
+      available: false,
+      reason: "성별 비공개 입력이어서 대운 순행·역행을 단정하지 않습니다.",
+    };
+  }
+  const yun = birth ? daeun(birth, { gender: genderCode === 1 ? "M" : "F" }) : null;
+  if (!yun) {
+    return { available: false, reason: "대운 계산에 필요한 생년월일시를 확인할 수 없습니다." };
+  }
+
+  // 🔴 대운 간지는 **코어 월주**에서 파생한다(PR-D2 와 같은 이유) — 節 직전 60분 창에서
+  // 월주만 코어를 따르고 대운은 다른 프레임을 따르는 상태를 만들지 않기 위해서다.
+  // 나이 축은 그대로 **세는 나이 정수**다(daeun 머리말 참고).
+  const monthCycleIndex = SEXAGENARY_CYCLE.indexOf(clean(monthPillar, 10));
+  const cycleStep = yun.forward ? 1 : -1;
+  const cycles = yun.cycles.slice(0, 10).map((cycle, index) => {
+    const rowIndex = Number(cycle.index);
+    const pillar = Number.isFinite(rowIndex) && rowIndex >= 1 && monthCycleIndex >= 0
+      ? SEXAGENARY_CYCLE[(monthCycleIndex + cycleStep * rowIndex + 6000) % 60]
+      : "";
+    const branch = pillarBranch(pillar);
+    const startYear = Number(cycle.startYear || 0);
+    const endYear = Number(cycle.endYear || 0);
+    return {
+      index,
+      startAge: Number(cycle.startAge || 0),
+      endAge: Number(cycle.endAge || 0),
+      startYear,
+      endYear,
+      pillar,
+      heavenlyStem: pillarStem(pillar),
+      earthlyBranch: branch,
+      stemTenGod: pillar ? tenGodFor(dayMaster, pillarStem(pillar)) : "",
+      hiddenStems: pillar ? buildHiddenStemDetails(dayMaster, branch) : [],
+      natalInteractions: pillar ? buildLuckNatalInteractions(pillar, pillarDetails) : {},
+      xun: pillar ? clean(getXun(pillar), 20) : "",
+      xunKong: pillar ? clean(getXunKong(pillar), 20) : "",
+      isCurrent: startYear > 0 && endYear > 0 && Number(currentYear) >= startYear && Number(currentYear) <= endYear,
+    };
+  });
+
+  const s = yun.startSolar;
+  const startSolarDate = `${s.year}-${String(s.month).padStart(2, "0")}-${String(s.day).padStart(2, "0")}`;
+  return {
+    available: true,
+    direction: yun.forward ? "순행" : "역행",
+    genderCode,
+    startAfterBirth: {
+      years: Number(yun.start.years || 0),
+      months: Number(yun.start.months || 0),
+      days: Number(yun.start.days || 0),
+      // 🔴 sect 1 관례는 시(時) 단위를 안 낸다 — 시진으로 자르고 남는 것을 일로 환산한다.
+      hours: 0,
+    },
+    startSolarDate,
+    startSolarDateTime: `${startSolarDate} 00:00:00`,
+    currentYear: Number(currentYear),
+    currentAgeKoreanStyle: Number(currentYear) - Number(birthYear) + 1,
+    currentCycle: cycles.find((cycle) => cycle.isCurrent) || null,
+    cycles,
+    calculationBasis: "대운 순·역행·나이는 한국 음양력 코어 daeun(KST 절기, lunar-javascript sect 1 관례 재현), 간지는 코어 월주에서 파생",
+  };
+}
+
+function findMajorLuckCycle(majorLuck, year) {
+  return (majorLuck?.cycles || []).find((cycle) => Number(year) >= Number(cycle.startYear) && Number(year) <= Number(cycle.endYear)) || null;
+}
+
+function buildYearlyLuck({ startYear = new Date().getFullYear(), dayMaster, birthYear, majorLuck, pillarDetails } = {}) {
+  return Array.from({ length: 5 }, (_, index) => {
+    const year = Number(startYear) + index;
+    const pillar = coreSexagenaryYear(year);
+    const branch = pillarBranch(pillar);
+    const majorLuckCycle = findMajorLuckCycle(majorLuck, year);
+    return {
+      year,
+      ageKoreanStyle: Number(year) - Number(birthYear) + 1,
+      pillar,
+      heavenlyStem: pillarStem(pillar),
+      earthlyBranch: branch,
+      stemTenGod: tenGodFor(dayMaster, pillarStem(pillar)),
+      hiddenStems: buildHiddenStemDetails(dayMaster, branch),
+      natalInteractions: buildLuckNatalInteractions(pillar, pillarDetails),
+      majorLuckPillar: majorLuckCycle?.pillar || "",
+      majorLuckAgeRange: majorLuckCycle ? `${majorLuckCycle.startAge}-${majorLuckCycle.endAge}` : "",
+    };
+  });
+}
+
+const pad2 = (value) => String(value).padStart(2, "0");
+const formatSolarDate = (at) => `${at.year}-${pad2(at.month)}-${pad2(at.day)}`;
+
+/** 입력을 양력 KST 벽시계 한 덩어리로 정규화한다. 네 기둥도 대운도 전부 이 시각에서 나온다. */
+function resolveSolarBirth(inputDate, birthTime, calendarType) {
+  if (calendarType === "lunar") {
+    // 🔴 음력 입력의 양력 환산도 코어가 한다. lunar-javascript 는 중국 음력이라 표본 4,860건 중
+    // 180건(3.70%)에서 하루 어긋나고(실측 2026-08-27), 그 하루가 네 기둥을 통째로 옮긴다.
+    const converted = lunarToSolar(inputDate.year, inputDate.month, inputDate.day, false);
+    if (!converted) {
+      const error = new Error("Invalid lunar birth date");
+      error.code = "INVALID_BIRTH_DATE";
+      throw error;
+    }
+    return { year: converted.year, month: converted.month, day: converted.day, hour: birthTime.hour, minute: birthTime.minute };
+  }
+  return { year: inputDate.year, month: inputDate.month, day: inputDate.day, hour: birthTime.hour, minute: birthTime.minute };
+}
+
+export function calculateLifeBookAiSaju(birthInfo = {}, options = {}) {
+  const birthDate = parseDate(birthInfo.birthDate);
+  if (!birthDate) {
+    const error = new Error("Invalid birth date");
+    error.code = "INVALID_BIRTH_DATE";
+    throw error;
+  }
+  const calendarType = clean(birthInfo.calendarType).toLowerCase() === "lunar" ? "lunar" : "solar";
+  const timeUnknown = birthInfo.birthTimeUnknown === true || !clean(birthInfo.birthTime);
+  const birthTime = parseTime(birthInfo.birthTime, 12);
+  if (!timeUnknown && !birthTime.valid) {
+    const error = new Error("Invalid birth time");
+    error.code = "INVALID_BIRTH_TIME";
+    throw error;
+  }
+
+  const solarBirth = resolveSolarBirth(birthDate, birthTime, calendarType);
+  const core = corePillars(solarBirth);
+  const yearPillar = core.year;
+  const monthPillar = core.month;
+  const dayPillar = core.day;
+  // hourPillarOverride: 호출부가 자체 시각 보정(진태양시 등)으로 계산한 시주를 넘길 수 있다.
+  // 넘기지 않으면 기존 동작(시계 시각 기준) 그대로다 — 나머지 5개 라우트는 영향받지 않는다.
+  const hourPillarOverride = clean(birthInfo.hourPillarOverride, 10);
+  const hourPillar = timeUnknown
+    ? ""
+    : (hourPillarOverride || core.hour);
+  const pillars = [yearPillar, monthPillar, dayPillar, hourPillar].filter(Boolean);
+  const dayMaster = pillarStem(dayPillar);
+  const fiveElements = buildElementDistribution(pillars);
+  const tenGods = buildTenGodDistribution(dayMaster, pillars);
+  const usefulElement = pickBalancingElement(fiveElements);
+  const dominantElement = pickDominantElement(fiveElements);
+  const currentYear = options.now instanceof Date ? options.now.getUTCFullYear() : new Date().getFullYear();
+  const pillarDetails = {
+    // 🔴 네 기둥의 파생 필드가 전부 같은 표에서 나온다(lib/saju/myeongri-tables.js).
+    // 예전에는 년·월만 여기서 뽑고 일·시는 eightChar 에서 뽑아, 節 경계 60분 창에서 한 응답 안에
+    // 두 프레임이 섞였다.
+    year: buildPillarDetail("year", yearPillar, pillarFacts("year", yearPillar, dayMaster), dayMaster),
+    month: buildPillarDetail("month", monthPillar, pillarFacts("month", monthPillar, dayMaster), dayMaster),
+    day: buildPillarDetail("day", dayPillar, pillarFacts("day", dayPillar, dayMaster), dayMaster),
+    // 🔴 시주도 같은 표를 지난다. 이관 전에는 이 자리가 **항상** 비어 있었다 — buildPillarDetail 이
+    // `getHourNaYin` 을 찾는데 lunar-javascript 의 EightChar 는 `getTimeNaYin` 만 갖고 있어서
+    // (실측 2026-08-28: getHour* 전부 undefined) 納音·十二運星·旬空·오행쌍·지지십신이 전건 공란이었다.
+    // 실측 2026-08-28: 표본 424건 중 424건이 공란 → 424건 전건 채워진다.
+    hour: timeUnknown ? null : buildPillarDetail("hour", hourPillar, pillarFacts("hour", hourPillar, dayMaster), dayMaster),
+  };
+  const tenGodsByPillar = buildTenGodByPillar(pillarDetails);
+  const seasonalBalance = buildSeasonalBalance(pillarBranch(monthPillar), fiveElements, dayMaster);
+  const natalInteractions = buildNatalInteractions(pillarDetails);
+  const relationSummary = summarizeRelations(natalInteractions);
+  const majorLuck = buildMajorLuck({
+    // 🔴 음력 입력이면 이미 코어가 환산한 양력이다(resolveSolarBirth). 대운은 그 양력 생시로 잰다.
+    birth: solarBirth,
+    birthYear: solarBirth.year,
+    currentYear,
+    gender: birthInfo.gender,
+    dayMaster,
+    pillarDetails,
+    monthPillar,
+  });
+  const yearlyLuck = buildYearlyLuck({ startYear: currentYear, dayMaster, birthYear: solarBirth.year, majorLuck, pillarDetails });
+  const strength = judgeStrength(dayMaster, fiveElements);
+  const usefulGod = usefulElement ? `${usefulElement} 기운을 보완 축으로 봅니다.` : "";
+  const unfavorableGod = dominantElement ? `${dominantElement} 기운이 과해질 때 균형을 살핍니다.` : "";
+  const interpretationPlan = buildInterpretationPlan();
+  const fortuneFacts = buildFortuneFacts({
+    dayMaster,
+    monthPillar,
+    fiveElements,
+    tenGods,
+    seasonalBalance,
+    strength,
+    usefulGod,
+    unfavorableGod,
+    majorLuck,
+    yearlyLuck,
+    relationSummary,
+  });
+
+  return {
+    advancedFactors: buildLifeBookExpertFactors({ yearPillar, monthPillar, dayPillar, hourPillar, majorLuck, yearlyLuck, usefulGod, unfavorableGod }),
+    yearPillar,
+    monthPillar,
+    dayPillar,
+    hourPillar: hourPillar || undefined,
+    dayMaster,
+    pillarDetails,
+    fiveElements,
+    tenGods,
+    tenGodsByPillar,
+    allowedTenGods: ["비견", "겁재", "식신", "상관", "편재", "정재", "편관", "정관", "편인", "정인"],
+    strength,
+    usefulGod,
+    unfavorableGod,
+    seasonalBalance,
+    natalInteractions,
+    relationSummary,
+    majorLuck,
+    yearlyLuck,
+    fortuneFacts,
+    interpretationPlan,
+    calculationMeta: {
+      // 🔴 이 문자열은 출처 표기다. 예전 값은 "lunar-javascript-eightchar-core-pillars" 였는데
+      // 네 기둥이 전부 코어에서 나오게 된 뒤로는 사실이 아니다(guardian-fortune 어댑터가 source 로 읽는다).
+      method: "korean-calendar-core-pillars",
+      sourceCalendarType: calendarType,
+      solarDate: formatSolarDate(solarBirth),
+      solarDateTime: `${formatSolarDate(solarBirth)} ${pad2(solarBirth.hour)}:${pad2(solarBirth.minute)}:00`,
+      timeUnknown,
+      uncertainty: timeUnknown
+        ? "출생시간을 모르는 입력이어서 시주는 제외하고 입력된 정보 기준의 흐름으로 해석합니다."
+        : "",
+    },
+  };
+}

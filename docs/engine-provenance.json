@@ -1,0 +1,142 @@
+{
+  "source": "D:/Development/code-destiny",
+  "sourceCommit": "09544df6453584376931d695b53c5a7d27bd0143",
+  "files": [
+    {
+      "file": "worker/lib/life-book-ai-saju.js",
+      "sha256": "76032dcfd337a9d8898f72e3bb69ba3c1c03143a6b3eed014ce514636b740b3e"
+    },
+    {
+      "file": "worker/lib/saju-expert-factors.js",
+      "sha256": "589e20cbe5479cd6d222387f12591347eb8103b23d36a2fce1adcab026e556f4"
+    },
+    {
+      "file": "worker/lib/saju-ai-prompt.js",
+      "sha256": "5e127f067e647b00f46949658504cee70b7f067b8fe1fa472058c1faa9c482bf"
+    },
+    {
+      "file": "worker/lib/fortune-question-prompt.js",
+      "sha256": "f48be61b055e67380b20be64b57aca769d3b71b716000b5d14e27f0e378b5857"
+    },
+    {
+      "file": "worker/lib/fortune-reasoning-contract.js",
+      "sha256": "c9fb1035f9a6e261454525961a7165a79a19faf0dc663e57d67948df0113d2d9"
+    },
+    {
+      "file": "worker/lib/analysis-basis-contract.js",
+      "sha256": "2fda6f5bea3d23f3ae049de481275766fe6c3413d8a720ba449c578992e705a1"
+    },
+    {
+      "file": "worker/lib/fortune-glossary.js",
+      "sha256": "8dc91fc207631c270422c0cac9ee266a0813f588e86154ca03842367997070c0"
+    },
+    {
+      "file": "worker/lib/saju-ai-prompt-templates.mjs",
+      "sha256": "c68588b4420d2a2d5a4b9832fee67f3f330428d5644fd365d5144188d1728071"
+    },
+    {
+      "file": "worker/lib/cms-prompt-template-store.js",
+      "sha256": "6d92b3afafc27b3ae2d3083ad1808b459f85be4bacf02eb44e5a7f9d730f6b4d"
+    },
+    {
+      "file": "worker/lib/saju-calibration.js",
+      "sha256": "a39154acb13b1a1cd313befc6c1ca514cce87541aa3bdb08af8566c0d2e56d32"
+    },
+    {
+      "file": "worker/lib/saju-gyeokguk.js",
+      "sha256": "333f140adc181eabba8ee6690bed47acfd53ef05988f488f71a85d99784328b6"
+    },
+    {
+      "file": "lib/korean-calendar/index.js",
+      "sha256": "b980c3625acdeb8957c351da36696cc7ceffcf69b0db2e709ae28cef2e964e2f"
+    },
+    {
+      "file": "lib/korean-calendar/core.js",
+      "sha256": "82afd85e3055ac1b188f3366e063320b42471b40aba406dcac2719a5c28411dc"
+    },
+    {
+      "file": "lib/korean-calendar/table.generated.js",
+      "sha256": "80de66f9dbab66a8ca771f737dd56d9591f1939b1357d6266c65faa133f1ad79"
+    },
+    {
+      "file": "lib/korean-calendar/ganji.js",
+      "sha256": "4996af7c2eb81888551b790234dfc942e87ed1c2adc7d693f01664d1c4b7d1fc"
+    },
+    {
+      "file": "lib/korean-calendar/policy.js",
+      "sha256": "92e40ce1f3b38e658bc71db0538fd943e8634c5d5cb88a3eb12c3757ff6255c6"
+    },
+    {
+      "file": "lib/korean-calendar/daeun.js",
+      "sha256": "909c5c19b9add14064225a042e872d9a07547baec009e253619832a801145dfd"
+    },
+    {
+      "file": "lib/korean-calendar/labels.js",
+      "sha256": "386a93abc2e8e3bdc6d2f9324a02d519339ce6f9434bddaf43cd7298858f2801"
+    },
+    {
+      "file": "lib/saju/myeongri-tables.js",
+      "sha256": "235d87a4d19802d12a1c1d27f6db9fbe9c8ba1722c3ec57248e106c3e5e6b2e4"
+    },
+    {
+      "file": "worker/lib/ziwei-ai-chart.js",
+      "sha256": "372c7dc9f4a850eb5fc42cf8cd9c47ab96790c05170ddcaa2ce3aa0584f70851"
+    },
+    {
+      "file": "lib/ziwei-minor-limit.js",
+      "sha256": "02b01775f19b94447ba7cf62c47ac50ac79d35fd83849b8e4430409b95640a4c"
+    },
+    {
+      "file": "lib/ziwei-fire-bell.js",
+      "sha256": "c17e9c28dfdff2a798c21ea355cf14c3f7f860384c55234f7bf2154a9c938593"
+    },
+    {
+      "file": "worker/lib/sukuyo-astronomy.js",
+      "sha256": "f6c41ca1929dbe7dfc12ffdc00f06594bd228f956a3107c9dd3c41ea6780ffb7"
+    },
+    {
+      "file": "worker/lib/birth-time-context.js",
+      "sha256": "9baf9dd6c1775096143b31689578bed24247b8fb573f3bc8d66329bdf650f839"
+    },
+    {
+      "file": "worker/lib/sukuyo-coordinate.js",
+      "sha256": "1c45577981153b8ffe28bc2d99d61a6d41054fe6b24a611346b2e91b2d4b4844"
+    },
+    {
+      "file": "worker/lib/sukuyo-premium.js",
+      "sha256": "58331cd77412b4a08d86487e883c56b78319a1d28c46dd29d1811cd819683ce3"
+    },
+    {
+      "file": "worker/lib/sukuyo-relation-core.js",
+      "sha256": "165717254e93c68993aef087f9ee1a65ac34536489aa3d161256451fdc1696eb"
+    },
+    {
+      "file": "worker/lib/cms-record-store.js",
+      "sha256": "192a53732652f18f8c44d7e1b83d77b210a4922d20c56f5ed06d81cadf74b5d6"
+    },
+    {
+      "file": "worker/lib/swiss-ephemeris.js",
+      "sha256": "311ac92fffbcf1284ffdfc0471726ec8ddb6d35c888f1cd7029c73a4cc6bfcac"
+    },
+    {
+      "file": "worker/lib/env.js",
+      "sha256": "768c10bc4f7cdf15fbbce8c833ac5ff6110d7bcf11be93ef044c25d96604229e"
+    },
+    {
+      "file": "worker/lib/http.js",
+      "sha256": "97d45105faade7a5f8bd75fc4e53296650bc59e59724ed31e018c18944d67cad"
+    },
+    {
+      "file": "worker/lib/vedic-ai-chart.js",
+      "sha256": "9d620b116f012849518ca02c9c8486c348b42b790c709daf7d882690fb082278"
+    },
+    {
+      "file": "worker/lib/vedic-derived-calculations.js",
+      "sha256": "779b4f4ac86b5a731dd31691a13b1582732bf41e7f937d4a2d863ccf11d80f3d"
+    },
+    {
+      "file": "worker/lib/geo-timezone.js",
+      "sha256": "f780c85c96272d005f9884583dbb4e112d4ed28c04a8982a2f9b41d381f51e40"
+    }
+  ]
+}
