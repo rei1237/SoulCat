@@ -1,3 +1,4 @@
+import AccountBar from "../components/AccountBar";
 import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/noto-sans-kr/wght.css";
 import "@fontsource/nanum-myeongjo/700.css";
@@ -41,7 +42,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ko">
-      <body><CheckoutRecovery />{children}<ServiceNavigation /></body>
+      <body><AccountBar/><CheckoutRecovery />{children}<ServiceNavigation /></body>
     </html>
   );
 }

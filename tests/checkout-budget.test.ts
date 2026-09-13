@@ -129,15 +129,15 @@ test('test budget is cumulative across days, production only meters without a cu
 test('card and Kakao Promise and redirect share the same minimal recovery ticket',async()=>{
   for(const method of ['CARD','EASY_PAY'] as const){
     const storage=new MemoryStorage();let calls=0;
-    const order={...checkout,payment:{storeId:'fixture',channelKey:method==='CARD'?'card':'kakao',paymentId:'payment',orderName:'fixture',totalAmount:1000,currency:'CURRENCY_KRW',payMethod:method}} as CheckoutOrder;
-    const verified=await launchCheckout(order,{fullName:'fixture',phoneNumber:'000',email:'fixture@example.test'},storage,async input=>{
-      assert.equal(input.channelKey,method==='CARD'?'card':'kakao');
+    const order={...checkout,payment:{customer:{fullName:'fixture',phoneNumber:'01012345678',email:'fixture@example.test'},storeId:'fixture',channelKey:method==='CARD'?'card':'kakao',paymentId:'payment',orderName:'fixture',totalAmount:1000,currency:'CURRENCY_KRW',payMethod:method}} as CheckoutOrder;
+    const verified=await launchCheckout(order,storage,async input=>{
+      assert.equal(input.channelKey,method==='CARD'?'card':'kakao');assert.equal(input.customer?.email,'fixture@example.test');
       assert.ok(readTicket(storage,'payment','order'));
       assert.ok(![...storage.data.values()].join('').includes('example.test'));
       return {paymentId:'payment',transactionType:'PAYMENT',txId:'fixture'};
     },async()=>{calls++;return {status:'PAID',requestId:'request'};});
     assert.equal(verified.status,'PAID');assert.equal(calls,1);assert.equal(storage.length,0);
-    await launchCheckout(order,{fullName:'fixture',phoneNumber:'000',email:'fixture@example.test'},storage,async()=>undefined);
+    await launchCheckout(order,storage,async()=>undefined);
     assert.ok(readTicket(storage,'payment','order'));
   }
 });

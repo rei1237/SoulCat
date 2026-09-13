@@ -1,4 +1,5 @@
 "use client";
+import SessionControls from "./SessionControls";
 import { packages } from "../../server/payments/catalog";
 import FishCatalog from "./FishCatalog";
 
@@ -239,15 +240,7 @@ export default function FortuneHome() {
             >
               <Bell size={21} />
             </button>
-            <button
-              className="login-button"
-              onClick={() => {
-                setAuthMode("login");
-                openPanel("auth");
-              }}
-            >
-              로그인
-            </button>
+            <SessionControls compact onLogin={()=>{setAuthMode("login");openPanel("auth");}} />
           </div>
         </header>
 

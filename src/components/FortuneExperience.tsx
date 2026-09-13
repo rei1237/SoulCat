@@ -1,4 +1,5 @@
 "use client";
+import {sessionFetch,useSession} from "../lib/session";
 import {depthDescriptions} from '../../server/fortune/reading-policy';
 import {productManifest} from '../../server/fortune/product-manifest';
 import {launchCheckout,ApiError} from "../lib/checkout";
@@ -43,7 +44,7 @@ const cities = [
   { name: "직접 입력", latitude: 0, longitude: 0, timezone: "" },
 ];
 async function api(path: string, body?: object, signal?: AbortSignal) {
-  const response = await fetch(`/api/yeongnyangi/${path}`, {
+  const response = await (path === "session" ? sessionFetch() : fetch(`/api/yeongnyangi/${path}`, {
     credentials: "same-origin",
     signal,
     ...(body
@@ -53,7 +54,7 @@ async function api(path: string, body?: object, signal?: AbortSignal) {
           body: JSON.stringify(body),
         }
       : {}),
-  });
+  }));
   let data;
   try {data=await response.json();}catch{throw new Error("연결이 잠시 끊겼어요. 같은 구매에서 다시 시도해 주세요. 확인된 구매 권리는 보관되어 있어요.");}
   if (!response.ok)
@@ -63,8 +64,12 @@ async function api(path: string, body?: object, signal?: AbortSignal) {
   return data;
 }
 export default function FortuneExperience() {
+  const {userId:sessionUser}=useSession();
   const [login,setLogin]=useState("");
   const [method,setMethod]=useState<"CARD"|"KAKAOPAY">("CARD");
+  const [missing,setMissing]=useState<string[]|null>(null);
+  const [customerError,setCustomerError]=useState("");
+  const [customerRetry,setCustomerRetry]=useState(0);
   const [customer,setCustomer]=useState({fullName:"",phoneNumber:"",email:""});
   const [domain, setDomain] = useState<FortuneDomainId>("saju");
   const [topic, setTopic] = useState("");
@@ -95,6 +100,8 @@ export default function FortuneExperience() {
   const product = products.find(
     (p) => fusionId?p.id===fusionId:p.readingKind==="single"&&p.domain === domain && p.fishId === fish,
   );
+  useEffect(()=>{if(stage!=='checkout')return;let active=true;setMissing(null);setCustomerError('');api('checkout/customer').then(d=>{if(active)setMissing(d.missingFields);}).catch(e=>{if(active)setCustomerError(e.message);});return()=>{active=false;};},[stage,customerRetry,sessionUser]);
+  useEffect(()=>{setCustomer({fullName:'',phoneNumber:'',email:''});},[sessionUser]);
   const topicArt = surface.choices.find(([name]) => name === topic)?.[2];
   const loadingKey = (topicArt ?? domain) as keyof typeof fortuneLoadingArt;
   const loadingArt =
@@ -269,16 +276,16 @@ export default function FortuneExperience() {
   }
   async function purchase(event:React.FormEvent) {
     event.preventDefault();
-    if(lock.current||!product)return;
+    if(lock.current||!product||missing===null)return;
     lock.current=true;setBusy(true);setError('');
     try {
       await api('session',{});
-      const order=await api('orders',{productId:product.id,profileId,idempotencyKey:crypto.randomUUID(),payMethod:method,returnPath:safeReturnPath(window.location.pathname+window.location.search)});
-      const result=order.status==='PAID'?order:await launchCheckout(order,customer);
+      const order=await api('orders',{productId:product.id,profileId,idempotencyKey:crypto.randomUUID(),payMethod:method,customer,returnPath:safeReturnPath(window.location.pathname+window.location.search)});
+      const result=order.status==='PAID'?order:await launchCheckout(order);
       setCustomer({fullName:'',phoneNumber:'',email:''});
       if(result?.status==='PAID'&&result.requestId){setPaid(true);setRequestId(result.requestId);setStage('loading');window.history.replaceState(null,'','/yeongnyangi/fortune/?request='+encodeURIComponent(result.requestId));}
       else if(result)setError('결제가 완료되지 않았어요. 보관함에서 상태를 확인해 주세요.');
-    } catch(e){setError((e as Error).message);if(e instanceof ApiError&&e.code==='SESSION_REQUIRED')setLogin(loginHref(window.location.pathname+window.location.search));}
+    } catch(e){setError((e as Error).message);if(e instanceof ApiError&&e.code==='CUSTOMER_REQUIRED')setCustomerRetry(n=>n+1);if(e instanceof ApiError&&e.code==='SESSION_REQUIRED')setLogin(loginHref(window.location.pathname+window.location.search));}
     finally{lock.current=false;setBusy(false);}
   }
   return (
@@ -451,14 +458,16 @@ export default function FortuneExperience() {
             </div>
           )}
           {!localMock && product?.enabled && <form onSubmit={purchase} className="checkout-form">
+            {missing===null&&!customerError&&<p role="status">결제 정보를 확인하고 있어요.</p>}
+            {customerError&&<p role="alert">{customerError} <button type="button" onClick={()=>setCustomerRetry(n=>n+1)}>다시 확인</button></p>}
             <fieldset disabled={busy}><legend>결제수단</legend>
               <label><input type="radio" name="payMethod" checked={method==='CARD'} onChange={()=>setMethod('CARD')}/> 신용카드</label>
               <label><input type="radio" name="payMethod" checked={method==='KAKAOPAY'} onChange={()=>setMethod('KAKAOPAY')}/> 카카오페이</label>
             </fieldset>
-            <label>구매자 이름<input required autoComplete="name" maxLength={60} value={customer.fullName} onChange={e=>setCustomer({...customer,fullName:e.target.value})}/></label>
-            <label>연락처<input required type="tel" autoComplete="tel" maxLength={20} value={customer.phoneNumber} onChange={e=>setCustomer({...customer,phoneNumber:e.target.value})}/></label>
-            <label>이메일<input required type="email" autoComplete="email" maxLength={120} value={customer.email} onChange={e=>setCustomer({...customer,email:e.target.value})}/></label>
-            <button className="fortune-primary" disabled={busy}>{busy?'결제 확인 중':'단건 결제로 보기'}</button>
+             {missing?.includes("fullName") && <label>구매자 이름<input required autoComplete="name" maxLength={60} value={customer.fullName} onChange={e=>setCustomer({...customer,fullName:e.target.value})}/></label>}
+             {missing?.includes("phoneNumber") && <label>연락처<input required type="tel" autoComplete="tel" maxLength={20} value={customer.phoneNumber} onChange={e=>setCustomer({...customer,phoneNumber:e.target.value})}/></label>}
+             {missing?.includes("email") && <label>이메일<input required type="email" autoComplete="email" maxLength={120} value={customer.email} onChange={e=>setCustomer({...customer,email:e.target.value})}/></label>}
+            <button className="fortune-primary" disabled={busy||missing===null}>{busy?'결제 확인 중':product.priceKRW.toLocaleString('ko-KR')+'원 결제하기'}</button>
           </form>}
           {!product?.enabled && <p className="fortune-footnote">
             상담·결제 연결을 검증하고 있어요. 현재 실제 구매는 열려 있지 않아요.

@@ -9,6 +9,7 @@ const results=[];
 try {
   for(const width of [360,390,430,1480]){
     const page=await browser.newPage({viewport:{width,height:width>700?900:844},reducedMotion:'reduce'});
+    await page.route('**/api/yeongnyangi/session',route=>route.fulfill({status:401,json:{code:'SESSION_REQUIRED'}}));
     const errors=[];page.on('pageerror',e=>errors.push(e.message));
     await page.goto(`${origin}/yeongnyangi/`,{waitUntil:'networkidle'});
     await page.evaluate(()=>document.fonts.ready);
@@ -17,9 +18,9 @@ try {
     assert.equal(await page.locator('.starter-invitation').count(),1);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
     await page.screenshot({path:`${folder}/home-${width}.png`,fullPage:false});
-    await page.getByRole('button',{name:'로그인',exact:true}).click();
+    await page.locator('.header-actions').getByRole('button',{name:'로그인',exact:true}).click();
     for(const provider of ['google','naver','kakao']){
-      const href=await page.locator(`.social-auth-button--${provider}`).getAttribute('href');
+      const href=await page.locator(`.social-auth-list .social-auth-button--${provider}`).getAttribute('href');
       assert.equal(new URL(href).searchParams.get('next'),'/yeongnyangi/');
     }
     await page.getByRole('button',{name:'닫기',exact:true}).click();

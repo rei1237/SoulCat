@@ -1,4 +1,5 @@
 "use client";
+import {sessionFetch} from "../lib/session";
 import {useEffect,useRef,useState} from 'react';
 import {ArrowRight,Check,Copy,Gift,BookOpen} from 'lucide-react';
 import BirthFields,{readBirthFields} from './BirthFields';
@@ -7,7 +8,7 @@ import {freeCategories,birthCategories,type FreeReading,type AttendanceState} fr
 import {loginHref} from '../lib/service-links';
 import './free-fortune.css';
 async function api(path:string,body?:object) {
- const r=await fetch('/api/yeongnyangi/'+path,{cache:'no-store',credentials:'same-origin',...(body?{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)}:{})});
+ const r=await (path==='session'?sessionFetch():fetch('/api/yeongnyangi/'+path,{cache:'no-store',credentials:'same-origin',...(body?{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)}:{})}));
  const data=await r.json();if(!r.ok)throw Object.assign(new Error(data.message||'연결을 마치지 못했어요. 다시 시도해 주세요.'),{code:data.code});return data;
 }
 function TypedReading({reading}:{reading:FreeReading}) {

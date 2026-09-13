@@ -2045,3 +2045,14 @@ svg {
 .session-controls { padding-block: 18px; color: #c7b5ce; }
 .session-controls a, .session-controls button { color: #e9c78d; }
 .session-controls button { background: transparent; border: 0; font: inherit; text-decoration: underline; cursor: pointer; }
+
+/* Shared account status across the SoulCat screens. */
+.session-controls{position:relative;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:#f4e9d3}
+.session-controls button,.session-menu a{min-height:44px;padding:8px 12px;border:1px solid #b8975b66;border-radius:14px;background:#30203f;color:#fff5df;font:inherit;cursor:pointer}
+.session-account{display:flex;align-items:center;gap:7px;max-width:100%;overflow-wrap:anywhere}.session-account img{object-fit:contain;flex-shrink:0}
+.session-menu{position:absolute;right:0;top:100%;z-index:80;display:grid;gap:6px;min-width:160px;padding:10px;background:#24162f;border:1px solid #b8975b;border-radius:16px;box-shadow:0 12px 30px #0006}
+.session-menu a{display:block;text-decoration:none}.session-compact{justify-content:flex-end}.session-compact .session-account{font-size:12px}
+.service-account-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:1100px;margin:auto;padding:12px 20px}.service-account-bar>a{color:#efcf90;text-decoration:none}
+@media(max-width:480px){.header-actions .session-compact{max-width:170px}.session-compact .session-account{padding:6px 8px}.service-account-bar{padding:10px 16px}.service-account-bar>a{font-size:13px}}
+
+.session-login-dialog{max-width:min(420px,calc(100vw - 32px));padding:24px;border:1px solid #bb975d;border-radius:22px;background:#24162f;color:#fff2dc}.session-login-dialog::backdrop{background:#110b20ba}.session-login-dialog .social-auth-button{margin-top:10px}.session-login-dialog h2{font-size:22px;margin:20px 0 12px}

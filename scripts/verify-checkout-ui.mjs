@@ -17,6 +17,8 @@ for(const [name,type,options] of [['chromium',chromium,{channel:'chrome'}],['web
           if(url.origin!==origin)return route.abort();
           if(!url.pathname.startsWith('/api/yeongnyangi/'))return route.continue();
           let data={};let status=200;
+          if(url.pathname.endsWith('/checkout/customer'))data={missingFields:['fullName','phoneNumber','email']};
+          if(url.pathname.endsWith('/session'))data={userId:'fixture',displayName:'검증'};
           if(url.pathname.endsWith('/products'))data={products:[{id:'saju_mackerel',domain:'saju',fishId:'mackerel',fishName:'고등어',name:'사주',chapterCount:5,priceKRW:1000,enabled:true,readingKind:'single',image:'/_soulcat/assets/fish/mackerel.webp',reactionAsset:'/_soulcat/assets/fish/reaction-mackerel.webp',systems:['saju']}],mode:'preview'};
           if(url.pathname.endsWith('/charts'))data={chart:{domain:'saju',title:'테스트 차트',groups:[],source:'fixture',limitations:[]}};
           if(url.pathname.endsWith('/library'))data={results:[]};
@@ -38,7 +40,7 @@ for(const [name,type,options] of [['chromium',chromium,{channel:'chrome'}],['web
         expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
         await page.screenshot({path:`.integration/checkout-ui/${name}-${width}-${method}-form.png`,fullPage:true});
         const firstStatus=page.waitForResponse(r=>r.url().includes('/fortune/status'));
-        await page.getByRole('button',{name:'단건 결제로 보기'}).click();
+        await page.getByRole('button',{name:'1,000원 결제하기'}).click();
         await (await firstStatus).finished();
         await expect(page.locator('.fortune-loading')).toBeVisible();
         expect(await page.evaluate(()=>JSON.stringify(localStorage))).not.toContain('fixture@example.test');

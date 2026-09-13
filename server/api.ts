@@ -1,3 +1,4 @@
+import {customerFields, resolveCustomer} from './payments/customer';
 import {counselInRoom} from './fortune/room-counsel';
 import { verify as verifyWebhook } from '@portone/server-sdk/webhook';
 import { reconcilePayment } from './payments/reconcile';
@@ -16,7 +17,7 @@ import { ProviderEnv, createProvider } from "./providers/provider-factory";
 import { createOrder, grantPaidOrder } from "./payments/orders";
 import { PaymentEnv, PaymentOrder, lookupPayment } from "./payments/portone";
 import { getProduct, products } from "./payments/catalog";
-import { AuthEnv, sharedUser } from "./auth";
+import { AuthEnv, sharedUser, sharedIdentity } from "./auth";
 import { createChart, purchaseContexts, chartView } from "./fortune/charts";
 import {
   prepareBook,
@@ -72,6 +73,7 @@ async function user(db: Database, request: Request) {
   return row.user_id;
 }
 const messages: Record<string, string> = {
+  CUSTOMER_REQUIRED:"결제에 필요한 누락 정보를 확인해 주세요.",
   STAGING_PAYMENT_LIMIT: "이번 결제수단의 검증 주문이 이미 있어요. 보관함에서 해당 주문을 확인해 주세요.",
   ANCHOVY_REQUIRED:'멸치가 부족해. 출석하고 한 마리 받아 와.',
   DAILY_PASS_REQUIRED:'멸치 한 마리를 건네면 오늘의 16가지 이야기를 열어줄게.',
@@ -161,14 +163,15 @@ export async function handleApi(
     }
     if (path === "session" && request.method === "POST") {
       if (env.APP_ENV !== "local") {
-        const id = await sharedUser(request, env);
+        const identity = await sharedIdentity(request, env);
+        const id = identity.userId;
         await db
           .prepare(
             "INSERT INTO users (id,created_at) VALUES (?,?) ON CONFLICT(id) DO NOTHING",
           )
           .bind(id, Date.now())
           .run();
-        return json({ userId: id });
+        return json({ userId: id, displayName: identity.displayName });
       }
       if (env.LLM_PROVIDER !== "mock" || env.ALLOW_LIVE_LLM === "true") throw new FortuneError("AUTH_UNAVAILABLE",503);
       // Temporary identity is available only in explicit local mock runs.
@@ -213,10 +216,9 @@ export async function handleApi(
       await db.prepare('INSERT INTO payment_webhooks(id,completed_at) VALUES (?,?) ON CONFLICT(id) DO UPDATE SET completed_at=excluded.completed_at').bind(eventId,Date.now()).run();
       return json({ok:true});
     }
-    const userId =
-      env.APP_ENV === "local"
-        ? await user(db, request)
-        : await sharedUser(request, env);
+    const identity = env.APP_ENV === "local" ? {userId:await user(db,request),displayName:"",customer:{}} : await sharedIdentity(request,env);
+    const userId=identity.userId;
+    if(path === "checkout/customer" && request.method === "GET") return json({missingFields:customerFields(identity.customer)});
     const engineEnv = {
       SWISS_EPHEMERIS_FILES_BASE_URL: `${url.origin}/_soulcat/ephe/`,
       ...(env.KASI_SERVICE_KEY
@@ -345,10 +347,11 @@ export async function handleApi(
       requireStagingProduct(env, userId, String(body.productId));
       if (
         Object.keys(body).some(
-          (k) => !["productId", "profileId", "idempotencyKey", "payMethod", "returnPath"].includes(k),
+          (k) => !["productId", "profileId", "idempotencyKey", "payMethod", "returnPath", "customer"].includes(k),
         )
       )
         throw new FortuneError("INVALID_ORDER_FIELDS");
+      const customer=resolveCustomer(identity.customer,body.customer);
       const product = getProduct(body.productId);
       const channel=checkoutChannel(env,body.payMethod);
       if(env.LLM_PROVIDER!=='gemini'||env.ALLOW_LIVE_LLM!=='true'||!env.GEMINI_API_KEY||!env.BOOK_QUEUE) throw new FortuneError('LLM_NOT_CONFIGURED',503);
@@ -380,7 +383,7 @@ export async function handleApi(
       redirect.searchParams.set('orderId',order.id);
       redirect.searchParams.set('paymentId',order.payment_id);
       return json({orderId:order.id,paymentId:order.payment_id,productId:order.product_id,profileId:order.profile_id,returnPath:order.return_path,
-        payment:{storeId:order.store_id,channelKey:order.channel_key,paymentId:order.payment_id,orderName:product.name+' '+product.fishName,totalAmount:order.amount,currency:'CURRENCY_KRW',
+        payment:{customer,storeId:order.store_id,channelKey:order.channel_key,paymentId:order.payment_id,orderName:product.name+' '+product.fishName,totalAmount:order.amount,currency:'CURRENCY_KRW',
           payMethod:order.pay_method==='CARD'?'CARD':'EASY_PAY',...(order.pay_method==='CARD'?{bypass:{inicis_v2:{acceptmethod:['noeasypay'],P_RESERVED:['noeasypay=Y']}}}:{}),...(order.pay_method==='KAKAOPAY'?{easyPay:{easyPayProvider:'KAKAOPAY'}}:{}),noticeUrls:[`${url.origin}/api/yeongnyangi/payments/webhook`],redirectUrl:redirect.href}});
     }
     if (path === "testing/purchase" && request.method === "POST") {
