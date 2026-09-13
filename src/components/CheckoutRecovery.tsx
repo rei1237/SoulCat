@@ -7,7 +7,7 @@ export default function CheckoutRecovery(){
   const [notice,setNotice]=useState(''),[login,setLogin]=useState(''),[retry,setRetry]=useState(0);
   useEffect(()=>{
     const url=new URL(window.location.href);
-    if(!['/yeongnyangi/fortune/','/yeongnyangi/room/','/yeongnyangi/library/'].includes(url.pathname))return;
+    if(!['/yeongnyangi/','/yeongnyangi/fortune/','/yeongnyangi/room/','/yeongnyangi/library/'].includes(url.pathname))return;
     if(url.pathname!=='/yeongnyangi/fortune/'&&url.searchParams.has('request')){setNotice('상담이 보관되었어요. 결과 보기를 눌러 이어서 확인해 주세요.');return;}
     if(!url.searchParams.has('paymentId'))return;
     let ticket;
