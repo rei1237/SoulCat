@@ -1,0 +1,42 @@
+[
+  {
+    "width": 360,
+    "attendance": true,
+    "reaction": true,
+    "numericInput": true,
+    "placeSearch": true,
+    "persisted": true,
+    "axeViolations": 0,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "attendance": true,
+    "reaction": true,
+    "numericInput": true,
+    "placeSearch": true,
+    "persisted": true,
+    "axeViolations": 0,
+    "errors": []
+  },
+  {
+    "width": 430,
+    "attendance": true,
+    "reaction": true,
+    "numericInput": true,
+    "placeSearch": true,
+    "persisted": true,
+    "axeViolations": 0,
+    "errors": []
+  },
+  {
+    "width": 1280,
+    "attendance": true,
+    "reaction": true,
+    "numericInput": true,
+    "placeSearch": true,
+    "persisted": true,
+    "axeViolations": 0,
+    "errors": []
+  }
+]

@@ -34,7 +34,7 @@ function text(x: unknown, max: number): string {
     typeof x !== "string" ||
     !x.trim() ||
     x.length > max ||
-    /<\/?[a-z][^>]*>|100\s*%|무조건|반드시.{0,12}(성공|재회)|[다라해]냥[.!~]?/i.test(
+    /<\/?[a-z][^>]*>|100\s*%|무조건|반드시.{0,12}(성공|재회)/i.test(
       x,
     )
   )

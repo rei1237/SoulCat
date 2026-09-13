@@ -720,6 +720,7 @@ function resolveSolarBirth(inputDate, birthTime, calendarType) {
   return { year: inputDate.year, month: inputDate.month, day: inputDate.day, hour: birthTime.hour, minute: birthTime.minute };
 }
 
+export { buildLuckNatalInteractions, buildHiddenStemDetails };
 export function calculateLifeBookAiSaju(birthInfo = {}, options = {}) {
   const birthDate = parseDate(birthInfo.birthDate);
   if (!birthDate) {
@@ -737,7 +738,9 @@ export function calculateLifeBookAiSaju(birthInfo = {}, options = {}) {
   }
 
   const solarBirth = resolveSolarBirth(birthDate, birthTime, calendarType);
-  const core = corePillars(solarBirth);
+  // SoulCat adapter supplies the existing screen's civil-day/corrected-hour frame.
+  // Default callers retain the original keep-day implementation.
+  const core = options.pillars || corePillars(solarBirth);
   const yearPillar = core.year;
   const monthPillar = core.month;
   const dayPillar = core.day;

@@ -1,11 +1,23 @@
 import { cp, mkdir, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
+import {sourceRelease} from './source-release.mjs';
 
 const sha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-await mkdir("out/_soulcat", { recursive: true });
+const output = process.argv[2] || 'out';
+await mkdir(`${output}/_soulcat`, { recursive: true });
 for (const folder of ["_next", "assets", "ephe"]) {
-  await cp(`out/${folder}`, `out/_soulcat/${folder}`, { recursive: true });
+  await cp(`${output}/${folder}`, `${output}/_soulcat/${folder}`, { recursive: true });
 }
-await writeFile("out/version.json", JSON.stringify({ sha, service: "soulcat", paymentsEnabled: false }) + "\n");
-await writeFile("out/_headers", "/*\n  X-Robots-Tag: noindex, nofollow\n  X-Content-Type-Options: nosniff\n");
+await writeFile(`${output}/version.json`, JSON.stringify({ ...sourceRelease(), service: "soulcat", paymentsEnabled: false }) + "\n");
+await writeFile(`${output}/_headers`, [
+  "/*",
+  "  X-Content-Type-Options: nosniff",
+  "/library/*",
+  "  X-Robots-Tag: noindex, nofollow",
+  "/share/*",
+  "  X-Robots-Tag: noindex, nofollow",
+  "/api/*",
+  "  X-Robots-Tag: noindex, nofollow",
+  "",
+].join("\n"));
 console.log(`SoulCat static release prepared: ${sha}`);

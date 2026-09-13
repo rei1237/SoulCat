@@ -16,7 +16,7 @@ export const astrology = domain(
     "선택을 위한 조언",
   ],
   async (input, engineEnv = {}) => {
-    const t = chartInput(input.personA);
+    const t = chartInput(input.personA!);
     if (Math.abs(t.lat) >= 66)
       throw new FortuneError("HOUSE_SYSTEM_UNAVAILABLE");
     const chart = await getSwissWesternChart(engineEnv, t, {

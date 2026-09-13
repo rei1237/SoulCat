@@ -2,16 +2,23 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { ArrowLeft, ArrowRight, BookOpen, ChevronRight, Heart, Moon, PawPrint, Send, Sparkles, X } from "lucide-react";
+import DailyWords from "./DailyWords";
 import StoryPanel from "./StoryPanel";
 import CatMotion from "./CatMotion";
 import "./room.css";
 
 const starters = ["요즘 마음이 복잡해", "그 사람의 마음이 궁금해", "앞으로 무슨 일을 하면 좋을까?", "그냥 누군가에게 말하고 싶어"];
-const prompts = ["지금 가장 마음에 걸리는 순간은 언제였어? 그때의 일과 네 마음을 따로 적어봐.", "상대에게 바라는 것과, 네가 편안해지는 데 필요한 건 같을까? 네 마음부터 천천히 살펴봐.", "잘하는 일, 좋아하는 일, 계속해도 덜 지치는 일을 하나씩 적어봐. 겹치는 곳부터 살펴보자."];
 
 export default function YeongnyangRoom() {
   const [draft, setDraft] = useState("");
   const [notes, setNotes] = useState<{ question: string; guide: string }[]>([]);
+  const [readings,setReadings]=useState<{id:string;name:string;packageName:string}[]>([]);
+  const [readingId,setReadingId]=useState('');
+  const [busy,setBusy]=useState(false);
+  const [counselError,setCounselError]=useState('');
+  const [loadingReadings,setLoadingReadings]=useState(true);
+  const sending=useRef(false);
+  useEffect(()=>{let active=true;fetch('/api/yeongnyangi/library',{credentials:'same-origin'}).then(async r=>{if(!r.ok)throw Error('내 운세를 불러오려면 로그인 상태를 확인해 주세요.');return r.json();}).then(d=>{if(active){const available=d.results.filter((r:{status:string})=>r.status==='SUCCEEDED');setReadings(available);setReadingId(available[0]?.id||'');}}).catch(e=>{if(active)setCounselError(e.message);}).finally(()=>{if(active)setLoadingReadings(false);});return()=>{active=false;};},[]);
   const [storyOpen, setStoryOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [reaction, setReaction] = useState(0);
@@ -33,15 +40,19 @@ export default function YeongnyangRoom() {
     setStoryOpen(false);
     storyButton.current?.focus({ preventScroll: true });
   }
-  function submit(event: FormEvent) {
+  async function submit(event: FormEvent) {
     event.preventDefault();
-    const question = draft.trim();
-    if (!question) return;
-    const guide = /사람|연애|마음|관계/.test(question) ? prompts[1] : /일|직업|진로/.test(question) ? prompts[2] : prompts[0];
-    setNotes(value => [...value, { question, guide }]);
-    setDraft("");
-    setReaction(1);
-    requestAnimationFrame(() => notebook.current?.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "center" }));
+    const question=draft.trim();
+    if(!question||!readingId||sending.current)return;
+    sending.current=true;setBusy(true);setCounselError('');
+    try {
+      const response=await fetch('/api/yeongnyangi/room/counsel',{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify({requestId:readingId,question,history:notes.slice(-4).map(n=>({question:n.question,answer:n.guide.slice(0,1200)}))})});
+      const data=await response.json();
+      if(!response.ok)throw Error(data.code==='ROOM_MOCK_ONLY'?'고민 상담 연결을 준비하고 있어요. 지금은 보관한 운세를 살펴볼 수 있어요.':data.code==='ROOM_READING_VERSION'?'이 결과는 이전 구성으로 작성됐어요. 새 구성의 운세를 선택해 주세요.':data.message||'상담을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.');
+      setNotes(value=>[...value,{question,guide:[data.answer,data.followUp,data.chapter?'참고한 장: '+data.chapter.title:''].filter(Boolean).join('\n\n')}]);
+      setDraft('');setReaction(1);
+      requestAnimationFrame(()=>notebook.current?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'}));
+    }catch(e){setCounselError((e as Error).message);}finally{sending.current=false;setBusy(false);}
   }
 
   return <main className="yeongnyang-room">
@@ -51,6 +62,7 @@ export default function YeongnyangRoom() {
       <a href="#room-conversation" className="room-round-button" aria-label="질문 적으러 가기"><Send size={18} /></a>
     </header>
     <div className="room-layout">
+      <DailyWords/>
       <section className="room-presence" aria-label="달빛 아래 영냥이의 점술방">
         <img className="room-scenery" src="/_soulcat/assets/room-1440.webp" srcSet="/_soulcat/assets/room-780.webp 780w, /_soulcat/assets/room-1440.webp 1440w" sizes="(min-width: 900px) 58vw, 100vw" width={1440} height={810} alt="" fetchPriority="high" />
         <div className="room-welcome"><Moon size={14} />잠깐, 여기서 쉬어가.</div>
@@ -62,17 +74,19 @@ export default function YeongnyangRoom() {
       </section>
       <section className="room-conversation" id="room-conversation" aria-labelledby="conversation-title">
         <div className="room-conversation-heading"><div><h2 id="conversation-title">그래서, 무슨 이야기야?</h2><p>잘 정리된 말보다, 네 진짜 마음이 궁금해.</p></div><Heart size={21} /></div>
+        <div className="room-reading-choice"><label htmlFor="room-reading">상담에 참고할 나의 운세</label><select id="room-reading" value={readingId} disabled={busy||loadingReadings} onChange={e=>{setReadingId(e.target.value);setNotes([]);setCounselError('');}}><option value="">{loadingReadings?'운세를 확인하고 있어요':'운세를 선택해 주세요'}</option>{readings.map(r=><option key={r.id} value={r.id}>{r.name} · {r.packageName}</option>)}</select>{!loadingReadings&&!readings.length&&<p>완성된 본인 운세가 필요해요. <a href="/fortune/">운세 입력하기</a></p>}</div>
+        {counselError&&<p role="alert">{counselError}</p>}
         <div className="room-starters" aria-label="이야기 시작하기">
           {starters.map(text => <button key={text} onClick={() => { setDraft(text); input.current?.focus(); }}>{text}<ChevronRight size={14}/></button>)}
         </div>
-        <div ref={notebook} className="room-notebook" aria-live="polite" aria-relevant="additions" role="log" aria-label="이 방에서 정리한 고민">
-          {notes.map((note,index) => <div className="room-note-entry" key={index}><div className="room-question"><span>내가 적은 고민</span><p>{note.question}</p></div><div className="room-guide"><PawPrint size={18}/><div><span>고민을 정리하는 질문</span><p>{note.guide}</p></div></div></div>)}
+        <div ref={notebook} tabIndex={0} className="room-notebook" aria-live="polite" aria-relevant="additions" role="log" aria-label="이 방에서 정리한 고민">
+          {notes.map((note,index) => <div className="room-note-entry" key={index}><div className="room-question"><span>내가 적은 고민</span><p>{note.question}</p></div><div className="room-guide"><PawPrint size={18}/><div><span>영냥이의 모의 고민 상담</span><p>{note.guide}</p></div></div></div>)}
         </div>
         <form className="room-composer" onSubmit={submit}>
           <label htmlFor="room-question">지금 마음에 걸리는 이야기</label>
           <textarea ref={input} id="room-question" value={draft} onChange={event => setDraft(event.target.value)} maxLength={1000} rows={3} placeholder="연애, 일, 오늘 있었던 일… 어떤 이야기든 편하게 적어봐." aria-describedby="room-input-note" />
-          <div className="room-composer-actions"><span>{draft.length} / 1,000</span><button type="submit" disabled={!draft.trim()}>고민 정리하기<Send size={16}/></button></div>
-          <p id="room-input-note">자유 상담 연결 준비 중 · 지금은 준비된 질문으로 고민을 정리할 수 있어요. 작성한 내용은 서버로 전송되지 않으며, 이 화면을 나가면 사라져요.</p>
+          <div className="room-composer-actions"><span>{draft.length} / 1,000</span><button type="submit" disabled={!draft.trim()||!readingId||busy}>{busy?'상담 확인 중':'고민 상담하기'}<Send size={16}/></button></div>
+          <p id="room-input-note">선택한 운세를 참고하는 모의 상담입니다. 질문과 최근 대화 일부가 서버로 전송되며, 대화 기록은 이 화면을 나가면 사라져요.</p>
         </form>
         <a className="room-fortune-link" href="/fortune/">운세로 내 흐름 살펴보기<ArrowRight size={16}/></a>
       </section>

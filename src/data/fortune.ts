@@ -1,6 +1,9 @@
+import { domainRegistry } from "./domain-registry";
+
 export const fortuneSurfaces = {
+ tarot: { name: "타로", title: "지금, 어떤 선택 앞에 있어?", line: "질문과 카드가 보여주는 감정·상황·선택을 함께 읽어볼게. 출생정보는 필요 없어.", choices: [["지금의 선택", "원인·과정·결과의 3카드", "tarot"],["사랑과 관계", "관계의 흐름을 살피는 6카드", "love"]]},
   saju: {
-    name: "사주",
+    name: domainRegistry.saju.label,
     title: "네 이야기, 어디부터 볼까?",
     line: "타고난 기질부터 지금의 흐름까지. 궁금한 이야기를 골라봐.",
     choices: [
@@ -12,16 +15,17 @@ export const fortuneSurfaces = {
     ],
   },
   sukuyo: {
-    name: "숙요 궁합",
+    name: "숙요점 궁합",
     title: "너와 그 사람, 어떤 인연일까?",
-    line: "처음의 끌림과 가까워진 뒤의 차이. 두 사람의 숙을 함께 살펴보자.",
+    line: "나의 본명숙부터 두 사람의 관계까지, 별이 보여주는 차이를 살펴보자.",
     choices: [
+      ["나의 본명숙", "27숙으로 살펴보는 나의 바탕", "sukuyo"],
       ["두 사람의 궁합", "끌림·거리·갈등·관계의 방향", "sukuyo"],
       ["오래 함께하려면", "서로의 속도를 이해하는 법", "love"],
     ],
   },
   vedic: {
-    name: "베다 점성술",
+    name: domainRegistry.vedic.label,
     title: "마음의 별과 삶의 시간을 읽어봐.",
     line: "라그나와 달의 자리, 다샤의 흐름을 인도 점성술의 관점으로 살펴볼게.",
     choices: [
@@ -30,7 +34,7 @@ export const fortuneSurfaces = {
     ],
   },
   astrology: {
-    name: "서양 점성술",
+    name: domainRegistry.astrology.label,
     title: "네가 태어난 순간의 하늘.",
     line: "태양과 달, 상승점이 함께 그리는 너의 모습. 별자리 하나로 끝내지 않을게.",
     choices: [
@@ -39,7 +43,7 @@ export const fortuneSurfaces = {
     ],
   },
   ziwei: {
-    name: "자미두수",
+    name: domainRegistry.ziwei.label,
     title: "별들이 그린 인생의 방을 열어봐.",
     line: "명궁과 신궁, 삶의 열두 영역을 연결해 네 흐름을 살펴볼게.",
     choices: [
@@ -51,6 +55,7 @@ export const fortuneSurfaces = {
 export type FortuneDomainId = keyof typeof fortuneSurfaces;
 
 export const fortuneLoadingArt = {
+ tarot: {image:"loading-default.webp",alt:"카드를 읽는 영냥이",title:"확정한 카드로 네 선택을 살펴보고 있어."},
   default: {
     image: "loading-default.webp",
     alt: "상담 흐름을 살펴보는 영냥이",

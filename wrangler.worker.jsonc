@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "soulcat-service",
-  "main": "server/edge.ts",
+  "main": "server/worker-entry.ts",
   "compatibility_date": "2026-09-12",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": false,
@@ -16,12 +16,19 @@
       "workers_dev": false,
       "preview_urls": false,
       "vars": {
+        "LLM_COST_MODE": "test", "LLM_TEST_BUDGET_KRW": "1000", "LLM_DAILY_BUDGET_KRW": "1000", "LLM_TIMEOUT_MS": "60000", "LLM_MAX_RETRIES": "2", "LLM_MAX_INPUT_TOKENS": "32000", "LLM_MAX_OUTPUT_TOKENS": "4096",
         "APP_ENV": "staging", "PUBLIC_ORIGIN": "https://staging.code-destiny.com",
         "PAYMENTS_ENABLED": "false", "LLM_PROVIDER": "mock", "ALLOW_LIVE_LLM": "false"
       },
       "services": [{ "binding": "AUTH_SERVICE", "service": "code-destiny-web-staging" }],
+      "queues": {
+        "producers": [{ "binding": "BOOK_QUEUE", "queue": "soulcat-book-staging" }],
+        "consumers": [{ "queue": "soulcat-book-staging", "max_batch_size": 1, "max_batch_timeout": 1, "max_retries": 3, "max_concurrency": 2, "dead_letter_queue": "soulcat-book-staging-dlq" }]
+      },
+      "triggers": { "crons": ["*/2 * * * *"] },
       "d1_databases": [{ "binding": "DB", "database_name": "soulcat-fortune-staging", "database_id": "e80d79b1-8f5e-4337-a713-b1b9d1a01f06", "migrations_dir": "server/db/migrations" }],
       "routes": [
+        { "pattern": "staging.code-destiny.com/share/yeongnyangi/*", "zone_name": "code-destiny.com" },
         { "pattern": "staging.code-destiny.com/fortune*", "zone_name": "code-destiny.com" },
         { "pattern": "staging.code-destiny.com/room*", "zone_name": "code-destiny.com" },
         { "pattern": "staging.code-destiny.com/library*", "zone_name": "code-destiny.com" },

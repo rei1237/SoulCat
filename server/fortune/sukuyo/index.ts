@@ -1,5 +1,6 @@
 import { calculateSukuyoForMoment } from "../../vendor/code-destiny/worker/lib/sukuyo-astronomy.js";
 import { relationFromForwardDistance } from "../../vendor/code-destiny/worker/lib/sukuyo-relation-core.js";
+import { distanceLabelByRule } from '../../vendor/code-destiny/worker/lib/sukuyo-premium.js';
 import { context, domain } from "../shared/domain";
 import { chartInput } from "../shared/time";
 import { FortuneError } from "../shared/contracts";
@@ -18,8 +19,8 @@ export const sukuyo = domain(
     "영냥이의 관계 조언",
   ],
   async (input, engineEnv = {}) => {
-    if (!input.personB) throw new FortuneError("PARTNER_REQUIRED");
-    const calculate = async (p: typeof input.personA) => {
+    if (!input.personB && input.readingMode !== 'personal') throw new FortuneError("PARTNER_REQUIRED");
+    const calculate = async (p: NonNullable<typeof input.personA>) => {
       const t = chartInput(p);
       return calculateSukuyoForMoment(
         engineEnv,
@@ -33,9 +34,13 @@ export const sukuyo = domain(
         { strictSwiss: true },
       );
     };
-    const a = await calculate(input.personA),
-      b = await calculate(input.personB);
+    const a = await calculate(input.personA!);
+    if (input.readingMode === 'personal') return context('sukuyo',{personA:a},['천문식 27숙 개인 분석입니다. 상대 정보 없이 궁합을 추정하지 않습니다.']);
+    const
+      b = await calculate(input.personB!);
     const forward = (b.index - a.index + 27) % 27;
+    const relation=relationFromForwardDistance(forward);
+    if(!relation)throw new FortuneError('INVALID_SUKUYO_RELATION',503);
     return context(
       "sukuyo",
       {
@@ -43,7 +48,8 @@ export const sukuyo = domain(
         personB: b,
         forwardDistance: forward,
         reverseDistance: (27 - forward) % 27,
-        relation: relationFromForwardDistance(forward),
+        distanceLabel: distanceLabelByRule(Math.min(forward,(27-forward)%27),relation.relationType),
+        relation,
       },
       ["천문식 27숙 계산이며 음력 고정표 방식과 구분합니다."],
     );

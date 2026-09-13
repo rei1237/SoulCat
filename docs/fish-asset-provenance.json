@@ -1,0 +1,74 @@
+[
+  {
+    "file": "public/assets/fish/mackerel.webp",
+    "bytes": 6782,
+    "sha256": "00f226117cb9e51b39b169749b6525f09568ed94d3ae5fb011fdd4cbc7d49c3f",
+    "source": "existing product asset"
+  },
+  {
+    "file": "public/assets/fish/reaction-mackerel.webp",
+    "bytes": 29874,
+    "sha256": "2f27a683dd6386daf748818c28a4992e3acde4392e594bdd266df96f25523b8b",
+    "source": "provided original reaction"
+  },
+  {
+    "file": "public/assets/fish/salmon.webp",
+    "bytes": 7352,
+    "sha256": "d4f162e0fac50feb9595ecbe1f69bb073e3a6ced43173a603f0e0d85c90ac015",
+    "source": "existing product asset"
+  },
+  {
+    "file": "public/assets/fish/reaction-salmon.webp",
+    "bytes": 27410,
+    "sha256": "7a0b0724dc399505025367cdee64cb46f218e385fde6a3df5ad599f5a0981522",
+    "source": "provided original reaction"
+  },
+  {
+    "file": "public/assets/fish/flounder.webp",
+    "bytes": 7518,
+    "sha256": "a1a600fa3275183b9f0d92c4225e4197f8850b88b780f2e7de5de38daa4d89bd",
+    "source": "existing product asset"
+  },
+  {
+    "file": "public/assets/fish/reaction-flounder.webp",
+    "bytes": 24384,
+    "sha256": "4814d354382fb0651383d245918f709bfb6298596d1d13089feef79f770b8c83",
+    "source": "provided original reaction"
+  },
+  {
+    "file": "public/assets/fish/tuna.webp",
+    "bytes": 8128,
+    "sha256": "23fb60b3b292b3ecb5cad35685de74421bc55d4e55c88621b0d45eaae33f4d08",
+    "source": "existing product asset"
+  },
+  {
+    "file": "public/assets/fish/reaction-tuna.webp",
+    "bytes": 23896,
+    "sha256": "bae494269d4007d4c41fc2f1e221e9bcae9e85fe0caea4dd242cf1377ce84229",
+    "source": "provided original reaction"
+  },
+  {
+    "file": "public/assets/fish/assorted.webp",
+    "bytes": 67840,
+    "sha256": "f8548abd1a19a22fdd59ce7bd5a4e1d44cef8e750f785c4b24072a935dc13c21",
+    "source": "generated illustration"
+  },
+  {
+    "file": "public/assets/fish/reaction-assorted.webp",
+    "bytes": 122968,
+    "sha256": "da4d3dd5800ff626c90a7d2d2006fe69a1d66fccd825da4b3437add8485df92e",
+    "source": "generated illustration"
+  },
+  {
+    "file": "public/assets/fish/omakase.webp",
+    "bytes": 78926,
+    "sha256": "9598588bfb00dd54b63298b8a9b793fd7af3e7a1cdf123ac45134f6162c4e83b",
+    "source": "generated illustration"
+  },
+  {
+    "file": "public/assets/fish/reaction-omakase.webp",
+    "bytes": 166216,
+    "sha256": "b237297f5e067d9e8dd7b3aef9d9322928b69422636d2cf03162630d4b73182f",
+    "source": "generated illustration"
+  }
+]

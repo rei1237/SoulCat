@@ -1,5 +1,6 @@
 import { calculateZiweiAiChart } from "../../vendor/code-destiny/worker/lib/ziwei-ai-chart.js";
 import { context, domain } from "../shared/domain";
+import {koreanCivilProfile} from '../shared/korean-time';
 export const ziwei = domain(
   "ziwei",
   `한국 음력으로 계산된 자미두수 명반이다. 명궁·신궁·12궁과 주성/보조성/살성의 명암, 사화, 삼방사정을 함께 읽는다.
@@ -13,8 +14,9 @@ export const ziwei = domain(
     "주의할 패턴",
     "영냥이의 조언",
   ],
-  async (input) => {
-    const r = calculateZiweiAiChart(input.personA);
+  async (input, env = {}) => {
+    input={...input,personA:koreanCivilProfile(input.personA!).profile};
+    const r = calculateZiweiAiChart(input.personA!,{year:new Date(new Date(env.AS_OF || Date.now()).getTime()+9*3600000).getUTCFullYear()});
     return context(
       "ziwei",
       {
@@ -25,6 +27,7 @@ export const ziwei = domain(
         majorLuck: r.majorLuck,
         minorLuck: r.minorLuck,
         yearlyLuck: r.yearlyLuck,
+        yearlyTimeline: Array.from({length:10},(_,i)=>calculateZiweiAiChart(input.personA!,{year:new Date(new Date(env.AS_OF||Date.now()).getTime()+9*3600000).getUTCFullYear()+i}).yearlyLuck),
         sanFangSiZheng: r.sanFangSiZheng,
         bureau: r.bureau,
         lunar: r.lunar,

@@ -1,0 +1,676 @@
+{
+  "at": "2026-09-13T01:21:59.931Z",
+  "source": {
+    "worker": {
+      "sha": "2f8ef882f9ef87375ce1485eb586cb2e3fb2275e",
+      "sourceDigest": "5ba63ceeb30c08920f72a3010b3c3bd313392721ce6b6bd98e31deb1b981d41e",
+      "environment": "staging"
+    },
+    "pages": {
+      "sha": "2f8ef882f9ef87375ce1485eb586cb2e3fb2275e",
+      "sourceDigest": "5ba63ceeb30c08920f72a3010b3c3bd313392721ce6b6bd98e31deb1b981d41e",
+      "dirty": false,
+      "service": "soulcat",
+      "paymentsEnabled": false
+    },
+    "shaMatch": true,
+    "sourceDigestMatch": true
+  },
+  "pagesPin": "https://2b6b2c26.soulcat.pages.dev",
+  "workerVersion": "63f9d6ef-739a-4c85-b3cd-f9cde6c86d5c",
+  "local": {
+    "typecheck": "passed",
+    "testsPassed": 76,
+    "alternateExportBuild": "passed",
+    "defaultBuild": "EBUSY from existing out directory lock"
+  },
+  "isolatedCandidate": {
+    "testsPassed": 67,
+    "typecheck": "passed",
+    "build": "passed"
+  },
+  "mockBrowser": {
+    "checkoutCases": 16,
+    "readerShareCases": 24,
+    "browsers": [
+      "Chromium",
+      "WebKit"
+    ],
+    "realDevice": false
+  },
+  "remoteStaging": {
+    "deployed": true,
+    "migrations": "0001-0005",
+    "mockOrders": 6,
+    "mockChapters": 318,
+    "outboxReplay": "no additional generation",
+    "checks": [
+      {
+        "path": "/api/yeongnyangi/version",
+        "status": 200,
+        "body": {
+          "sha": "2f8ef882f9ef87375ce1485eb586cb2e3fb2275e",
+          "sourceDigest": "5ba63ceeb30c08920f72a3010b3c3bd313392721ce6b6bd98e31deb1b981d41e",
+          "environment": "staging"
+        }
+      },
+      {
+        "path": "/_soulcat/version.json",
+        "status": 200,
+        "body": {
+          "sha": "2f8ef882f9ef87375ce1485eb586cb2e3fb2275e",
+          "sourceDigest": "5ba63ceeb30c08920f72a3010b3c3bd313392721ce6b6bd98e31deb1b981d41e",
+          "dirty": false,
+          "service": "soulcat",
+          "paymentsEnabled": false
+        }
+      },
+      {
+        "path": "/api/yeongnyangi/products",
+        "status": 200,
+        "body": {
+          "products": [
+            {
+              "id": "saju_mackerel",
+              "domain": "saju",
+              "fishId": "mackerel",
+              "packageId": "mackerel",
+              "fishName": "고등어",
+              "priceKRW": 1000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/mackerel.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-mackerel.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "saju"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 5,
+              "name": "사주"
+            },
+            {
+              "id": "saju_salmon",
+              "domain": "saju",
+              "fishId": "salmon",
+              "packageId": "salmon",
+              "fishName": "연어",
+              "priceKRW": 3000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/salmon.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-salmon.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "saju"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 13,
+              "name": "사주"
+            },
+            {
+              "id": "saju_flounder",
+              "domain": "saju",
+              "fishId": "flounder",
+              "packageId": "flounder",
+              "fishName": "광어",
+              "priceKRW": 5000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/flounder.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-flounder.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "saju"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 30,
+              "name": "사주"
+            },
+            {
+              "id": "saju_tuna",
+              "domain": "saju",
+              "fishId": "tuna",
+              "packageId": "tuna",
+              "fishName": "참치",
+              "priceKRW": 10000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/tuna.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-tuna.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "saju"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 70,
+              "name": "사주"
+            },
+            {
+              "id": "ziwei_mackerel",
+              "domain": "ziwei",
+              "fishId": "mackerel",
+              "packageId": "mackerel",
+              "fishName": "고등어",
+              "priceKRW": 1000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/mackerel.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-mackerel.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "ziwei"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 5,
+              "name": "자미두수"
+            },
+            {
+              "id": "ziwei_salmon",
+              "domain": "ziwei",
+              "fishId": "salmon",
+              "packageId": "salmon",
+              "fishName": "연어",
+              "priceKRW": 3000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/salmon.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-salmon.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "ziwei"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 13,
+              "name": "자미두수"
+            },
+            {
+              "id": "ziwei_flounder",
+              "domain": "ziwei",
+              "fishId": "flounder",
+              "packageId": "flounder",
+              "fishName": "광어",
+              "priceKRW": 5000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/flounder.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-flounder.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "ziwei"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 30,
+              "name": "자미두수"
+            },
+            {
+              "id": "ziwei_tuna",
+              "domain": "ziwei",
+              "fishId": "tuna",
+              "packageId": "tuna",
+              "fishName": "참치",
+              "priceKRW": 10000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/tuna.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-tuna.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "ziwei"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 70,
+              "name": "자미두수"
+            },
+            {
+              "id": "sukuyo_mackerel",
+              "domain": "sukuyo",
+              "fishId": "mackerel",
+              "packageId": "mackerel",
+              "fishName": "고등어",
+              "priceKRW": 1000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/mackerel.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-mackerel.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "sukuyo"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 5,
+              "name": "숙요"
+            },
+            {
+              "id": "sukuyo_salmon",
+              "domain": "sukuyo",
+              "fishId": "salmon",
+              "packageId": "salmon",
+              "fishName": "연어",
+              "priceKRW": 3000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/salmon.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-salmon.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "sukuyo"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 13,
+              "name": "숙요"
+            },
+            {
+              "id": "sukuyo_flounder",
+              "domain": "sukuyo",
+              "fishId": "flounder",
+              "packageId": "flounder",
+              "fishName": "광어",
+              "priceKRW": 5000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/flounder.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-flounder.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "sukuyo"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 30,
+              "name": "숙요"
+            },
+            {
+              "id": "sukuyo_tuna",
+              "domain": "sukuyo",
+              "fishId": "tuna",
+              "packageId": "tuna",
+              "fishName": "참치",
+              "priceKRW": 10000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/tuna.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-tuna.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "sukuyo"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 70,
+              "name": "숙요"
+            },
+            {
+              "id": "vedic_mackerel",
+              "domain": "vedic",
+              "fishId": "mackerel",
+              "packageId": "mackerel",
+              "fishName": "고등어",
+              "priceKRW": 1000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/mackerel.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-mackerel.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "vedic"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 5,
+              "name": "베다점"
+            },
+            {
+              "id": "vedic_salmon",
+              "domain": "vedic",
+              "fishId": "salmon",
+              "packageId": "salmon",
+              "fishName": "연어",
+              "priceKRW": 3000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/salmon.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-salmon.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "vedic"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 13,
+              "name": "베다점"
+            },
+            {
+              "id": "vedic_flounder",
+              "domain": "vedic",
+              "fishId": "flounder",
+              "packageId": "flounder",
+              "fishName": "광어",
+              "priceKRW": 5000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/flounder.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-flounder.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "vedic"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 30,
+              "name": "베다점"
+            },
+            {
+              "id": "vedic_tuna",
+              "domain": "vedic",
+              "fishId": "tuna",
+              "packageId": "tuna",
+              "fishName": "참치",
+              "priceKRW": 10000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/tuna.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-tuna.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "vedic"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 70,
+              "name": "베다점"
+            },
+            {
+              "id": "astrology_mackerel",
+              "domain": "astrology",
+              "fishId": "mackerel",
+              "packageId": "mackerel",
+              "fishName": "고등어",
+              "priceKRW": 1000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/mackerel.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-mackerel.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "astrology"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 5,
+              "name": "서양 점성술"
+            },
+            {
+              "id": "astrology_salmon",
+              "domain": "astrology",
+              "fishId": "salmon",
+              "packageId": "salmon",
+              "fishName": "연어",
+              "priceKRW": 3000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/salmon.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-salmon.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "astrology"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 13,
+              "name": "서양 점성술"
+            },
+            {
+              "id": "astrology_flounder",
+              "domain": "astrology",
+              "fishId": "flounder",
+              "packageId": "flounder",
+              "fishName": "광어",
+              "priceKRW": 5000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/flounder.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-flounder.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "astrology"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 30,
+              "name": "서양 점성술"
+            },
+            {
+              "id": "astrology_tuna",
+              "domain": "astrology",
+              "fishId": "tuna",
+              "packageId": "tuna",
+              "fishName": "참치",
+              "priceKRW": 10000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/tuna.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-tuna.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "astrology"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 70,
+              "name": "서양 점성술"
+            },
+            {
+              "id": "tarot_mackerel",
+              "domain": "tarot",
+              "fishId": "mackerel",
+              "packageId": "mackerel",
+              "fishName": "고등어",
+              "priceKRW": 1000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/mackerel.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-mackerel.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "tarot"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 5,
+              "name": "타로"
+            },
+            {
+              "id": "tarot_salmon",
+              "domain": "tarot",
+              "fishId": "salmon",
+              "packageId": "salmon",
+              "fishName": "연어",
+              "priceKRW": 3000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/salmon.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-salmon.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "tarot"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 13,
+              "name": "타로"
+            },
+            {
+              "id": "tarot_flounder",
+              "domain": "tarot",
+              "fishId": "flounder",
+              "packageId": "flounder",
+              "fishName": "광어",
+              "priceKRW": 5000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/flounder.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-flounder.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "tarot"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 30,
+              "name": "타로"
+            },
+            {
+              "id": "tarot_tuna",
+              "domain": "tarot",
+              "fishId": "tuna",
+              "packageId": "tuna",
+              "fishName": "참치",
+              "priceKRW": 10000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/tuna.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-tuna.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "single",
+              "systems": [
+                "tarot"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 70,
+              "name": "타로"
+            },
+            {
+              "id": "fusion_saju_ziwei",
+              "domain": "saju",
+              "fishId": "assorted",
+              "packageId": "assorted",
+              "fishName": "생선 모둠 세트",
+              "priceKRW": 20000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/assorted.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-assorted.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "pair",
+              "systems": [
+                "saju",
+                "ziwei"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 80,
+              "name": "사주 + 자미두수"
+            },
+            {
+              "id": "fusion_sukuyo_vedic",
+              "domain": "sukuyo",
+              "fishId": "assorted",
+              "packageId": "assorted",
+              "fishName": "생선 모둠 세트",
+              "priceKRW": 20000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/assorted.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-assorted.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "pair",
+              "systems": [
+                "sukuyo",
+                "vedic"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 80,
+              "name": "숙요 + 베다점"
+            },
+            {
+              "id": "fusion_astrology_tarot",
+              "domain": "astrology",
+              "fishId": "assorted",
+              "packageId": "assorted",
+              "fishName": "생선 모둠 세트",
+              "priceKRW": 20000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/assorted.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-assorted.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "pair",
+              "systems": [
+                "astrology",
+                "tarot"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 80,
+              "name": "서양 점성술 + 타로"
+            },
+            {
+              "id": "fusion_all",
+              "domain": "saju",
+              "fishId": "omakase",
+              "packageId": "omakase",
+              "fishName": "생선 오마카세",
+              "priceKRW": 30000,
+              "currency": "KRW",
+              "image": "/_soulcat/assets/fish/omakase.webp",
+              "reactionAsset": "/_soulcat/assets/fish/reaction-omakase.webp",
+              "resultType": "consultation-v3",
+              "enabled": false,
+              "readingKind": "all",
+              "systems": [
+                "saju",
+                "ziwei",
+                "sukuyo",
+                "vedic",
+                "astrology",
+                "tarot"
+              ],
+              "manifestVersion": "destiny-book-v3",
+              "chapterCount": 120,
+              "name": "사주 + 자미두수 + 숙요 + 베다점 + 서양 점성술 + 타로"
+            }
+          ],
+          "mode": "preview"
+        }
+      },
+      {
+        "path": "/fortune/",
+        "status": 200
+      },
+      {
+        "path": "/room/",
+        "status": 200
+      },
+      {
+        "path": "/library/",
+        "status": 200
+      }
+    ]
+  },
+  "realLLM": {
+    "product": "mackerel 5 chapters only",
+    "runs": 2,
+    "totalEstimatedKrw": 162.5,
+    "qualityGate": "open: thematic repetition remains"
+  },
+  "finalGates": {
+    "provider": "mock",
+    "allowLiveLLM": false,
+    "paymentsEnabled": false,
+    "workerVersion": "63f9d6ef-739a-4c85-b3cd-f9cde6c86d5c"
+  },
+  "realPG": false,
+  "realDevice": false,
+  "productionDeployment": false,
+  "productionDBChanged": false,
+  "pgApplicationSubmitted": false
+}

@@ -262,8 +262,12 @@
   overflow: hidden;
   border: 1px solid #e9c78d;
   border-radius: 16px;
-  background:
-    radial-gradient(circle at 50% 34%, #fff3e2 0, #f7f0e8 56%, #c7b5ce 100%);
+  background: radial-gradient(
+    circle at 50% 34%,
+    #fff3e2 0,
+    #f7f0e8 56%,
+    #c7b5ce 100%
+  );
   box-shadow:
     0 18px 40px #12091f73,
     inset 0 0 0 5px #7541ad14;
@@ -389,3 +393,292 @@
     scroll-behavior: auto;
   }
 }
+/* Reading surfaces share the existing ivory, violet and gold world. */
+.fortune-chart,
+.destiny-book {
+  color: #32213e;
+}
+.fortune-chart {
+  background: #fff3e2;
+  border: 1px solid #bd985f;
+  border-radius: 22px;
+  padding: 20px;
+  margin: 24px 0;
+}
+.fortune-chart h2,
+.book-cover h1,
+.book-part {
+  font-family: var(--font-display), "Nanum Myeongjo", serif;
+}
+.fortune-chart header p,
+.chart-source {
+  font-size: 13px;
+  line-height: 1.7;
+}
+.chart-limitation {
+  color: #675174;
+  font-size: 13px;
+}
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 20px 0;
+}
+.chart-cell {
+  min-width: 0;
+  border: 1px solid #b89872;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff9ef;
+}
+.chart-cell summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.chart-cell dl {
+  margin: 10px 0 0;
+}
+.chart-cell dt {
+  font-size: 11px;
+  color: #675174;
+  margin-top: 8px;
+}
+.chart-cell dd {
+  margin: 3px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.chart-saju .chart-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.chart-saju .chart-cell {
+  padding: 8px 4px;
+  text-align: center;
+}
+.chart-saju .chart-cell:last-child {
+  grid-column: 1/-1;
+}
+.chart-saju .chart-cell:last-child dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+.chart-saju .chart-cell dd:first-letter {
+  font-size: 18px;
+}
+.chart-vedic .chart-grid,
+.chart-ziwei .chart-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.chart-vedic .chart-cell {
+  padding: 7px 3px;
+}
+.chart-vedic .chart-cell:nth-child(6) {
+  grid-column: 4;
+}
+.chart-vedic .chart-cell:nth-child(8) {
+  grid-column: 4;
+}
+.chart-vedic .chart-cell:last-child {
+  grid-column: 1/-1;
+}
+.destiny-book {
+  max-width: 760px;
+  margin: 0 auto;
+  background: #fff3e2;
+  border-radius: 24px;
+  padding: 22px;
+}
+.book-cover {
+  text-align: center;
+  padding: 20px 0;
+}
+.book-cover > img {
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.book-cover h1 {
+  font-size: 30px;
+  line-height: 1.4;
+  margin: 12px 0;
+}
+.book-cover p {
+  line-height: 1.8;
+}
+.book-tools {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff3e2;
+  padding: 12px 0;
+  border-bottom: 1px solid #bd985f;
+}
+.book-tools label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.book-tools input,
+.book-sharing input,
+.book-sharing select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid #9176a2;
+  border-radius: 8px;
+  padding: 10px;
+  color: #32213e;
+  background: #fff9ef;
+  font: inherit;
+}
+.book-topics {
+  display: flex;
+  gap: 6px;
+  overflow: auto;
+  padding: 10px 0;
+}
+.destiny-book button,
+.book-sharing a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #8b6b9f;
+  border-radius: 10px;
+  background: #fff9ef;
+  color: #4b285e;
+  font: inherit;
+  cursor: pointer;
+}
+.destiny-book button[aria-pressed="true"] {
+  background: #4b285e;
+  color: #fff9ef;
+}
+.destiny-book button:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+.book-part {
+  font-size: 23px;
+  margin: 36px 0 18px;
+  line-height: 1.6;
+}
+.book-chapter {
+  scroll-margin-top: 180px;
+  border-bottom: 1px solid #c7b4cd;
+}
+.book-chapter h3 {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+.book-chapter h3 button {
+  width: 100%;
+  justify-content: space-between;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 18px 0;
+  gap: 12px;
+}
+.book-chapter h3 button > span:last-child {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.chapter-prose {
+  max-width: 68ch;
+  padding: 0 0 28px;
+  font-size: 16px;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+}
+.chapter-prose h4 {
+  font-size: 17px;
+  margin: 28px 0 10px;
+}
+.chapter-prose p {
+  margin: 12px 0;
+}
+.chapter-conclusion {
+  font-size: 18px;
+}
+.chapter-prose blockquote {
+  margin: 24px 0;
+  padding: 18px;
+  background: #eee0f1;
+  border-radius: 12px;
+}
+.chapter-prose details {
+  font-size: 12px;
+  margin: 20px 0;
+}
+.book-upgrade,
+.book-sharing {
+  padding-top: 30px;
+  margin-top: 20px;
+  border-top: 1px solid #bd985f;
+  line-height: 1.8;
+}
+.book-upgrade a {
+  color: #4b285e;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.book-sharing label {
+  display: block;
+  margin: 14px 0;
+}
+.book-sharing .share-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.book-sharing .share-toggle input {
+  width: 20px;
+  min-height: 24px;
+}
+.book-sharing a,
+.book-sharing button {
+  margin: 8px 8px 8px 0;
+}
+.destiny-book :focus-visible,
+.fortune-chart :focus-visible {
+  outline: 3px solid #7541ad;
+  outline-offset: 3px;
+}
+.destiny-book ::selection {
+  background: #d8bce7;
+  color: #211432;
+}
+@media (max-width: 374px) {
+  .destiny-book {
+    padding: 14px;
+  }
+  .fortune-chart {
+    padding: 12px;
+  }
+  .chart-grid {
+    gap: 4px;
+  }
+  .chart-cell summary {
+    font-size: 12px;
+  }
+  .book-cover h1 {
+    font-size: 27px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .destiny-book * {
+    scroll-behavior: auto !important;
+  }
+}
+
+.chart-tarot .chart-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tarot-card-image{display:block;width:100%;max-width:180px;height:auto;aspect-ratio:3/5;object-fit:contain;margin:16px auto}.tarot-card-image.is-reversed{transform:rotate(180deg)}@media(max-width:500px){.chart-tarot .chart-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}

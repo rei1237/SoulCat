@@ -136,9 +136,12 @@ try {
       await page
         .getByRole("button", { name: "내 운명 깊게 보기", exact: true })
         .click();
-      await page
-        .getByRole("button", { name: "여섯 가지 운세 살펴보기", exact: true })
-        .click();
+      await expect(
+        page.getByRole("link", { name: "상담 시작하기", exact: true }),
+      ).toHaveAttribute("href", "/fortune/");
+      await page.keyboard.press("Escape");
+      await expect(page.locator("dialog")).not.toBeVisible();
+      await page.getByRole("button", { name: "운세", exact: true }).click();
       await expect(
         page.getByRole("button", { name: "운세", exact: true }),
       ).toHaveAttribute("aria-current", "page");
@@ -151,19 +154,12 @@ try {
       await page
         .getByRole("button", { name: "무료 운세 보기", exact: true })
         .click();
-      await expect(page.locator("dialog")).toBeVisible();
-      await expect(page.locator("dialog").getByRole("button", { name: /보관/ })).toHaveCount(0);
-      await expect(page.locator(".daily-panel")).not.toContainText("보관");
       await expect(
-        page.getByRole("button", { name: "문구 복사하기", exact: true }),
+        page.getByRole("region", { name: "멸치 한 마리, 오늘의 이야기." }),
       ).toBeVisible();
       await settle();
       await page.screenshot({ path: `${output}/daily.png` });
-      await page.keyboard.press("Escape");
-      await expect(page.locator("dialog")).not.toBeVisible();
-      await expect(
-        page.getByRole("button", { name: "무료 운세 보기", exact: true }),
-      ).toBeFocused();
+      await page.goto("http://127.0.0.1:3000/", { waitUntil: "networkidle" });
       await page.getByRole("button", { name: "보관함", exact: true }).click();
       await expect(page.locator(".library-panel")).toContainText(
         "보관함을 준비하고 있어요",
@@ -178,14 +174,14 @@ try {
       await page.getByRole("button", { name: "로그인", exact: true }).click();
       await expect(page.locator(".auth-art")).toHaveAttribute(
         "src",
-        "/assets/login.webp",
+        "/_soulcat/assets/login.webp",
       );
       await settle();
       await page.screenshot({ path: `${output}/login.png` });
       await page.getByRole("button", { name: "회원가입", exact: true }).click();
       await expect(page.locator(".auth-art")).toHaveAttribute(
         "src",
-        "/assets/signup.webp",
+        "/_soulcat/assets/signup.webp",
       );
       await settle();
       await page.screenshot({ path: `${output}/signup.png` });
@@ -220,7 +216,7 @@ try {
       await page.locator(".expression-button").click();
       await expect(
         page.locator(".cat-motion-canvas img.motion-active"),
-      ).toHaveAttribute("src", "/assets/prologue-cat.webp");
+      ).toHaveAttribute("src", "/_soulcat/assets/prologue-cat.webp");
       await settle();
       await page.screenshot({ path: `${output}/white-sheet-motion.png` });
       await page.getByRole("button", { name: "다음 추천 보기" }).click();

@@ -1,0 +1,57 @@
+{
+  "sourceHead": "81b15f4fdd36dde27fb7f364c0c2029d37e24474",
+  "source": [
+    {
+      "path": "D:/Development/code-destiny/js/swisseph-loader.js",
+      "sha256": "78a5cf92dbbad0fed93b9005e8934c1740e837a5ed8cfae974eafb5c3832a43a"
+    },
+    {
+      "path": "D:/Development/code-destiny/worker/lib/swiss-ephemeris.js",
+      "sha256": "767c76e16c155008bb7ca28640e2d157f2a5331ba4f5e8c837a6723fca8d9b07"
+    },
+    {
+      "path": "D:/Development/code-destiny/worker/lib/life-book-ai-saju.js",
+      "sha256": "76032dcfd337a9d8898f72e3bb69ba3c1c03143a6b3eed014ce514636b740b3e"
+    },
+    {
+      "path": "D:/Development/code-destiny/worker/lib/saju-shinsal.js",
+      "sha256": "c1a404096bcb7a9ccc56bc4b52a50238ef07fde9f8d48aea362d446a6f0fcc68"
+    },
+    {
+      "path": "D:/Development/code-destiny/worker/lib/ziwei-ai-chart.js",
+      "sha256": "372c7dc9f4a850eb5fc42cf8cd9c47ab96790c05170ddcaa2ce3aa0584f70851"
+    },
+    {
+      "path": "D:/Development/code-destiny/worker/lib/ziwei-personality-context.js",
+      "sha256": "686af64faa9433784862da72d89d92dc5fe15d48e6a1c876c36b6e563ef963a1"
+    },
+    {
+      "path": "D:/Development/code-destiny/lib/ziwei-derived-facts.js",
+      "sha256": "5d97fc7ac1b280346c590cad54a4540500162926b55b35ffabc23ee9b6aaea74"
+    },
+    {
+      "path": "D:/Development/code-destiny/worker/lib/vedic-ai-chart.js",
+      "sha256": "9d620b116f012849518ca02c9c8486c348b42b790c709daf7d882690fb082278"
+    },
+    {
+      "path": "D:/Development/code-destiny/worker/lib/sukuyo-astronomy.js",
+      "sha256": "f6c41ca1929dbe7dfc12ffdc00f06594bd228f956a3107c9dd3c41ea6780ffb7"
+    },
+    {
+      "path": "D:/Development/code-destiny/worker/routes/relationship-boundary-test.js",
+      "sha256": "33aa49a683b00c6492dbba0f63eed4b50b7c057199be1d54934899a80e5b8bcd"
+    },
+    {
+      "path": "D:/Development/code-destiny/js/entertain-engine.js",
+      "sha256": "d8ac3bc18d961af9ffb9af0c4fa90e6aaff332a3ee6f382ae6a23b2177fc66d2"
+    }
+  ],
+  "changes": [
+    "사주 shinsal.byName.도화살/홍염살의 present와 hits를 읽는 해석 어댑터",
+    "자미두수 동일 궁은 명궁·신궁 역할을 기록하되 독립 궁으로 중복 집계하지 않음",
+    "SWISS/베다/사주 원본과 SoulCat 보정 차이를 검토하고 계산 공식 덮어쓰기 없음",
+    "다음 다샤는 실제 다음 기간만 선택해 생년월일이 포함된 출생 잔여 기간 제외"
+  ],
+  "sourceRepositoryModified": false,
+  "liveLLMCalls": 0
+}

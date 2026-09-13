@@ -1,14 +1,21 @@
-export type DomainId = "saju" | "sukuyo" | "vedic" | "astrology" | "ziwei";
+export type DomainId = "saju" | "sukuyo" | "vedic" | "astrology" | "ziwei" | "tarot";
 export type FishId = "mackerel" | "salmon" | "flounder" | "tuna";
+export type PackageId = FishId | 'assorted' | 'omakase';
+export interface Place { name?: string; latitude: number; longitude: number; timezone: string; source?: string }
 export interface BirthProfile {
   birthDate: string;
   birthTime?: string;
   gender?: "male" | "female";
   calendarType: "solar";
-  birthPlace?: { latitude: number; longitude: number; timezone: string };
+  birthPlace?: Place;
+  residence?: Place;
+  originalCalendar?: { date: string; type: 'solar' | 'lunar'; leapMonth: boolean };
 }
 export interface FortuneInput {
-  personA: BirthProfile;
+  readingMode?: 'personal' | 'compatibility';
+  personA?: BirthProfile;
+  topicId?: string;
+  spreadId?: string;
   personB?: BirthProfile;
   question: string;
 }
@@ -32,9 +39,9 @@ export interface FortuneResult {
   cautions: string[];
 }
 export interface FortuneLLMRequest {
+  maxOutputTokens?: number;
   system: string;
   domainRules: string;
-  userData: FortuneInput;
   calculatedData: DomainContext;
   userQuestion: string;
   outputSchema: object;
@@ -42,6 +49,7 @@ export interface FortuneLLMRequest {
   promptVersion: string;
 }
 export interface FortuneLLMResponse {
+  usage?: { input: number; output: number };
   result: unknown;
   provider: string;
   model: string;

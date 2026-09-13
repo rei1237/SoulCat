@@ -1,0 +1,42 @@
+[
+  {
+    "chapters": 5,
+    "url": "https://staging.code-destiny.com/share/yeongnyangi/6a08eecd75df414d85bd41f6b783f5eb",
+    "variant": "og",
+    "html": 200,
+    "ogMeta": true,
+    "png": 200,
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "chapters": 5,
+    "url": "https://staging.code-destiny.com/share/yeongnyangi/6a08eecd75df414d85bd41f6b783f5eb",
+    "variant": "vertical",
+    "html": 200,
+    "ogMeta": true,
+    "png": 200,
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "chapters": 120,
+    "url": "https://staging.code-destiny.com/share/yeongnyangi/d301ae21ac184a10bee0be4a9f398284",
+    "variant": "og",
+    "html": 200,
+    "ogMeta": true,
+    "png": 200,
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "chapters": 120,
+    "url": "https://staging.code-destiny.com/share/yeongnyangi/d301ae21ac184a10bee0be4a9f398284",
+    "variant": "vertical",
+    "html": 200,
+    "ogMeta": true,
+    "png": 200,
+    "width": 1080,
+    "height": 1920
+  }
+]

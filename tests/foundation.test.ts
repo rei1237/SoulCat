@@ -26,11 +26,11 @@ test("provider defaults to mock and live providers fail closed", () => {
 test("calendar validation rejects rollover and unavailable hour-dependent charts", () => {
   assert.throws(() =>
     validateInput(
-      { ...input, personA: { ...input.personA, birthDate: "2025-02-30" } },
+      { ...input, personA: { ...input.personA!, birthDate: "2025-02-30" } },
       "saju",
     ),
   );
-  assert.equal(validateInput(input, "saju").personA.birthTime, undefined);
+  assert.equal(validateInput(input, "saju").personA!.birthTime, undefined);
   for (const domain of ["ziwei", "vedic", "astrology", "sukuyo"] as const)
     assert.throws(() => validateInput(input, domain));
 });
@@ -57,7 +57,7 @@ test("mock success validates; bad JSON/empty/errors do not become results", asyn
   assert.throws(() => validateResult(forged, context), /INVALID_EVIDENCE/);
 });
 test("all domains share confirmed fish prices; client objects are not products", () => {
-  assert.equal(products.length, 20);
+  assert.equal(products.length, 28);
   assert.equal(getProduct("saju_mackerel").priceKRW, 1000);
   assert.equal(getProduct("sukuyo_tuna").priceKRW, 10000);
   assert.throws(() => getProduct({ id: "saju_mackerel", priceKRW: 1 }));

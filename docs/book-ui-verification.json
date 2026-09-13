@@ -1,0 +1,254 @@
+[
+  {
+    "domain": "saju",
+    "width": 360,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 360,
+    "tunaChapters": 70,
+    "search": true,
+    "resume": true,
+    "png": true,
+    "revocation": true
+  },
+  {
+    "domain": "ziwei",
+    "width": 360,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "sukuyo",
+    "width": 360,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "vedic",
+    "width": 360,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "고등어",
+    "width": 360,
+    "chapters": 5,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "연어",
+    "width": 360,
+    "chapters": 13,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "광어",
+    "width": 360,
+    "chapters": 30,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "saju",
+    "width": 390,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 390,
+    "tunaChapters": 70,
+    "search": true,
+    "resume": true,
+    "png": true,
+    "revocation": true
+  },
+  {
+    "domain": "ziwei",
+    "width": 390,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "sukuyo",
+    "width": 390,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "vedic",
+    "width": 390,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "고등어",
+    "width": 390,
+    "chapters": 5,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "연어",
+    "width": 390,
+    "chapters": 13,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "광어",
+    "width": 390,
+    "chapters": 30,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "saju",
+    "width": 430,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 430,
+    "tunaChapters": 70,
+    "search": true,
+    "resume": true,
+    "png": true,
+    "revocation": true
+  },
+  {
+    "domain": "ziwei",
+    "width": 430,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "sukuyo",
+    "width": 430,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "vedic",
+    "width": 430,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "고등어",
+    "width": 430,
+    "chapters": 5,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "연어",
+    "width": 430,
+    "chapters": 13,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "광어",
+    "width": 430,
+    "chapters": 30,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "saju",
+    "width": 1280,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "width": 1280,
+    "tunaChapters": 70,
+    "search": true,
+    "resume": true,
+    "png": true,
+    "revocation": true
+  },
+  {
+    "domain": "ziwei",
+    "width": 1280,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "sukuyo",
+    "width": 1280,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "domain": "vedic",
+    "width": 1280,
+    "chart": true,
+    "overflow": false,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "고등어",
+    "width": 1280,
+    "chapters": 5,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "연어",
+    "width": 1280,
+    "chapters": 13,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  },
+  {
+    "fish": "광어",
+    "width": 1280,
+    "chapters": 30,
+    "resume": true,
+    "lazyBody": true,
+    "lockedChapters": true,
+    "accessibilityViolations": 0
+  }
+]

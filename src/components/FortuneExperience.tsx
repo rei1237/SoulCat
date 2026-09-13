@@ -1,4 +1,11 @@
 "use client";
+import {depthDescriptions} from '../../server/fortune/reading-policy';
+import {productManifest} from '../../server/fortune/product-manifest';
+import {launchCheckout,ApiError} from "../lib/checkout";
+import {loginHref} from "../lib/service-links";
+import {safeReturnPath} from "../lib/return-path";
+import BirthFields, {readBirthFields} from "./BirthFields";
+import "./free-fortune.css";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, BookOpen } from "lucide-react";
 import {
@@ -7,16 +14,12 @@ import {
   FortuneDomainId,
 } from "@/data/fortune";
 import "./fortune.css";
+import ChartTabs from "./ChartTabs";
+import {FishReaction} from "./FishCatalog";
+import type {Product} from "../../server/payments/catalog";
+import DestinyBook, { BookView } from "./DestinyBook";
+import type { ChartView } from "../../server/fortune/charts";
 
-interface Product {
-  id: string;
-  domain: string;
-  fishId: string;
-  fishName: string;
-  priceKRW: number;
-  image: string;
-  enabled: boolean;
-}
 interface Reading {
   title: string;
   summary: string;
@@ -39,9 +42,10 @@ const cities = [
   },
   { name: "직접 입력", latitude: 0, longitude: 0, timezone: "" },
 ];
-async function api(path: string, body?: object) {
+async function api(path: string, body?: object, signal?: AbortSignal) {
   const response = await fetch(`/api/yeongnyangi/${path}`, {
     credentials: "same-origin",
+    signal,
     ...(body
       ? {
           method: "POST",
@@ -50,21 +54,33 @@ async function api(path: string, body?: object) {
         }
       : {}),
   });
-  const data = await response.json();
+  let data;
+  try {data=await response.json();}catch{throw new Error("연결이 잠시 끊겼어요. 같은 구매에서 다시 시도해 주세요. 확인된 구매 권리는 보관되어 있어요.");}
   if (!response.ok)
-    throw new Error(
+    throw new ApiError(data.code,
       data.message || "요청을 처리하지 못했어요. 잠시 후 다시 시도해 주세요.",
     );
   return data;
 }
 export default function FortuneExperience() {
+  const [login,setLogin]=useState("");
+  const [method,setMethod]=useState<"CARD"|"KAKAOPAY">("CARD");
+  const [customer,setCustomer]=useState({fullName:"",phoneNumber:"",email:""});
   const [domain, setDomain] = useState<FortuneDomainId>("saju");
   const [topic, setTopic] = useState("");
+  const [fusionId,setFusionId]=useState("");
+  const [charts,setCharts]=useState<ChartView[]>([]);
+  const [paid,setPaid]=useState(false);
+  const [chart, setChart] = useState<ChartView | null>(null);
+  const [book, setBook] = useState<BookView | null>(null);
+  const [readingMode, setReadingMode] = useState<"personal" | "compatibility">(
+    "personal",
+  );
   const [products, setProducts] = useState<Product[]>([]);
   const [localMock, setLocalMock] = useState(false);
   const [fish, setFish] = useState("mackerel");
   const [stage, setStage] = useState<
-    "choose" | "input" | "checkout" | "loading" | "result"
+    "choose" | "input" | "chart" | "checkout" | "loading" | "result"
   >("choose");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -77,7 +93,7 @@ export default function FortuneExperience() {
   const lock = useRef(false);
   const surface = fortuneSurfaces[domain];
   const product = products.find(
-    (p) => p.domain === domain && p.fishId === fish,
+    (p) => fusionId?p.id===fusionId:p.readingKind==="single"&&p.domain === domain && p.fishId === fish,
   );
   const topicArt = surface.choices.find(([name]) => name === topic)?.[2];
   const loadingKey = (topicArt ?? domain) as keyof typeof fortuneLoadingArt;
@@ -90,13 +106,24 @@ export default function FortuneExperience() {
     if (selected && selected in fortuneSurfaces)
       setDomain(selected as FortuneDomainId);
     api("products")
-      .then((d) => {
+      .then(async (d) => {
         setProducts(d.products);
+        const params=new URLSearchParams(window.location.search),fusion=d.products.find((p:Product)=>p.id===params.get('product')&&p.readingKind!=='single');
+        if(fusion){setFusionId(fusion.id);setDomain(fusion.domain);setFish(fusion.fishId);setTopic(fusion.name);setStage('input');}
+        else if(['mackerel','salmon','flounder','tuna'].includes(params.get('fish')||''))setFish(params.get('fish')!);
         setLocalMock(d.mode === "local-mock");
+        const savedProfile=params.get('profile');
+        if(savedProfile&&!params.get('request')){
+          const restored=await api('charts',{profileId:savedProfile,...(fusion?{productId:fusion.id}:{})});
+          setProfileId(savedProfile);setDomain(restored.chart.domain);setCharts(restored.charts||[restored.chart]);setChart(restored.chart);
+          if(!fusion)setTopic(fortuneSurfaces[restored.chart.domain as FortuneDomainId].name);
+          setStage('chart');
+        }
       })
-      .catch(() =>
-        setError("상품 정보를 불러오지 못했어요. 새로고침해 주세요."),
-      );
+      .catch((e) => {
+        setError(e.message || "상품 정보를 불러오지 못했어요. 새로고침해 주세요.");
+        if(e instanceof ApiError && e.code==="SESSION_REQUIRED")setLogin(loginHref(window.location.pathname+window.location.search));
+      });
     const pending = new URLSearchParams(window.location.search).get("request");
     if (pending) {
       setRequestId(pending);
@@ -106,13 +133,23 @@ export default function FortuneExperience() {
   useEffect(() => {
     if (!requestId || stage !== "loading") return;
     let cancelled = false;
+    const abort=new AbortController();
+    const leave=()=>{cancelled=true;abort.abort();};
+    const resume=(event:PageTransitionEvent)=>{if(event.persisted)setPollVersion(n=>n+1);};
+    window.addEventListener("pagehide",leave);
+    window.addEventListener("pageshow",resume);
     let timer: ReturnType<typeof setTimeout>;
     async function poll() {
       try {
         const data = await api(
-          `fortune/status?id=${encodeURIComponent(requestId)}`,
+          `fortune/status?id=${encodeURIComponent(requestId)}`, undefined, abort.signal,
         );
         if (cancelled) return;
+        if (data.book) {
+          setBook(data.book);
+          setStage("result");
+          return;
+        }
         if (data.result) {
           setResult(data.result);
           setStage("result");
@@ -139,7 +176,9 @@ export default function FortuneExperience() {
     }
     poll();
     return () => {
-      cancelled = true;
+      leave();
+      window.removeEventListener("pagehide",leave);
+      window.removeEventListener("pageshow",resume);
       clearTimeout(timer);
     };
   }, [requestId, stage, pollVersion]);
@@ -172,15 +211,25 @@ export default function FortuneExperience() {
       const saved = await api("profiles", {
         domain,
         input: {
-          personA: person("a"),
-          ...(domain === "sukuyo" ? { personB: person("b") } : {}),
+          readingMode,
+          ...(domain!=="tarot"?{personA: person("a")}:{}),
+          topicId: ["love","luck","work","money"].includes(topicArt||"")?topicArt:"general",
+          ...(domain === "sukuyo" && readingMode === "compatibility"
+            ? { personB: person("b") }
+            : {}),
           question: `${topic}. ${data.get("question") || ""}`,
         },
       });
       setProfileId(saved.id);
-      setStage("checkout");
+      const snapshotParams=new URLSearchParams({domain,profile:saved.id,fish,...(fusionId?{product:fusionId}:{})});
+      window.history.replaceState(null,'','/fortune/?'+snapshotParams);
+      const calculated = await api("charts", { profileId: saved.id, ...(fusionId?{productId:fusionId}:{}) });
+      setChart(calculated.chart);
+      setCharts(calculated.charts||[calculated.chart]);
+      setStage("chart");
     } catch (e) {
       setError((e as Error).message);
+      if(e instanceof ApiError && e.code==="SESSION_REQUIRED")setLogin(loginHref(window.location.pathname+window.location.search));
     } finally {
       lock.current = false;
       setBusy(false);
@@ -198,6 +247,7 @@ export default function FortuneExperience() {
           profileId,
           idempotencyKey: `mock-${profileId}-${product.id}`,
         });
+      if(localMock)setPaid(true);
       const d = await api("fortune/generate", {
         productId: product.id,
         profileId,
@@ -211,18 +261,34 @@ export default function FortuneExperience() {
       );
     } catch (e) {
       setError((e as Error).message);
+      if(e instanceof ApiError && e.code==="SESSION_REQUIRED")setLogin(loginHref(window.location.pathname+window.location.search));
     } finally {
       lock.current = false;
       setBusy(false);
     }
   }
+  async function purchase(event:React.FormEvent) {
+    event.preventDefault();
+    if(lock.current||!product)return;
+    lock.current=true;setBusy(true);setError('');
+    try {
+      await api('session',{});
+      const order=await api('orders',{productId:product.id,profileId,idempotencyKey:crypto.randomUUID(),payMethod:method,returnPath:safeReturnPath(window.location.pathname+window.location.search)});
+      const result=order.status==='PAID'?order:await launchCheckout(order,customer);
+      setCustomer({fullName:'',phoneNumber:'',email:''});
+      if(result?.status==='PAID'&&result.requestId){setPaid(true);setRequestId(result.requestId);setStage('loading');window.history.replaceState(null,'','/fortune/?request='+encodeURIComponent(result.requestId));}
+      else if(result)setError('결제가 완료되지 않았어요. 보관함에서 상태를 확인해 주세요.');
+    } catch(e){setError((e as Error).message);if(e instanceof ApiError&&e.code==='SESSION_REQUIRED')setLogin(loginHref(window.location.pathname+window.location.search));}
+    finally{lock.current=false;setBusy(false);}
+  }
   return (
     <main className="fortune-shell">
+      {login && <a className="fortune-back" href={login}>로그인하고 이어가기</a>}
       <header className="fortune-header">
         <a href="/" aria-label="Code Destiny 홈으로">
           <ArrowLeft size={20} /> 점술방
         </a>
-        <span>{surface.name}</span>
+        <span>{fusionId||book?.charts?.length&&book.charts.length>1?"초융합 상담":surface.name}</span>
         <a href="/library/" aria-label="나의 결과 보관함">
           <BookOpen size={21} />
         </a>
@@ -242,11 +308,14 @@ export default function FortuneExperience() {
                 className="reading-choice"
                 onClick={() => {
                   setTopic(name);
+                  setReadingMode(
+                    name === "나의 본명숙" ? "personal" : "compatibility",
+                  );
                   setStage("input");
                 }}
               >
                 <img
-                  src={`/_soulcat/assets/fortune/${art}-illustration.webp`}
+                  src={art==="tarot"?"/_soulcat/assets/tarot.webp":`/_soulcat/assets/fortune/${art}-illustration.webp`}
                   alt=""
                   width={560}
                   height={560}
@@ -285,49 +354,77 @@ export default function FortuneExperience() {
             <ArrowLeft size={16} /> 이야기 다시 고르기
           </button>
           <h1>
-            {domain === "sukuyo"
+            {domain === "sukuyo" && readingMode === "compatibility"
               ? "두 사람의 이야기를 들려줘."
               : "너를 알아갈 단서를 알려줘."}
           </h1>
           <p>{topic}</p>
-          <ProfileFields
+          {domain!=="tarot" && <ProfileFields
             prefix="a"
             title={domain === "sukuyo" ? "나의 정보" : "출생 정보"}
             domain={domain}
-          />
-          {domain === "sukuyo" && (
+          />}
+          {domain === "sukuyo" && !fusionId && (
+            <label>
+              분석 범위
+              <select
+                value={readingMode}
+                onChange={(e) =>
+                  setReadingMode(e.target.value as "personal" | "compatibility")
+                }
+              >
+                <option value="personal">나의 본명숙</option>
+                <option value="compatibility">두 사람의 궁합</option>
+              </select>
+            </label>
+          )}
+          {domain === "sukuyo" && readingMode === "compatibility" && (
             <ProfileFields prefix="b" title="상대방 정보" domain={domain} />
           )}
           <label>
             궁금한 이야기
             <textarea
               name="question"
+              required={domain==="tarot"||!!fusionId}
               maxLength={900}
               rows={3}
               placeholder="요즘 마음에 걸리는 일을 들려줘."
             />
           </label>
           <p className="fortune-footnote">
-            양력 기준이에요. 사주·자미두수는 한국 표준시 출생을 기준으로 해요.
-            출생 정보는 상담 계산과 결과 보관에 사용해요.
+            {domain==="tarot"?"카드는 서버에서 한 번 확정하고 보관해요. 다시 열어도 같은 배열을 읽어요.":"선택한 달력과 출생지로 계산해요. 사주·자미두수는 검증된 한국 표준시 출생을 지원해요. 출생 정보는 상담 계산과 결과 보관에 사용해요."}
           </p>
           <button className="fortune-primary" disabled={busy}>
-            {busy ? "정보 확인 중" : "생선 고르기"}
+            {busy ? "기본 차트 계산 중" : "내 기본 차트 확인하기"}
             <ArrowRight size={18} />
           </button>
         </form>
       )}
+      {stage === "chart" && chart && (
+        <>
+          <ChartTabs charts={charts.length?charts:[chart]} />
+          <button
+            className="fortune-primary"
+            onClick={() => setStage("checkout")}
+          >
+            이 차트로 해설 선택하기
+          </button>
+          <button className="fortune-back" onClick={() => setStage("input")}>
+            출생정보 수정하기
+          </button>
+        </>
+      )}
       {stage === "checkout" && (
         <section className="fortune-checkout">
-          <h1>어떤 생선을 가져왔어?</h1>
-          <p>기본은 고등어. 궁금한 만큼 천천히 골라봐.</p>
+          <h1>{fusionId?product?.fishName:"어떤 생선을 가져왔어?"}</h1>
+          <p>{fusionId?"확인한 차트들을 나란히 읽고, 공통점과 차이를 풀어볼게.":"기본은 고등어. 궁금한 만큼 천천히 골라봐."}</p>
           <div
             className="fish-choices"
             role="group"
             aria-label="생선 상품 선택"
           >
             {products
-              .filter((p) => p.domain === domain)
+              .filter((p) => fusionId?p.id===fusionId:p.domain === domain&&p.readingKind==="single")
               .map((p) => (
                 <button
                   key={p.id}
@@ -335,7 +432,7 @@ export default function FortuneExperience() {
                   onClick={() => setFish(p.fishId)}
                 >
                   <img src={p.image} alt="" width={100} height={90} />
-                  <span>{p.fishName} 한 마리</span>
+                  <span>{p.fishName} · {p.chapterCount}챕터</span><small>{depthDescriptions[p.fishId]}</small>
                   {fish === p.fishId && <Check size={18} />}
                 </button>
               ))}
@@ -343,19 +440,30 @@ export default function FortuneExperience() {
           {product && (
             <div className="payment-summary">
               <h2>
-                {product.fishName} 한 마리로 {surface.name}
+                {product.name}
               </h2>
               <p>
                 실제 결제금액{" "}
                 <strong>{product.priceKRW.toLocaleString("ko-KR")}원</strong>
               </p>
-              <p>선택한 상담: {topic}</p>
+              <p>선택한 상담: {topic} · {product.chapterCount}챕터</p><details><summary>이 상담의 목차와 해석 범위</summary><p>{depthDescriptions[product.fishId]}</p><ol>{productManifest(product,undefined,readingMode).map(c=><li key={c.id}>{c.title}</li>)}</ol></details>
+              <FishReaction product={product}/>
             </div>
           )}
-          <p className="fortune-footnote">
+          {!localMock && product?.enabled && <form onSubmit={purchase} className="checkout-form">
+            <fieldset disabled={busy}><legend>결제수단</legend>
+              <label><input type="radio" name="payMethod" checked={method==='CARD'} onChange={()=>setMethod('CARD')}/> 신용카드</label>
+              <label><input type="radio" name="payMethod" checked={method==='KAKAOPAY'} onChange={()=>setMethod('KAKAOPAY')}/> 카카오페이</label>
+            </fieldset>
+            <label>구매자 이름<input required autoComplete="name" maxLength={60} value={customer.fullName} onChange={e=>setCustomer({...customer,fullName:e.target.value})}/></label>
+            <label>연락처<input required type="tel" autoComplete="tel" maxLength={20} value={customer.phoneNumber} onChange={e=>setCustomer({...customer,phoneNumber:e.target.value})}/></label>
+            <label>이메일<input required type="email" autoComplete="email" maxLength={120} value={customer.email} onChange={e=>setCustomer({...customer,email:e.target.value})}/></label>
+            <button className="fortune-primary" disabled={busy}>{busy?'결제 확인 중':'단건 결제로 보기'}</button>
+          </form>}
+          {!product?.enabled && <p className="fortune-footnote">
             상담·결제 연결을 검증하고 있어요. 현재 실제 구매는 열려 있지 않아요.
-          </p>
-          <button
+          </p>}
+          {(localMock || !product?.enabled) && <button
             className="fortune-primary"
             disabled={busy || (!product?.enabled && !localMock)}
             onClick={preview}
@@ -365,12 +473,13 @@ export default function FortuneExperience() {
               : localMock
                 ? "개발용 구매 흐름 확인 · 청구 없음"
                 : "상담 준비 중"}
-          </button>
+          </button>}
           <button className="fortune-back" onClick={() => setStage("input")}>
             입력으로 돌아가기
           </button>
         </section>
       )}
+      {paid && product && (stage==="loading"||stage==="result") && <FishReaction product={product} paid/>}
       {stage === "loading" && (
         <section className="fortune-loading" aria-live="polite">
           <div className="fortune-loading-stage">
@@ -390,7 +499,8 @@ export default function FortuneExperience() {
           <a href="/library/">보관함으로 이동</a>
         </section>
       )}
-      {stage === "result" && result && (
+      {stage === "result" && book && <DestinyBook initial={book} />}
+      {stage === "result" && result && !book && (
         <article className="fortune-result">
           <h1>{result.title}</h1>
           <p className="result-summary">{result.summary}</p>
@@ -436,6 +546,7 @@ export default function FortuneExperience() {
               setPollVersion((v) => v + 1);
             } catch (e) {
               setError((e as Error).message);
+      if(e instanceof ApiError && e.code==="SESSION_REQUIRED")setLogin(loginHref(window.location.pathname+window.location.search));
             } finally {
               lock.current = false;
               setBusy(false);
@@ -448,97 +559,6 @@ export default function FortuneExperience() {
     </main>
   );
 }
-function ProfileFields({
-  prefix,
-  title,
-  domain,
-}: {
-  prefix: string;
-  title: string;
-  domain: FortuneDomainId;
-}) {
-  const [city, setCity] = useState("0");
-  return (
-    <fieldset>
-      <legend>{title}</legend>
-      <label>
-        생년월일
-        <input name={`${prefix}date`} type="date" min="1901-01-01" required />
-      </label>
-      <div className="input-pair">
-        <label>
-          출생시간{domain === "saju" ? " (모르면 비워두기)" : ""}
-          <input
-            name={`${prefix}time`}
-            type="time"
-            required={domain !== "saju"}
-          />
-        </label>
-        <label>
-          성별
-          <select name={`${prefix}gender`} required defaultValue="">
-            <option value="" disabled>
-              선택
-            </option>
-            <option value="female">여성</option>
-            <option value="male">남성</option>
-          </select>
-        </label>
-      </div>
-      {["sukuyo", "vedic", "astrology"].includes(domain) && (
-        <>
-          <label>
-            출생지
-            <select
-              name={`${prefix}city`}
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            >
-              {cities.map((c, i) => (
-                <option key={c.name} value={i}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          {city === "2" && (
-            <>
-              <div className="input-pair">
-                <label>
-                  위도
-                  <input
-                    name={`${prefix}lat`}
-                    type="number"
-                    step="any"
-                    min="-90"
-                    max="90"
-                    required
-                  />
-                </label>
-                <label>
-                  경도
-                  <input
-                    name={`${prefix}lon`}
-                    type="number"
-                    step="any"
-                    min="-180"
-                    max="180"
-                    required
-                  />
-                </label>
-              </div>
-              <label>
-                출생지 시간대
-                <input
-                  name={`${prefix}zone`}
-                  placeholder="Asia/Seoul"
-                  required
-                />
-              </label>
-            </>
-          )}
-        </>
-      )}
-    </fieldset>
-  );
+function ProfileFields({prefix,title,domain}:{prefix:string;title:string;domain:FortuneDomainId}) {
+ return <BirthFields prefix={prefix} title={title} timeRequired={domain!=="saju"}/>;
 }

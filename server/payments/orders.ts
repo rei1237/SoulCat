@@ -13,20 +13,25 @@ export async function createOrder(
   productId: string,
   profileId: string,
   key: string,
+  checkout?: { storeId: string; channelKey: string; method: string; returnPath: string },
 ) {
   if (!/^[a-zA-Z0-9_-]{16,100}$/.test(key))
     throw new FortuneError("INVALID_IDEMPOTENCY_KEY");
   const p = getProduct(productId);
   const profile = await db
-    .prepare("SELECT id,domain FROM profiles WHERE id=? AND user_id=?")
+    .prepare("SELECT id,domain,input_json FROM profiles WHERE id=? AND user_id=?")
     .bind(profileId, userId)
-    .first<{ id: string; domain: string }>();
+    .first<{ id: string; domain: string;input_json:string }>();
   if (!profile || profile.domain !== p.domain)
     throw new FortuneError("PROFILE_NOT_FOUND", 404);
+  const keyed=await db.prepare('SELECT * FROM orders WHERE user_id=? AND idempotency_key=?').bind(userId,key).first<PaymentOrder>();
+  if(keyed && (keyed.product_id!==productId||keyed.profile_id!==profileId))throw new FortuneError('IDEMPOTENCY_CONFLICT',409);
+  const purchased=await db.prepare("SELECT o.* FROM orders o JOIN entitlements e ON e.order_id=o.id WHERE o.user_id=? AND o.product_id=? AND o.profile_id=? AND o.status='PAID' AND e.status='ACTIVE' ORDER BY o.created_at LIMIT 1").bind(userId,productId,profileId).first<PaymentOrder>();
+  if(purchased)return purchased;
   const id = crypto.randomUUID();
   await db
     .prepare(
-      "INSERT INTO orders (id,user_id,profile_id,product_id,amount,currency,payment_id,idempotency_key,status,created_at) VALUES (?,?,?,?,?,?,?,?,'PENDING',?) ON CONFLICT(user_id,idempotency_key) DO NOTHING",
+      "INSERT INTO orders (id,user_id,profile_id,product_id,amount,currency,payment_id,idempotency_key,status,created_at,store_id,channel_key,pay_method,return_path) VALUES (?,?,?,?,?,?,?,?,'PENDING',?,?,?,?,?) ON CONFLICT DO NOTHING",
     )
     .bind(
       id,
@@ -38,11 +43,12 @@ export async function createOrder(
       `soulcat-${id}`,
       key,
       Date.now(),
+      checkout?.storeId ?? null, checkout?.channelKey ?? null, checkout?.method ?? null, checkout?.returnPath ?? null,
     )
     .run();
   const order = await db
-    .prepare("SELECT * FROM orders WHERE user_id=? AND idempotency_key=?")
-    .bind(userId, key)
+    .prepare("SELECT * FROM orders WHERE user_id=? AND (idempotency_key=? OR (profile_id=? AND product_id=? AND store_id IS NOT NULL AND status IN ('PENDING','PAID'))) ORDER BY created_at LIMIT 1")
+    .bind(userId, key, profileId, productId)
     .first<PaymentOrder>();
   if (
     !order ||
@@ -50,6 +56,8 @@ export async function createOrder(
     order.profile_id !== profileId
   )
     throw new FortuneError("IDEMPOTENCY_CONFLICT", 409);
+  await db.prepare('INSERT INTO order_chart_links (order_id,chart_id,manifest_version) SELECT ?,id,? FROM chart_snapshots WHERE profile_id=? AND user_id=? ON CONFLICT DO NOTHING').bind(order.id,p.manifestVersion,profileId,userId).run();
+  await db.prepare('INSERT INTO order_specs (order_id,spec_json) VALUES (?,?) ON CONFLICT DO NOTHING').bind(order.id,JSON.stringify({...p,topicId:JSON.parse(profile.input_json).topicId||'general'})).run();
   return order;
 }
 export async function grantPaidOrder(

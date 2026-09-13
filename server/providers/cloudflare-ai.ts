@@ -37,7 +37,7 @@ export class CloudflareAIProvider implements LLMProvider {
     } catch (e) {
       throw e instanceof FortuneError
         ? e
-        : new FortuneError("PROVIDER_ERROR", 502);
+        : new FortuneError("UNCERTAIN", 502);
     } finally {
       clearTimeout(timer);
     }

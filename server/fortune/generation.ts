@@ -78,10 +78,11 @@ export async function runGeneration(
       .first<RequestRow>();
     if (!row) throw new FortuneError("REQUEST_NOT_FOUND", 404);
     const product = getProduct(row.product_id);
+    if (product.readingKind !== "single") throw new FortuneError("BOOK_REQUIRED",400);
     const d = domains[product.domain];
     const input = d.validateInput(JSON.parse(row.input_json));
     const calculated = d.buildContext(await d.calculate(input, engineEnv));
-    const prompt = d.buildPrompt(input, calculated, product.fishId);
+    const prompt = d.buildPrompt(input, calculated, product.fishId as "mackerel" | "salmon" | "flounder" | "tuna");
     await db
       .prepare(
         "UPDATE fortune_requests SET calculated_context=?,prompt_version=? WHERE id=? AND attempt_id=?",
@@ -118,7 +119,7 @@ export async function runGeneration(
         "UPDATE fortune_requests SET status=?,failure_code=?,lease_until=NULL,updated_at=? WHERE id=? AND attempt_id=? AND status='RUNNING'",
       )
       .bind(
-        code === "LLM_TIMEOUT" ? "UNCERTAIN" : "FAILED",
+        ["LLM_TIMEOUT","UNCERTAIN"].includes(code) ? "UNCERTAIN" : "FAILED",
         code,
         Date.now(),
         id,

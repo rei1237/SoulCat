@@ -23,10 +23,10 @@
       "height": 72,
       "bottom": 800
     },
-    "dom": 383,
+    "dom": 417,
     "metrics": {
       "cls": 0,
-      "lcp": 872
+      "lcp": 760
     },
     "assets": [
       {
@@ -46,6 +46,10 @@
         "bytes": 83456
       },
       {
+        "name": "tarot.webp",
+        "bytes": 26820
+      },
+      {
         "name": "surprised.webp",
         "bytes": 66462
       },
@@ -56,10 +60,6 @@
       {
         "name": "ziwei.webp",
         "bytes": 43042
-      },
-      {
-        "name": "tarot.webp",
-        "bytes": 26820
       },
       {
         "name": "astrology.webp",
@@ -79,17 +79,17 @@
       }
     ],
     "deferredImages": [
-      "http://127.0.0.1:3000/assets/recommend-love.webp",
-      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
-      "http://127.0.0.1:3000/assets/recommend-year.webp",
-      "http://127.0.0.1:3000/assets/recommend-past.webp",
-      "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/day-drink.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -119,10 +119,10 @@
       "height": 72,
       "bottom": 812
     },
-    "dom": 385,
+    "dom": 419,
     "metrics": {
       "cls": 0,
-      "lcp": 308
+      "lcp": 252
     },
     "assets": [
       {
@@ -138,28 +138,28 @@
         "bytes": 82594
       },
       {
-        "name": "story-mirror.webp",
-        "bytes": 83456
-      },
-      {
         "name": "surprised.webp",
         "bytes": 66462
       },
       {
-        "name": "saju.webp",
-        "bytes": 37740
+        "name": "story-mirror.webp",
+        "bytes": 83456
+      },
+      {
+        "name": "ziwei.webp",
+        "bytes": 43042
       },
       {
         "name": "tarot.webp",
         "bytes": 26820
       },
       {
-        "name": "astrology.webp",
-        "bytes": 40750
+        "name": "saju.webp",
+        "bytes": 37740
       },
       {
-        "name": "ziwei.webp",
-        "bytes": 43042
+        "name": "astrology.webp",
+        "bytes": 40750
       },
       {
         "name": "vedic.webp",
@@ -175,17 +175,17 @@
       }
     ],
     "deferredImages": [
-      "http://127.0.0.1:3000/assets/recommend-love.webp",
-      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
-      "http://127.0.0.1:3000/assets/recommend-year.webp",
-      "http://127.0.0.1:3000/assets/recommend-past.webp",
-      "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/day-drink.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -215,10 +215,10 @@
       "height": 72,
       "bottom": 844
     },
-    "dom": 385,
+    "dom": 419,
     "metrics": {
       "cls": 0,
-      "lcp": 280
+      "lcp": 244
     },
     "assets": [
       {
@@ -234,16 +234,16 @@
         "bytes": 82594
       },
       {
-        "name": "story-mirror.webp",
-        "bytes": 83456
+        "name": "saju.webp",
+        "bytes": 37740
       },
       {
         "name": "surprised.webp",
         "bytes": 66462
       },
       {
-        "name": "saju.webp",
-        "bytes": 37740
+        "name": "story-mirror.webp",
+        "bytes": 83456
       },
       {
         "name": "tarot.webp",
@@ -271,17 +271,17 @@
       }
     ],
     "deferredImages": [
-      "http://127.0.0.1:3000/assets/recommend-love.webp",
-      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
-      "http://127.0.0.1:3000/assets/recommend-year.webp",
-      "http://127.0.0.1:3000/assets/recommend-past.webp",
-      "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/day-drink.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -314,10 +314,10 @@
       "height": 72,
       "bottom": 915
     },
-    "dom": 385,
+    "dom": 419,
     "metrics": {
       "cls": 0,
-      "lcp": 244
+      "lcp": 272
     },
     "assets": [
       {
@@ -345,24 +345,24 @@
         "bytes": 37740
       },
       {
-        "name": "tarot.webp",
-        "bytes": 26820
-      },
-      {
         "name": "ziwei.webp",
         "bytes": 43042
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
       },
       {
         "name": "astrology.webp",
         "bytes": 40750
       },
       {
-        "name": "vedic.webp",
-        "bytes": 29780
-      },
-      {
         "name": "sukuyo.webp",
         "bytes": 36770
+      },
+      {
+        "name": "vedic.webp",
+        "bytes": 29780
       },
       {
         "name": "story-curse.webp",
@@ -370,17 +370,17 @@
       }
     ],
     "deferredImages": [
-      "http://127.0.0.1:3000/assets/recommend-love.webp",
-      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
-      "http://127.0.0.1:3000/assets/recommend-year.webp",
-      "http://127.0.0.1:3000/assets/recommend-past.webp",
-      "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/day-drink.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -410,10 +410,10 @@
       "height": 72,
       "bottom": 932
     },
-    "dom": 382,
+    "dom": 419,
     "metrics": {
       "cls": 0,
-      "lcp": 276
+      "lcp": 248
     },
     "assets": [
       {
@@ -441,12 +441,12 @@
         "bytes": 66462
       },
       {
-        "name": "ziwei.webp",
-        "bytes": 43042
-      },
-      {
         "name": "tarot.webp",
         "bytes": 26820
+      },
+      {
+        "name": "ziwei.webp",
+        "bytes": 43042
       },
       {
         "name": "astrology.webp",
@@ -466,17 +466,17 @@
       }
     ],
     "deferredImages": [
-      "http://127.0.0.1:3000/assets/recommend-love.webp",
-      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
-      "http://127.0.0.1:3000/assets/recommend-year.webp",
-      "http://127.0.0.1:3000/assets/recommend-past.webp",
-      "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/day-drink.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -506,10 +506,10 @@
       "height": 72,
       "bottom": 1024
     },
-    "dom": 383,
+    "dom": 419,
     "metrics": {
-      "cls": 0.0011895547698562343,
-      "lcp": 328
+      "cls": 0.0018747324162783723,
+      "lcp": 324
     },
     "assets": [
       {
@@ -537,24 +537,24 @@
         "bytes": 37740
       },
       {
-        "name": "tarot.webp",
-        "bytes": 26820
-      },
-      {
         "name": "ziwei.webp",
         "bytes": 43042
+      },
+      {
+        "name": "tarot.webp",
+        "bytes": 26820
       },
       {
         "name": "astrology.webp",
         "bytes": 40750
       },
       {
-        "name": "vedic.webp",
-        "bytes": 29780
-      },
-      {
         "name": "sukuyo.webp",
         "bytes": 36770
+      },
+      {
+        "name": "vedic.webp",
+        "bytes": 29780
       },
       {
         "name": "story-curse.webp",
@@ -562,17 +562,17 @@
       }
     ],
     "deferredImages": [
-      "http://127.0.0.1:3000/assets/recommend-love.webp",
-      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
-      "http://127.0.0.1:3000/assets/recommend-year.webp",
-      "http://127.0.0.1:3000/assets/recommend-past.webp",
-      "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/day-drink.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],
@@ -602,10 +602,10 @@
       "height": 72,
       "bottom": 1000
     },
-    "dom": 382,
+    "dom": 419,
     "metrics": {
-      "cls": 0.0012978900975356869,
-      "lcp": 244
+      "cls": 0.0018396775007836613,
+      "lcp": 264
     },
     "assets": [
       {
@@ -625,16 +625,16 @@
         "bytes": 83456
       },
       {
-        "name": "tarot.webp",
-        "bytes": 26820
+        "name": "surprised.webp",
+        "bytes": 66462
       },
       {
         "name": "saju.webp",
         "bytes": 37740
       },
       {
-        "name": "surprised.webp",
-        "bytes": 66462
+        "name": "tarot.webp",
+        "bytes": 26820
       },
       {
         "name": "ziwei.webp",
@@ -658,17 +658,17 @@
       }
     ],
     "deferredImages": [
-      "http://127.0.0.1:3000/assets/recommend-love.webp",
-      "http://127.0.0.1:3000/assets/recommend-wealth.webp",
-      "http://127.0.0.1:3000/assets/recommend-year.webp",
-      "http://127.0.0.1:3000/assets/recommend-past.webp",
-      "http://127.0.0.1:3000/assets/night-read.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-1.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-2.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-3.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-4.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-5.webp",
-      "http://127.0.0.1:3000/assets/walk-pose-6.webp"
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-love.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-wealth.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-year.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/recommend-past.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/day-drink.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-1.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-2.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-3.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-4.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-5.webp",
+      "http://127.0.0.1:3000/_soulcat/assets/walk-pose-6.webp"
     ],
     "brokenImages": [],
     "errors": [],

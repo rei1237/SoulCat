@@ -1,0 +1,269 @@
+{
+  "scope": "mock browser emulation; native share stub; no actual messages",
+  "cases": [
+    {
+      "browser": "chromium",
+      "width": 390,
+      "chapters": 5,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 390,
+      "chapters": 13,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 390,
+      "chapters": 30,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 390,
+      "chapters": 70,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 390,
+      "chapters": 80,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 390,
+      "chapters": 120,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 1280,
+      "chapters": 5,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 1280,
+      "chapters": 13,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 1280,
+      "chapters": 30,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 1280,
+      "chapters": 70,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 1280,
+      "chapters": 80,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "chromium",
+      "width": 1280,
+      "chapters": 120,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "chapters": 5,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "chapters": 13,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "chapters": 30,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "chapters": 70,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "chapters": 80,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "chapters": 120,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 1280,
+      "chapters": 5,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 1280,
+      "chapters": 13,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 1280,
+      "chapters": 30,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 1280,
+      "chapters": 70,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 1280,
+      "chapters": 80,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    },
+    {
+      "browser": "webkit",
+      "width": 1280,
+      "chapters": 120,
+      "expressions": true,
+      "resume": true,
+      "shareFilesStub": true,
+      "chatCopy": true,
+      "axe": 0,
+      "overflow": false
+    }
+  ]
+}

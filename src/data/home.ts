@@ -1,9 +1,11 @@
+import { domainRegistry } from "./domain-registry";
+
 export const services = [
   {
     id: "saju",
-    name: "사주",
+    name: domainRegistry.saju.label,
     subtitle: "타고난 나를 만나는 시간",
-    description: "생년월일에 담긴 기질과 반복되는 선택을 살펴보는 이야기.",
+    description: domainRegistry.saju.shortDescription,
     image: "saju",
     theme: "운명의 바탕",
     details: [
@@ -27,10 +29,9 @@ export const services = [
   },
   {
     id: "ziwei",
-    name: "자미두수",
+    name: domainRegistry.ziwei.label,
     subtitle: "별에 담긴 인생의 지도",
-    description:
-      "명반이라는 별의 지도로 삶의 여러 영역과 흐름을 살펴보는 이야기.",
+    description: domainRegistry.ziwei.shortDescription,
     image: "ziwei",
     theme: "인생의 지도",
     details: [
@@ -41,10 +42,9 @@ export const services = [
   },
   {
     id: "astrology",
-    name: "점성술",
+    name: domainRegistry.astrology.label,
     subtitle: "나를 비추는 별의 언어",
-    description:
-      "태어날 때의 행성 배치로 나의 성향과 관계를 돌아보는 서양 점성술.",
+    description: domainRegistry.astrology.shortDescription,
     image: "astrology",
     theme: "별의 언어",
     details: [
@@ -55,9 +55,9 @@ export const services = [
   },
   {
     id: "vedic",
-    name: "베다점",
+    name: domainRegistry.vedic.label,
     subtitle: "오래된 지혜가 건네는 길",
-    description: "인도 점성술의 관점으로 기질과 삶의 방향을 살펴보는 이야기.",
+    description: domainRegistry.vedic.shortDescription,
     image: "vedic",
     theme: "오래된 지혜",
     details: [
@@ -68,10 +68,9 @@ export const services = [
   },
   {
     id: "sukuyo",
-    name: "숙요",
+    name: domainRegistry.sukuyo.label,
     subtitle: "너와 나, 그 사이의 인연",
-    description:
-      "태어난 날의 숙과 두 사람의 관계 유형을 통해 인연을 돌아보는 이야기.",
+    description: domainRegistry.sukuyo.shortDescription,
     image: "sukuyo",
     theme: "인연의 결",
     details: [

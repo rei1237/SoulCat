@@ -1,0 +1,31 @@
+{
+  "source": "D:/Development/code-destiny/app/fortune/prompt-hub/",
+  "hubSha256": "e8776b78d250bd7a64a9d4a14a6b6189bb877768c3bcfb344ef0f6d487c053b6",
+  "categories": [
+    "comprehensive",
+    "basic",
+    "saju",
+    "yukhyo",
+    "dangsaju",
+    "kusei",
+    "psych",
+    "tarot",
+    "astrology",
+    "vedic",
+    "ziwei",
+    "sukuyo",
+    "numerology",
+    "dream",
+    "horary",
+    "meihua"
+  ],
+  "generatedAssets": {
+    "tool": "built-in image_gen",
+    "character": "White Yeongnyangi matching expression-calm.webp, half-lowered violet eyes, subtle asymmetric mouth, holding one anchovy, underwhelmed but affectionate, transparent background.",
+    "anchovy": "Single silver dried anchovy, watercolor storybook inventory item, transparent background.",
+    "originals": [
+      "exec-e2043713-f604-4c2b-afa0-87c5d3021dda.png",
+      "exec-174d98ea-6723-4537-82bf-3ed05d515111.png"
+    ]
+  }
+}

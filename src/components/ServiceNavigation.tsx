@@ -6,8 +6,8 @@ export default function ServiceNavigation() {
   const [login, setLogin] = useState(loginHref("/fortune/"));
   useEffect(() => { setLogin(loginHref(window.location.pathname + window.location.search)); }, []);
   return <footer className="service-navigation">
-    <p>Code Destiny · 사주보는 영냥이</p>
-    <nav aria-label="Code Destiny 서비스 연결">
+    <p>사주보는 고양이 영냥이</p>
+    <nav aria-label="영냥이 서비스 연결">
       {serviceLinks.map(link => <a key={link.label} href={link.href}>{link.label}</a>)}
       <a href={login}>Code Destiny 로그인</a>
     </nav>

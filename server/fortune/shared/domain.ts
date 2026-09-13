@@ -41,7 +41,7 @@ export function context(
 ): DomainContext {
   return {
     domain: id,
-    engineVersion: "code-destiny-09544df6",
+    engineVersion: id==='saju'?'code-destiny-screen-v2':id==='tarot'?'code-destiny-tarot-a3a606a1':'code-destiny-09544df6',
     calculatedAt: new Date().toISOString(),
     facts: Object.entries(facts)
       .filter(([, value]) => value !== undefined && value !== null)

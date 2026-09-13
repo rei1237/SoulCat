@@ -1,0 +1,30 @@
+[
+  {
+    "file": "lib/tarot/rich-card-meanings.mjs",
+    "sha256": "9670636555a5ff602271d1d0cdbe0c8658fde9039934578b61b016cccf059681"
+  },
+  {
+    "file": "lib/tarot/spreads.mjs",
+    "sha256": "9009ceebbefcba95dd73cb94d0afe7147907a5619c6cbddc514bd4be41579f42"
+  },
+  {
+    "file": "lib/tarot/sun-recovery-card-copy.mjs",
+    "sha256": "ab1bf924899b611783dd1e9703dfa122750809399dcb2d7f70e734768692c9dd"
+  },
+  {
+    "file": "lib/tarot/tarot-cards.mjs",
+    "sha256": "a3a606a10c439ecb976253bd892278ecd89f9b2b37b6ce4d0ca4970bb860fb03"
+  },
+  {
+    "file": "lib/tarot/tarot-combination-engine.mjs",
+    "sha256": "fed337c4c28e9184fa1daffc364d5cf562bc95d28abd55dc16731f1682588145"
+  },
+  {
+    "file": "lib/tarot/tarot-interpretation-engine.mjs",
+    "sha256": "3f9e079240c30ae3a552d18861f31e6040e2b6c96584c98abbdb71c97bf532de"
+  },
+  {
+    "file": "lib/tarot/warning-card-guard.mjs",
+    "sha256": "3b237486b4ffcfeb9e7aeb4380e6ecd9d54b486ea2d701cd7626a73ebe3b8fcc"
+  }
+]

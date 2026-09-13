@@ -1,0 +1,46 @@
+[
+  {
+    "width": 360,
+    "relationshipCards": 6,
+    "cardImages": true,
+    "menuImages": true,
+    "prePurchaseReload": true,
+    "dailyCard": true,
+    "priceBoardAxe": 0,
+    "roomAxe": 0,
+    "reactionAxe": 0
+  },
+  {
+    "width": 390,
+    "relationshipCards": 6,
+    "cardImages": true,
+    "menuImages": true,
+    "prePurchaseReload": true,
+    "dailyCard": true,
+    "priceBoardAxe": 0,
+    "roomAxe": 0,
+    "reactionAxe": 0
+  },
+  {
+    "width": 430,
+    "relationshipCards": 6,
+    "cardImages": true,
+    "menuImages": true,
+    "prePurchaseReload": true,
+    "dailyCard": true,
+    "priceBoardAxe": 0,
+    "roomAxe": 0,
+    "reactionAxe": 0
+  },
+  {
+    "width": 1280,
+    "relationshipCards": 6,
+    "cardImages": true,
+    "menuImages": true,
+    "prePurchaseReload": true,
+    "dailyCard": true,
+    "priceBoardAxe": 0,
+    "roomAxe": 0,
+    "reactionAxe": 0
+  }
+]

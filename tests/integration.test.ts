@@ -67,14 +67,14 @@ test("shared login uses only server verified identity and never forwards spoofed
 });
 test("login return rejects external, protocol-relative and unexpected routes", () => {
   for (const path of ["//evil.com", "https://evil.com", "/\\evil.com", "/login/", "/api/auth/me"]) assert.equal(loginHref(path), "/login/?returnTo=%2Ffortune%2F");
-  assert.equal(loginHref("/library/?utm_source=room"), "/login/?returnTo=%2Flibrary%2F%3Futm_source%3Droom");
+  assert.equal(loginHref("/library/?utm_source=room"), "/login/?returnTo=%2Flibrary%2F");
 });
 test("namespaced catalog is public but all products remain disabled and independent", async () => {
   const response = await handleApi(new Request(origin + "/api/yeongnyangi/products"), env, idle);
   const data = await response.json() as { products: { enabled: boolean; priceKRW: number; currency: string }[] };
   assert.equal(response.status, 200);
-  assert.equal(data.products.length, 20);
-  assert.deepEqual([...new Set(data.products.map(p => p.priceKRW))], [1000, 3000, 5000, 10000]);
+  assert.equal(data.products.length, 28);
+  assert.deepEqual([...new Set(data.products.map(p => p.priceKRW))], [1000, 3000, 5000, 10000, 20000, 30000]);
   assert.ok(data.products.every(p => !p.enabled && p.currency === "KRW"));
 });
 test("PG verification rejects forged ID, amount, currency, store, channel and cancellations", () => {

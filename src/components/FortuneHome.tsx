@@ -1,4 +1,5 @@
 "use client";
+import FishCatalog from "./FishCatalog";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
@@ -28,13 +29,11 @@ import {
 import CatMotion from "./CatMotion";
 import {
   concerns,
-  dailyMessages,
   recommendations,
   services,
 } from "@/data/home";
 
 type Panel =
-  | "daily"
   | "auth"
   | "library"
   | "notifications"
@@ -107,8 +106,6 @@ export default function FortuneHome() {
   const [petting, setPetting] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "signup">("login");
   const [notice, setNotice] = useState("");
-  const [today, setToday] = useState("");
-  const [dayIndex, setDayIndex] = useState(0);
   const [timeOfDay, setTimeOfDay] = useState("night");
   const [activeNav, setActiveNav] = useState("home");
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -117,15 +114,9 @@ export default function FortuneHome() {
   const reactionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const selectedConcern = concerns.find((item) => item.id === concern);
   const service = services.find((item) => item.id === serviceId) || services[0];
-  const message = dailyMessages[dayIndex];
 
   useEffect(() => {
     const now = new Date();
-    const date = new Intl.DateTimeFormat("sv-SE", {
-      timeZone: "Asia/Seoul",
-    }).format(now);
-    setToday(date);
-    setDayIndex(Math.floor(Date.parse(date) / 86400000) % dailyMessages.length);
     const hour = Number(
       new Intl.DateTimeFormat("en-GB", {
         timeZone: "Asia/Seoul",
@@ -196,7 +187,7 @@ export default function FortuneHome() {
         });
     } else {
       setActiveNav(id);
-      openPanel(id === "cat" ? "daily" : "library");
+      if(id==="cat")window.location.assign("/room/#daily");else openPanel("library");
     }
   }
   function petCat() {
@@ -205,19 +196,7 @@ export default function FortuneHome() {
     if (reactionTimer.current) clearTimeout(reactionTimer.current);
     reactionTimer.current = setTimeout(() => setPetting(false), 650);
   }
-  async function copyMessage() {
-    try {
-      await navigator.clipboard.writeText(
-        `${message.title}\n${message.text}\n— 사주보는 영냥이`,
-      );
-      setNotice("문구를 복사했어요.");
-    } catch {
-      setNotice("복사하지 못했어요. 문구를 길게 눌러 직접 복사해 주세요.");
-    }
-  }
-
   const titles: Record<Exclude<Panel, null>, string> = {
-    daily: "영냥이의 오늘 한마디",
     auth: "달빛 점술방의 문",
     library: "나의 보관함",
     notifications: "점술방 소식",
@@ -330,13 +309,13 @@ export default function FortuneHome() {
             <div className="hero-action">
               <button
                 className="primary-cta"
-                onClick={() => openPanel("daily")}
+                onClick={() => window.location.assign("/room/#daily")}
               >
                 <PawPrint size={21} />
                 <span>무료 운세 보기</span>
                 <ArrowRight size={21} />
               </button>
-              <p>오늘의 한마디부터 가볍게 만나봐요</p>
+              <p>출석 멸치 한 마리로 오늘의 16가지 이야기</p>
             </div>
           </section>
 
@@ -465,7 +444,7 @@ export default function FortuneHome() {
                   나를 더 깊이 이해하는 시간.
                 </p>
                 <div className="fusion-systems">
-                  사주 · 자미두수 · 점성술 · 숙요 · 베다
+                  사주 · 자미두수 · 숙요 · 베다 · 점성술 · 타로
                 </div>
                 <button
                   className="outlined-cta"
@@ -621,33 +600,6 @@ export default function FortuneHome() {
             </button>
           </div>
 
-          {panel === "daily" && (
-            <div className="daily-panel panel-body">
-              <div className="daily-date">
-                <Moon size={15} />
-                {today.replaceAll("-", ".")} · 오늘의 한마디
-              </div>
-              <div className="daily-cat">
-                <Art eager name="hero-480" width={480} height={480} />
-              </div>
-              <h2>{message.title}</h2>
-              <p className="daily-text">{message.text}</p>
-              <div className="daily-action">
-                <Sparkles size={18} />
-                <span>{message.action}</span>
-              </div>
-              <p className="honest-note">
-                생년월일로 풀이한 개인 운세가 아닌,
-                <br />
-                영냥이가 건네는 오늘의 짧은 조언이에요.
-              </p>
-              <button className="outlined-cta" onClick={copyMessage}>
-                <Copy size={18} />
-                문구 복사하기
-              </button>
-            </div>
-          )}
-
           {panel === "auth" && (
             <div className="auth-panel panel-body">
               <div className="auth-tabs" aria-label="계정 메뉴">
@@ -695,7 +647,7 @@ export default function FortuneHome() {
               </div>
               <button
                 className="primary-cta"
-                onClick={() => openPanel("daily")}
+                onClick={() => window.location.assign("/room/#daily")}
               >
                 오늘의 한마디 만나기
                 <ArrowRight size={18} />
@@ -712,7 +664,7 @@ export default function FortuneHome() {
                 alt={`${service.name}를 보는 영냥이`}
               />
               <h2>{service.subtitle}</h2>
-              {service.id !== 'tarot' && <a className="outlined-cta" href={`/fortune/?domain=${service.id}`}>상담 살펴보기 <ArrowRight size={18} /></a>}
+              <a className="outlined-cta" href={`/fortune/?domain=${service.id}`}>상담 살펴보기 <ArrowRight size={18} /></a>
               <p>{service.description}</p>
               <ul>
                 {service.details.map((item) => (
@@ -722,56 +674,17 @@ export default function FortuneHome() {
                   </li>
                 ))}
               </ul>
-              <div className="availability-note">
-                <BookOpen size={18} />
-                <span>
-                  상세 리포트는 준비 중이에요.
-                  <br />
-                  먼저 오늘의 한마디를 만나보세요.
-                </span>
               </div>
-              <button
-                className="outlined-cta"
-                onClick={() => openPanel("daily")}
-              >
-                오늘의 한마디 보기
-                <ArrowRight size={18} />
-              </button>
-            </div>
           )}
 
           {panel === "fusion" && (
-            <div className="fusion-panel panel-body">
-              <Sparkles size={40} className="gold" />
-              <h2>
-                하나의 나를,
-                <br />
-                여러 시선으로.
-              </h2>
-              <p>
-                사주, 자미두수, 서양 점성술, 숙요, 베다점.
-                <br />
-                서로 다른 체계의 해석을 구분해 살펴보고,
-                <br />내 삶에 참고할 이야기를 모으는 리포트예요.
-              </p>
-              <div className="fusion-chapters">
-                <span>나의 바탕</span>
-                <span>관계의 패턴</span>
-                <span>삶의 방향</span>
-                <span>현실적인 조언</span>
-              </div>
-              <div className="availability-note">
-                초융합 리포트는 준비 중이에요.
-                <br />
-                이용 조건은 서비스가 열릴 때 안내할게요.
-              </div>
-              <button
-                className="outlined-cta"
-                onClick={() => navigate("readings")}
-              >
-                여섯 가지 운세 살펴보기
+            <div className="panel-body">
+              <a className="primary-cta" href="/fortune/">
+                상담 시작하기
                 <ArrowRight size={18} />
-              </button>
+              </a>
+              <FishCatalog fusionOnly />
+              <FishCatalog />
             </div>
           )}
 

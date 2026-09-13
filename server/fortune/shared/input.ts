@@ -1,3 +1,4 @@
+import { lunarToSolar } from '../../vendor/code-destiny/lib/korean-calendar/index.js';
 import {
   BirthProfile,
   DomainId,
@@ -7,9 +8,18 @@ import {
 function profile(value: unknown, domain: DomainId): BirthProfile {
   if (!value || typeof value !== "object")
     throw new FortuneError("PROFILE_REQUIRED");
-  const p = value as Record<string, unknown>;
-  if (p.calendarType !== undefined && p.calendarType !== "solar")
-    throw new FortuneError("SOLAR_DATE_REQUIRED");
+  const p = {...value} as Record<string, unknown>;
+  if (p.calendarType !== undefined && !['solar','lunar'].includes(String(p.calendarType)))
+    throw new FortuneError("INVALID_CALENDAR");
+  let originalCalendar: BirthProfile['originalCalendar'];
+  if(p.calendarType==='lunar') {
+    if(typeof p.birthDate!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(p.birthDate))throw new FortuneError('INVALID_BIRTH_DATE');
+    const [y,m,d]=p.birthDate.split('-').map(Number);
+    const solar=lunarToSolar(y,m,d,p.leapMonth===true);
+    if(!solar)throw new FortuneError('INVALID_LUNAR_DATE');
+    originalCalendar={date:p.birthDate,type:'lunar',leapMonth:p.leapMonth===true};
+    p.birthDate=`${solar.year}-${String(solar.month).padStart(2,'0')}-${String(solar.day).padStart(2,'0')}`;
+  }
   if (
     typeof p.birthDate !== "string" ||
     !/^\d{4}-\d{2}-\d{2}$/.test(p.birthDate)
@@ -36,7 +46,7 @@ function profile(value: unknown, domain: DomainId): BirthProfile {
   if ((domain === "saju" || domain === "ziwei") && !p.gender)
     throw new FortuneError("GENDER_REQUIRED");
   let birthPlace: BirthProfile["birthPlace"];
-  if (["vedic", "astrology", "sukuyo"].includes(domain)) {
+  if (["vedic", "astrology", "sukuyo"].includes(domain) || p.birthPlace) {
     const loc = p.birthPlace as Record<string, unknown> | undefined;
     if (
       !loc ||
@@ -58,6 +68,7 @@ function profile(value: unknown, domain: DomainId): BirthProfile {
       latitude: loc.latitude,
       longitude: loc.longitude,
       timezone: loc.timezone,
+      ...(typeof loc.name==='string'?{name:loc.name.slice(0,240)}:{}),
     };
   }
   return {
@@ -65,8 +76,16 @@ function profile(value: unknown, domain: DomainId): BirthProfile {
     birthTime: time ? (time as string) : undefined,
     gender: p.gender as BirthProfile["gender"],
     calendarType: "solar",
+    ...(originalCalendar?{originalCalendar}:{}),
+    ...(p.residence?{residence:validatePlace(p.residence)}:{}),
     ...(birthPlace ? { birthPlace } : {}),
   };
+}
+export function validatePlace(value:unknown): NonNullable<BirthProfile['birthPlace']> {
+ const p=value as Record<string,unknown>;
+ if(!p||typeof p.latitude!=='number'||typeof p.longitude!=='number'||!Number.isFinite(p.latitude)||!Number.isFinite(p.longitude)||Math.abs(p.latitude)>90||Math.abs(p.longitude)>180||typeof p.timezone!=='string')throw new FortuneError('BIRTH_PLACE_REQUIRED');
+ try{new Intl.DateTimeFormat('en',{timeZone:p.timezone});}catch{throw new FortuneError('INVALID_TIMEZONE');}
+ return {latitude:p.latitude,longitude:p.longitude,timezone:p.timezone,...(typeof p.name==='string'?{name:p.name.slice(0,240)}:{})};
 }
 export function validateInput(value: unknown, domain: DomainId): FortuneInput {
   if (!value || typeof value !== "object")
@@ -75,9 +94,15 @@ export function validateInput(value: unknown, domain: DomainId): FortuneInput {
   const question = v.question === undefined ? "" : v.question;
   if (typeof question !== "string" || question.length > 1000)
     throw new FortuneError("INVALID_QUESTION");
+  const topics=['general','love','luck','work','money','relationship','self','healing'];
+  const topicId=typeof v.topicId==='string'?v.topicId:'general';
+  if(!topics.includes(topicId))throw new FortuneError('INVALID_TOPIC');
+  if(domain==='tarot')return {question:question.trim(),topicId,spreadId:topicId==='relationship'||topicId==='love'?'relationship_six_card':'three_card_cause_process_outcome'};
   return {
+    topicId,
     personA: profile(v.personA, domain),
-    ...(domain === "sukuyo" ? { personB: profile(v.personB, domain) } : {}),
+    ...(domain === 'sukuyo' ? { readingMode: v.readingMode === 'personal' ? 'personal' as const : 'compatibility' as const } : {}),
+    ...(domain === "sukuyo" && v.readingMode !== 'personal' ? { personB: profile(v.personB, domain) } : {}),
     question: question.trim(),
   };
 }

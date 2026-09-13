@@ -1,0 +1,7370 @@
+[
+  {
+    "productId": "saju_mackerel",
+    "priceKRW": 1000,
+    "tier": "mackerel",
+    "policy": {
+      "minimum": 3000,
+      "target": [
+        3200,
+        4000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "계산 근거와 이유",
+        "생활 사례",
+        "첫 행동"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "mackerel-01",
+        "title": "타고난 기질과 오행의 균형",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ]
+        },
+        "focus": "타고난 기질과 오행의 균형에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-02",
+        "title": "나의 재능과 일하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar"
+          ]
+        },
+        "focus": "나의 재능과 일하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-03",
+        "title": "사랑할 때 드러나는 모습",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions",
+            "shinsal"
+          ]
+        },
+        "focus": "사랑할 때 드러나는 모습에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-04",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 663,
+        "targetChars": [
+          707,
+          884
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "saju_salmon",
+    "priceKRW": 3000,
+    "tier": "salmon",
+    "policy": {
+      "minimum": 6000,
+      "target": [
+        7000,
+        9000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "반복 원인",
+        "상황별 차이",
+        "생활 사례",
+        "실행"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "salmon-01",
+        "title": "타고난 기질과 오행의 균형",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ]
+        },
+        "focus": "타고난 기질과 오행의 균형에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-02",
+        "title": "나의 재능과 일하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar"
+          ]
+        },
+        "focus": "나의 재능과 일하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-03",
+        "title": "사랑할 때 드러나는 모습",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions",
+            "shinsal"
+          ]
+        },
+        "focus": "사랑할 때 드러나는 모습에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-04",
+        "title": "수입과 지출의 패턴",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions"
+          ]
+        },
+        "focus": "수입과 지출의 패턴에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-05",
+        "title": "끌림과 관계의 경계",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "shinsal",
+            "natalInteractions",
+            "tenGodsByPillar"
+          ]
+        },
+        "focus": "끌림과 관계의 경계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-06",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 872,
+        "targetChars": [
+          1018,
+          1308
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "saju_flounder",
+    "priceKRW": 5000,
+    "tier": "flounder",
+    "policy": {
+      "minimum": 11000,
+      "target": [
+        13000,
+        17000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "근거의 연결",
+        "강점과 부담",
+        "대안 비교",
+        "상황별 사례",
+        "선택 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "flounder-01",
+        "title": "타고난 기질과 오행의 균형",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ]
+        },
+        "focus": "타고난 기질과 오행의 균형에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-02",
+        "title": "나의 재능과 일하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar"
+          ]
+        },
+        "focus": "나의 재능과 일하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-03",
+        "title": "사랑할 때 드러나는 모습",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions",
+            "shinsal"
+          ]
+        },
+        "focus": "사랑할 때 드러나는 모습에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-04",
+        "title": "수입과 지출의 패턴",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions"
+          ]
+        },
+        "focus": "수입과 지출의 패턴에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-05",
+        "title": "끌림과 관계의 경계",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "shinsal",
+            "natalInteractions",
+            "tenGodsByPillar"
+          ]
+        },
+        "focus": "끌림과 관계의 경계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-06",
+        "title": "올해의 흐름과 주의할 조건",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "yearlyLuck",
+            "monthlyLuck"
+          ]
+        },
+        "focus": "올해의 흐름과 주의할 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-07",
+        "title": "소진되기 쉬운 패턴과 회복",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "strengthHeuristic"
+          ]
+        },
+        "focus": "소진되기 쉬운 패턴과 회복에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-08",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1192,
+        "targetChars": [
+          1408,
+          1841
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "saju_tuna",
+    "priceKRW": 10000,
+    "tier": "tuna",
+    "policy": {
+      "minimum": 20000,
+      "target": [
+        24000,
+        32000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "전문 근거",
+        "상충과 예외",
+        "조건별 해석",
+        "생활 사례",
+        "행동 계획",
+        "점검 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "tuna-01",
+        "title": "타고난 기질과 오행의 균형",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ]
+        },
+        "focus": "타고난 기질과 오행의 균형에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-02",
+        "title": "나의 재능과 일하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar"
+          ]
+        },
+        "focus": "나의 재능과 일하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-03",
+        "title": "사랑할 때 드러나는 모습",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions",
+            "shinsal"
+          ]
+        },
+        "focus": "사랑할 때 드러나는 모습에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-04",
+        "title": "수입과 지출의 패턴",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions"
+          ]
+        },
+        "focus": "수입과 지출의 패턴에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-05",
+        "title": "끌림과 관계의 경계",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "shinsal",
+            "natalInteractions",
+            "tenGodsByPillar"
+          ]
+        },
+        "focus": "끌림과 관계의 경계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-06",
+        "title": "올해의 흐름과 주의할 조건",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "yearlyLuck",
+            "monthlyLuck"
+          ]
+        },
+        "focus": "올해의 흐름과 주의할 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-07",
+        "title": "소진되기 쉬운 패턴과 회복",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "strengthHeuristic"
+          ]
+        },
+        "focus": "소진되기 쉬운 패턴과 회복에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-08",
+        "title": "용신·희신과 균형을 돕는 조건",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1848,
+        "targetChars": [
+          2217,
+          2956
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "usefulGod",
+            "jong",
+            "strengthHeuristic",
+            "pillarDetails"
+          ]
+        },
+        "focus": "용신·희신과 균형을 돕는 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-09",
+        "title": "현재 대운의 핵심 과제",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1848,
+        "targetChars": [
+          2217,
+          2956
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "majorLuck"
+          ]
+        },
+        "focus": "현재 대운의 핵심 과제에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-10",
+        "title": "다음 대운과 전환 준비",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1848,
+        "targetChars": [
+          2217,
+          2956
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "majorLuck"
+          ]
+        },
+        "focus": "다음 대운과 전환 준비에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-11",
+        "title": "대운·세운·원국이 만나는 지점",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1848,
+        "targetChars": [
+          2217,
+          2956
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "majorLuck",
+            "yearlyLuck",
+            "natalInteractions",
+            "advancedFactors"
+          ]
+        },
+        "focus": "대운·세운·원국이 만나는 지점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-12",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 1366,
+        "targetChars": [
+          1639,
+          2185
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "ziwei_mackerel",
+    "priceKRW": 1000,
+    "tier": "mackerel",
+    "policy": {
+      "minimum": 3000,
+      "target": [
+        3200,
+        4000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "계산 근거와 이유",
+        "생활 사례",
+        "첫 행동"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "mackerel-01",
+        "title": "명궁·신궁으로 보는 나",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "명궁·신궁으로 보는 나에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-02",
+        "title": "일에서 드러나는 강점",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[관록궁]"
+          ]
+        },
+        "focus": "일에서 드러나는 강점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-03",
+        "title": "가까운 관계의 방식",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[부부궁,복덕궁]"
+          ]
+        },
+        "focus": "가까운 관계의 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-04",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 663,
+        "targetChars": [
+          707,
+          884
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "ziwei_salmon",
+    "priceKRW": 3000,
+    "tier": "salmon",
+    "policy": {
+      "minimum": 6000,
+      "target": [
+        7000,
+        9000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "반복 원인",
+        "상황별 차이",
+        "생활 사례",
+        "실행"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "salmon-01",
+        "title": "명궁·신궁으로 보는 나",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "명궁·신궁으로 보는 나에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-02",
+        "title": "일에서 드러나는 강점",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[관록궁]"
+          ]
+        },
+        "focus": "일에서 드러나는 강점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-03",
+        "title": "가까운 관계의 방식",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[부부궁,복덕궁]"
+          ]
+        },
+        "focus": "가까운 관계의 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-04",
+        "title": "재물과 자원 관리",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[재백궁,전택궁]"
+          ]
+        },
+        "focus": "재물과 자원 관리에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-05",
+        "title": "도움을 주는 인연과 관계의 경계",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[형제궁,노복궁,천이궁]"
+          ]
+        },
+        "focus": "도움을 주는 인연과 관계의 경계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-06",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 872,
+        "targetChars": [
+          1018,
+          1308
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "ziwei_flounder",
+    "priceKRW": 5000,
+    "tier": "flounder",
+    "policy": {
+      "minimum": 11000,
+      "target": [
+        13000,
+        17000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "근거의 연결",
+        "강점과 부담",
+        "대안 비교",
+        "상황별 사례",
+        "선택 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "flounder-01",
+        "title": "명궁·신궁으로 보는 나",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "명궁·신궁으로 보는 나에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-02",
+        "title": "일에서 드러나는 강점",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[관록궁]"
+          ]
+        },
+        "focus": "일에서 드러나는 강점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-03",
+        "title": "가까운 관계의 방식",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[부부궁,복덕궁]"
+          ]
+        },
+        "focus": "가까운 관계의 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-04",
+        "title": "재물과 자원 관리",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[재백궁,전택궁]"
+          ]
+        },
+        "focus": "재물과 자원 관리에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-05",
+        "title": "도움을 주는 인연과 관계의 경계",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[형제궁,노복궁,천이궁]"
+          ]
+        },
+        "focus": "도움을 주는 인연과 관계의 경계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-06",
+        "title": "마음의 만족과 회복",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[복덕궁,질액궁]"
+          ]
+        },
+        "focus": "마음의 만족과 회복에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-07",
+        "title": "생활 기반과 환경을 대하는 태도",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[전택궁,복덕궁]"
+          ]
+        },
+        "focus": "생활 기반과 환경을 대하는 태도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-08",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1192,
+        "targetChars": [
+          1408,
+          1841
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "ziwei_tuna",
+    "priceKRW": 10000,
+    "tier": "tuna",
+    "policy": {
+      "minimum": 20000,
+      "target": [
+        24000,
+        32000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "전문 근거",
+        "상충과 예외",
+        "조건별 해석",
+        "생활 사례",
+        "행동 계획",
+        "점검 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "tuna-01",
+        "title": "명궁·신궁으로 보는 나",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "명궁·신궁으로 보는 나에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-02",
+        "title": "일에서 드러나는 강점",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[관록궁]"
+          ]
+        },
+        "focus": "일에서 드러나는 강점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-03",
+        "title": "가까운 관계의 방식",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[부부궁,복덕궁]"
+          ]
+        },
+        "focus": "가까운 관계의 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-04",
+        "title": "재물과 자원 관리",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[재백궁,전택궁]"
+          ]
+        },
+        "focus": "재물과 자원 관리에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-05",
+        "title": "도움을 주는 인연과 관계의 경계",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[형제궁,노복궁,천이궁]"
+          ]
+        },
+        "focus": "도움을 주는 인연과 관계의 경계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-06",
+        "title": "마음의 만족과 회복",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[복덕궁,질액궁]"
+          ]
+        },
+        "focus": "마음의 만족과 회복에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-07",
+        "title": "생활 기반과 환경을 대하는 태도",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1607,
+        "targetChars": [
+          1928,
+          2571
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[전택궁,복덕궁]"
+          ]
+        },
+        "focus": "생활 기반과 환경을 대하는 태도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-08",
+        "title": "삼방사정으로 연결하는 삶의 구조",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1848,
+        "targetChars": [
+          2217,
+          2956
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "sanFangSiZheng",
+            "palaces"
+          ]
+        },
+        "focus": "삼방사정으로 연결하는 삶의 구조에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-09",
+        "title": "사화가 만드는 기회와 부담",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1848,
+        "targetChars": [
+          2217,
+          2956
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "fourTransformations",
+            "sanFangSiZheng",
+            "palaces"
+          ]
+        },
+        "focus": "사화가 만드는 기회와 부담에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-10",
+        "title": "현재 대한과 다음 전환",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1848,
+        "targetChars": [
+          2217,
+          2956
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "majorLuck"
+          ]
+        },
+        "focus": "현재 대한과 다음 전환에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-11",
+        "title": "유년과 대한이 겹치는 과제",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1848,
+        "targetChars": [
+          2217,
+          2956
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "majorLuck",
+            "yearlyLuck",
+            "fourTransformations"
+          ]
+        },
+        "focus": "유년과 대한이 겹치는 과제에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-12",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 1366,
+        "targetChars": [
+          1639,
+          2185
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "sukuyo_mackerel",
+    "priceKRW": 1000,
+    "tier": "mackerel",
+    "policy": {
+      "minimum": 3000,
+      "target": [
+        3200,
+        4000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "계산 근거와 이유",
+        "생활 사례",
+        "첫 행동"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "mackerel-01",
+        "title": "본명숙의 기질",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "본명숙의 기질에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-02",
+        "title": "감정이 움직이는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "감정이 움직이는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-03",
+        "title": "관계의 기본 태도",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ]
+        },
+        "focus": "관계의 기본 태도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-04",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 663,
+        "targetChars": [
+          707,
+          884
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ],
+    "compatibilityChapters": [
+      {
+        "title": "두 사람의 기본 리듬",
+        "focus": "두 사람의 기본 리듬에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "관계 유형과 양방향 흐름",
+        "focus": "관계 유형과 양방향 흐름에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "서로 끌리는 구조",
+        "focus": "서로 끌리는 구조에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "지금의 선택과 실행 계획",
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "sukuyo_salmon",
+    "priceKRW": 3000,
+    "tier": "salmon",
+    "policy": {
+      "minimum": 6000,
+      "target": [
+        7000,
+        9000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "반복 원인",
+        "상황별 차이",
+        "생활 사례",
+        "실행"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "salmon-01",
+        "title": "본명숙의 기질",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "본명숙의 기질에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-02",
+        "title": "감정이 움직이는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "감정이 움직이는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-03",
+        "title": "관계의 기본 태도",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ]
+        },
+        "focus": "관계의 기본 태도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-04",
+        "title": "감정을 표현하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ]
+        },
+        "focus": "감정을 표현하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-05",
+        "title": "편안한 거리와 속도",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ]
+        },
+        "focus": "편안한 거리와 속도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-06",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 872,
+        "targetChars": [
+          1018,
+          1308
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ],
+    "compatibilityChapters": [
+      {
+        "title": "두 사람의 기본 리듬",
+        "focus": "두 사람의 기본 리듬에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "관계 유형과 양방향 흐름",
+        "focus": "관계 유형과 양방향 흐름에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "서로 끌리는 구조",
+        "focus": "서로 끌리는 구조에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "각자가 느끼는 역할과 기대",
+        "focus": "각자가 느끼는 역할과 기대에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "가까워지는 속도와 거리",
+        "focus": "가까워지는 속도와 거리에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "지금의 선택과 실행 계획",
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "sukuyo_flounder",
+    "priceKRW": 5000,
+    "tier": "flounder",
+    "policy": {
+      "minimum": 11000,
+      "target": [
+        13000,
+        17000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "근거의 연결",
+        "강점과 부담",
+        "대안 비교",
+        "상황별 사례",
+        "선택 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "flounder-01",
+        "title": "본명숙의 기질",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "본명숙의 기질에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-02",
+        "title": "감정이 움직이는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "감정이 움직이는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-03",
+        "title": "관계의 기본 태도",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ]
+        },
+        "focus": "관계의 기본 태도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-04",
+        "title": "감정을 표현하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ]
+        },
+        "focus": "감정을 표현하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-05",
+        "title": "편안한 거리와 속도",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ]
+        },
+        "focus": "편안한 거리와 속도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-06",
+        "title": "협력할 때의 강점",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "협력할 때의 강점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-07",
+        "title": "부담이 쌓이는 조건",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "부담이 쌓이는 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-08",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1192,
+        "targetChars": [
+          1408,
+          1841
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ],
+    "compatibilityChapters": [
+      {
+        "title": "두 사람의 기본 리듬",
+        "focus": "두 사람의 기본 리듬에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "관계 유형과 양방향 흐름",
+        "focus": "관계 유형과 양방향 흐름에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "서로 끌리는 구조",
+        "focus": "서로 끌리는 구조에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "각자가 느끼는 역할과 기대",
+        "focus": "각자가 느끼는 역할과 기대에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "가까워지는 속도와 거리",
+        "focus": "가까워지는 속도와 거리에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "갈등이 시작되는 지점",
+        "focus": "갈등이 시작되는 지점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "대화와 경계의 조율",
+        "focus": "대화와 경계의 조율에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "지금의 선택과 실행 계획",
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "sukuyo_tuna",
+    "priceKRW": 10000,
+    "tier": "tuna",
+    "policy": {
+      "minimum": 20000,
+      "target": [
+        24000,
+        32000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "전문 근거",
+        "상충과 예외",
+        "조건별 해석",
+        "생활 사례",
+        "행동 계획",
+        "점검 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "tuna-01",
+        "title": "본명숙의 기질",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 2031,
+        "targetChars": [
+          2437,
+          3249
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "본명숙의 기질에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-02",
+        "title": "감정이 움직이는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 2031,
+        "targetChars": [
+          2437,
+          3249
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "감정이 움직이는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-03",
+        "title": "관계의 기본 태도",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 2031,
+        "targetChars": [
+          2437,
+          3249
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ]
+        },
+        "focus": "관계의 기본 태도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-04",
+        "title": "감정을 표현하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 2031,
+        "targetChars": [
+          2437,
+          3249
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ]
+        },
+        "focus": "감정을 표현하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-05",
+        "title": "편안한 거리와 속도",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 2031,
+        "targetChars": [
+          2437,
+          3249
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ]
+        },
+        "focus": "편안한 거리와 속도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-06",
+        "title": "협력할 때의 강점",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 2031,
+        "targetChars": [
+          2437,
+          3249
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "협력할 때의 강점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-07",
+        "title": "부담이 쌓이는 조건",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 2031,
+        "targetChars": [
+          2437,
+          3249
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "부담이 쌓이는 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-08",
+        "title": "스트레스 때의 방어 반응",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 2031,
+        "targetChars": [
+          2437,
+          3249
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "distanceLabel"
+          ]
+        },
+        "focus": "스트레스 때의 방어 반응에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-09",
+        "title": "반복 패턴과 균형 회복",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 2031,
+        "targetChars": [
+          2437,
+          3249
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "반복 패턴과 균형 회복에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-10",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "sukuyo"
+        ],
+        "minimumChars": 1726,
+        "targetChars": [
+          2072,
+          2762
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ],
+    "compatibilityChapters": [
+      {
+        "title": "두 사람의 기본 리듬",
+        "focus": "두 사람의 기본 리듬에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "관계 유형과 양방향 흐름",
+        "focus": "관계 유형과 양방향 흐름에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "서로 끌리는 구조",
+        "focus": "서로 끌리는 구조에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "각자가 느끼는 역할과 기대",
+        "focus": "각자가 느끼는 역할과 기대에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "가까워지는 속도와 거리",
+        "focus": "가까워지는 속도와 거리에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "갈등이 시작되는 지점",
+        "focus": "갈등이 시작되는 지점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "대화와 경계의 조율",
+        "focus": "대화와 경계의 조율에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "반복 갈등과 회복 조건",
+        "focus": "반복 갈등과 회복 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "오래 함께하기 위한 합의",
+        "focus": "오래 함께하기 위한 합의에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "title": "지금의 선택과 실행 계획",
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "vedic_mackerel",
+    "priceKRW": 1000,
+    "tier": "mackerel",
+    "policy": {
+      "minimum": 3000,
+      "target": [
+        3200,
+        4000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "계산 근거와 이유",
+        "생활 사례",
+        "첫 행동"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "mackerel-01",
+        "title": "삶을 마주하는 태도",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "삶을 마주하는 태도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-02",
+        "title": "마음이 편안해지는 조건",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "마음이 편안해지는 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-03",
+        "title": "타고난 재능",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "타고난 재능에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-04",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 663,
+        "targetChars": [
+          707,
+          884
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "vedic_salmon",
+    "priceKRW": 3000,
+    "tier": "salmon",
+    "policy": {
+      "minimum": 6000,
+      "target": [
+        7000,
+        9000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "반복 원인",
+        "상황별 차이",
+        "생활 사례",
+        "실행"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "salmon-01",
+        "title": "삶을 마주하는 태도",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "삶을 마주하는 태도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-02",
+        "title": "마음이 편안해지는 조건",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "마음이 편안해지는 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-03",
+        "title": "타고난 재능",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "타고난 재능에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-04",
+        "title": "관계에서 원하는 것",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "관계에서 원하는 것에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-05",
+        "title": "돈과 자원을 대하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "돈과 자원을 대하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-06",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 872,
+        "targetChars": [
+          1018,
+          1308
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "vedic_flounder",
+    "priceKRW": 5000,
+    "tier": "flounder",
+    "policy": {
+      "minimum": 11000,
+      "target": [
+        13000,
+        17000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "근거의 연결",
+        "강점과 부담",
+        "대안 비교",
+        "상황별 사례",
+        "선택 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "flounder-01",
+        "title": "삶을 마주하는 태도",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "삶을 마주하는 태도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-02",
+        "title": "마음이 편안해지는 조건",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "마음이 편안해지는 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-03",
+        "title": "타고난 재능",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "타고난 재능에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-04",
+        "title": "관계에서 원하는 것",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "관계에서 원하는 것에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-05",
+        "title": "돈과 자원을 대하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "돈과 자원을 대하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-06",
+        "title": "역량이 살아나는 역할과 환경",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "역량이 살아나는 역할과 환경에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-07",
+        "title": "욕구와 책임 사이의 갈등",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "욕구와 책임 사이의 갈등에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-08",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1192,
+        "targetChars": [
+          1408,
+          1841
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "vedic_tuna",
+    "priceKRW": 10000,
+    "tier": "tuna",
+    "policy": {
+      "minimum": 20000,
+      "target": [
+        24000,
+        32000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "전문 근거",
+        "상충과 예외",
+        "조건별 해석",
+        "생활 사례",
+        "행동 계획",
+        "점검 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "tuna-01",
+        "title": "삶을 마주하는 태도",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1647,
+        "targetChars": [
+          1976,
+          2634
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "삶을 마주하는 태도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-02",
+        "title": "마음이 편안해지는 조건",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1647,
+        "targetChars": [
+          1976,
+          2634
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "마음이 편안해지는 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-03",
+        "title": "타고난 재능",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1647,
+        "targetChars": [
+          1976,
+          2634
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "타고난 재능에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-04",
+        "title": "관계에서 원하는 것",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1647,
+        "targetChars": [
+          1976,
+          2634
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "관계에서 원하는 것에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-05",
+        "title": "돈과 자원을 대하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1647,
+        "targetChars": [
+          1976,
+          2634
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "돈과 자원을 대하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-06",
+        "title": "역량이 살아나는 역할과 환경",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1647,
+        "targetChars": [
+          1976,
+          2634
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "역량이 살아나는 역할과 환경에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-07",
+        "title": "욕구와 책임 사이의 갈등",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1647,
+        "targetChars": [
+          1976,
+          2634
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "욕구와 책임 사이의 갈등에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-08",
+        "title": "현재 마하다샤의 과제",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1894,
+        "targetChars": [
+          2272,
+          3029
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "vimshottariDasha.currentMahadasha"
+          ]
+        },
+        "focus": "현재 마하다샤의 과제에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-09",
+        "title": "안타르다샤와 가까운 변화",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1647,
+        "targetChars": [
+          1976,
+          2634
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "vimshottariDasha.currentAntardasha"
+          ]
+        },
+        "focus": "안타르다샤와 가까운 변화에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-10",
+        "title": "요가의 성립 조건과 한계",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1647,
+        "targetChars": [
+          1976,
+          2634
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "yogas",
+            "planets"
+          ]
+        },
+        "focus": "요가의 성립 조건과 한계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-11",
+        "title": "분할 차트로 보완하는 해석",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1894,
+        "targetChars": [
+          2272,
+          3029
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "divisionalCharts",
+            "yogas",
+            "planets"
+          ]
+        },
+        "focus": "분할 차트로 보완하는 해석에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-12",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 1400,
+        "targetChars": [
+          1680,
+          2239
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "astrology_mackerel",
+    "priceKRW": 1000,
+    "tier": "mackerel",
+    "policy": {
+      "minimum": 3000,
+      "target": [
+        3200,
+        4000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "계산 근거와 이유",
+        "생활 사례",
+        "첫 행동"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "mackerel-01",
+        "title": "태양·달·상승점으로 보는 나",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "태양·달·상승점으로 보는 나에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-02",
+        "title": "감정과 안정감",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects"
+          ]
+        },
+        "focus": "감정과 안정감에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-03",
+        "title": "재능과 표현 방식",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Mercury",
+            "planets.Venus",
+            "aspects"
+          ]
+        },
+        "focus": "재능과 표현 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-04",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 663,
+        "targetChars": [
+          707,
+          884
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "astrology_salmon",
+    "priceKRW": 3000,
+    "tier": "salmon",
+    "policy": {
+      "minimum": 6000,
+      "target": [
+        7000,
+        9000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "반복 원인",
+        "상황별 차이",
+        "생활 사례",
+        "실행"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "salmon-01",
+        "title": "태양·달·상승점으로 보는 나",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "태양·달·상승점으로 보는 나에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-02",
+        "title": "감정과 안정감",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects"
+          ]
+        },
+        "focus": "감정과 안정감에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-03",
+        "title": "재능과 표현 방식",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Mercury",
+            "planets.Venus",
+            "aspects"
+          ]
+        },
+        "focus": "재능과 표현 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-04",
+        "title": "사랑과 친밀감",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Mars",
+            "aspects"
+          ]
+        },
+        "focus": "사랑과 친밀감에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-05",
+        "title": "말하고 이해하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1026,
+        "targetChars": [
+          1197,
+          1539
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Mercury",
+            "aspects"
+          ]
+        },
+        "focus": "말하고 이해하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-06",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 872,
+        "targetChars": [
+          1018,
+          1308
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "astrology_flounder",
+    "priceKRW": 5000,
+    "tier": "flounder",
+    "policy": {
+      "minimum": 11000,
+      "target": [
+        13000,
+        17000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "근거의 연결",
+        "강점과 부담",
+        "대안 비교",
+        "상황별 사례",
+        "선택 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "flounder-01",
+        "title": "태양·달·상승점으로 보는 나",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "태양·달·상승점으로 보는 나에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-02",
+        "title": "감정과 안정감",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects"
+          ]
+        },
+        "focus": "감정과 안정감에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-03",
+        "title": "재능과 표현 방식",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Mercury",
+            "planets.Venus",
+            "aspects"
+          ]
+        },
+        "focus": "재능과 표현 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-04",
+        "title": "사랑과 친밀감",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Mars",
+            "aspects"
+          ]
+        },
+        "focus": "사랑과 친밀감에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-05",
+        "title": "말하고 이해하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Mercury",
+            "aspects"
+          ]
+        },
+        "focus": "말하고 이해하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-06",
+        "title": "직업과 사회적 방향",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "midheaven",
+            "planets.Saturn",
+            "planets.Jupiter",
+            "houseCusps"
+          ]
+        },
+        "focus": "직업과 사회적 방향에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-07",
+        "title": "돈·가치관·공유 자원",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1402,
+        "targetChars": [
+          1657,
+          2166
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Jupiter",
+            "houseCusps"
+          ]
+        },
+        "focus": "돈·가치관·공유 자원에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-08",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1192,
+        "targetChars": [
+          1408,
+          1841
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "astrology_tuna",
+    "priceKRW": 10000,
+    "tier": "tuna",
+    "policy": {
+      "minimum": 20000,
+      "target": [
+        24000,
+        32000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "전문 근거",
+        "상충과 예외",
+        "조건별 해석",
+        "생활 사례",
+        "행동 계획",
+        "점검 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "tuna-01",
+        "title": "태양·달·상승점으로 보는 나",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1667,
+        "targetChars": [
+          2000,
+          2667
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "태양·달·상승점으로 보는 나에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-02",
+        "title": "감정과 안정감",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1667,
+        "targetChars": [
+          2000,
+          2667
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects"
+          ]
+        },
+        "focus": "감정과 안정감에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-03",
+        "title": "재능과 표현 방식",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1667,
+        "targetChars": [
+          2000,
+          2667
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Mercury",
+            "planets.Venus",
+            "aspects"
+          ]
+        },
+        "focus": "재능과 표현 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-04",
+        "title": "사랑과 친밀감",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1667,
+        "targetChars": [
+          2000,
+          2667
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Mars",
+            "aspects"
+          ]
+        },
+        "focus": "사랑과 친밀감에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-05",
+        "title": "말하고 이해하는 방식",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1667,
+        "targetChars": [
+          2000,
+          2667
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Mercury",
+            "aspects"
+          ]
+        },
+        "focus": "말하고 이해하는 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-06",
+        "title": "직업과 사회적 방향",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1667,
+        "targetChars": [
+          2000,
+          2667
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "midheaven",
+            "planets.Saturn",
+            "planets.Jupiter",
+            "houseCusps"
+          ]
+        },
+        "focus": "직업과 사회적 방향에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-07",
+        "title": "돈·가치관·공유 자원",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1667,
+        "targetChars": [
+          2000,
+          2667
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Jupiter",
+            "houseCusps"
+          ]
+        },
+        "focus": "돈·가치관·공유 자원에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-08",
+        "title": "긴장각과 반복되는 내적 갈등",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1917,
+        "targetChars": [
+          2300,
+          3067
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects",
+            "planets"
+          ]
+        },
+        "focus": "긴장각과 반복되는 내적 갈등에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-09",
+        "title": "조화각과 활용하지 못한 강점",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1667,
+        "targetChars": [
+          2000,
+          2667
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects",
+            "planets"
+          ]
+        },
+        "focus": "조화각과 활용하지 못한 강점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-10",
+        "title": "하우스의 강조점과 삶의 우선순위",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1667,
+        "targetChars": [
+          2000,
+          2667
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "houseCusps",
+            "planets"
+          ]
+        },
+        "focus": "하우스의 강조점과 삶의 우선순위에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-11",
+        "title": "안정과 변화 사이의 선택 조건",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1667,
+        "targetChars": [
+          2000,
+          2667
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects",
+            "planets"
+          ]
+        },
+        "focus": "안정과 변화 사이의 선택 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-12",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 1417,
+        "targetChars": [
+          1700,
+          2267
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "tarot_mackerel",
+    "priceKRW": 1000,
+    "tier": "mackerel",
+    "policy": {
+      "minimum": 3000,
+      "target": [
+        3200,
+        4000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "계산 근거와 이유",
+        "생활 사례",
+        "첫 행동"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "mackerel-01",
+        "title": "현재 질문의 핵심",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "현재 질문의 핵심에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-02",
+        "title": "카드가 이어지는 흐름",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "카드가 이어지는 흐름에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-03",
+        "title": "선택할 때 주의할 점",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 780,
+        "targetChars": [
+          832,
+          1039
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "선택할 때 주의할 점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "mackerel-04",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 663,
+        "targetChars": [
+          707,
+          884
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "tarot_salmon",
+    "priceKRW": 3000,
+    "tier": "salmon",
+    "policy": {
+      "minimum": 6000,
+      "target": [
+        7000,
+        9000
+      ],
+      "outputTokens": 4096,
+      "depth": [
+        "핵심 결론",
+        "반복 원인",
+        "상황별 차이",
+        "생활 사례",
+        "실행"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "salmon-01",
+        "title": "현재 질문의 핵심",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1238,
+        "targetChars": [
+          1444,
+          1856
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "현재 질문의 핵심에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-02",
+        "title": "카드가 이어지는 흐름",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1238,
+        "targetChars": [
+          1444,
+          1856
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "카드가 이어지는 흐름에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-03",
+        "title": "선택할 때 주의할 점",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1238,
+        "targetChars": [
+          1444,
+          1856
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "선택할 때 주의할 점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-04",
+        "title": "내가 원하는 것과 망설이는 이유",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1238,
+        "targetChars": [
+          1444,
+          1856
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "내가 원하는 것과 망설이는 이유에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "salmon-05",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1052,
+        "targetChars": [
+          1227,
+          1578
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "tarot_flounder",
+    "priceKRW": 5000,
+    "tier": "flounder",
+    "policy": {
+      "minimum": 11000,
+      "target": [
+        13000,
+        17000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "근거의 연결",
+        "강점과 부담",
+        "대안 비교",
+        "상황별 사례",
+        "선택 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "flounder-01",
+        "title": "현재 질문의 핵심",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1881,
+        "targetChars": [
+          2223,
+          2906
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "현재 질문의 핵심에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-02",
+        "title": "카드가 이어지는 흐름",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1881,
+        "targetChars": [
+          2223,
+          2906
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "카드가 이어지는 흐름에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-03",
+        "title": "선택할 때 주의할 점",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1881,
+        "targetChars": [
+          2223,
+          2906
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "선택할 때 주의할 점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-04",
+        "title": "내가 원하는 것과 망설이는 이유",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1881,
+        "targetChars": [
+          2223,
+          2906
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "내가 원하는 것과 망설이는 이유에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-05",
+        "title": "선택지별 가능성과 부담",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1881,
+        "targetChars": [
+          2223,
+          2906
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "선택지별 가능성과 부담에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "flounder-06",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 1599,
+        "targetChars": [
+          1889,
+          2471
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "tarot_tuna",
+    "priceKRW": 10000,
+    "tier": "tuna",
+    "policy": {
+      "minimum": 20000,
+      "target": [
+        24000,
+        32000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "전문 근거",
+        "상충과 예외",
+        "조건별 해석",
+        "생활 사례",
+        "행동 계획",
+        "점검 기준"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "tuna-01",
+        "title": "현재 질문의 핵심",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 2548,
+        "targetChars": [
+          3058,
+          4077
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "현재 질문의 핵심에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-02",
+        "title": "카드가 이어지는 흐름",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 2548,
+        "targetChars": [
+          3058,
+          4077
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "카드가 이어지는 흐름에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-03",
+        "title": "선택할 때 주의할 점",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 2548,
+        "targetChars": [
+          3058,
+          4077
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "선택할 때 주의할 점에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-04",
+        "title": "내가 원하는 것과 망설이는 이유",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 2548,
+        "targetChars": [
+          3058,
+          4077
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "내가 원하는 것과 망설이는 이유에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-05",
+        "title": "선택지별 가능성과 부담",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 2548,
+        "targetChars": [
+          3058,
+          4077
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "선택지별 가능성과 부담에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-06",
+        "title": "카드 사이의 상충과 다른 해석",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 2548,
+        "targetChars": [
+          3058,
+          4077
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "카드 사이의 상충과 다른 해석에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-07",
+        "title": "판단을 바꿀 현실의 신호",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 2548,
+        "targetChars": [
+          3058,
+          4077
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "판단을 바꿀 현실의 신호에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "tuna-08",
+        "title": "지금의 선택과 실행 계획",
+        "part": "나의 운세",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 2166,
+        "targetChars": [
+          2599,
+          3465
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "지금의 선택과 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "fusion_saju_ziwei",
+    "priceKRW": 20000,
+    "tier": "assorted",
+    "policy": {
+      "minimum": 36000,
+      "target": [
+        40000,
+        50000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "체계별 근거",
+        "일치와 상충",
+        "조건별 해석",
+        "생활 사례",
+        "선택 기준",
+        "점검 계획"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "assorted-01",
+        "title": "기질",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "기질에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-02",
+        "title": "내면과 행동",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "내면과 행동에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-03",
+        "title": "재능",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[관록궁]"
+          ]
+        },
+        "focus": "재능에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-04",
+        "title": "일하는 환경",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[관록궁]"
+          ]
+        },
+        "focus": "일하는 환경에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-05",
+        "title": "사회적 역할",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[관록궁]"
+          ]
+        },
+        "focus": "사회적 역할에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-06",
+        "title": "수입의 구조",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[재백궁,전택궁]"
+          ]
+        },
+        "focus": "수입의 구조에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-07",
+        "title": "지출과 자원 관리",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[재백궁,전택궁]"
+          ]
+        },
+        "focus": "지출과 자원 관리에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-08",
+        "title": "사랑의 표현",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions",
+            "shinsal"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[부부궁,복덕궁]"
+          ]
+        },
+        "focus": "사랑의 표현에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-09",
+        "title": "친밀감과 기대",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions",
+            "shinsal"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[부부궁,복덕궁]"
+          ]
+        },
+        "focus": "친밀감과 기대에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-10",
+        "title": "관계의 경계",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "shinsal",
+            "natalInteractions",
+            "tenGodsByPillar"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[형제궁,노복궁,천이궁]"
+          ]
+        },
+        "focus": "관계의 경계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-11",
+        "title": "협력과 인연",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[형제궁,노복궁,천이궁]"
+          ]
+        },
+        "focus": "협력과 인연에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-12",
+        "title": "소진과 회복",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[복덕궁,질액궁]"
+          ]
+        },
+        "focus": "소진과 회복에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-13",
+        "title": "용신과 균형",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 2263,
+        "targetChars": [
+          2514,
+          3143
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "usefulGod",
+            "jong",
+            "strengthHeuristic",
+            "pillarDetails"
+          ]
+        },
+        "focus": "용신과 균형에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-14",
+        "title": "현재 대운·대한",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 2263,
+        "targetChars": [
+          2514,
+          3143
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "majorLuck"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "majorLuck"
+          ]
+        },
+        "focus": "현재 대운·대한에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-15",
+        "title": "다음 전환",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 2263,
+        "targetChars": [
+          2514,
+          3143
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "majorLuck"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "majorLuck"
+          ]
+        },
+        "focus": "다음 전환에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-16",
+        "title": "세운·유년의 흐름",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "yearlyLuck",
+            "monthlyLuck"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "yearlyLuck",
+            "yearlyTimeline"
+          ]
+        },
+        "focus": "세운·유년의 흐름에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-17",
+        "title": "상충하는 해석과 판단 조건",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1968,
+        "targetChars": [
+          2186,
+          2733
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "상충하는 해석과 판단 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-18",
+        "title": "실행 우선순위",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "saju",
+          "ziwei"
+        ],
+        "minimumChars": 1673,
+        "targetChars": [
+          1858,
+          2323
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ]
+        },
+        "focus": "실행 우선순위에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "fusion_sukuyo_vedic",
+    "priceKRW": 20000,
+    "tier": "assorted",
+    "policy": {
+      "minimum": 36000,
+      "target": [
+        40000,
+        50000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "체계별 근거",
+        "일치와 상충",
+        "조건별 해석",
+        "생활 사례",
+        "선택 기준",
+        "점검 계획"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "assorted-01",
+        "title": "정서의 바탕",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "정서의 바탕에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-02",
+        "title": "관계의 욕구",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "관계의 욕구에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-03",
+        "title": "표현 방식",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "표현 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-04",
+        "title": "편안한 거리",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "편안한 거리에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-05",
+        "title": "끌림의 조건",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "끌림의 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-06",
+        "title": "역할과 기대",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "역할과 기대에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-07",
+        "title": "가까워지는 속도",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "가까워지는 속도에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-08",
+        "title": "갈등의 시작",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "갈등의 시작에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-09",
+        "title": "방어 반응",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "방어 반응에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-10",
+        "title": "회복의 방식",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "회복의 방식에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-11",
+        "title": "협력의 조건",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "협력의 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-12",
+        "title": "일과 책임",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "일과 책임에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-13",
+        "title": "자원 관리",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ]
+        },
+        "focus": "자원 관리에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-14",
+        "title": "현재 다샤",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 2281,
+        "targetChars": [
+          2535,
+          3169
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "vimshottariDasha.currentMahadasha"
+          ]
+        },
+        "focus": "현재 다샤에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-15",
+        "title": "하위 기간의 과제",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "vimshottariDasha.currentAntardasha"
+          ]
+        },
+        "focus": "하위 기간의 과제에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-16",
+        "title": "다음 전환",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 2281,
+        "targetChars": [
+          2535,
+          3169
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "vimshottariDasha.periods"
+          ]
+        },
+        "focus": "다음 전환에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-17",
+        "title": "체계별 차이와 한계",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1984,
+        "targetChars": [
+          2204,
+          2755
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "체계별 차이와 한계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-18",
+        "title": "실행 우선순위",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "sukuyo",
+          "vedic"
+        ],
+        "minimumChars": 1686,
+        "targetChars": [
+          1874,
+          2342
+        ],
+        "factSelectors": {
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ]
+        },
+        "focus": "실행 우선순위에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "fusion_astrology_tarot",
+    "priceKRW": 20000,
+    "tier": "assorted",
+    "policy": {
+      "minimum": 36000,
+      "target": [
+        40000,
+        50000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "체계별 근거",
+        "일치와 상충",
+        "조건별 해석",
+        "생활 사례",
+        "선택 기준",
+        "점검 계획"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "assorted-01",
+        "title": "타고난 성향",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "타고난 성향에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-02",
+        "title": "현재 질문",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "현재 질문에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-03",
+        "title": "감정과 안정감",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "감정과 안정감에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-04",
+        "title": "내가 원하는 것",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "내가 원하는 것에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-05",
+        "title": "소통",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Mercury",
+            "aspects"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "소통에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-06",
+        "title": "친밀감",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Mars",
+            "aspects"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "친밀감에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-07",
+        "title": "관계 경계",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "관계 경계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-08",
+        "title": "반복 갈등",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "반복 갈등에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-09",
+        "title": "재능",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Mercury",
+            "planets.Venus",
+            "aspects"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "재능에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-10",
+        "title": "일과 역할",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "midheaven",
+            "planets.Saturn",
+            "planets.Jupiter",
+            "houseCusps"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "일과 역할에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-11",
+        "title": "가치와 자원",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Jupiter",
+            "houseCusps"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "가치와 자원에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-12",
+        "title": "안정과 변화",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects",
+            "planets"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "안정과 변화에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-13",
+        "title": "망설임",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "망설임에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-14",
+        "title": "선택지 비교",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "선택지 비교에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-15",
+        "title": "상충하는 신호",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "상충하는 신호에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-16",
+        "title": "확인할 현실 신호",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "확인할 현실 신호에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-17",
+        "title": "선택을 수정할 조건",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2017,
+        "targetChars": [
+          2241,
+          2802
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "선택을 수정할 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "assorted-18",
+        "title": "실행 우선순위",
+        "part": "서로 다른 관점으로 읽는 나",
+        "systems": [
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 1715,
+        "targetChars": [
+          1905,
+          2381
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "실행 우선순위에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  },
+  {
+    "productId": "fusion_all",
+    "priceKRW": 30000,
+    "tier": "omakase",
+    "policy": {
+      "minimum": 60000,
+      "target": [
+        65000,
+        80000
+      ],
+      "outputTokens": 8192,
+      "depth": [
+        "분야별 근거",
+        "근거의 연결과 한계",
+        "다른 가능성",
+        "조건별 사례",
+        "우선순위",
+        "실행과 점검"
+      ]
+    },
+    "chapters": [
+      {
+        "id": "omakase-01",
+        "title": "기질과 삶의 중심",
+        "part": "나를 이해하기",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ],
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "기질과 삶의 중심에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-02",
+        "title": "겉모습과 내면",
+        "part": "나를 이해하기",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ],
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "겉모습과 내면에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-03",
+        "title": "감정과 안정감",
+        "part": "나를 이해하기",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ],
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects"
+          ]
+        },
+        "focus": "감정과 안정감에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-04",
+        "title": "타고난 재능",
+        "part": "나를 이해하기",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[관록궁]"
+          ],
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Mercury",
+            "planets.Venus",
+            "aspects"
+          ]
+        },
+        "focus": "타고난 재능에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-05",
+        "title": "반복 선택과 갈등",
+        "part": "나를 이해하기",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ],
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "반복 선택과 갈등에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-06",
+        "title": "끌림과 표현",
+        "part": "사랑과 사람",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions",
+            "shinsal"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[부부궁,복덕궁]"
+          ],
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Mars",
+            "aspects"
+          ]
+        },
+        "focus": "끌림과 표현에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-07",
+        "title": "친밀감과 기대",
+        "part": "사랑과 사람",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions",
+            "shinsal"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[부부궁,복덕궁]"
+          ],
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Mars",
+            "aspects"
+          ]
+        },
+        "focus": "친밀감과 기대에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-08",
+        "title": "갈등·질투·경계",
+        "part": "사랑과 사람",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "shinsal",
+            "natalInteractions",
+            "tenGodsByPillar"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[형제궁,노복궁,천이궁]"
+          ],
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "갈등·질투·경계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-09",
+        "title": "오래 편안한 관계",
+        "part": "사랑과 사람",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions",
+            "shinsal"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[부부궁,복덕궁]"
+          ],
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Mars",
+            "aspects"
+          ]
+        },
+        "focus": "오래 편안한 관계에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-10",
+        "title": "귀인과 협력",
+        "part": "사랑과 사람",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[형제궁,노복궁,천이궁]"
+          ],
+          "sukuyo": [
+            "personA",
+            "personB",
+            "relation",
+            "forwardDistance",
+            "reverseDistance",
+            "distanceLabel"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "귀인과 협력에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-11",
+        "title": "적성과 역할",
+        "part": "일과 돈",
+        "systems": [
+          "saju",
+          "ziwei",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[관록궁]"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "midheaven",
+            "planets.Saturn",
+            "planets.Jupiter",
+            "houseCusps"
+          ]
+        },
+        "focus": "적성과 역할에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-12",
+        "title": "역량이 살아나는 환경",
+        "part": "일과 돈",
+        "systems": [
+          "saju",
+          "ziwei",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[관록궁]"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "midheaven",
+            "planets.Saturn",
+            "planets.Jupiter",
+            "houseCusps"
+          ]
+        },
+        "focus": "역량이 살아나는 환경에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-13",
+        "title": "수입의 구조",
+        "part": "일과 돈",
+        "systems": [
+          "saju",
+          "ziwei",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[재백궁,전택궁]"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Jupiter",
+            "houseCusps"
+          ]
+        },
+        "focus": "수입의 구조에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-14",
+        "title": "지출과 손실",
+        "part": "일과 돈",
+        "systems": [
+          "saju",
+          "ziwei",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[재백궁,전택궁]"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Jupiter",
+            "houseCusps"
+          ]
+        },
+        "focus": "지출과 손실에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-15",
+        "title": "확장과 안정",
+        "part": "일과 돈",
+        "systems": [
+          "saju",
+          "ziwei",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "tenGodsByPillar",
+            "natalInteractions"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[재백궁,전택궁]"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "planets",
+            "houses"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "planets.Venus",
+            "planets.Jupiter",
+            "houseCusps"
+          ]
+        },
+        "focus": "확장과 안정에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-16",
+        "title": "소진과 회복",
+        "part": "균형과 전문 해석",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[복덕궁,질액궁]"
+          ],
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "소진과 회복에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-17",
+        "title": "생활 기반과 마음의 여유",
+        "part": "균형과 전문 해석",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "palaces[전택궁,복덕궁]"
+          ],
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ]
+        },
+        "focus": "생활 기반과 마음의 여유에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-18",
+        "title": "용신과 균형",
+        "part": "균형과 전문 해석",
+        "systems": [
+          "saju"
+        ],
+        "minimumChars": 2401,
+        "targetChars": [
+          2601,
+          3201
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "usefulGod",
+            "jong",
+            "strengthHeuristic",
+            "pillarDetails"
+          ]
+        },
+        "focus": "용신과 균형에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-19",
+        "title": "자미두수의 궁과 사화",
+        "part": "균형과 전문 해석",
+        "systems": [
+          "ziwei"
+        ],
+        "minimumChars": 2401,
+        "targetChars": [
+          2601,
+          3201
+        ],
+        "factSelectors": {
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "fourTransformations",
+            "sanFangSiZheng",
+            "palaces"
+          ]
+        },
+        "focus": "자미두수의 궁과 사화에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-20",
+        "title": "베다의 요가와 보조 차트",
+        "part": "균형과 전문 해석",
+        "systems": [
+          "vedic"
+        ],
+        "minimumChars": 2401,
+        "targetChars": [
+          2601,
+          3201
+        ],
+        "factSelectors": {
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "divisionalCharts",
+            "yogas",
+            "planets"
+          ]
+        },
+        "focus": "베다의 요가와 보조 차트에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-21",
+        "title": "점성술의 핵심 각",
+        "part": "균형과 전문 해석",
+        "systems": [
+          "astrology"
+        ],
+        "minimumChars": 2401,
+        "targetChars": [
+          2601,
+          3201
+        ],
+        "factSelectors": {
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon",
+            "aspects",
+            "planets"
+          ]
+        },
+        "focus": "점성술의 핵심 각에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-22",
+        "title": "현재 대운·대한·다샤",
+        "part": "시기와 선택",
+        "systems": [
+          "saju",
+          "ziwei",
+          "vedic"
+        ],
+        "minimumChars": 2401,
+        "targetChars": [
+          2601,
+          3201
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "majorLuck"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "majorLuck"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "vimshottariDasha.currentMahadasha"
+          ]
+        },
+        "focus": "현재 대운·대한·다샤에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-23",
+        "title": "다음 전환",
+        "part": "시기와 선택",
+        "systems": [
+          "saju",
+          "ziwei",
+          "vedic"
+        ],
+        "minimumChars": 2401,
+        "targetChars": [
+          2601,
+          3201
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "majorLuck"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "majorLuck"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "vimshottariDasha.periods"
+          ]
+        },
+        "focus": "다음 전환에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-24",
+        "title": "올해와 가까운 기간",
+        "part": "시기와 선택",
+        "systems": [
+          "saju",
+          "ziwei",
+          "vedic"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "yearlyLuck",
+            "monthlyLuck"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]",
+            "yearlyLuck",
+            "yearlyTimeline"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun",
+            "vimshottariDasha.currentAntardasha"
+          ]
+        },
+        "focus": "올해와 가까운 기간에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-25",
+        "title": "지금의 고민에 대한 타로",
+        "part": "시기와 선택",
+        "systems": [
+          "tarot"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "지금의 고민에 대한 타로에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-26",
+        "title": "선택지별 가능성과 부담",
+        "part": "시기와 선택",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ],
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards",
+            "reading"
+          ]
+        },
+        "focus": "선택지별 가능성과 부담에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-27",
+        "title": "공통점·차이와 판단 조건",
+        "part": "종합 결론",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 2087,
+        "targetChars": [
+          2261,
+          2783
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ],
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "공통점·차이와 판단 조건에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      },
+      {
+        "id": "omakase-28",
+        "title": "우선순위와 실행 계획",
+        "part": "종합 결론",
+        "systems": [
+          "saju",
+          "ziwei",
+          "sukuyo",
+          "vedic",
+          "astrology",
+          "tarot"
+        ],
+        "minimumChars": 1774,
+        "targetChars": [
+          1922,
+          2366
+        ],
+        "factSelectors": {
+          "saju": [
+            "dayMaster",
+            "pillars",
+            "seasonalBalance",
+            "fiveElements",
+            "tenGods",
+            "pillarDetails",
+            "strengthHeuristic"
+          ],
+          "ziwei": [
+            "lifePalace",
+            "bodyPalace",
+            "palaces[명궁]"
+          ],
+          "sukuyo": [
+            "personA"
+          ],
+          "vedic": [
+            "lagna",
+            "moon",
+            "sun"
+          ],
+          "astrology": [
+            "ascendant",
+            "planets.Sun",
+            "planets.Moon"
+          ],
+          "tarot": [
+            "spreadId",
+            "cards"
+          ]
+        },
+        "focus": "우선순위와 실행 계획에서 사용자가 이해해야 할 원인과 선택 조건은 무엇인가? 상담 주제 'general'와 관련된 상황을 우선하되 이 장의 질문을 벗어나지 않는다."
+      }
+    ]
+  }
+]

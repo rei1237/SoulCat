@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-09-12T20:33:43.791Z",
+  "secretPrinted": false,
+  "syntheticDate": true,
+  "proof": [
+    {
+      "method": "getLunCalInfo",
+      "ok": true,
+      "source": "kasi",
+      "rows": 1
+    },
+    {
+      "method": "get24DivisionsInfo",
+      "ok": true,
+      "source": "local",
+      "rows": 24
+    }
+  ]
+}

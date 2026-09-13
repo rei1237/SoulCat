@@ -1,0 +1,52 @@
+[
+  {
+    "width": 390,
+    "tier": "mackerel",
+    "blocks": true,
+    "resume": true,
+    "overflow": false,
+    "axe": 0,
+    "firstChapterChars": 1516
+  },
+  {
+    "width": 390,
+    "tier": "tuna",
+    "blocks": true,
+    "resume": true,
+    "overflow": false,
+    "axe": 0,
+    "firstChapterChars": 2632
+  },
+  {
+    "width": 390,
+    "room": true,
+    "ownedResult": true,
+    "mock": true,
+    "axe": 0
+  },
+  {
+    "width": 1280,
+    "tier": "mackerel",
+    "blocks": true,
+    "resume": true,
+    "overflow": false,
+    "axe": 0,
+    "firstChapterChars": 1516
+  },
+  {
+    "width": 1280,
+    "tier": "tuna",
+    "blocks": true,
+    "resume": true,
+    "overflow": false,
+    "axe": 0,
+    "firstChapterChars": 2632
+  },
+  {
+    "width": 1280,
+    "room": true,
+    "ownedResult": true,
+    "mock": true,
+    "axe": 0
+  }
+]

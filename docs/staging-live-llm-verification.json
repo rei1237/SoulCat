@@ -1,0 +1,102 @@
+{
+  "at": "2026-09-13T01:21:59.929Z",
+  "scope": "Remote staging fictional mackerel 5-chapter orders only; no PG charge",
+  "runs": [
+    {
+      "at": "2026-09-13T01:11:13.377Z",
+      "scope": "Remote staging D1 + queue; fictional mackerel order, no PG payment",
+      "request": {
+        "status": "SUCCEEDED",
+        "failure_code": null,
+        "provider": "gemini",
+        "model": "gemini-2.5-flash"
+      },
+      "cost": {
+        "calls": 6,
+        "estimated_krw": 89.0412,
+        "unresolved": 0,
+        "unit": "application estimate KRW, not invoice",
+        "fxCeiling": 2000,
+        "inputUsdPerMillion": 0.3,
+        "outputUsdPerMillion": 2.5
+      },
+      "chapters": [
+        {
+          "chapter_id": "mackerel-01",
+          "status": "completed",
+          "attempts": 3
+        },
+        {
+          "chapter_id": "mackerel-02",
+          "status": "completed",
+          "attempts": 1
+        },
+        {
+          "chapter_id": "mackerel-03",
+          "status": "completed",
+          "attempts": 1
+        },
+        {
+          "chapter_id": "mackerel-04",
+          "status": "completed",
+          "attempts": 1
+        },
+        {
+          "chapter_id": "mackerel-05",
+          "status": "completed",
+          "attempts": 2
+        }
+      ],
+      "recovery": "Two pre-generation count failures had no reservation; four completed chapters preserved; invalid evidence in chapter five rejected; only fifth chapter regenerated after strict schema enum fix",
+      "liveVersion": "028ba4b7-5ef8-44bc-aacb-fe2126aee2ad"
+    },
+    {
+      "requestId": "15291125-c911-4a83-98bc-506e993503e2",
+      "status": "SUCCEEDED",
+      "chapters": [
+        {
+          "chapter_id": "mackerel-01",
+          "status": "completed",
+          "attempts": 1
+        },
+        {
+          "chapter_id": "mackerel-02",
+          "status": "completed",
+          "attempts": 1
+        },
+        {
+          "chapter_id": "mackerel-03",
+          "status": "completed",
+          "attempts": 1
+        },
+        {
+          "chapter_id": "mackerel-04",
+          "status": "completed",
+          "attempts": 1
+        },
+        {
+          "chapter_id": "mackerel-05",
+          "status": "completed",
+          "attempts": 1
+        }
+      ],
+      "cost": {
+        "request_id": "15291125-c911-4a83-98bc-506e993503e2",
+        "calls": 5,
+        "estimated_krw": 73.4588,
+        "unresolved": 0
+      },
+      "liveVersion": "e67a2473-5743-4e8e-9c09-fc91240a5ffb"
+    }
+  ],
+  "totalEstimatedKrw": 162.5,
+  "unresolvedReservations": 0,
+  "pricing": "Application estimate, not invoice; USD/KRW 2000, input 0.30/output incl thinking 2.50 per million",
+  "quality": "Examples now use different scenes; summaries and analysis still repeat responsibility/perfectionism and workplace framing. Editorial quality gate remains open; not approved for sales.",
+  "restored": {
+    "provider": "mock",
+    "allowLiveLLM": false,
+    "paymentsEnabled": false,
+    "workerVersion": "63f9d6ef-739a-4c85-b3cd-f9cde6c86d5c"
+  }
+}

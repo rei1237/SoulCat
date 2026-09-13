@@ -34,7 +34,7 @@ for (const [id, d] of Object.entries(domains)) {
     assert.ok(result.sections.length >= 6);
     const other = await d.calculate({
       ...input,
-      personA: { ...input.personA, birthDate: "1985-01-02" },
+      personA: { ...input.personA!, birthDate: "1985-01-02" },
     });
     assert.notDeepEqual(other.facts, c.facts);
   });

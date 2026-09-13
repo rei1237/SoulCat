@@ -1,0 +1,48 @@
+{
+  "at": "2026-09-13T00:55:40.094Z",
+  "scope": "Remote staging D1 + queue; fictional paid fixtures, no PG",
+  "results": [
+    {
+      "product_id": "saju_tuna",
+      "status": "SUCCEEDED",
+      "total": 70,
+      "completed": 70,
+      "attempts": 70
+    },
+    {
+      "product_id": "saju_salmon",
+      "status": "SUCCEEDED",
+      "total": 13,
+      "completed": 13,
+      "attempts": 13
+    },
+    {
+      "product_id": "saju_mackerel",
+      "status": "SUCCEEDED",
+      "total": 5,
+      "completed": 5,
+      "attempts": 5
+    },
+    {
+      "product_id": "fusion_saju_ziwei",
+      "status": "SUCCEEDED",
+      "total": 80,
+      "completed": 80,
+      "attempts": 80
+    },
+    {
+      "product_id": "fusion_all",
+      "status": "SUCCEEDED",
+      "total": 120,
+      "completed": 120,
+      "attempts": 120
+    },
+    {
+      "product_id": "saju_flounder",
+      "status": "SUCCEEDED",
+      "total": 30,
+      "completed": 30,
+      "attempts": 30
+    }
+  ]
+}

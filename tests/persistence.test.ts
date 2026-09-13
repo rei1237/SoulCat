@@ -10,7 +10,7 @@ import { handleApi } from "../server/api";
 import type { Database, Statement } from "../server/db/types";
 function setup() {
   const sqlite = new DatabaseSync(":memory:");
-  sqlite.exec(fs.readFileSync("server/db/migrations/0001_fortune.sql", "utf8"));
+  for (const file of fs.readdirSync('server/db/migrations').filter(f=>f.endsWith('.sql')).sort()) sqlite.exec(fs.readFileSync(`server/db/migrations/${file}`, 'utf8'));
   class SqlStatement implements Statement {
     values: unknown[] = [];
     constructor(public sql: string) {}
