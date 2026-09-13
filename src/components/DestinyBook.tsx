@@ -1,4 +1,5 @@
 "use client";
+import { referralHref } from "../lib/service-links";
 import { useEffect, useState, useRef } from "react";
 import { Search, Share2, Check, BookOpen, ArrowDownToLine } from "lucide-react";
 import ChartTabs from "./ChartTabs";
@@ -221,8 +222,9 @@ export default function DestinyBook({ initial }: { initial: BookView }) {
         </section>
       </div>
       {book.retryable&&<button onClick={()=>api('fortune/retry',{requestId:book.id}).catch(e=>setError(e.message))}>구매한 운명서 생성 이어가기</button>}
+      <p className="service-referral">다른 고민도 함께 풀어볼까? <a href={referralHref("reading-result")}>Code Destiny의 사주·타로·궁합 둘러보기 →</a></p>
       <BookShare id={book.id} completed={book.status==='SUCCEEDED'}/>
-      {!!book.locked?.length&&<details className="reader-upgrade"><summary>다른 상담 구성 살펴보기</summary><p>상위 상품은 별도 구매예요. 선택하기 전에 전체 구성과 가격을 확인해 주세요.</p><a href={`/fortune/?domain=${book.chart.domain}`}>생선별 상담 구성과 가격 보기</a><ul>{book.locked.map(c=><li key={c.title}>{c.title} · {c.tier}</li>)}</ul></details>}
+      {!!book.locked?.length&&<details className="reader-upgrade"><summary>다른 상담 구성 살펴보기</summary><p>상위 상품은 별도 구매예요. 선택하기 전에 전체 구성과 가격을 확인해 주세요.</p><a href={`/yeongnyangi/fortune/?domain=${book.chart.domain}`}>생선별 상담 구성과 가격 보기</a><ul>{book.locked.map(c=><li key={c.title}>{c.title} · {c.tier}</li>)}</ul></details>}
     </article>
   );
 }

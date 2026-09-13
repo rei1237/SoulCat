@@ -24,8 +24,8 @@ export function readTicket(storage:Storage,paymentId:string,orderId:string,now=D
     const t=JSON.parse(storage.getItem(key)||'null') as Ticket|null;
     if(!t) return null;
     if(!Number.isFinite(t.createdAt)||t.createdAt>now||now-t.createdAt>86400000){storage.removeItem(key);return null;}
-    if(t.paymentId!==paymentId||t.orderId!==orderId||t.returnPath!==safeReturnPath(t.returnPath)||t.generation!=='pending')return null;
-    return t;
+    if(t.paymentId!==paymentId||t.orderId!==orderId||t.generation!=='pending')return null;
+    return {...t,returnPath:safeReturnPath(t.returnPath)};
   }catch{return null;}
 }
 const inFlight=new Map<string,Promise<any>>();

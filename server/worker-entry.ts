@@ -55,7 +55,9 @@ export async function renderShare(
     renderer.free();
   }
 }
-function provider(env: EdgeEnv, requestId: string) {
+async function provider(env: EdgeEnv, requestId: string) {
+  const liveOrder = await env.DB?.prepare("SELECT o.id FROM fortune_requests r JOIN entitlements e ON e.id=r.entitlement_id JOIN orders o ON o.id=e.order_id WHERE r.id=? AND o.staging_validation_run IS NOT NULL").bind(requestId).first();
+  if (liveOrder && (env.LLM_PROVIDER !== 'gemini' || env.ALLOW_LIVE_LLM !== 'true')) throw new Error('LIVE_LLM_DISABLED');
   if(env.APP_ENV==='production' && (env.LLM_PROVIDER!=='gemini'||env.ALLOW_LIVE_LLM!=='true'))throw new Error('LIVE_LLM_DISABLED');
   return (env.LLM_PROVIDER || "mock") === "mock"
     ? new MockChapterProvider()
@@ -80,7 +82,7 @@ export default {
     if (!env.DB || !env.BOOK_QUEUE) throw new Error("BOOK_STORAGE_UNAVAILABLE");
     for (const message of batch.messages) {
       try {
-        await runBookStep(env.DB, message.body.requestId, provider(env,message.body.requestId));
+        await runBookStep(env.DB, message.body.requestId, await provider(env,message.body.requestId));
         message.ack();
       } catch {
         message.retry();

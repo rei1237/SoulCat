@@ -12,7 +12,8 @@ await writeFile(`${output}/version.json`, JSON.stringify({ ...sourceRelease(), s
 await writeFile(`${output}/_headers`, [
   "/*",
   "  X-Content-Type-Options: nosniff",
-  "/library/*",
+  "  X-Robots-Tag: noindex, nofollow",
+  "/yeongnyangi/library/*",
   "  X-Robots-Tag: noindex, nofollow",
   "/share/*",
   "  X-Robots-Tag: noindex, nofollow",

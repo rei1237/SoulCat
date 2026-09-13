@@ -1,3 +1,4 @@
+import { referralHref } from "@/lib/service-links";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { domainEntries } from "@/data/domain-registry";
@@ -38,7 +39,7 @@ export default async function SeoLandingPage({ params }: PageProps) {
               <a className="primary-cta" href={route.ctaHref}>
                 {route.ctaLabel}
               </a>
-              <a className="outlined-cta" href="/">
+              <a className="outlined-cta" href="/yeongnyangi/">
                 영냥이 홈으로
               </a>
             </div>
@@ -102,7 +103,7 @@ export default async function SeoLandingPage({ params }: PageProps) {
           <a className="primary-cta" href={route.ctaHref}>
             {route.ctaLabel}
           </a>
-          <a className="outlined-cta" href="/fortune/">
+          <a className="outlined-cta" href="/yeongnyangi/fortune/">
             운세 전체 보기
           </a>
         </div>
@@ -126,7 +127,7 @@ export default async function SeoLandingPage({ params }: PageProps) {
         <h2 id="seo-domains-title">영냥이가 보는 운세 체계</h2>
         <div>
           {domainEntries.map((entry) => (
-            <a key={entry.domain} href={`/${entry.slug}/`}>
+            <a key={entry.domain} href={`/yeongnyangi/${entry.slug}/`}>
               <span>{entry.label}</span>
               <small>{entry.shortDescription}</small>
             </a>
@@ -134,6 +135,7 @@ export default async function SeoLandingPage({ params }: PageProps) {
         </div>
       </section>
 
+      <p className="service-referral">더 다양한 고민이 있다면 <a href={referralHref("fortune-intro")}>Code Destiny에서 사주·타로·궁합 둘러보기 →</a></p>
       <section className="seo-faq" aria-labelledby="seo-faq-title">
         <h2 id="seo-faq-title">자주 묻는 질문</h2>
         {route.faq.map((item) => (

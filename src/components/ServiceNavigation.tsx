@@ -1,16 +1,18 @@
 "use client";
+import SessionControls from './SessionControls';
 import { useEffect, useState } from "react";
 import { Mail, MapPin, PawPrint, ShieldCheck, Sparkles } from "lucide-react";
 import { ggulggulFortuneHref, legalLinks, loginHref, mainServiceLinks } from "@/lib/service-links";
 
 export default function ServiceNavigation() {
-  const [login, setLogin] = useState(loginHref("/fortune/"));
-  const [ggulggul, setGgulggul] = useState(ggulggulFortuneHref("/fortune/"));
+  const [login, setLogin] = useState(loginHref("/yeongnyangi/fortune/"));
+  const [ggulggul, setGgulggul] = useState(ggulggulFortuneHref("/yeongnyangi/fortune/"));
   useEffect(() => {
     setLogin(loginHref(window.location.pathname + window.location.search));
-    setGgulggul(ggulggulFortuneHref("/fortune/"));
+    setGgulggul(ggulggulFortuneHref("/yeongnyangi/fortune/"));
   }, []);
   return <footer className="service-navigation">
+    <SessionControls />
     <div className="service-navigation__brand">
       <span className="service-navigation__avatar" aria-hidden="true">
         <img src="/_soulcat/assets/avatar.webp" width="54" height="44" alt="" loading="lazy" decoding="async" />

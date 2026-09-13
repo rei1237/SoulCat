@@ -1,4 +1,5 @@
 "use client";
+import { packages } from "../../server/payments/catalog";
 import FishCatalog from "./FishCatalog";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
@@ -32,7 +33,7 @@ import {
   recommendations,
   services,
 } from "@/data/home";
-import { ggulggulFortuneHref, socialLoginHref, type SocialProvider } from "@/lib/service-links";
+import { ggulggulFortuneHref, loginHref, socialLoginHref, type SocialProvider } from "@/lib/service-links";
 
 type Panel =
   | "auth"
@@ -115,7 +116,7 @@ export default function FortuneHome() {
   const reactionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const selectedConcern = concerns.find((item) => item.id === concern);
   const service = services.find((item) => item.id === serviceId) || services[0];
-  const returnTo = typeof window === "undefined" ? "/fortune/" : window.location.pathname + window.location.search;
+  const returnTo = typeof window === "undefined" ? "/yeongnyangi/fortune/" : window.location.pathname + window.location.search;
   const socialProviders: { id: SocialProvider; label: string }[] = [
     { id: "google", label: "Google" },
     { id: "naver", label: "네이버" },
@@ -181,7 +182,7 @@ export default function FortuneHome() {
     openPanel("service");
   }
   function navigate(id: string) {
-    if (id === "chat") { window.location.assign("/room/"); return; }
+    if (id === "chat") { window.location.assign("/yeongnyangi/room/"); return; }
     if (id === "home" || id === "readings") {
       closePanel();
       setActiveNav(id);
@@ -194,7 +195,7 @@ export default function FortuneHome() {
         });
     } else {
       setActiveNav(id);
-      if(id==="cat")window.location.assign("/room/#daily");else openPanel("library");
+      if(id==="cat")window.location.assign("/yeongnyangi/room/#daily");else window.location.assign("/yeongnyangi/library/");
     }
   }
   function petCat() {
@@ -227,7 +228,7 @@ export default function FortuneHome() {
           </a>
           <nav className="desktop-nav" aria-label="주 메뉴">
             <a href="#readings">운세 골라보기</a>
-            <button onClick={() => window.location.assign("/room/")}>영냥이의 방</button>
+            <button onClick={() => window.location.assign("/yeongnyangi/room/")}>영냥이의 방</button>
             <a href="#recommendations">영냥이 추천</a>
           </nav>
           <div className="header-actions">
@@ -316,7 +317,7 @@ export default function FortuneHome() {
             <div className="hero-action">
               <button
                 className="primary-cta"
-                onClick={() => window.location.assign("/room/#daily")}
+                onClick={() => window.location.assign("/yeongnyangi/room/#daily")}
               >
                 <PawPrint size={21} />
                 <span>무료 운세 보기</span>
@@ -329,7 +330,7 @@ export default function FortuneHome() {
           <div className="main-content">
             <button
               className="prologue-banner"
-              onClick={() => window.location.assign("/room/")}
+              onClick={() => window.location.assign("/yeongnyangi/room/")}
             >
               <Art name="story-mirror" className="prologue-backdrop" />
               <span className="prologue-copy">
@@ -351,6 +352,11 @@ export default function FortuneHome() {
               />
             </button>
 
+            <aside className="starter-invitation">
+              <h2>{Number(packages.mackerel.priceKRW) === 1000 ? "천원부터 시작하는 운세" : `${packages.mackerel.priceKRW.toLocaleString("ko-KR")}원부터 시작하는 운세`}</h2>
+              <p>가볍게 시작해도, 네 이야기는 깊이 있게. 기질과 고민의 흐름을 읽고 오늘 해볼 작은 행동까지 짚어줄게.</p>
+              <a href="/yeongnyangi/1000-won-fortune/">{packages.mackerel.priceKRW.toLocaleString("ko-KR")}원 상담 알아보기 →</a>
+            </aside>
             <section className="ggulggul-bridge" aria-labelledby="ggulggul-title">
               <div className="ggulggul-bridge__art">
                 <img
@@ -369,10 +375,10 @@ export default function FortuneHome() {
                   영냥이의 깊은 상담과 꿀꿀 운세의 가벼운 오늘 흐름을 같은 Code Destiny 계정 흐름으로 이어갈게.
                 </p>
                 <div>
-                  <a className="outlined-cta" href="/ggulggul-fortune/">
+                  <a className="outlined-cta" href="/yeongnyangi/ggulggul-fortune/">
                     연결 안내 보기 <ArrowRight size={17} />
                   </a>
-                  <a className="text-link" href={ggulggulFortuneHref("/fortune/")}>
+                  <a className="text-link" href={ggulggulFortuneHref("/yeongnyangi/fortune/")}>
                     꿀꿀 운세로 이동 <ChevronRight size={15} />
                   </a>
                 </div>
@@ -564,7 +570,7 @@ export default function FortuneHome() {
                   </p>
                   <button
                     className="text-link"
-                    onClick={() => window.location.assign("/room/")}
+                    onClick={() => window.location.assign("/yeongnyangi/room/")}
                   >
                     영냥이의 방 들어가기 <ChevronRight size={15} />
                   </button>
@@ -691,7 +697,7 @@ export default function FortuneHome() {
                   로그인 뒤 이 화면으로 돌아와 보관함과 구매 권리를 확인할 수 있어요.
                 </span>
               </div>
-              <a className="primary-cta" href={ggulggulFortuneHref("/login/")}>
+              <a className="primary-cta" href={loginHref(returnTo)}>
                 Code Destiny 로그인 화면 열기
                 <ArrowRight size={18} />
               </a>
@@ -707,7 +713,7 @@ export default function FortuneHome() {
                 alt={`${service.name}를 보는 영냥이`}
               />
               <h2>{service.subtitle}</h2>
-              <a className="outlined-cta" href={`/fortune/?domain=${service.id}`}>상담 살펴보기 <ArrowRight size={18} /></a>
+              <a className="outlined-cta" href={`/yeongnyangi/fortune/?domain=${service.id}`}>상담 살펴보기 <ArrowRight size={18} /></a>
               <p>{service.description}</p>
               <ul>
                 {service.details.map((item) => (
@@ -722,7 +728,7 @@ export default function FortuneHome() {
 
           {panel === "fusion" && (
             <div className="panel-body">
-              <a className="primary-cta" href="/fortune/">
+              <a className="primary-cta" href="/yeongnyangi/fortune/">
                 상담 시작하기
                 <ArrowRight size={18} />
               </a>
@@ -767,7 +773,7 @@ export default function FortuneHome() {
               </p>
               <button
                 className="outlined-cta"
-                onClick={() => window.location.assign("/room/")}
+                onClick={() => window.location.assign("/yeongnyangi/room/")}
               >
                 영냥이의 이야기 보기
                 <ArrowRight size={18} />

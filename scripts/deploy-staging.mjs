@@ -15,8 +15,18 @@ if (version.sha !== sha || version.paymentsEnabled !== false) throw new Error("P
 if(version.dirty || version.sourceDigest!==sourceRelease().sourceDigest)throw new Error('Pages source content mismatch');
 const config = JSON.parse(readFileSync("wrangler.worker.jsonc", "utf8"));
 const stage = config.env.staging;
-if (stage.vars.PAYMENTS_ENABLED !== "false" || stage.vars.ALLOW_LIVE_LLM !== "false" ||
+if (config.env.production.vars.PAYMENTS_ENABLED !== "false" || config.env.production.vars.ALLOW_LIVE_LLM !== "false" ||
     stage.routes.some(r => !r.pattern.startsWith("staging.code-destiny.com/")) ||
     stage.services.some(s => !s.service.endsWith("-staging"))) throw new Error("Staging isolation failed");
+// Activation settings are read from a local file, never command-line secrets or Git.
+const extraVars = [];
+const activationFile = process.argv[3];
+if (stage.vars.PAYMENTS_ENABLED !== 'false' || stage.vars.ALLOW_LIVE_LLM !== 'false') throw new Error('Keep committed defaults disabled');
+if (activationFile) {
+  const {validateStagingActivation} = await import('./staging-activation.mjs');
+  const activation = JSON.parse(readFileSync(activationFile, 'utf8'));
+  validateStagingActivation(activation);
+  for (const [key,value] of Object.entries(activation)) extraVars.push('--var', `${key}:${value}`);
+}
 execFileSync(process.execPath, ["node_modules/wrangler/bin/wrangler.js", "deploy", "--config", "wrangler.worker.jsonc", "--env", "staging",
-  "--var", `RELEASE_SHA:${sha}`, "--var", `RELEASE_SOURCE_DIGEST:${version.sourceDigest}`, "--var", `SOULCAT_PAGES_ORIGIN:${pin}`], { stdio: "inherit" });
+  ...extraVars, "--var", `RELEASE_SHA:${sha}`, "--var", `RELEASE_SOURCE_DIGEST:${version.sourceDigest}`, "--var", `SOULCAT_PAGES_ORIGIN:${pin}`], { stdio: "inherit" });

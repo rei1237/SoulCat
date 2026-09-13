@@ -1,69 +1,20 @@
-import { readFile } from "node:fs/promises";
-import { existsSync } from "node:fs";
-
-const output = process.argv[2] || "out";
-const required = [
-  "index.html",
-  "fortune/index.html",
-  "free-fortune/index.html",
-  "1000-won-fortune/index.html",
-  "saju/index.html",
-  "sukuyo/index.html",
-  "ziwei/index.html",
-  "vedic/index.html",
-  "astrology/index.html",
-  "yeongnyangi/index.html",
-  "sitemap.xml",
-  "robots.txt",
-  "_headers",
-];
-
-const failures = [];
-for (const file of required) {
-  if (!existsSync(`${output}/${file}`)) failures.push(`missing ${file}`);
+import { readFile,stat } from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const output=process.argv[2]||'out';
+assert.ok((await stat(`${output}/assets/og-yeongnyangi.jpg`)).size > 1000);
+const routes=['','fortune/','room/','1000-won-fortune/','free-fortune/','saju/','sukuyo/','ziwei/','vedic/','astrology/','tarot/','about/','terms/','privacy/','refund/','contact/'];
+for(const route of routes){
+  const path=`yeongnyangi/${route}index.html`;
+  const html=await readFile(`${output}/${path}`,'utf8');
+  assert.ok(html.includes(`<link rel="canonical" href="https://code-destiny.com/yeongnyangi/${route}"`),`${path}: canonical`);
+  assert.match(html,/<meta name="robots" content="noindex/);
+  assert.match(html,/<meta property="og:title"/);
+  assert.match(html,/og-yeongnyangi.jpg/);
+  assert.ok(!html.includes('soulcat.pages.dev'),`${path}: preview canonical leak`);
 }
-
-async function text(file) {
-  return readFile(`${output}/${file}`, "utf8");
-}
-
-if (existsSync(`${output}/_headers`)) {
-  const headers = await text("_headers");
-  if (/^\/\*\s*[\r\n]\s*X-Robots-Tag:\s*noindex/im.test(headers)) {
-    failures.push("_headers applies noindex to every route");
-  }
-  if (!/\/share\/\*/.test(headers) || !/X-Robots-Tag:\s*noindex, nofollow/i.test(headers)) {
-    failures.push("_headers must keep share pages noindex");
-  }
-}
-
-for (const file of required.filter((name) => name.endsWith("index.html"))) {
-  if (!existsSync(`${output}/${file}`)) continue;
-  const html = await text(file);
-  if (!/<link rel="canonical"/.test(html)) failures.push(`${file} has no canonical`);
-  if (/<meta name="robots" content="noindex/.test(html)) {
-    failures.push(`${file} is unexpectedly noindex`);
-  }
-  if (!/<meta (name|property)="og:title"|<meta property="og:title"/.test(html)) {
-    failures.push(`${file} has no Open Graph title`);
-  }
-}
-
-if (existsSync(`${output}/sitemap.xml`)) {
-  const sitemap = await text("sitemap.xml");
-  for (const path of ["/free-fortune/", "/1000-won-fortune/", "/saju/", "/yeongnyangi/"]) {
-    if (!sitemap.includes(path)) failures.push(`sitemap missing ${path}`);
-  }
-}
-
-if (existsSync(`${output}/robots.txt`)) {
-  const robots = await text("robots.txt");
-  if (!/Sitemap:/i.test(robots)) failures.push("robots.txt missing sitemap");
-  if (!/Disallow:\s*\/share\//i.test(robots)) failures.push("robots.txt must disallow /share/");
-}
-
-if (failures.length) {
-  console.error(failures.join("\n"));
-  process.exit(1);
-}
-console.log("SEO release checks passed.");
+const sitemap=await readFile(`${output}/yeongnyangi/sitemap.xml`,'utf8');
+for(const route of ['','1000-won-fortune/','saju/'])assert.ok(sitemap.includes(`https://code-destiny.com/yeongnyangi/${route}`));
+assert.ok(!sitemap.includes('/library/'));
+assert.match(await readFile(`${output}/yeongnyangi/robots.txt`,'utf8'),/Disallow: \/\s/);
+assert.match(await readFile(`${output}/_headers`,'utf8'),/X-Robots-Tag: noindex, nofollow/);
+console.log('SoulCat namespace, canonical, sitemap, OG and staging noindex verified.');

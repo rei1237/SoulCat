@@ -7,8 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   return [
     { url: absoluteUrl("/"), lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: absoluteUrl("/fortune/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl("/room/"), lastModified: now, changeFrequency: "monthly", priority: 0.75 },
+    { url: absoluteUrl("/yeongnyangi/fortune/"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: absoluteUrl("/yeongnyangi/room/"), lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     ...seoRoutes
       .filter((route) => route.includeInSitemap)
       .map((route) => ({

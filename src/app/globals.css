@@ -2035,3 +2035,13 @@ svg {
 @media(max-width:560px){.ggulggul-bridge{grid-template-columns:92px 1fr;padding:14px;gap:13px}.ggulggul-bridge__copy h2{font-size:18px}.ggulggul-bridge__copy p{font-size:12px}.ggulggul-bridge__copy .outlined-cta{width:100%;min-width:0}.service-navigation__partner{grid-template-columns:58px 1fr}.service-navigation__partner img{width:58px;height:58px}}
 @media(min-width:700px){.legal-hero h1{font-size:39px}}
 @media(min-width:1000px){.legal-hero h1{font-size:49px}}
+
+.starter-invitation { margin: 32px 0; padding: 26px 0; border-block: 1px solid #e9c78d40; }
+.starter-invitation h2 { color: #fff3e2; margin: 0 0 12px; font-size: 24px; }
+.starter-invitation p { max-width: 48ch; color: #c7b5ce; line-height: 1.7; }
+.starter-invitation a, .service-referral a { color: #e9c78d; text-underline-offset: 5px; }
+.service-referral { padding: 24px 0; line-height: 1.8; }
+
+.session-controls { padding-block: 18px; color: #c7b5ce; }
+.session-controls a, .session-controls button { color: #e9c78d; }
+.session-controls button { background: transparent; border: 0; font: inherit; text-decoration: underline; cursor: pointer; }

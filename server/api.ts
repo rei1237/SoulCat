@@ -2,6 +2,7 @@ import {counselInRoom} from './fortune/room-counsel';
 import { verify as verifyWebhook } from '@portone/server-sdk/webhook';
 import { reconcilePayment } from './payments/reconcile';
 import { checkoutChannel } from './payments/portone';
+import { stagingProductEnabled, requireStagingProduct, validationRun } from './payments/staging-access';
 import { productBudgetReady } from './providers/budget';
 import { safeReturnPath } from '../src/lib/return-path';
 import {attendanceStatus,attend,unlockToday,requireDailyPass} from './fortune/free/attendance';
@@ -71,6 +72,7 @@ async function user(db: Database, request: Request) {
   return row.user_id;
 }
 const messages: Record<string, string> = {
+  STAGING_PAYMENT_LIMIT: "이번 결제수단의 검증 주문이 이미 있어요. 보관함에서 해당 주문을 확인해 주세요.",
   ANCHOVY_REQUIRED:'멸치가 부족해. 출석하고 한 마리 받아 와.',
   DAILY_PASS_REQUIRED:'멸치 한 마리를 건네면 오늘의 16가지 이야기를 열어줄게.',
   FREE_PROFILE_REQUIRED:'개인 운세를 계산할 출생 정보를 먼저 알려줘.',
@@ -119,14 +121,20 @@ export async function handleApi(
     const path = url.pathname
       .replace(/^\/api\/(?:yeongnyangi\/)?/, "")
       .replace(/\/$/, "");
-    if (path === "products" && request.method === "GET")
+    if (path === "products" && request.method === "GET") {
+      let catalogUser: string | undefined;
+      if (env.APP_ENV === 'staging' && env.PAYMENTS_ENABLED === 'true') {
+        try { catalogUser = await sharedUser(request, env); }
+        catch (error) { if (!(error instanceof FortuneError) || error.code !== 'SESSION_REQUIRED') throw error; }
+      }
       return json({
-        products,
+        products: products.map(product => ({...product, enabled: stagingProductEnabled(env, catalogUser, product.id)})),
         mode:
           env.APP_ENV === "local" && env.LLM_PROVIDER === "mock"
             ? "local-mock"
             : "preview",
       });
+    }
     if (!env.DB) throw new FortuneError("DATABASE_NOT_CONFIGURED", 503);
     const db = env.DB;
     if(path==='places'&&request.method==='GET')return json({places:await searchPlaces(db,url.searchParams.get('q')||'',env.PLACE_SEARCH_ENDPOINT)});
@@ -334,8 +342,7 @@ export async function handleApi(
     if (path === "orders" && request.method === "POST") {
       if (env.PAYMENTS_ENABLED !== "true")
         throw new FortuneError("PAYMENTS_UNAVAILABLE", 503);
-      if (!getProduct(body.productId).enabled)
-        throw new FortuneError("PAYMENTS_UNAVAILABLE", 503);
+      requireStagingProduct(env, userId, String(body.productId));
       if (
         Object.keys(body).some(
           (k) => !["productId", "profileId", "idempotencyKey", "payMethod", "returnPath"].includes(k),
@@ -360,7 +367,7 @@ export async function handleApi(
         String(body.productId),
         String(body.profileId),
         String(body.idempotencyKey),
-        {storeId:env.PORTONE_STORE_ID!,channelKey:channel,method:String(body.payMethod),returnPath:safeReturnPath(body.returnPath)},
+        {storeId:env.PORTONE_STORE_ID!,channelKey:channel,method:String(body.payMethod),returnPath:safeReturnPath(body.returnPath),validationRun},
       );
       if(order.status==='PAID') {
         const pending=await prepareBook(db,userId,order.product_id,order.profile_id,engineEnv);
@@ -369,12 +376,12 @@ export async function handleApi(
       }
       if(order.status!=='PENDING'||!order.store_id||!order.channel_key) throw new FortuneError('ORDER_NOT_PAYABLE',409);
       if(order.pay_method!==body.payMethod) throw new FortuneError('CHECKOUT_METHOD_LOCKED',409);
-      const redirect=new URL(order.return_path || '/fortune/',url.origin);
+      const redirect=new URL(safeReturnPath(order.return_path),url.origin);
       redirect.searchParams.set('orderId',order.id);
       redirect.searchParams.set('paymentId',order.payment_id);
       return json({orderId:order.id,paymentId:order.payment_id,productId:order.product_id,profileId:order.profile_id,returnPath:order.return_path,
         payment:{storeId:order.store_id,channelKey:order.channel_key,paymentId:order.payment_id,orderName:product.name+' '+product.fishName,totalAmount:order.amount,currency:'CURRENCY_KRW',
-          payMethod:order.pay_method==='CARD'?'CARD':'EASY_PAY',...(order.pay_method==='CARD'?{bypass:{inicis_v2:{acceptmethod:['noeasypay'],P_RESERVED:['noeasypay=Y']}}}:{}),...(order.pay_method==='KAKAOPAY'?{easyPay:{easyPayProvider:'KAKAOPAY'}}:{}),redirectUrl:redirect.href}});
+          payMethod:order.pay_method==='CARD'?'CARD':'EASY_PAY',...(order.pay_method==='CARD'?{bypass:{inicis_v2:{acceptmethod:['noeasypay'],P_RESERVED:['noeasypay=Y']}}}:{}),...(order.pay_method==='KAKAOPAY'?{easyPay:{easyPayProvider:'KAKAOPAY'}}:{}),noticeUrls:[`${url.origin}/api/yeongnyangi/payments/webhook`],redirectUrl:redirect.href}});
     }
     if (path === "testing/purchase" && request.method === "POST") {
       if (env.APP_ENV !== "local" || env.LLM_PROVIDER !== "mock")

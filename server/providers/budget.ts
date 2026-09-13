@@ -3,12 +3,15 @@ import {getProduct} from '../payments/catalog';
 import { Database } from '../db/types';
 import { FortuneError, FortuneLLMRequest, LLMProvider } from '../fortune/shared/contracts';
 import { GeminiProvider } from './gemini';
-export interface BudgetEnv {
+import type { PaymentEnv } from '../payments/portone';
+import { requireStagingProduct, validationRun } from '../payments/staging-access';
+export interface BudgetEnv extends PaymentEnv {
   APP_ENV?: string; LLM_COST_MODE?: string; LLM_TEST_BUDGET_KRW?: string; LLM_REQUEST_BUDGET_KRW?: string; LLM_DAILY_BUDGET_KRW?: string;
   LLM_TIMEOUT_MS?: string; LLM_MAX_RETRIES?: string; LLM_MAX_INPUT_TOKENS?: string; LLM_MAX_OUTPUT_TOKENS?: string;
   GEMINI_MODEL?: string; GEMINI_PRICING_MODEL?: string; GEMINI_INPUT_USD_PER_MILLION?: string;
   GEMINI_OUTPUT_USD_PER_MILLION?: string; LLM_USD_KRW_CEILING?: string; LLM_PRICING_VALID_UNTIL?: string;
   LLM_VERIFIED_PRODUCTS?: string;
+  LLM_STAGING_VALIDATION_MANIFEST?: string;
 }
 export function budgetConfig(env: BudgetEnv) {
   const number = (v: string | undefined) => v?.trim() ? Number(v) : NaN;
@@ -25,6 +28,10 @@ export function budgetConfig(env: BudgetEnv) {
 }
 export function productBudgetReady(env: BudgetEnv, productId: string, chapterCount: number) {
   const c = budgetConfig(env);
+  // A bounded validation run is not an assertion of production content quality.
+  if (env.APP_ENV === 'staging' && env.STAGING_PAYMENT_RUN === validationRun &&
+      env.LLM_STAGING_VALIDATION_MANIFEST === READING_VERSION && env.STAGING_TEST_PRODUCT_IDS === 'saju_mackerel' &&
+      productId === 'saju_mackerel' && chapterCount === 5 && c.output >= readingPolicies.mackerel.outputTokens) return;
   let verified: Record<string, { model: string; chapters: number; maxKRW: number; manifestVersion?:string; outputTokens?:number }>;
   try { verified = JSON.parse(env.LLM_VERIFIED_PRODUCTS || '{}'); } catch { throw new FortuneError('PRODUCT_LLM_UNVERIFIED',503); }
   const p = verified[productId];
@@ -49,6 +56,11 @@ export async function reserveCost(db: Database, requestId: string, amount: numbe
 export class BudgetedGemini implements LLMProvider {
   constructor(private db: Database, private requestId: string, private env: BudgetEnv, private provider: GeminiProvider) {}
   async generate(request: FortuneLLMRequest) {
+    if (this.env.APP_ENV === 'staging') {
+      const order = await this.db.prepare("SELECT o.user_id,o.product_id FROM fortune_requests r JOIN entitlements e ON e.id=r.entitlement_id JOIN orders o ON o.id=e.order_id WHERE r.id=? AND e.status='ACTIVE' AND o.status='PAID' AND o.staging_validation_run=?").bind(this.requestId,validationRun).first<{user_id:string;product_id:string}>();
+      if (!order) throw new FortuneError('STAGING_GENERATION_NOT_APPROVED',403);
+      requireStagingProduct(this.env,order.user_id,order.product_id);
+    }
     const active=await this.db.prepare("SELECT r.id FROM fortune_requests r JOIN entitlements e ON e.id=r.entitlement_id WHERE r.id=? AND e.status='ACTIVE'").bind(this.requestId).first();
     if(!active)throw new FortuneError('ENTITLEMENT_REQUIRED',403);
     const c=budgetConfig(this.env);

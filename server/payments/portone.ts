@@ -15,6 +15,10 @@ export interface PaymentOrder {
   pg_status?: string | null;
 }
 export interface PaymentEnv {
+  APP_ENV?: string;
+  STAGING_TEST_USER_IDS?: string;
+  STAGING_TEST_PRODUCT_IDS?: string;
+  STAGING_PAYMENT_RUN?: string;
   PORTONE_API_SECRET?: string;
   PORTONE_STORE_ID?: string;
   PORTONE_CHANNEL_KEY?: string;

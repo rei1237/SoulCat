@@ -57,7 +57,7 @@ export default function YeongnyangRoom() {
 
   return <main className="yeongnyang-room">
     <header className="room-header">
-      <a href="/" className="room-round-button" aria-label="메인으로 돌아가기"><ArrowLeft size={22} /></a>
+      <a href="/yeongnyangi/" className="room-round-button" aria-label="메인으로 돌아가기"><ArrowLeft size={22} /></a>
       <h1><PawPrint size={19} />영냥이의 방</h1>
       <a href="#room-conversation" className="room-round-button" aria-label="질문 적으러 가기"><Send size={18} /></a>
     </header>
@@ -74,7 +74,7 @@ export default function YeongnyangRoom() {
       </section>
       <section className="room-conversation" id="room-conversation" aria-labelledby="conversation-title">
         <div className="room-conversation-heading"><div><h2 id="conversation-title">그래서, 무슨 이야기야?</h2><p>잘 정리된 말보다, 네 진짜 마음이 궁금해.</p></div><Heart size={21} /></div>
-        <div className="room-reading-choice"><label htmlFor="room-reading">상담에 참고할 나의 운세</label><select id="room-reading" value={readingId} disabled={busy||loadingReadings} onChange={e=>{setReadingId(e.target.value);setNotes([]);setCounselError('');}}><option value="">{loadingReadings?'운세를 확인하고 있어요':'운세를 선택해 주세요'}</option>{readings.map(r=><option key={r.id} value={r.id}>{r.name} · {r.packageName}</option>)}</select>{!loadingReadings&&!readings.length&&<p>완성된 본인 운세가 필요해요. <a href="/fortune/">운세 입력하기</a></p>}</div>
+        <div className="room-reading-choice"><label htmlFor="room-reading">상담에 참고할 나의 운세</label><select id="room-reading" value={readingId} disabled={busy||loadingReadings} onChange={e=>{setReadingId(e.target.value);setNotes([]);setCounselError('');}}><option value="">{loadingReadings?'운세를 확인하고 있어요':'운세를 선택해 주세요'}</option>{readings.map(r=><option key={r.id} value={r.id}>{r.name} · {r.packageName}</option>)}</select>{!loadingReadings&&!readings.length&&<p>완성된 본인 운세가 필요해요. <a href="/yeongnyangi/fortune/">운세 입력하기</a></p>}</div>
         {counselError&&<p role="alert">{counselError}</p>}
         <div className="room-starters" aria-label="이야기 시작하기">
           {starters.map(text => <button key={text} onClick={() => { setDraft(text); input.current?.focus(); }}>{text}<ChevronRight size={14}/></button>)}
@@ -88,7 +88,7 @@ export default function YeongnyangRoom() {
           <div className="room-composer-actions"><span>{draft.length} / 1,000</span><button type="submit" disabled={!draft.trim()||!readingId||busy}>{busy?'상담 확인 중':'고민 상담하기'}<Send size={16}/></button></div>
           <p id="room-input-note">선택한 운세를 참고하는 모의 상담입니다. 질문과 최근 대화 일부가 서버로 전송되며, 대화 기록은 이 화면을 나가면 사라져요.</p>
         </form>
-        <a className="room-fortune-link" href="/fortune/">운세로 내 흐름 살펴보기<ArrowRight size={16}/></a>
+        <a className="room-fortune-link" href="/yeongnyangi/fortune/">운세로 내 흐름 살펴보기<ArrowRight size={16}/></a>
       </section>
       <section className="room-stories" aria-labelledby="room-story-title">
         <div className="room-story-heading"><BookOpen size={19}/><h2 id="room-story-title">내 얘기도, 들어볼래?</h2></div>
@@ -102,7 +102,7 @@ export default function YeongnyangRoom() {
     <footer className="room-footer"><PawPrint size={18}/>오늘도, 네 이야기에 작은 달빛 하나.</footer>
     {storyOpen && <dialog ref={dialog} className="experience-dialog story-dialog" aria-label="영냥이의 프롤로그" onCancel={event => { event.preventDefault(); closeStory(); }}>
       <div className="dialog-inner"><div className="dialog-header"><span><BookOpen size={17}/>영냥이의 방 · 프롤로그</span><button className="icon-button" aria-label="닫기" onClick={closeStory}><X size={22}/></button></div>
-      <StoryPanel step={step} onPrevious={() => setStep(value => Math.max(0,value-1))} onNext={() => setStep(value => Math.min(7,value+1))} onClose={closeStory} onReading={() => { window.location.assign('/fortune/'); }}/></div>
+      <StoryPanel step={step} onPrevious={() => setStep(value => Math.max(0,value-1))} onNext={() => setStep(value => Math.min(7,value+1))} onClose={closeStory} onReading={() => { window.location.assign('/yeongnyangi/fortune/'); }}/></div>
     </dialog>}
   </main>;
 }

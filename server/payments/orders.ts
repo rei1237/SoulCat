@@ -13,7 +13,7 @@ export async function createOrder(
   productId: string,
   profileId: string,
   key: string,
-  checkout?: { storeId: string; channelKey: string; method: string; returnPath: string },
+  checkout?: { storeId: string; channelKey: string; method: string; returnPath: string; validationRun?: string },
 ) {
   if (!/^[a-zA-Z0-9_-]{16,100}$/.test(key))
     throw new FortuneError("INVALID_IDEMPOTENCY_KEY");
@@ -31,7 +31,7 @@ export async function createOrder(
   const id = crypto.randomUUID();
   await db
     .prepare(
-      "INSERT INTO orders (id,user_id,profile_id,product_id,amount,currency,payment_id,idempotency_key,status,created_at,store_id,channel_key,pay_method,return_path) VALUES (?,?,?,?,?,?,?,?,'PENDING',?,?,?,?,?) ON CONFLICT DO NOTHING",
+      "INSERT INTO orders (id,user_id,profile_id,product_id,amount,currency,payment_id,idempotency_key,status,created_at,store_id,channel_key,pay_method,return_path,staging_validation_run) VALUES (?,?,?,?,?,?,?,?,'PENDING',?,?,?,?,?,?) ON CONFLICT DO NOTHING",
     )
     .bind(
       id,
@@ -44,6 +44,7 @@ export async function createOrder(
       key,
       Date.now(),
       checkout?.storeId ?? null, checkout?.channelKey ?? null, checkout?.method ?? null, checkout?.returnPath ?? null,
+      checkout?.validationRun ?? null,
     )
     .run();
   const order = await db
@@ -55,7 +56,7 @@ export async function createOrder(
     order.product_id !== productId ||
     order.profile_id !== profileId
   )
-    throw new FortuneError("IDEMPOTENCY_CONFLICT", 409);
+    throw new FortuneError(checkout?.validationRun ? "STAGING_PAYMENT_LIMIT" : "IDEMPOTENCY_CONFLICT", 409);
   await db.prepare('INSERT INTO order_chart_links (order_id,chart_id,manifest_version) SELECT ?,id,? FROM chart_snapshots WHERE profile_id=? AND user_id=? ON CONFLICT DO NOTHING').bind(order.id,p.manifestVersion,profileId,userId).run();
   await db.prepare('INSERT INTO order_specs (order_id,spec_json) VALUES (?,?) ON CONFLICT DO NOTHING').bind(order.id,JSON.stringify({...p,topicId:JSON.parse(profile.input_json).topicId||'general'})).run();
   return order;

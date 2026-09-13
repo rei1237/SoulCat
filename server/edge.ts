@@ -12,31 +12,25 @@ export interface EdgeEnv extends Env {
   ) => Promise<Uint8Array>;
 }
 const screens = new Set([
-  "/fortune/",
-  "/room/",
-  "/library/",
-  "/free-fortune/",
-  "/1000-won-fortune/",
-  "/saju/",
-  "/sukuyo/",
-  "/ziwei/",
-  "/vedic/",
-  "/astrology/",
-  "/yeongnyangi/",
-  "/ggulggul-fortune/",
+  "/yeongnyangi/", "/yeongnyangi/fortune/", "/yeongnyangi/room/", "/yeongnyangi/library/",
+  ...["free-fortune", "1000-won-fortune", "saju", "sukuyo", "ziwei", "vedic", "astrology", "tarot", "about", "ggulggul-fortune", "terms", "privacy", "refund", "contact"].map(slug => `/yeongnyangi/${slug}/`),
 ]);
-const privateScreens = new Set(["/library/"]);
+const oldScreens = new Set(["/fortune/", "/room/", "/library/", "/ggulggul-fortune/"]);
+const privateScreens = new Set(["/yeongnyangi/library/"]);
 export function routeKind(path: string) {
   if (path === "/_soulcat" || path === "/_soulcat/") return "entry";
   if (
     /^\/share\/yeongnyangi\/[a-f0-9]{32}(?:\/(?:og|vertical)\.png)?$/.test(path)
   )
     return "share";
+  if (oldScreens.has(path) || oldScreens.has(`${path}/`)) return "old-screen";
+  if (["/yeongnyangi/sitemap.xml", "/yeongnyangi/robots.txt"].includes(path)) return "metadata";
   if (screens.has(path) || screens.has(`${path}/`)) return "screen";
   if (path.startsWith("/api/yeongnyangi/")) return "api";
   if (path === "/_soulcat/version.json") return "asset";
   if (/^\/_soulcat\/(?:_next\/static\/|assets\/|ephe\/)/.test(path))
     return "asset";
+  if (path.startsWith("/yeongnyangi/")) return "missing";
   if (path.startsWith("/_soulcat/")) return "missing";
   return "legacy";
 }
@@ -93,7 +87,7 @@ export async function handleEdge(
   if (kind === "api") {
     if (url.pathname === "/api/yeongnyangi/version" && request.method === "GET")
       return Response.json(
-        { sha: env.RELEASE_SHA || null, sourceDigest:env.RELEASE_SOURCE_DIGEST || null, environment: env.APP_ENV },
+        { sha: env.RELEASE_SHA || null, sourceDigest:env.RELEASE_SOURCE_DIGEST || null, environment: env.APP_ENV, paymentsEnabled: env.PAYMENTS_ENABLED === 'true', liveLlmEnabled: env.ALLOW_LIVE_LLM === 'true' },
         { headers: { "cache-control": "no-store" } },
       );
     return handleApi(request, env, waitUntil);
@@ -101,9 +95,8 @@ export async function handleEdge(
   if (kind === "missing") return new Response("Not found", { status: 404 });
   if (!["GET", "HEAD"].includes(request.method))
     return new Response("Method not allowed", { status: 405 });
-  if (kind === "entry") {
-    url.pathname = "/fortune/";
-    url.search = "";
+  if (kind === "entry" || kind === "old-screen") {
+    url.pathname = kind === "entry" ? "/yeongnyangi/" : "/yeongnyangi" + url.pathname.replace(/\/?$/, "/");
     return Response.redirect(url.href, 302);
   }
   if (kind === "screen" && !url.pathname.endsWith("/")) {
@@ -133,7 +126,7 @@ export async function handleEdge(
     const headers = new Headers(response.headers);
     headers.delete("set-cookie");
     headers.set("x-content-type-options", "nosniff");
-    if (privateScreens.has(url.pathname)) {
+    if (env.APP_ENV !== "production" || privateScreens.has(url.pathname)) {
       headers.set("x-robots-tag", "noindex, nofollow");
     } else {
       headers.delete("x-robots-tag");

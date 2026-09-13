@@ -222,7 +222,7 @@ export default function FortuneExperience() {
       });
       setProfileId(saved.id);
       const snapshotParams=new URLSearchParams({domain,profile:saved.id,fish,...(fusionId?{product:fusionId}:{})});
-      window.history.replaceState(null,'','/fortune/?'+snapshotParams);
+      window.history.replaceState(null,'','/yeongnyangi/fortune/?'+snapshotParams);
       const calculated = await api("charts", { profileId: saved.id, ...(fusionId?{productId:fusionId}:{}) });
       setChart(calculated.chart);
       setCharts(calculated.charts||[calculated.chart]);
@@ -257,7 +257,7 @@ export default function FortuneExperience() {
       window.history.replaceState(
         null,
         "",
-        `/fortune/?domain=${domain}&request=${encodeURIComponent(d.id)}`,
+        `/yeongnyangi/fortune/?domain=${domain}&request=${encodeURIComponent(d.id)}`,
       );
     } catch (e) {
       setError((e as Error).message);
@@ -276,7 +276,7 @@ export default function FortuneExperience() {
       const order=await api('orders',{productId:product.id,profileId,idempotencyKey:crypto.randomUUID(),payMethod:method,returnPath:safeReturnPath(window.location.pathname+window.location.search)});
       const result=order.status==='PAID'?order:await launchCheckout(order,customer);
       setCustomer({fullName:'',phoneNumber:'',email:''});
-      if(result?.status==='PAID'&&result.requestId){setPaid(true);setRequestId(result.requestId);setStage('loading');window.history.replaceState(null,'','/fortune/?request='+encodeURIComponent(result.requestId));}
+      if(result?.status==='PAID'&&result.requestId){setPaid(true);setRequestId(result.requestId);setStage('loading');window.history.replaceState(null,'','/yeongnyangi/fortune/?request='+encodeURIComponent(result.requestId));}
       else if(result)setError('결제가 완료되지 않았어요. 보관함에서 상태를 확인해 주세요.');
     } catch(e){setError((e as Error).message);if(e instanceof ApiError&&e.code==='SESSION_REQUIRED')setLogin(loginHref(window.location.pathname+window.location.search));}
     finally{lock.current=false;setBusy(false);}
@@ -285,11 +285,11 @@ export default function FortuneExperience() {
     <main className="fortune-shell">
       {login && <a className="fortune-back" href={login}>로그인하고 이어가기</a>}
       <header className="fortune-header">
-        <a href="/" aria-label="Code Destiny 홈으로">
+        <a href="/yeongnyangi/" aria-label="Code Destiny 홈으로">
           <ArrowLeft size={20} /> 점술방
         </a>
         <span>{fusionId||book?.charts?.length&&book.charts.length>1?"초융합 상담":surface.name}</span>
-        <a href="/library/" aria-label="나의 결과 보관함">
+        <a href="/yeongnyangi/library/" aria-label="나의 결과 보관함">
           <BookOpen size={21} />
         </a>
       </header>
@@ -496,7 +496,7 @@ export default function FortuneExperience() {
           <p className="fortune-loading-note">
             이 화면을 닫아도 보관함에서 진행 상태를 확인할 수 있어요.
           </p>
-          <a href="/library/">보관함으로 이동</a>
+          <a href="/yeongnyangi/library/">보관함으로 이동</a>
         </section>
       )}
       {stage === "result" && book && <DestinyBook initial={book} />}

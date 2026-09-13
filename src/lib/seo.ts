@@ -1,9 +1,12 @@
+import { referralHref } from "./service-links";
 import type { Metadata } from "next";
 import { domainEntries, domainRegistry, type DomainId } from "@/data/domain-registry";
 import { getProduct } from "../../server/payments/catalog";
 
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://soulcat.pages.dev";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://code-destiny.com";
+export const starterTitle = `${starterPriceLabel()} 운세 · 사주보는 고양이 영냥이`;
+function starterPriceLabel() { const price = getProduct("saju_mackerel").priceKRW; return price === 1000 ? "천원" : `${price.toLocaleString("ko-KR")}원`; }
 export const siteName = "사주보는 고양이 영냥이";
 
 export type SeoRoute = {
@@ -31,7 +34,7 @@ const won = (amount: number) => `${amount.toLocaleString("ko-KR")}원`;
 const legalRoutes: SeoRoute[] = [
   {
     slug: "terms",
-    path: "/terms/",
+    path: "/yeongnyangi/terms/",
     kind: "legal",
     title: "이용약관 · 영냥이의 달빛 점술방",
     description:
@@ -41,7 +44,7 @@ const legalRoutes: SeoRoute[] = [
     jsonLdType: "WebPage",
     intent:
       "방문자가 영냥이 서비스를 이용하기 전에 콘텐츠 성격, 이용자 책임, 결제 기준과 문의처를 빠르게 확인하도록 돕습니다.",
-    ctaHref: "/fortune/",
+    ctaHref: "/yeongnyangi/fortune/",
     ctaLabel: "운세 보기",
     legalImage: "room-study",
     legalHighlights: [
@@ -86,7 +89,7 @@ const legalRoutes: SeoRoute[] = [
   },
   {
     slug: "privacy",
-    path: "/privacy/",
+    path: "/yeongnyangi/privacy/",
     kind: "legal",
     title: "개인정보처리방침 · 영냥이",
     description:
@@ -96,7 +99,7 @@ const legalRoutes: SeoRoute[] = [
     jsonLdType: "WebPage",
     intent:
       "방문자가 출생 정보, 결제 정보, 문의 정보가 어떤 목적으로 쓰이는지와 삭제·정정 요청 방법을 확인하도록 돕습니다.",
-    ctaHref: "/contact/",
+    ctaHref: "/yeongnyangi/contact/",
     ctaLabel: "개인정보 문의하기",
     legalImage: "night-read",
     legalHighlights: [
@@ -113,7 +116,7 @@ const legalRoutes: SeoRoute[] = [
       {
         title: "저장과 보관",
         body:
-          "현재 화면에서 준비 중으로 표시되는 로그인, 보관함, 자유 상담 저장 기능은 실제 저장 기능으로 과장해 안내하지 않습니다. 서버 저장이 필요한 기능은 별도 안내와 동의 절차를 둡니다.",
+          "로그인은 기존 Code Destiny 계정으로 확인합니다. 상담에 입력한 정보, 계산 결과, 주문과 상담 결과는 SoulCat 보관함 제공 및 결제 권한 확인을 위해 서버에 저장됩니다.",
       },
       {
         title: "결제와 위탁",
@@ -130,7 +133,7 @@ const legalRoutes: SeoRoute[] = [
       {
         question: "영냥이가 입력한 정보를 항상 저장하나요?",
         answer:
-          "아니요. 현재 준비 중인 기능은 저장 기능으로 표현하지 않으며, 저장이 필요한 기능은 별도의 동의와 안내를 전제로 합니다.",
+          "로그인 후 상담을 진행하면 입력 정보와 계산·상담 결과가 서버에 저장됩니다. 개인정보 관련 요청은 아래 문의처로 접수할 수 있습니다.",
       },
       {
         question: "개인정보 삭제는 어디로 요청하나요?",
@@ -141,7 +144,7 @@ const legalRoutes: SeoRoute[] = [
   },
   {
     slug: "refund",
-    path: "/refund/",
+    path: "/yeongnyangi/refund/",
     kind: "legal",
     title: "환불·취소 안내 · 영냥이",
     description:
@@ -151,12 +154,12 @@ const legalRoutes: SeoRoute[] = [
     jsonLdType: "WebPage",
     intent:
       "결제 전후 방문자가 청약철회 가능 범위, 디지털 콘텐츠 제공 개시 이후 제한, 문의 방법을 이해하도록 돕습니다.",
-    ctaHref: "/contact/",
+    ctaHref: "/yeongnyangi/contact/",
     ctaLabel: "환불 문의하기",
     legalImage: "expressions/thinking",
     legalHighlights: [
       { label: "결제 전", text: "결제 완료 전에는 언제든 취소할 수 있습니다." },
-      { label: "제공 개시 후", text: "결과 열람이나 생성이 시작된 디지털 콘텐츠는 단순 변심 환불이 제한될 수 있습니다." },
+      { label: "제공 개시 후", text: "청약철회 제한은 관계 법령의 요건과 결제 전 안내를 함께 확인합니다." },
       { label: "오류 처리", text: "중복 결제나 결과 미제공은 내역 확인 후 적절히 처리합니다." },
     ],
     sections: [
@@ -168,7 +171,7 @@ const legalRoutes: SeoRoute[] = [
       {
         title: "청약철회와 제한",
         body:
-          "SoulCat 유료 상품은 관계 법령과 결제 화면의 고지에 따라 청약철회를 요청할 수 있습니다. 다만 개인 맞춤형 디지털 콘텐츠 생성, 결과 열람, PDF 렌더링 등 서비스 제공이 시작된 경우 제한될 수 있습니다.",
+          "SoulCat 유료 상품의 청약철회는 관계 법령에 따라 요청할 수 있습니다. 디지털 콘텐츠 제공 개시 후 제한 여부는 사전 고지 등 법령상 요건을 확인하며, 생성이나 열람 사실만으로 일률적으로 거절하지 않습니다.",
       },
       {
         title: "오류와 중복 결제",
@@ -185,7 +188,7 @@ const legalRoutes: SeoRoute[] = [
       {
         question: "결제 후 결과를 열람했는데 단순 변심 환불이 가능한가요?",
         answer:
-          "개인 맞춤형 디지털 콘텐츠 제공이 시작된 경우 단순 변심 환불은 제한될 수 있습니다. 다만 오류나 중복 결제는 내역 확인 후 처리합니다.",
+          "결과 열람 여부뿐 아니라 관계 법령상 청약철회 요건을 함께 확인합니다. 오류나 중복 결제도 결제 내역을 기준으로 확인하니 문의처로 요청해 주세요.",
       },
       {
         question: "환불 문의에는 무엇을 적어야 하나요?",
@@ -196,7 +199,7 @@ const legalRoutes: SeoRoute[] = [
   },
   {
     slug: "contact",
-    path: "/contact/",
+    path: "/yeongnyangi/contact/",
     kind: "legal",
     title: "고객센터 · 영냥이에게 전할 말",
     description:
@@ -256,7 +259,7 @@ const domainRoute = (domain: DomainId): SeoRoute => {
   const price = starterPrice(domain);
   return {
     slug: entry.slug,
-    path: `/${entry.slug}/`,
+    path: `/yeongnyangi/${entry.slug}/`,
     title: `${entry.label} 잘보는 사이트 · 영냥이의 ${entry.label} 상담`,
     description: `${entry.shortDescription} ${won(price)} 단건 상담부터 무료 흐름 확인까지, 영냥이가 과장 없이 읽어드립니다.`,
     keywords: [entry.label, `${entry.label} 잘보는 사이트`, "영냥이", "무료운세", "1000원 운세"],
@@ -302,7 +305,7 @@ export const seoRoutes: SeoRoute[] = [
   ...legalRoutes,
   {
     slug: "ggulggul-fortune",
-    path: "/ggulggul-fortune/",
+    path: "/yeongnyangi/ggulggul-fortune/",
     title: "꿀꿀 운세 연결 · 꽃돼지 연이와 영냥이",
     description:
       "Code Destiny의 꿀꿀 운세와 사주보는 고양이 영냥이를 같은 계정 흐름으로 이어 보는 안내 페이지입니다.",
@@ -311,7 +314,7 @@ export const seoRoutes: SeoRoute[] = [
     jsonLdType: "FAQPage",
     intent:
       "기존 꿀꿀 운세 사용자가 영냥이 상담으로 넘어오거나, 영냥이 사용자가 Code Destiny의 꿀꿀 운세 허브로 이동할 때 로그인과 서비스 관계를 이해하도록 돕습니다.",
-    ctaHref: "https://staging.code-destiny.com/fortune/",
+    ctaHref: referralHref("service-intro"),
     ctaLabel: "꿀꿀 운세로 이동",
     sections: [
       {
@@ -345,7 +348,7 @@ export const seoRoutes: SeoRoute[] = [
   },
   {
     slug: "free-fortune",
-    path: "/free-fortune/",
+    path: "/yeongnyangi/free-fortune/",
     title: "무료운세 · 영냥이와 오늘의 흐름 보기",
     description:
       "사주, 숙요점, 자미두수, 베다점, 점성술, 타로를 부담 없이 살펴보는 무료운세 입구입니다.",
@@ -354,7 +357,7 @@ export const seoRoutes: SeoRoute[] = [
     jsonLdType: "FAQPage",
     intent:
       "처음 방문한 사용자가 결제 전에 질문의 결을 정리하고 자신에게 맞는 운세 체계를 고르도록 돕습니다.",
-    ctaHref: "/fortune/",
+    ctaHref: "/yeongnyangi/fortune/",
     ctaLabel: "무료운세에서 시작하기",
     sections: [
       {
@@ -383,17 +386,17 @@ export const seoRoutes: SeoRoute[] = [
   },
   {
     slug: "1000-won-fortune",
-    path: "/1000-won-fortune/",
+    path: "/yeongnyangi/1000-won-fortune/",
     title: `${won(starterPrice("saju"))} 운세 · 영냥이 단건 상담`,
     description:
-      "서버 상품 카탈로그 기준의 1000원 단건 운세입니다. 사주, 숙요점, 자미두수, 베다점, 점성술, 타로 중 한 분야를 골라 시작합니다.",
+      `영냥이의 ${won(starterPrice("saju"))} 운세. 내 기질과 반복되는 고민을 읽고, 오늘 해볼 작은 행동까지 한 편의 이야기로 만나보세요.`,
     keywords: ["1000원 운세", "천원 운세", "단건 결제 운세", "영냥이"],
     includeInSitemap: true,
     jsonLdType: "FAQPage",
     intent:
       "낮은 금액의 단건 운세를 찾는 방문자에게 가격 원천과 상담 범위를 투명하게 안내합니다.",
-    ctaHref: "/fortune/?fish=mackerel",
-    ctaLabel: "1000원 단건 운세 시작하기",
+    ctaHref: "/yeongnyangi/fortune/?fish=mackerel",
+    ctaLabel: `${won(starterPrice("saju"))} 운세 살펴보기`,
     sections: [
       {
         title: "가격은 서버 상품 기준",
@@ -424,8 +427,8 @@ export const seoRoutes: SeoRoute[] = [
     ],
   },
   {
-    slug: "yeongnyangi",
-    path: "/yeongnyangi/",
+    slug: "about",
+    path: "/yeongnyangi/about/",
     title: "영냥이 · 사주보는 고양이의 달빛 점술방",
     description:
       "흰 고양이 영냥이가 운영하는 보랏빛 점술방입니다. 무료운세부터 단건 상담까지 과장 없는 운세 경험을 제공합니다.",
@@ -434,7 +437,7 @@ export const seoRoutes: SeoRoute[] = [
     jsonLdType: "FAQPage",
     intent:
       "브랜드명을 검색한 방문자가 영냥이의 세계관과 실제 이용 가능한 운세 입구를 바로 이해하도록 돕습니다.",
-    ctaHref: "/room/",
+    ctaHref: "/yeongnyangi/room/",
     ctaLabel: "영냥이의 방으로 가기",
     sections: [
       {
@@ -465,11 +468,12 @@ export const seoRoutes: SeoRoute[] = [
 ];
 
 export const seoRouteBySlug = new Map(seoRoutes.map((route) => [route.slug, route]));
-export const indexablePaths = new Set(["/", "/fortune/", "/room/", ...seoRoutes.map((r) => r.path)]);
-export const privateNoIndexPaths = new Set(["/library/"]);
+export const indexablePaths = new Set(["/", "/yeongnyangi/fortune/", "/yeongnyangi/room/", ...seoRoutes.map((r) => r.path)]);
+export const privateNoIndexPaths = new Set(["/yeongnyangi/library/"]);
 
-export function absoluteUrl(path = "/") {
-  return `${siteUrl}${path.startsWith("/") ? path : `/${path}`}`;
+export function absoluteUrl(path = "/yeongnyangi/") {
+  const route = path === "/" ? "/yeongnyangi/" : path;
+  return `${siteUrl}${route.startsWith("/") ? route : `/${route}`}`;
 }
 
 export function routeMetadata(route: SeoRoute): Metadata {
@@ -485,9 +489,11 @@ export function routeMetadata(route: SeoRoute): Metadata {
       title: route.title,
       description: route.description,
       url,
+      images: [{ url: absoluteUrl("/_soulcat/assets/og-yeongnyangi.jpg"), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
+      images: [absoluteUrl("/_soulcat/assets/og-yeongnyangi.jpg")],
       title: route.title,
       description: route.description,
     },

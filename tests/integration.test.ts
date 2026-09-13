@@ -19,18 +19,18 @@ test("exact screen routing preserves every existing fortune subroute and other a
     });
     assert.equal(await response.text(), "legacy");
   }
-  for (const path of ["/fortune", "/fortune/", "/room/", "/library/"]) assert.equal(routeKind(path), "screen");
+  for (const path of ["/fortune", "/fortune/", "/room/", "/library/"]) assert.equal(routeKind(path), "old-screen");
 });
 test("slash redirect preserves query and private credentials never reach static origin", async () => {
   const entryRedirect = await handleEdge(new Request(origin + "/_soulcat"), env, idle);
   assert.equal(entryRedirect.status, 302);
-  assert.equal(entryRedirect.headers.get("location"), origin + "/fortune/");
-  const redirect = await handleEdge(new Request(origin + "/fortune?utm_source=test&domain=saju"), env, idle);
+  assert.equal(entryRedirect.headers.get("location"), origin + "/yeongnyangi/");
+  const redirect = await handleEdge(new Request(origin + "/yeongnyangi/fortune?utm_source=test&domain=saju"), env, idle);
   assert.equal(redirect.status, 301);
-  assert.equal(redirect.headers.get("location"), origin + "/fortune/?utm_source=test&domain=saju");
-  const response = await handleEdge(new Request(origin + "/fortune/?request=private&utm_source=test", { headers: { cookie: "fortune_auth_token=private", authorization: "Bearer private" } }), env, idle, async received => {
+  assert.equal(redirect.headers.get("location"), origin + "/yeongnyangi/fortune/?utm_source=test&domain=saju");
+  const response = await handleEdge(new Request(origin + "/yeongnyangi/fortune/?request=private&utm_source=test", { headers: { cookie: "fortune_auth_token=private", authorization: "Bearer private" } }), env, idle, async received => {
     const req = received as Request;
-    assert.equal(req.url, env.SOULCAT_PAGES_ORIGIN + "/fortune/");
+    assert.equal(req.url, env.SOULCAT_PAGES_ORIGIN + "/yeongnyangi/fortune/");
     assert.equal(req.headers.get("cookie"), null);
     assert.equal(req.headers.get("authorization"), null);
     return new Response("page", { headers: { "set-cookie": "unexpected=value" } });
@@ -39,8 +39,8 @@ test("slash redirect preserves query and private credentials never reach static 
   assert.equal(response.headers.get("cache-control"), "no-store");
 });
 test("immutable Pages pin and origin gates fail closed, asset 404 remains 404", async () => {
-  assert.equal((await handleEdge(new Request(origin + "/room/"), { ...env, SOULCAT_PAGES_ORIGIN: "https://soulcat.pages.dev" }, idle)).status, 503);
-  assert.equal((await handleEdge(new Request("https://code-destiny.com/room/"), env, idle)).status, 503);
+  assert.equal((await handleEdge(new Request(origin + "/yeongnyangi/room/"), { ...env, SOULCAT_PAGES_ORIGIN: "https://soulcat.pages.dev" }, idle)).status, 503);
+  assert.equal((await handleEdge(new Request("https://code-destiny.com/yeongnyangi/room/"), env, idle)).status, 503);
   const result = await handleEdge(new Request(origin + "/_soulcat/assets/missing.webp"), env, idle, async received => {
     assert.equal((received as Request).url, env.SOULCAT_PAGES_ORIGIN + "/assets/missing.webp");
     return new Response("missing", { status: 404 });
@@ -69,9 +69,9 @@ test("shared login uses only server verified identity and never forwards spoofed
   await assert.rejects(sharedUser(new Request(origin + "/api/yeongnyangi/library", { headers: { cookie: "soulcat_session=local" } }), env), /SESSION_REQUIRED/);
 });
 test("login return rejects external, protocol-relative and unexpected routes", () => {
-  const fallback = origin + "/login/?returnTo=%2Ffortune%2F&next=%2Ffortune%2F&redirect=%2Ffortune%2F";
+  const fallback = origin + "/login/?returnTo=%2Fyeongnyangi%2Ffortune%2F&next=%2Fyeongnyangi%2Ffortune%2F&redirect=%2Fyeongnyangi%2Ffortune%2F";
   for (const path of ["//evil.com", "https://evil.com", "/\\evil.com", "/login/", "/api/auth/me"]) assert.equal(loginHref(path), fallback);
-  assert.equal(loginHref("/library/?utm_source=room"), origin + "/login/?returnTo=%2Flibrary%2F&next=%2Flibrary%2F&redirect=%2Flibrary%2F");
+  assert.equal(loginHref("/library/?utm_source=room"), origin + "/login/?returnTo=%2Fyeongnyangi%2Flibrary%2F&next=%2Fyeongnyangi%2Flibrary%2F&redirect=%2Fyeongnyangi%2Flibrary%2F");
 });
 test("namespaced catalog is public but all products remain disabled and independent", async () => {
   const response = await handleApi(new Request(origin + "/api/yeongnyangi/products"), env, idle);

@@ -20,13 +20,13 @@ async function fixture(){
   sqlite.prepare('INSERT INTO users VALUES (?,?)').run('alice',0);
   sqlite.prepare('INSERT INTO profiles VALUES (?,?,?,?,?)').run('p','alice','saju',JSON.stringify({personA:{birthDate:'1997-02-10',birthTime:'14:30',gender:'female',calendarType:'solar'},question:'일'}),0);
   await createChart(db,'alice','p',{});
-  const order=await createOrder(db,'alice','saju_mackerel','p','fixture-order-key',{storeId:'fixture-store',channelKey:'fixture-card',method:'CARD',returnPath:'/fortune/?profile=p'});
+  const order=await createOrder(db,'alice','saju_mackerel','p','fixture-order-key',{storeId:'fixture-store',channelKey:'fixture-card',method:'CARD',returnPath:'/yeongnyangi/fortune/?profile=p'});
   const pg={id:order.payment_id,status:'PAID',amount:{total:1000,paid:1000,cancelled:0},currency:'KRW',storeId:'fixture-store',channel:{key:'fixture-card'}};
   return {db,sqlite,order,pg};
 }
 test('live checkout reuses one pending order across independent tabs',async()=>{
   const {db,sqlite,order}=await fixture();
-  const second=await createOrder(db,'alice','saju_mackerel','p','another-random-key',{storeId:'fixture-store',channelKey:'fixture-card',method:'CARD',returnPath:'/library/'});
+  const second=await createOrder(db,'alice','saju_mackerel','p','another-random-key',{storeId:'fixture-store',channelKey:'fixture-card',method:'CARD',returnPath:'/yeongnyangi/library/'});
   assert.equal(second.id,order.id);assert.equal(sqlite.prepare('SELECT count(*) n FROM orders').get()!.n,1);
   await assert.rejects(createOrder(db,'bob','saju_mackerel','p','another-random-key'),/PROFILE_NOT_FOUND/);
 });
@@ -88,12 +88,12 @@ test('signed duplicate webhook grants and queues once even while checkout is dis
   }finally{globalThis.fetch=original;}
 });
 test('safe return paths discard raw personal data and encoded path escapes',()=>{
-  for(const path of ['//evil.test','/\\evil.test','/%2ffortune/','/fortune/%2e%2e/','/api/me','https://evil.test','/fortune/../room/'])assert.equal(safeReturnPath(path),'/fortune/');
-  assert.equal(safeReturnPath('/library/?profile=p&birthDate=1990-01-01&question=private&token=secret'),'/library/?profile=p');
-  assert.equal(safeReturnPath('/fortune/?profile=p&profile=q'),'/fortune/');
+  for(const path of ['//evil.test','/\\evil.test','/%2ffortune/','/yeongnyangi/fortune/%2e%2e/','/api/me','https://evil.test','/yeongnyangi/fortune/../room/'])assert.equal(safeReturnPath(path),'/yeongnyangi/fortune/');
+  assert.equal(safeReturnPath('/yeongnyangi/library/?profile=p&birthDate=1990-01-01&question=private&token=secret'),'/yeongnyangi/library/?profile=p');
+  assert.equal(safeReturnPath('/yeongnyangi/fortune/?profile=p&profile=q'),'/yeongnyangi/fortune/');
 });
 class MemoryStorage implements Storage { data=new Map<string,string>(); get length(){return this.data.size;} clear(){this.data.clear();} key(n:number){return [...this.data.keys()][n]??null;} getItem(k:string){return this.data.get(k)??null;} setItem(k:string,v:string){this.data.set(k,v);} removeItem(k:string){this.data.delete(k);} }
-const checkout={orderId:'order',paymentId:'payment',productId:'saju_mackerel',profileId:'profile',returnPath:'/fortune/?profile=profile',payment:{}} as CheckoutOrder;
+const checkout={orderId:'order',paymentId:'payment',productId:'saju_mackerel',profileId:'profile',returnPath:'/yeongnyangi/fortune/?profile=profile',payment:{}} as CheckoutOrder;
 test('localStorage ticket identity, expiry, storage failure and duplicate return',async()=>{
   const storage=new MemoryStorage();saveTicket(storage,checkout,100);
   assert.equal(readTicket(storage,'payment','other',101),null);assert.ok(readTicket(storage,'payment','order',101));
@@ -151,7 +151,10 @@ test('Gemini successful usage settles; timeout remains reserved without automati
       generations++;if(timeout)throw new DOMException('timeout','TimeoutError');
       return Response.json({usageMetadata:{promptTokenCount:100,totalTokenCount:130},candidates:[{finishReason:'STOP',content:{parts:[{text:'{}'}]}}]});
     });
-    const wrapped=new BudgetedGemini(db,requestId,budget,provider);
+    const validationUser='codedestiny:0123456789abcdef01234567';
+    sqlite.prepare("INSERT INTO users(id,created_at) VALUES (?,0)").run(validationUser);
+    sqlite.prepare("UPDATE orders SET staging_validation_run='soulcat-login-payment-20260913',user_id=?").run(validationUser);
+    const wrapped=new BudgetedGemini(db,requestId,{...budget,PAYMENTS_ENABLED:'true',STAGING_TEST_USER_IDS:validationUser,STAGING_TEST_PRODUCT_IDS:'saju_mackerel',STAGING_PAYMENT_RUN:'soulcat-login-payment-20260913'},provider);
     if(timeout)await assert.rejects(wrapped.generate(prompt),/LLM_TIMEOUT/);else await wrapped.generate(prompt);
     assert.equal(generations,1);
     assert.equal(sqlite.prepare('SELECT state FROM llm_reservations').get()!.state,timeout?'RESERVED':'SETTLED');

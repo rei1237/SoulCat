@@ -4,25 +4,28 @@ import "@fontsource/nanum-myeongjo/700.css";
 import "./globals.css";
 import CheckoutRecovery from "@/components/CheckoutRecovery";
 import ServiceNavigation from "@/components/ServiceNavigation";
-import { absoluteUrl, siteName, siteUrl } from "@/lib/seo";
+import { absoluteUrl, siteName, siteUrl, starterTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: false },
   metadataBase: new URL(siteUrl),
-  title: "사주보는 영냥이 · 네 운명의 이야기를 읽어줄게",
+  title: starterTitle,
   description:
     "달빛이 머무는 작은 점술방. 도도하지만 다정한 고양이 영냥이와 오늘의 한마디, 사주, 타로, 별의 이야기를 만나보세요.",
   alternates: { canonical: absoluteUrl("/") },
   openGraph: {
     type: "website",
     siteName,
-    title: "사주보는 영냥이 · 네 운명의 이야기를 읽어줄게",
+    images: [{ url: absoluteUrl("/_soulcat/assets/og-yeongnyangi.jpg"), width: 1200, height: 630, alt: "천원 운세 · 사주보는 고양이 영냥이" }],
+    title: starterTitle,
     description:
       "달빛이 머무는 작은 점술방. 도도하지만 다정한 고양이 영냥이와 오늘의 한마디, 사주, 타로, 별의 이야기를 만나보세요.",
     url: absoluteUrl("/"),
   },
   twitter: {
     card: "summary_large_image",
-    title: "사주보는 영냥이 · 네 운명의 이야기를 읽어줄게",
+    images: [absoluteUrl("/_soulcat/assets/og-yeongnyangi.jpg")],
+    title: starterTitle,
     description:
       "달빛이 머무는 작은 점술방. 도도하지만 다정한 고양이 영냥이와 오늘의 한마디, 사주, 타로, 별의 이야기를 만나보세요.",
   },
