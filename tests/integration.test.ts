@@ -22,6 +22,9 @@ test("exact screen routing preserves every existing fortune subroute and other a
   for (const path of ["/fortune", "/fortune/", "/room/", "/library/"]) assert.equal(routeKind(path), "screen");
 });
 test("slash redirect preserves query and private credentials never reach static origin", async () => {
+  const entryRedirect = await handleEdge(new Request(origin + "/_soulcat"), env, idle);
+  assert.equal(entryRedirect.status, 302);
+  assert.equal(entryRedirect.headers.get("location"), origin + "/fortune/");
   const redirect = await handleEdge(new Request(origin + "/fortune?utm_source=test&domain=saju"), env, idle);
   assert.equal(redirect.status, 301);
   assert.equal(redirect.headers.get("location"), origin + "/fortune/?utm_source=test&domain=saju");
@@ -66,8 +69,9 @@ test("shared login uses only server verified identity and never forwards spoofed
   await assert.rejects(sharedUser(new Request(origin + "/api/yeongnyangi/library", { headers: { cookie: "soulcat_session=local" } }), env), /SESSION_REQUIRED/);
 });
 test("login return rejects external, protocol-relative and unexpected routes", () => {
-  for (const path of ["//evil.com", "https://evil.com", "/\\evil.com", "/login/", "/api/auth/me"]) assert.equal(loginHref(path), "/login/?returnTo=%2Ffortune%2F");
-  assert.equal(loginHref("/library/?utm_source=room"), "/login/?returnTo=%2Flibrary%2F");
+  const fallback = origin + "/login/?returnTo=%2Ffortune%2F&next=%2Ffortune%2F&redirect=%2Ffortune%2F";
+  for (const path of ["//evil.com", "https://evil.com", "/\\evil.com", "/login/", "/api/auth/me"]) assert.equal(loginHref(path), fallback);
+  assert.equal(loginHref("/library/?utm_source=room"), origin + "/login/?returnTo=%2Flibrary%2F&next=%2Flibrary%2F&redirect=%2Flibrary%2F");
 });
 test("namespaced catalog is public but all products remain disabled and independent", async () => {
   const response = await handleApi(new Request(origin + "/api/yeongnyangi/products"), env, idle);

@@ -23,6 +23,71 @@ export default async function SeoLandingPage({ params }: PageProps) {
   const route = seoRouteBySlug.get(slug);
   if (!route) notFound();
 
+  if (route.kind === "legal") {
+    return (
+      <main className="legal-page">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(route)) }}
+        />
+        <section className="legal-hero" aria-labelledby="legal-title">
+          <div className="legal-hero__copy">
+            <h1 id="legal-title">{route.title}</h1>
+            <p>{route.description}</p>
+            <div className="legal-actions">
+              <a className="primary-cta" href={route.ctaHref}>
+                {route.ctaLabel}
+              </a>
+              <a className="outlined-cta" href="/">
+                영냥이 홈으로
+              </a>
+            </div>
+          </div>
+          <div className="legal-hero__art" aria-hidden="true">
+            <img
+              src={`/_soulcat/assets/${route.legalImage || "avatar"}.webp`}
+              width="460"
+              height="360"
+              alt=""
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </section>
+
+        {route.legalHighlights && (
+          <section className="legal-highlights" aria-label="핵심 안내">
+            {route.legalHighlights.map((item) => (
+              <article key={item.label}>
+                <strong>{item.label}</strong>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </section>
+        )}
+
+        <section className="legal-content" aria-label="상세 안내">
+          {route.sections.map((section) => (
+            <article key={section.title}>
+              <h2>{section.title}</h2>
+              <p>{section.body}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="legal-faq" aria-labelledby="legal-faq-title">
+          <h2 id="legal-faq-title">자주 묻는 질문</h2>
+          {route.faq.map((item) => (
+            <details key={item.question}>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main className="seo-landing">
       <script

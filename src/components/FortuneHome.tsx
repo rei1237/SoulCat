@@ -32,6 +32,7 @@ import {
   recommendations,
   services,
 } from "@/data/home";
+import { ggulggulFortuneHref, socialLoginHref, type SocialProvider } from "@/lib/service-links";
 
 type Panel =
   | "auth"
@@ -114,6 +115,12 @@ export default function FortuneHome() {
   const reactionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const selectedConcern = concerns.find((item) => item.id === concern);
   const service = services.find((item) => item.id === serviceId) || services[0];
+  const returnTo = typeof window === "undefined" ? "/fortune/" : window.location.pathname + window.location.search;
+  const socialProviders: { id: SocialProvider; label: string }[] = [
+    { id: "google", label: "Google" },
+    { id: "naver", label: "네이버" },
+    { id: "kakao", label: "카카오" },
+  ];
 
   useEffect(() => {
     const now = new Date();
@@ -343,6 +350,34 @@ export default function FortuneHome() {
                 height={640}
               />
             </button>
+
+            <section className="ggulggul-bridge" aria-labelledby="ggulggul-title">
+              <div className="ggulggul-bridge__art">
+                <img
+                  src="/_soulcat/assets/ggulggul-fortune.webp"
+                  width="512"
+                  height="512"
+                  alt="연꽃 위에서 웃고 있는 꿀꿀 운세 꽃돼지"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="ggulggul-bridge__copy">
+                <span>Code Destiny 연결</span>
+                <h2 id="ggulggul-title">꽃돼지 연이의 꿀꿀 운세도 함께 볼 수 있어.</h2>
+                <p>
+                  영냥이의 깊은 상담과 꿀꿀 운세의 가벼운 오늘 흐름을 같은 Code Destiny 계정 흐름으로 이어갈게.
+                </p>
+                <div>
+                  <a className="outlined-cta" href="/ggulggul-fortune/">
+                    연결 안내 보기 <ArrowRight size={17} />
+                  </a>
+                  <a className="text-link" href={ggulggulFortuneHref("/fortune/")}>
+                    꿀꿀 운세로 이동 <ChevronRight size={15} />
+                  </a>
+                </div>
+              </div>
+            </section>
 
             <section
               className="concern-section"
@@ -634,24 +669,32 @@ export default function FortuneHome() {
               <p>
                 네 이야기를 간직할 자리를
                 <br />
-                준비하고 있어.
+                Code Destiny 계정으로 열어둘게.
               </p>
+              <div className="social-auth-list" aria-label={`${authMode === "login" ? "로그인" : "회원가입"} 방식`}>
+                {socialProviders.map((provider) => (
+                  <a
+                    key={provider.id}
+                    className={`social-auth-button social-auth-button--${provider.id}`}
+                    href={socialLoginHref(provider.id, returnTo, authMode)}
+                  >
+                    <KeyRound size={17} />
+                    {provider.label}로 {authMode === "login" ? "로그인" : "시작하기"}
+                  </a>
+                ))}
+              </div>
               <div className="availability-note">
                 <KeyRound size={18} />
                 <span>
-                  {authMode === "login" ? "로그인" : "회원가입"}은 준비
-                  중이에요.
+                  Code Destiny의 기존 Google·네이버·카카오 로그인으로 연결해요.
                   <br />
-                  오늘의 한마디와 이야기는 먼저 만나볼 수 있어요.
+                  로그인 뒤 이 화면으로 돌아와 보관함과 구매 권리를 확인할 수 있어요.
                 </span>
               </div>
-              <button
-                className="primary-cta"
-                onClick={() => window.location.assign("/room/#daily")}
-              >
-                오늘의 한마디 만나기
+              <a className="primary-cta" href={ggulggulFortuneHref("/login/")}>
+                Code Destiny 로그인 화면 열기
                 <ArrowRight size={18} />
-              </button>
+              </a>
             </div>
           )}
 

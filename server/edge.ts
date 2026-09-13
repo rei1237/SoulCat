@@ -23,9 +23,11 @@ const screens = new Set([
   "/vedic/",
   "/astrology/",
   "/yeongnyangi/",
+  "/ggulggul-fortune/",
 ]);
 const privateScreens = new Set(["/library/"]);
 export function routeKind(path: string) {
+  if (path === "/_soulcat" || path === "/_soulcat/") return "entry";
   if (
     /^\/share\/yeongnyangi\/[a-f0-9]{32}(?:\/(?:og|vertical)\.png)?$/.test(path)
   )
@@ -99,6 +101,11 @@ export async function handleEdge(
   if (kind === "missing") return new Response("Not found", { status: 404 });
   if (!["GET", "HEAD"].includes(request.method))
     return new Response("Method not allowed", { status: 405 });
+  if (kind === "entry") {
+    url.pathname = "/fortune/";
+    url.search = "";
+    return Response.redirect(url.href, 302);
+  }
   if (kind === "screen" && !url.pathname.endsWith("/")) {
     url.pathname += "/";
     return Response.redirect(url.href, 301);

@@ -9,6 +9,7 @@ export const siteName = "사주보는 고양이 영냥이";
 export type SeoRoute = {
   slug: string;
   path: `/${string}/`;
+  kind?: "seo" | "legal";
   title: string;
   description: string;
   keywords: string[];
@@ -19,11 +20,236 @@ export type SeoRoute = {
   ctaLabel: string;
   sections: { title: string; body: string }[];
   faq: { question: string; answer: string }[];
+  legalImage?: string;
+  legalHighlights?: { label: string; text: string }[];
 };
 
 const starterPrice = (domain: DomainId) =>
   getProduct(domainRegistry[domain].paidEntry.starterProductId).priceKRW;
 const won = (amount: number) => `${amount.toLocaleString("ko-KR")}원`;
+
+const legalRoutes: SeoRoute[] = [
+  {
+    slug: "terms",
+    path: "/terms/",
+    kind: "legal",
+    title: "이용약관 · 영냥이의 달빛 점술방",
+    description:
+      "사주보는 고양이 영냥이 서비스 이용 조건, 콘텐츠의 성격, 유료 상품과 문의 기준을 간결하게 안내합니다.",
+    keywords: ["영냥이 이용약관", "SoulCat 약관", "운세 서비스 약관"],
+    includeInSitemap: true,
+    jsonLdType: "WebPage",
+    intent:
+      "방문자가 영냥이 서비스를 이용하기 전에 콘텐츠 성격, 이용자 책임, 결제 기준과 문의처를 빠르게 확인하도록 돕습니다.",
+    ctaHref: "/fortune/",
+    ctaLabel: "운세 보기",
+    legalImage: "room-study",
+    legalHighlights: [
+      { label: "서비스 성격", text: "운세 콘텐츠는 오락 및 자기 성찰 목적의 참고 정보입니다." },
+      { label: "결제 기준", text: "유료 상품은 SoulCat에서 검증한 별도 상품과 결제 조건을 기준으로 안내합니다." },
+      { label: "문의", text: "서비스와 권리 요청은 admin@code-destiny.com에서 접수합니다." },
+    ],
+    sections: [
+      {
+        title: "서비스 이용",
+        body:
+          "영냥이는 사주, 타로, 별자리 기반의 해석 콘텐츠와 질문 정리 경험을 제공합니다. 기능은 서비스 안정성, 운영 사정, 검증 상태에 따라 추가되거나 변경될 수 있습니다.",
+      },
+      {
+        title: "콘텐츠의 한계",
+        body:
+          "운세와 타로 결과는 가능성, 흐름, 선택지를 읽는 참고 콘텐츠입니다. 법률, 의료, 투자, 세무 등 전문 자문을 대체하지 않으며 결과의 정확성이나 특정 미래를 보장하지 않습니다.",
+      },
+      {
+        title: "유료 이용",
+        body:
+          "유료 상품은 SoulCat 결제 화면에 표시되는 조건을 기준으로 합니다. 꿀꿀 운세의 기존 결제 권리를 자동 적용한다고 안내하지 않으며, 자동 제공·무제한·평생 이용 같은 혜택은 별도 고지가 없는 한 적용되지 않습니다.",
+      },
+      {
+        title: "이용자 책임",
+        body:
+          "이용자는 본인의 입력 정보를 스스로 확인해야 하며, 타인의 개인정보 도용, 서비스 방해, 무단 자동화 접근, 콘텐츠 무단 복제와 배포를 해서는 안 됩니다.",
+      },
+    ],
+    faq: [
+      {
+        question: "영냥이 결과는 확정된 예언인가요?",
+        answer:
+          "아니요. 영냥이의 콘텐츠는 오락 및 자기 성찰 목적의 참고 정보이며, 실제 의사결정에는 사용자의 판단과 필요한 경우 전문가 상담이 우선됩니다.",
+      },
+      {
+        question: "꿀꿀 운세의 결제 권리가 자동 적용되나요?",
+        answer:
+          "아니요. SoulCat은 꿀꿀 운세와 별도 결제 정책으로 운영합니다. 로그인 흐름은 함께 사용할 수 있지만, 결제 권리는 SoulCat 상품 기준으로 확인합니다.",
+      },
+    ],
+  },
+  {
+    slug: "privacy",
+    path: "/privacy/",
+    kind: "legal",
+    title: "개인정보처리방침 · 영냥이",
+    description:
+      "영냥이가 어떤 정보를 언제 처리할 수 있는지, 저장되지 않는 현재 기능과 권리 요청 방법을 쉽게 안내합니다.",
+    keywords: ["영냥이 개인정보처리방침", "SoulCat 개인정보", "운세 개인정보"],
+    includeInSitemap: true,
+    jsonLdType: "WebPage",
+    intent:
+      "방문자가 출생 정보, 결제 정보, 문의 정보가 어떤 목적으로 쓰이는지와 삭제·정정 요청 방법을 확인하도록 돕습니다.",
+    ctaHref: "/contact/",
+    ctaLabel: "개인정보 문의하기",
+    legalImage: "night-read",
+    legalHighlights: [
+      { label: "최소 처리", text: "운세 제공과 문의 응대에 필요한 정보만 처리합니다." },
+      { label: "현재 기능", text: "준비 중인 로그인·보관함을 실제 저장 기능처럼 안내하지 않습니다." },
+      { label: "권리 요청", text: "열람, 정정, 삭제, 처리 정지는 이메일로 요청할 수 있습니다." },
+    ],
+    sections: [
+      {
+        title: "수집 항목과 목적",
+        body:
+          "운세 기능을 이용할 때 생년월일, 출생시간, 성별, 출생지처럼 해석에 필요한 입력값을 요청할 수 있습니다. 문의 시에는 회신 받을 이메일과 문의 내용을 처리합니다.",
+      },
+      {
+        title: "저장과 보관",
+        body:
+          "현재 화면에서 준비 중으로 표시되는 로그인, 보관함, 자유 상담 저장 기능은 실제 저장 기능으로 과장해 안내하지 않습니다. 서버 저장이 필요한 기능은 별도 안내와 동의 절차를 둡니다.",
+      },
+      {
+        title: "결제와 위탁",
+        body:
+          "결제 정보는 결제 처리, 환불, 영수증 발행, SoulCat 상품 권한 확인을 위해 결제대행사와 함께 처리될 수 있습니다. 카드번호 전체 같은 민감한 결제 원문은 직접 저장하지 않는 기준을 따릅니다.",
+      },
+      {
+        title: "이용자 권리",
+        body:
+          "개인정보 열람, 정정, 삭제, 처리 정지, 동의 철회 요청은 admin@code-destiny.com으로 접수할 수 있습니다. 법령상 보관 의무가 있는 거래 기록은 해당 기간 동안 보관될 수 있습니다.",
+      },
+    ],
+    faq: [
+      {
+        question: "영냥이가 입력한 정보를 항상 저장하나요?",
+        answer:
+          "아니요. 현재 준비 중인 기능은 저장 기능으로 표현하지 않으며, 저장이 필요한 기능은 별도의 동의와 안내를 전제로 합니다.",
+      },
+      {
+        question: "개인정보 삭제는 어디로 요청하나요?",
+        answer:
+          "admin@code-destiny.com으로 열람, 정정, 삭제, 처리 정지 요청을 보낼 수 있습니다.",
+      },
+    ],
+  },
+  {
+    slug: "refund",
+    path: "/refund/",
+    kind: "legal",
+    title: "환불·취소 안내 · 영냥이",
+    description:
+      "SoulCat 별도 상품 결제의 환불·취소 기준과 결과 미제공, 중복 결제 문의 방법을 안내합니다.",
+    keywords: ["영냥이 환불", "SoulCat 취소", "운세 결제 환불"],
+    includeInSitemap: true,
+    jsonLdType: "WebPage",
+    intent:
+      "결제 전후 방문자가 청약철회 가능 범위, 디지털 콘텐츠 제공 개시 이후 제한, 문의 방법을 이해하도록 돕습니다.",
+    ctaHref: "/contact/",
+    ctaLabel: "환불 문의하기",
+    legalImage: "expressions/thinking",
+    legalHighlights: [
+      { label: "결제 전", text: "결제 완료 전에는 언제든 취소할 수 있습니다." },
+      { label: "제공 개시 후", text: "결과 열람이나 생성이 시작된 디지털 콘텐츠는 단순 변심 환불이 제한될 수 있습니다." },
+      { label: "오류 처리", text: "중복 결제나 결과 미제공은 내역 확인 후 적절히 처리합니다." },
+    ],
+    sections: [
+      {
+        title: "기본 기준",
+        body:
+          "유료 결제 상품은 SoulCat 상품 카탈로그와 결제 화면의 고지를 기준으로 안내합니다. 꿀꿀 운세의 기존 결제 권리를 SoulCat 권리로 자동 전환하지 않습니다.",
+      },
+      {
+        title: "청약철회와 제한",
+        body:
+          "SoulCat 유료 상품은 관계 법령과 결제 화면의 고지에 따라 청약철회를 요청할 수 있습니다. 다만 개인 맞춤형 디지털 콘텐츠 생성, 결과 열람, PDF 렌더링 등 서비스 제공이 시작된 경우 제한될 수 있습니다.",
+      },
+      {
+        title: "오류와 중복 결제",
+        body:
+          "결제 후 결과가 제공되지 않았거나 동일 상품의 중복 결제가 확인되면 결제 내역과 오류 기록을 확인한 뒤 재생성, 이용 조정, 부분 환불 또는 전액 환불 중 적절한 방식으로 처리합니다.",
+      },
+      {
+        title: "문의 방법",
+        body:
+          "환불 요청은 결제자 본인 확인 후 admin@code-destiny.com으로 접수합니다. 실제 카드사와 결제대행사의 반영 시점은 결제수단별 정책에 따라 달라질 수 있습니다.",
+      },
+    ],
+    faq: [
+      {
+        question: "결제 후 결과를 열람했는데 단순 변심 환불이 가능한가요?",
+        answer:
+          "개인 맞춤형 디지털 콘텐츠 제공이 시작된 경우 단순 변심 환불은 제한될 수 있습니다. 다만 오류나 중복 결제는 내역 확인 후 처리합니다.",
+      },
+      {
+        question: "환불 문의에는 무엇을 적어야 하나요?",
+        answer:
+          "결제자 확인이 가능한 정보, 결제 시각, 상품명, 문제가 발생한 화면이나 상황을 함께 보내주시면 확인이 빠릅니다.",
+      },
+    ],
+  },
+  {
+    slug: "contact",
+    path: "/contact/",
+    kind: "legal",
+    title: "고객센터 · 영냥이에게 전할 말",
+    description:
+      "서비스 이용, 결제 내역, 개인정보 요청, 콘텐츠 정정 요청을 Code Destiny 운영 이메일로 접수하는 방법을 안내합니다.",
+    keywords: ["영냥이 고객센터", "SoulCat 문의", "Code Destiny 문의"],
+    includeInSitemap: true,
+    jsonLdType: "WebPage",
+    intent:
+      "방문자가 문의 유형과 운영 이메일, 사업자 정보를 빠르게 확인하고 필요한 정보만 안전하게 보내도록 안내합니다.",
+    ctaHref: "mailto:admin@code-destiny.com",
+    ctaLabel: "이메일 보내기",
+    legalImage: "expressions/comfort",
+    legalHighlights: [
+      { label: "운영 이메일", text: "admin@code-destiny.com" },
+      { label: "문의 유형", text: "이용, 결제, 개인정보, 콘텐츠 정정 요청을 접수합니다." },
+      { label: "주의", text: "비밀번호나 카드번호 전체 등 불필요한 민감정보는 보내지 마세요." },
+    ],
+    sections: [
+      {
+        title: "접수하는 문의",
+        body:
+          "서비스 이용 방법, 화면 오류, 결제 내역 확인, 결과 미제공, 개인정보 열람·정정·삭제·처리정지, 콘텐츠 정정 요청을 접수합니다.",
+      },
+      {
+        title: "보내면 좋은 정보",
+        body:
+          "문의 유형, 이용한 페이지 주소, 발생 시각, 상품명 또는 결제 시각, 재현 가능한 상황을 적어 주세요. 민감정보와 비밀번호, 카드번호 전체는 보내지 않는 것이 안전합니다.",
+      },
+      {
+        title: "사업자 정보",
+        body:
+          "상호는 코드 데스티니(Code Destiny), 대표는 박병하입니다. 사업자등록번호는 372-23-02329, 통신판매업 신고번호는 제 2026-화성호-0264 호입니다.",
+      },
+      {
+        title: "연락처",
+        body:
+          "사업장 주소는 경기도 화성시 효행구 비봉면 새비봉동로 37, 101동 1207호입니다. 전화는 050-6664-7398, 이메일은 admin@code-destiny.com입니다.",
+      },
+    ],
+    faq: [
+      {
+        question: "문의는 사이트에서 자동 전송되나요?",
+        answer:
+          "현재 이 페이지는 안내 중심입니다. 이메일 앱이나 사용 중인 메일 서비스에서 admin@code-destiny.com으로 보내 주세요.",
+      },
+      {
+        question: "개인정보 요청도 같은 이메일로 보내면 되나요?",
+        answer:
+          "네. 열람, 정정, 삭제, 처리 정지 요청도 admin@code-destiny.com에서 접수합니다.",
+      },
+    ],
+  },
+];
 
 const domainRoute = (domain: DomainId): SeoRoute => {
   const entry = domainRegistry[domain];
@@ -72,7 +298,51 @@ const domainRoute = (domain: DomainId): SeoRoute => {
   };
 };
 
-export const seoRoutes = [
+export const seoRoutes: SeoRoute[] = [
+  ...legalRoutes,
+  {
+    slug: "ggulggul-fortune",
+    path: "/ggulggul-fortune/",
+    title: "꿀꿀 운세 연결 · 꽃돼지 연이와 영냥이",
+    description:
+      "Code Destiny의 꿀꿀 운세와 사주보는 고양이 영냥이를 같은 계정 흐름으로 이어 보는 안내 페이지입니다.",
+    keywords: ["꿀꿀 운세", "꽃돼지 연이", "Code Destiny", "영냥이"],
+    includeInSitemap: true,
+    jsonLdType: "FAQPage",
+    intent:
+      "기존 꿀꿀 운세 사용자가 영냥이 상담으로 넘어오거나, 영냥이 사용자가 Code Destiny의 꿀꿀 운세 허브로 이동할 때 로그인과 서비스 관계를 이해하도록 돕습니다.",
+    ctaHref: "https://staging.code-destiny.com/fortune/",
+    ctaLabel: "꿀꿀 운세로 이동",
+    sections: [
+      {
+        title: "같은 Code Destiny 계정 흐름",
+        body:
+          "영냥이는 Code Destiny의 기존 Google, 네이버, 카카오 로그인 흐름으로 세션을 확인합니다. 새 비밀번호 체계를 만들지 않고 기존 계정 경로와 이어집니다.",
+      },
+      {
+        title: "서로 다른 캐릭터, 이어지는 운세",
+        body:
+          "꽃돼지 연이의 꿀꿀 운세는 가볍게 오늘의 흐름을 살피는 입구이고, 영냥이는 선택한 체계를 더 길게 읽는 상담 경험으로 이어집니다.",
+      },
+      {
+        title: "정책은 그대로 유지",
+        body:
+          "이 연결은 브랜드와 로그인 흐름을 정리하는 작업입니다. SoulCat 결제는 꿀꿀 운세의 기존 결제 권리와 별개로 검증한 상품 기준만 안내합니다.",
+      },
+    ],
+    faq: [
+      {
+        question: "꿀꿀 운세 계정으로 영냥이에 로그인하나요?",
+        answer:
+          "로그인은 Code Destiny의 기존 소셜 로그인 세션을 확인하는 구조를 사용합니다. 다만 결제 권리와 상품 정책은 SoulCat 기준으로 별도 확인합니다.",
+      },
+      {
+        question: "꿀꿀 운세의 결제 권리가 적용되나요?",
+        answer:
+          "아니요. SoulCat은 꿀꿀 운세와 별도 결제 정책으로 운영하며, 화면에서 검증한 SoulCat 상품만 결제 권리로 안내합니다.",
+      },
+    ],
+  },
   {
     slug: "free-fortune",
     path: "/free-fortune/",
@@ -147,9 +417,9 @@ export const seoRoutes = [
         answer: `현재 고등어 단건 상품은 서버 상품 카탈로그 기준 ${won(starterPrice("saju"))}입니다. 화면은 이 값을 직접 참조합니다.`,
       },
       {
-        question: "월정석이나 이용권이 자동 적용되나요?",
+        question: "꿀꿀 운세의 결제 권리가 자동 적용되나요?",
         answer:
-          "영냥이 상담은 별도 단건 상품으로 안내되며, 기존 이용권·월정석 구조를 임의로 바꾸지 않습니다.",
+          "아니요. 영냥이 상담은 SoulCat의 별도 상품으로 안내되며, 꿀꿀 운세의 기존 결제 권리를 자동 적용하지 않습니다.",
       },
     ],
   },
@@ -192,7 +462,7 @@ export const seoRoutes = [
     ],
   },
   ...domainEntries.map((entry) => domainRoute(entry.domain)),
-] as const satisfies SeoRoute[];
+];
 
 export const seoRouteBySlug = new Map(seoRoutes.map((route) => [route.slug, route]));
 export const indexablePaths = new Set(["/", "/fortune/", "/room/", ...seoRoutes.map((r) => r.path)]);
@@ -225,6 +495,15 @@ export function routeMetadata(route: SeoRoute): Metadata {
 }
 
 export function faqJsonLd(route: SeoRoute) {
+  if (route.jsonLdType === "WebPage") {
+    return {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: route.title,
+      description: route.description,
+      url: absoluteUrl(route.path),
+    };
+  }
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",

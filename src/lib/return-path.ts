@@ -1,4 +1,4 @@
-const screens = new Set(['/fortune/', '/room/', '/library/']);
+const screens = new Set(['/fortune/', '/room/', '/library/', '/ggulggul-fortune/']);
 const keys = new Set(['domain', 'fish', 'product', 'profile', 'request', 'orderId', 'paymentId']);
 export function safeReturnPath(value: unknown): string {
   if (typeof value !== 'string' || !value.startsWith('/') || value.startsWith('//') || /[\\%\x00-\x20]/.test(value.split('?')[0])) return '/fortune/';
