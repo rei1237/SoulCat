@@ -24,7 +24,8 @@ function short(body:ChapterBody):ChapterBody{return {...body,blocks:[{title:'핵
 
 test('all product manifests allocate full minimums, real distinct questions and last action',()=>{
  for(const p of products){const m=productManifest(p);assert.equal(m.length,p.chapterCount);assert.equal(m.at(-1)?.key,'action');assert.ok(m.reduce((n,c)=>n+c.minimumChars!,0)>=readingPolicies[p.fishId].minimum);assert.equal(new Set(m.map(c=>c.key)).size,m.length);assert.ok(m.every(c=>c.version===READING_VERSION&&c.focus&&c.excludes?.length&&c.requiredSections!.length>=4));}
- assert.deepEqual(['mackerel','salmon','flounder','tuna'].map(t=>getProduct('saju_'+t).chapterCount),[4,6,8,12]);
+ assert.deepEqual(['mackerel','salmon','flounder','tuna'].map(t=>getProduct('saju_'+t).chapterCount),[5,6,8,12]);
+ assert.equal(productManifest({...getProduct('saju_mackerel'),chapterCount:4}).length,4);
  assert.deepEqual(['mackerel','salmon','flounder','tuna'].map(t=>getProduct('tarot_'+t).chapterCount),[4,5,6,8]);
  assert.equal(getProduct('fusion_all').chapterCount,28);assert.equal(getProduct('fusion_saju_ziwei').chapterCount,18);
  assert.notDeepEqual(productManifest(getProduct('sukuyo_tuna'),'general','personal'),productManifest(getProduct('sukuyo_tuna'),'general','compatibility'));
@@ -58,7 +59,7 @@ test('a second short response remains failed with entitlement; repair timeout is
  for(const timeout of [false,true]){const {db,sqlite,request}=await paid();let calls=0;const provider={async generateChapter(input:Parameters<MockChapterProvider['generateChapter']>[0]){calls++;if(timeout&&calls===2)throw new FortuneError('LLM_TIMEOUT');return short(await new MockChapterProvider().generateChapter(input));}};await runBookStep(db,request.id,provider);assert.equal(calls,2);assert.equal((await bookStatus(db,'alice',request.id))?.status,timeout?'UNCERTAIN':'FAILED');await runBookStep(db,request.id,provider);assert.equal(calls,2);assert.equal((sqlite.prepare('SELECT status FROM entitlements').get() as {status:string}).status,'ACTIVE');}
 });
 test('room uses an owned completed result, blocks premium bypass and never enables live generation',async()=>{
- const {db,request}=await paid();for(let i=0;i<5;i++)await runBookStep(db,request.id,new MockChapterProvider());const env={APP_ENV:'local',LLM_PROVIDER:'mock',ALLOW_LIVE_LLM:'false'};
+ const {db,request}=await paid();for(let i=0;i<=getProduct('saju_mackerel').chapterCount;i++)await runBookStep(db,request.id,new MockChapterProvider());const env={APP_ENV:'local',LLM_PROVIDER:'mock',ALLOW_LIVE_LLM:'false'};
  const body={requestId:request.id,question:'연애에서 어떤 모습이 나올까?'};const response=await counselInRoom(db,'alice',body,env);assert.equal(response.mock,true);assert.equal(response.chapter?.title,'사랑할 때 드러나는 모습');assert.ok(response.sources.length);
  assert.equal((await counselInRoom(db,'alice',{...body,question:'용신과 대운을 알려줘'},env)).sources.length,0);
  await assert.rejects(()=>counselInRoom(db,'bob',body,env),/RESULT_NOT_FOUND/);await assert.rejects(()=>counselInRoom(db,'alice',body,{...env,APP_ENV:'production'}),/ROOM_MOCK_ONLY/);

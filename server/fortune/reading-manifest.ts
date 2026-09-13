@@ -1,7 +1,7 @@
 import type { Product } from '../payments/catalog';
 import type { ChapterSpec, Theme } from './book-contracts';
 import type { DomainId } from './shared/contracts';
-import { readingChapterCount, readingPolicies, READING_VERSION } from './reading-policy';
+import { readingPolicies, READING_VERSION } from './reading-policy';
 
 type Row = { key: string; title: string; theme: Theme; systems: DomainId[]; part: string };
 const themes:Record<string,Theme>={love:'love',boundary:'relations',relations:'relations',communication:'relations',distance:'relations',roles:'relations',longterm:'relations',talent:'career',career:'career',environment:'career',money:'wealth',spending:'wealth',expansion:'wealth',current:'timing',next:'timing',year:'timing',overlap:'timing',subperiod:'timing',compare:'cross',action:'action',alternatives:'action',observation:'action'};
@@ -50,7 +50,7 @@ export function readingManifest(p:Product,topicId='general',readingMode='persona
  let rows:Row[];
  if(p.readingKind==='single'){
  const name=p.domain==='sukuyo'&&readingMode!=='personal'?'sukuyo_pair':p.domain;
- rows=[...parse(outlines[name],p.systems).slice(0,readingChapterCount(p.domain,p.fishId)-1),...parse('action:지금의 선택과 실행 계획',p.systems)];
+ rows=[...parse(outlines[name],p.systems).slice(0,p.chapterCount-1),...parse('action:지금의 선택과 실행 계획',p.systems)];
  }else rows=p.readingKind==='pair'?parse(pairs[p.domain],p.systems,'서로 다른 관점으로 읽는 나'):combinedRows();
  const policy=readingPolicies[p.fishId];
  const weights=rows.map(r=>r.key==='action'?.85:['useful','current','next','overlap','transform','division','triad','tension'].includes(r.key)?1.15:1);const sum=weights.reduce((a,b)=>a+b,0);

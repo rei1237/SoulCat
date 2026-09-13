@@ -19,6 +19,7 @@ export const depthDescriptions: Record<PackageId, string> = {
   omakase: '여섯 체계로 읽는 분야별 심층 상담과 실행 계획',
 };
 export function readingChapterCount(domain: DomainId, tier: PackageId): number {
+  if (domain === 'saju' && tier === 'mackerel') return 5;
   if (tier === 'assorted') return 18;
   if (tier === 'omakase') return 28;
   const index = ['mackerel', 'salmon', 'flounder', 'tuna'].indexOf(tier);

@@ -6,9 +6,19 @@ import {stagingProductEnabled, validationRun} from '../server/payments/staging-a
 import {handleApi} from '../server/api';
 import {handleEdge,routeKind} from '../server/edge';
 import {safeReturnPath} from '../src/lib/return-path';
+import {productBudgetReady} from '../server/providers/budget';
+import {getProduct} from '../server/payments/catalog';
 
 const user='codedestiny:0123456789abcdef01234567';
 const env={APP_ENV:'staging',PAYMENTS_ENABLED:'true',STAGING_PAYMENT_RUN:validationRun,STAGING_TEST_PRODUCT_IDS:'saju_mackerel',STAGING_TEST_USER_IDS:user};
+
+test('the actual validation catalog satisfies the five chapter live budget gate',()=>{
+  const live={...env,LLM_STAGING_VALIDATION_MANIFEST:'destiny-book-v4',LLM_COST_MODE:'test',LLM_TEST_BUDGET_KRW:'1000',LLM_DAILY_BUDGET_KRW:'1000',LLM_TIMEOUT_MS:'60000',LLM_MAX_RETRIES:'2',LLM_MAX_INPUT_TOKENS:'32000',LLM_MAX_OUTPUT_TOKENS:'4096',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString()};
+  const product=getProduct('saju_mackerel');
+  assert.equal(product.chapterCount,5);
+  assert.doesNotThrow(()=>productBudgetReady(live,product.id,product.chapterCount));
+  assert.throws(()=>productBudgetReady({...live,APP_ENV:'production'},product.id,product.chapterCount));
+});
 test('staging sale requires the approved account and exact product; production is always closed',()=>{
   assert.equal(stagingProductEnabled(env,user,'saju_mackerel'),true);
   for(const patch of [{APP_ENV:'production'},{PAYMENTS_ENABLED:'false'},{STAGING_PAYMENT_RUN:''},{STAGING_TEST_PRODUCT_IDS:'saju_mackerel,tarot_mackerel'},{STAGING_TEST_USER_IDS:'*'}]) assert.equal(stagingProductEnabled({...env,...patch},user,'saju_mackerel'),false);
