@@ -92,9 +92,14 @@
       ]
     },
     "production": {
+      "name": "soulcat-service-production",
       "workers_dev": false,
       "preview_urls": false,
       "vars": {
+        "LLM_TIMEOUT_MS": "60000",
+        "LLM_MAX_RETRIES": "2",
+        "LLM_MAX_INPUT_TOKENS": "32000",
+        "LLM_MAX_OUTPUT_TOKENS": "4096",
         "APP_ENV": "production",
         "PUBLIC_ORIGIN": "https://code-destiny.com",
         "LLM_PROVIDER": "mock",
@@ -104,6 +109,58 @@
         {
           "binding": "AUTH_SERVICE",
           "service": "code-destiny-web"
+        }
+      ],
+      "queues": {
+        "producers": [
+          {
+            "binding": "BOOK_QUEUE",
+            "queue": "soulcat-book-production"
+          }
+        ],
+        "consumers": [
+          {
+            "queue": "soulcat-book-production",
+            "max_batch_size": 1,
+            "max_batch_timeout": 1,
+            "max_retries": 3,
+            "max_concurrency": 2,
+            "dead_letter_queue": "soulcat-book-production-dlq"
+          }
+        ]
+      },
+      "triggers": {
+        "crons": [
+          "*/2 * * * *"
+        ]
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "soulcat-fortune-production",
+          "migrations_dir": "server/db/migrations"
+        }
+      ],
+      "routes": [
+        {
+          "pattern": "code-destiny.com/yeongnyangi*",
+          "zone_name": "code-destiny.com"
+        },
+        {
+          "pattern": "code-destiny.com/share/yeongnyangi/*",
+          "zone_name": "code-destiny.com"
+        },
+        {
+          "pattern": "code-destiny.com/_soulcat",
+          "zone_name": "code-destiny.com"
+        },
+        {
+          "pattern": "code-destiny.com/_soulcat/*",
+          "zone_name": "code-destiny.com"
+        },
+        {
+          "pattern": "code-destiny.com/api/yeongnyangi/*",
+          "zone_name": "code-destiny.com"
         }
       ]
     }
