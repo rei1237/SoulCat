@@ -6,6 +6,8 @@ import {handleEdge,routeKind} from '../server/edge';
 import {safeReturnPath} from '../src/lib/return-path';
 import {productBudgetReady,stagingProductEnabled,validationRun} from '../server/providers/budget';
 import {getProduct} from '../server/payments/catalog';
+import {validateProductionActivation} from '../scripts/production-activation.mjs';
+import {readFileSync} from 'node:fs';
 
 const user='codedestiny:0123456789abcdef01234567';
 const env={APP_ENV:'staging',STAGING_PAYMENT_RUN:validationRun,STAGING_TEST_PRODUCT_IDS:'saju_mackerel',STAGING_TEST_USER_IDS:user};
@@ -44,6 +46,21 @@ test('production catalog marks only the verified product available, and nothing 
   };
   assert.deepEqual(await available({}),['saju_mackerel']);
   for(const patch of [{ALLOW_LIVE_LLM:'false'},{LLM_PROVIDER:'mock'},{LLM_COST_MODE:'test'},{LLM_PRICING_VALID_UNTIL:new Date(Date.now()-1000).toISOString()}]) assert.deepEqual(await available(patch),[],JSON.stringify(patch));
+});
+test('production activation opens only the verified saju on the committed production vars',()=>{
+  const committed=JSON.parse(readFileSync('wrangler.worker.jsonc','utf8')).env.production.vars;
+  const activation={ALLOW_LIVE_LLM:'true',LLM_PROVIDER:'gemini',LLM_COST_MODE:'metered',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString(),LLM_VERIFIED_PRODUCTS:JSON.stringify({saju_mackerel:{model:'fixture',chapters:5,maxKRW:300,manifestVersion:'destiny-book-v4',outputTokens:4096}})};
+  assert.doesNotThrow(()=>validateProductionActivation(activation));
+  const product=getProduct('saju_mackerel');
+  // 검증기가 받아들인 activation 은 실제 운영 vars 위에서 서버 예산 판정도 통과해야 한다.
+  assert.doesNotThrow(()=>productBudgetReady({...committed,...activation},product.id,product.chapterCount));
+  const verified=JSON.parse(activation.LLM_VERIFIED_PRODUCTS).saju_mackerel;
+  for(const patch of [
+    {LLM_VERIFIED_PRODUCTS:JSON.stringify({saju_mackerel:verified,tarot_mackerel:{...verified}})},
+    {LLM_COST_MODE:'test'},
+    {LLM_PRICING_VALID_UNTIL:new Date(Date.now()-1000).toISOString()},
+    {LLM_DAILY_BUDGET_KRW:'1000'},
+  ]) assert.throws(()=>validateProductionActivation({...activation,...patch}),Error,JSON.stringify(patch));
 });
 test('namespaced home, metadata and old checkout URLs preserve the legacy application',async()=>{
   const origin='https://staging.code-destiny.com';
