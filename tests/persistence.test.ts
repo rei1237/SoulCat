@@ -2,10 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
 import fs from "node:fs";
-import { createOrder, grantPaidOrder } from "../server/payments/orders";
+import { createOrder, grantProofOrder } from "../server/payments/orders";
 import { prepareGeneration, runGeneration } from "../server/fortune/generation";
 import { MockLLMProvider } from "../server/providers/mock";
-import { verifyPayment } from "../server/payments/portone";
 import { handleApi } from "../server/api";
 import type { Database, Statement } from "../server/db/types";
 function setup() {
@@ -74,10 +73,6 @@ function setup() {
     .run("profile-b", "bob", "saju", input, Date.now());
   return { db, sqlite };
 }
-const config = {
-  PORTONE_STORE_ID: "store-test",
-  PORTONE_CHANNEL_KEY: "channel-test",
-};
 test("server catalog, ownership, duplicate orders and duplicate entitlement", async () => {
   const { db, sqlite } = setup();
   const a = await createOrder(
@@ -118,24 +113,11 @@ test("server catalog, ownership, duplicate orders and duplicate entitlement", as
       ),
     /IDEMPOTENCY_CONFLICT/,
   );
-  const paid = {
-    id: a.payment_id,
-    status: "PAID",
-    amount: { total: 1000 },
-    currency: "KRW",
-    storeId: "store-test",
-    channel: { key: "channel-test" },
-  };
-  for (const altered of [
-    { ...paid, amount: { total: 1 } },
-    { ...paid, status: "FAILED" },
-    { ...paid, status: "CANCELLED" },
-    { ...paid, id: "forged" },
-    { ...paid, currency: "USD" },
-  ])
-    assert.throws(() => verifyPayment(altered, a, config));
-  await grantPaidOrder(db, a, paid, config);
-  await grantPaidOrder(db, a, paid, config);
+  // CD 증빙은 금액 대조와 증빙 id 형식만 이 워커가 검사한다. 같은 증빙을 두 번 적용해도 권리는 하나다.
+  await assert.rejects(grantProofOrder(db, a, "proof-a", 1), /PAYMENT_AMOUNT_MISMATCH/);
+  await assert.rejects(grantProofOrder(db, a, "bad proof!", 1000), /PAYMENT_PROOF_INVALID/);
+  await grantProofOrder(db, a, "proof-a", 1000);
+  await grantProofOrder(db, a, "proof-a", 1000);
   assert.equal(
     (
       sqlite.prepare("SELECT count(*) AS n FROM entitlements").get() as {
@@ -154,19 +136,7 @@ test("paid + AI failure retains entitlement; retry saves one result; parallel cl
     "profile-a",
     "generation-order-key",
   );
-  await grantPaidOrder(
-    db,
-    order,
-    {
-      id: order.payment_id,
-      status: "PAID",
-      amount: { total: 1000 },
-      currency: "KRW",
-      storeId: "store-test",
-      channel: { key: "channel-test" },
-    },
-    config,
-  );
+  await grantProofOrder(db, order, "proof-" + order.id, 1000);
   const request = await prepareGeneration(
     db,
     "alice",
@@ -270,19 +240,7 @@ test("ambiguous provider timeout never auto-generates twice or revokes the purch
     "profile-a",
     "timeout-request-key",
   );
-  await grantPaidOrder(
-    db,
-    order,
-    {
-      id: order.payment_id,
-      status: "PAID",
-      amount: { total: 1000 },
-      currency: "KRW",
-      storeId: "store-test",
-      channel: { key: "channel-test" },
-    },
-    config,
-  );
+  await grantProofOrder(db, order, "proof-" + order.id, 1000);
   const request = await prepareGeneration(
     db,
     "alice",

@@ -14,7 +14,7 @@ import {
   deliverOutbox,
   recoverPaidBooks,
 } from "../server/fortune/books";
-import { createOrder, grantPaidOrder } from "../server/payments/orders";
+import { createOrder, grantProofOrder } from "../server/payments/orders";
 import { MockChapterProvider } from "../server/providers/chapter";
 import {
   createShare,
@@ -44,20 +44,7 @@ async function paid(tier = "mackerel") {
     "p",
     "test-idempotency-0001",
   );
-  const env = { PORTONE_STORE_ID: "fixture", PORTONE_CHANNEL_KEY: "fixture" };
-  await grantPaidOrder(
-    db,
-    order,
-    {
-      id: order.payment_id,
-      status: "PAID",
-      amount: { total: order.amount },
-      currency: "KRW",
-      storeId: "fixture",
-      channel: { key: "fixture" },
-    },
-    env,
-  );
+  await grantProofOrder(db, order, "fixture-" + order.id, order.amount);
   return { db, sqlite, snapshot, order };
 }
 test('share rendering reads assets from immutable Pages and fails closed on render errors',async()=>{

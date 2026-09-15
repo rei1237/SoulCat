@@ -9,7 +9,6 @@ const env = {
   ),
   LLM_PROVIDER: "mock",
   ALLOW_LIVE_LLM: "false",
-  PAYMENTS_ENABLED: "false",
 };
 const entries = [];
 for (const line of fs

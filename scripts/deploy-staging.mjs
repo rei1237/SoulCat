@@ -11,17 +11,17 @@ const version = await fetch(`${pin}/version.json`).then(r => {
   if (!r.ok) throw new Error("Pages version unavailable");
   return r.json();
 });
-if (version.sha !== sha || version.paymentsEnabled !== false) throw new Error("Pages SHA/payment gate mismatch");
+if (version.sha !== sha) throw new Error("Pages SHA mismatch");
 if(version.dirty || version.sourceDigest!==sourceRelease().sourceDigest)throw new Error('Pages source content mismatch');
 const config = JSON.parse(readFileSync("wrangler.worker.jsonc", "utf8"));
 const stage = config.env.staging;
-if (config.env.production.vars.PAYMENTS_ENABLED !== "false" || config.env.production.vars.ALLOW_LIVE_LLM !== "false" ||
+if (config.env.production.vars.ALLOW_LIVE_LLM !== "false" ||
     stage.routes.some(r => !r.pattern.startsWith("staging.code-destiny.com/")) ||
     stage.services.some(s => !s.service.endsWith("-staging"))) throw new Error("Staging isolation failed");
 // Activation settings are read from a local file, never command-line secrets or Git.
 const extraVars = [];
 const activationFile = process.argv[3];
-if (stage.vars.PAYMENTS_ENABLED !== 'false' || stage.vars.ALLOW_LIVE_LLM !== 'false') throw new Error('Keep committed defaults disabled');
+if (stage.vars.ALLOW_LIVE_LLM !== 'false') throw new Error('Keep committed defaults disabled');
 if (activationFile) {
   const {validateStagingActivation} = await import('./staging-activation.mjs');
   const activation = JSON.parse(readFileSync(activationFile, 'utf8'));

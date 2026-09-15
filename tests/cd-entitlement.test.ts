@@ -5,7 +5,7 @@ import {checkoutUrl,listUnconsumedProofs,consumeProof} from '../server/payments/
 import {createOrder,grantProofOrder} from '../server/payments/orders';
 import {getProduct,products} from '../server/payments/catalog';
 import {createChart} from '../server/fortune/charts';
-import {validationRun} from '../server/payments/staging-access';
+import {validationRun} from '../server/providers/budget';
 import {handleApi} from '../server/api';
 
 const origin='https://staging.code-destiny.com';

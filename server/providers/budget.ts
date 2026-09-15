@@ -3,15 +3,23 @@ import {getProduct} from '../payments/catalog';
 import { Database } from '../db/types';
 import { FortuneError, FortuneLLMRequest, LLMProvider } from '../fortune/shared/contracts';
 import { GeminiProvider } from './gemini';
-import type { PaymentEnv } from '../payments/portone';
-import { requireStagingProduct, validationRun } from '../payments/staging-access';
-export interface BudgetEnv extends PaymentEnv {
-  APP_ENV?: string; LLM_COST_MODE?: string; LLM_TEST_BUDGET_KRW?: string; LLM_REQUEST_BUDGET_KRW?: string; LLM_DAILY_BUDGET_KRW?: string;
+export interface BudgetEnv {
+  APP_ENV?: string; LLM_COST_MODE?: string;
+  STAGING_TEST_USER_IDS?: string; STAGING_TEST_PRODUCT_IDS?: string; STAGING_PAYMENT_RUN?: string; LLM_TEST_BUDGET_KRW?: string; LLM_REQUEST_BUDGET_KRW?: string; LLM_DAILY_BUDGET_KRW?: string;
   LLM_TIMEOUT_MS?: string; LLM_MAX_RETRIES?: string; LLM_MAX_INPUT_TOKENS?: string; LLM_MAX_OUTPUT_TOKENS?: string;
   GEMINI_MODEL?: string; GEMINI_PRICING_MODEL?: string; GEMINI_INPUT_USD_PER_MILLION?: string;
   GEMINI_OUTPUT_USD_PER_MILLION?: string; LLM_USD_KRW_CEILING?: string; LLM_PRICING_VALID_UNTIL?: string;
   LLM_VERIFIED_PRODUCTS?: string;
   LLM_STAGING_VALIDATION_MANIFEST?: string;
+}
+// 스테이징 실 LLM 은 activation 으로 지정한 검증 회차·계정(최대 3)·고등어 사주 한 상품에서만 돈다. 결제 여부는 CD 증빙이 정하므로 여기서는 보지 않는다.
+export const validationRun = 'soulcat-login-payment-20260913';
+export function stagingProductEnabled(env: BudgetEnv, userId: string | undefined, productId: string) {
+  const users = (env.STAGING_TEST_USER_IDS || '').split(',').map(id => id.trim());
+  return env.APP_ENV === 'staging' &&
+    env.STAGING_PAYMENT_RUN === validationRun && env.STAGING_TEST_PRODUCT_IDS === 'saju_mackerel' &&
+    users.length <= 3 && users.every(id => /^codedestiny:[a-f0-9]{24}$/.test(id)) &&
+    !!userId && users.includes(userId) && productId === 'saju_mackerel' && getProduct(productId).priceKRW === 1000;
 }
 export function budgetConfig(env: BudgetEnv) {
   const number = (v: string | undefined) => v?.trim() ? Number(v) : NaN;
@@ -57,9 +65,8 @@ export class BudgetedGemini implements LLMProvider {
   constructor(private db: Database, private requestId: string, private env: BudgetEnv, private provider: GeminiProvider) {}
   async generate(request: FortuneLLMRequest) {
     if (this.env.APP_ENV === 'staging') {
-      const order = await this.db.prepare("SELECT o.user_id,o.product_id FROM fortune_requests r JOIN entitlements e ON e.id=r.entitlement_id JOIN orders o ON o.id=e.order_id WHERE r.id=? AND e.status='ACTIVE' AND o.status='PAID' AND o.staging_validation_run=?").bind(this.requestId,validationRun).first<{user_id:string;product_id:string}>();
-      if (!order) throw new FortuneError('STAGING_GENERATION_NOT_APPROVED',403);
-      requireStagingProduct(this.env,order.user_id,order.product_id);
+      const order = await this.db.prepare("SELECT o.user_id,o.product_id FROM fortune_requests r JOIN entitlements e ON e.id=r.entitlement_id JOIN orders o ON o.id=e.order_id WHERE r.id=? AND e.status='ACTIVE' AND o.status='PAID'").bind(this.requestId).first<{user_id:string;product_id:string}>();
+      if (!order || !stagingProductEnabled(this.env,order.user_id,order.product_id)) throw new FortuneError('STAGING_GENERATION_NOT_APPROVED',403);
     }
     const active=await this.db.prepare("SELECT r.id FROM fortune_requests r JOIN entitlements e ON e.id=r.entitlement_id WHERE r.id=? AND e.status='ACTIVE'").bind(this.requestId).first();
     if(!active)throw new FortuneError('ENTITLEMENT_REQUIRED',403);

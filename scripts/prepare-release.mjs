@@ -8,7 +8,7 @@ await mkdir(`${output}/_soulcat`, { recursive: true });
 for (const folder of ["_next", "assets", "ephe"]) {
   await cp(`${output}/${folder}`, `${output}/_soulcat/${folder}`, { recursive: true });
 }
-await writeFile(`${output}/version.json`, JSON.stringify({ ...sourceRelease(), service: "soulcat", paymentsEnabled: false }) + "\n");
+await writeFile(`${output}/version.json`, JSON.stringify({ ...sourceRelease(), service: "soulcat" }) + "\n");
 await writeFile(`${output}/_headers`, [
   "/*",
   "  X-Content-Type-Options: nosniff",

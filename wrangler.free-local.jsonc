@@ -4,6 +4,6 @@
   "assets": {"directory":"./out","binding":"ASSETS"},
   "compatibility_date": "2026-09-12",
   "compatibility_flags": ["nodejs_compat"],
-  "vars": {"APP_ENV":"local","LLM_PROVIDER":"mock","ALLOW_LIVE_LLM":"false","PAYMENTS_ENABLED":"false"},
+  "vars": {"APP_ENV":"local","LLM_PROVIDER":"mock","ALLOW_LIVE_LLM":"false"},
   "d1_databases": [{"binding":"DB","database_name":"soulcat-free-local","database_id":"00000000-0000-0000-0000-000000000006","migrations_dir":"server/db/migrations"}]
 }

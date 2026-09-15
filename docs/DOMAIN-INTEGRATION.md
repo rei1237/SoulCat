@@ -2,9 +2,9 @@
 
 ## 승인 경계
 
-운영 배포·운영 라우트·실결제는 승인되지 않았다. `PAYMENTS_ENABLED=false`,
-`ALLOW_LIVE_LLM=false`, 모든 상품 `enabled=false`를 유지한다.
-PG 신규 계약 승인과 안전한 키 등록 이후에만 실제 PG 구현을 검토한다.
+운영 배포·운영 라우트·실결제는 승인되지 않았다. `ALLOW_LIVE_LLM=false`, 모든 상품 `enabled=false`를 유지한다.
+영냥이 결제는 Code Destiny 결제창(`/checkout/?featureKey=yeongnyangi-…`)에서만 일어난다.
+이 워커는 PG를 직접 다루지 않으며 CD 증빙 API(`yeongnyangi-entitlement`)로 권리를 부여한다. 별도 PG 계약·MID·PortOne 연동은 폐기했다.
 
 ## 구조와 경로
 
@@ -36,7 +36,8 @@ D1 사용자 키는 `codedestiny:<검증된 ID>`로 임시 preview 사용자와 
 
 5개 운세 체계의 상담 상품은 서버 catalog에 있는 고등어 1,000원, 연어 3,000원,
 광어 5,000원, 참치 10,000원이다. 충전 화폐가 아니며 기존 이용권·월정석이 적용되지 않는다.
-주문/결과/권한의 기존 Mock 검증을 유지하고 실 PG 웹훅·취소·환불은 승인 후 별도 검증해야 한다.
+주문·권리 부여는 `POST orders`가 CD 증빙을 조회·소비한 뒤 `grantProofOrder`로 처리한다(payments id `cd:<proofId>`).
+취소·환불·실 PG 웹훅은 CD 결제 정책과 CD 워커가 맡고, 이 워커에는 결제 웹훅·PG 조회 경로가 없다.
 
 ## Cloudflare 준비 상태
 
@@ -64,21 +65,13 @@ npx wrangler pages deploy out --project-name soulcat --branch integration-previe
 node scripts/deploy-staging.mjs https://DEPLOYMENT_ID.soulcat.pages.dev
 ```
 
-배포 스크립트는 clean tree, Pages SHA=HEAD, 결제 off, staging route/service를 확인한다.
+배포 스크립트는 clean tree, Pages SHA=HEAD, 실 LLM off 기본값, staging route/service를 확인한다.
 릴리스 증거에는 SoulCat SHA/Pages ID/Worker version과 기존 저장소 Pages/Worker SHA를 각각 기록한다.
 preview 성공을 운영 배포 성공으로 보고하지 않는다. 실제 모바일, 로그인된 사용자,
-실 PG, 운영 DB는 별도 증거 없이는 검증하지 못함으로 기록한다.
+실결제(CD 결제창 경유), 운영 DB는 별도 증거 없이는 검증하지 못함으로 기록한다.
 
-## PG 신청 현재 정지 위치
+## 별도 PG 신청 (폐기)
 
-PortOne `https://admin.portone.io/application/request?mode=custom&step=confirm`의 최종 확인 화면.
-신청 목적은 같은 사업자로 영냥이 전용 별도 KG이니시스 계약/MID다.
-KG이니시스 국내 신용카드 일반결제를 선택했고 사이트명은 `Code Destiny · 사주보는 영냥이`,
-서비스 URL은 기존 `https://code-destiny.com/`이다.
-**화면 하단 `결정했어요!` 버튼은 누르지 않았다. 신규 신청은 완료되지 않았다.**
-사전 점검에서 사주/운세 업종에 추가 심사 확인이 필요하다는 안내가 나타났다.
-사용자가 직접 사업자 정보, 대표자/연락처, 정산 계좌, 고객센터, 정책 적합성, 심사 답변을 확인해야 한다.
-사업자등록증·계좌 사본·대표자 확인 서류 등은 사업자 유형별 PG 공식 안내로 최종 확정한다.
-법적 동의·서류 업로드·본인 인증·OTP·계좌 등록은 자동 진행하지 않는다.
-최종 내용 검토 후 사용자가 `최종 신청 제출 승인`이라고 명시한 경우에만 처리 가능한 다음 단계로 간다.
-신청 제출 승인과 운영 활성화 승인은 별개다.
+영냥이 전용 KG이니시스 계약/MID를 위한 PortOne 신규 신청은 최종 확인 화면에서 제출하지 않았고, 이후 결제를 CD 결제창으로 일원화하면서 폐기했다.
+워커의 PortOne 코드·SDK·`PAYMENTS_ENABLED`·activation 결제 항목은 제거했다. `PORTONE_*` staging secret 삭제는 사용자 1회 승인 후 별도로 진행한다.
+새 PG 계약·신청·서류 업로드·본인 인증은 자동 진행하지 않으며, 필요해지면 사용자 명시 승인이 있는 별도 변경으로 다룬다.

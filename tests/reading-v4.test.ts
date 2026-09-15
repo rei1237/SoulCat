@@ -10,7 +10,7 @@ import {domains} from '../server/fortune';
 import {analyze} from '../server/fortune/analysis';
 import {database,seed,profile} from './support/database';
 import {createChart} from '../server/fortune/charts';
-import {createOrder,grantPaidOrder} from '../server/payments/orders';
+import {createOrder,grantProofOrder} from '../server/payments/orders';
 import {prepareBook,runBookStep,bookStatus,readChapter} from '../server/fortune/books';
 import {counselInRoom,roomPrompt} from '../server/fortune/room-counsel';
 import {FortuneError,type DomainContext} from '../server/fortune/shared/contracts';
@@ -19,7 +19,7 @@ import {GeminiProvider} from '../server/providers/gemini';
 import {productBudgetReady} from '../server/providers/budget';
 
 const saju=()=>domains.saju.calculate({personA:profile,question:'내 선택을 살펴보고 싶어'});
-async function paid(version=READING_VERSION){const {db,sqlite}=database();seed(sqlite);await createChart(db,'alice','p',{});const order=await createOrder(db,'alice','saju_mackerel','p','reading-v4-fixture');await grantPaidOrder(db,order,{id:order.payment_id,status:'PAID',amount:{total:order.amount},currency:'KRW',storeId:'fixture',channel:{key:'fixture'}},{PORTONE_STORE_ID:'fixture',PORTONE_CHANNEL_KEY:'fixture'});if(version!==READING_VERSION){sqlite.prepare('UPDATE order_specs SET spec_json=? WHERE order_id=?').run(JSON.stringify({...getProduct('saju_mackerel'),manifestVersion:version,chapterCount:5}),order.id);sqlite.prepare('UPDATE order_chart_links SET manifest_version=?').run(version);}const request=await prepareBook(db,'alice','saju_mackerel','p',{});return {db,sqlite,request,order};}
+async function paid(version=READING_VERSION){const {db,sqlite}=database();seed(sqlite);await createChart(db,'alice','p',{});const order=await createOrder(db,'alice','saju_mackerel','p','reading-v4-fixture');await grantProofOrder(db,order,'fixture-'+order.id,order.amount);if(version!==READING_VERSION){sqlite.prepare('UPDATE order_specs SET spec_json=? WHERE order_id=?').run(JSON.stringify({...getProduct('saju_mackerel'),manifestVersion:version,chapterCount:5}),order.id);sqlite.prepare('UPDATE order_chart_links SET manifest_version=?').run(version);}const request=await prepareBook(db,'alice','saju_mackerel','p',{});return {db,sqlite,request,order};}
 function short(body:ChapterBody):ChapterBody{return {...body,blocks:[{title:'핵심',paragraphs:['핵심 이유를 확인합니다.']},{title:'선택',paragraphs:['다른 선택도 살펴봅니다.']}],example:'가상의 선택을 비교합니다.',advice:'확인할 질문 하나를 적습니다.'};}
 
 test('all product manifests allocate full minimums, real distinct questions and last action',()=>{

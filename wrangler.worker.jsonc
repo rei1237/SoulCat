@@ -10,7 +10,6 @@
   "preview_urls": false,
   "vars": {
     "APP_ENV": "unconfigured",
-    "PAYMENTS_ENABLED": "false",
     "LLM_PROVIDER": "mock",
     "ALLOW_LIVE_LLM": "false"
   },
@@ -29,7 +28,6 @@
         "LLM_MAX_OUTPUT_TOKENS": "4096",
         "APP_ENV": "staging",
         "PUBLIC_ORIGIN": "https://staging.code-destiny.com",
-        "PAYMENTS_ENABLED": "false",
         "LLM_PROVIDER": "mock",
         "ALLOW_LIVE_LLM": "false"
       },
@@ -99,7 +97,6 @@
       "vars": {
         "APP_ENV": "production",
         "PUBLIC_ORIGIN": "https://code-destiny.com",
-        "PAYMENTS_ENABLED": "false",
         "LLM_PROVIDER": "mock",
         "ALLOW_LIVE_LLM": "false"
       },

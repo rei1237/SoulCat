@@ -1,7 +1,4 @@
-import {customerFields} from './payments/customer';
 import {counselInRoom} from './fortune/room-counsel';
-import { verify as verifyWebhook } from '@portone/server-sdk/webhook';
-import { reconcilePayment } from './payments/reconcile';
 import { checkoutUrl, listUnconsumedProofs, consumeProof } from './payments/cd-entitlement';
 import { productBudgetReady } from './providers/budget';
 import { safeReturnPath } from '../src/lib/return-path';
@@ -13,8 +10,7 @@ import { domains } from "./fortune";
 import { DomainId, FortuneError } from "./fortune/shared/contracts";
 import { prepareGeneration, runGeneration } from "./fortune/generation";
 import { ProviderEnv, createProvider } from "./providers/provider-factory";
-import { createOrder, grantPaidOrder, findPaidOrder, grantProofOrder } from "./payments/orders";
-import { PaymentEnv, PaymentOrder, lookupPayment } from "./payments/portone";
+import { createOrder, findPaidOrder, grantProofOrder } from "./payments/orders";
 import { getProduct, products } from "./payments/catalog";
 import { AuthEnv, sharedIdentity } from "./auth";
 import { createChart, purchaseContexts, chartView } from "./fortune/charts";
@@ -33,7 +29,7 @@ import {
   StructuredChapterProvider,
 } from "./providers/chapter";
 import { createShare, revokeShare, listShares } from "./shares";
-export interface Env extends ProviderEnv, PaymentEnv, AuthEnv {
+export interface Env extends ProviderEnv, AuthEnv {
   PLACE_SEARCH_ENDPOINT?: string;
   DB?: Database;
   APP_ENV?: string;
@@ -138,17 +134,12 @@ export async function handleApi(
     const db = env.DB;
     if(path==='places'&&request.method==='GET')return json({places:await searchPlaces(db,url.searchParams.get('q')||'',env.PLACE_SEARCH_ENDPOINT)});
     let body: Record<string, unknown> = {};
-    let rawBody = "";
     if (request.method === "POST") {
-      if (
-        path !== "payments/webhook" &&
-        request.headers.get("origin") !== url.origin
-      )
+      if (request.headers.get("origin") !== url.origin)
         throw new FortuneError("INVALID_ORIGIN", 403);
       if (!request.headers.get("content-type")?.startsWith("application/json"))
         throw new FortuneError("INVALID_CONTENT_TYPE", 415);
       const raw = await request.text();
-      rawBody = raw;
       if (raw.length > 10000) throw new FortuneError("REQUEST_TOO_LARGE", 413);
       try {
         body = JSON.parse(raw);
@@ -196,26 +187,8 @@ export async function handleApi(
         "set-cookie": `soulcat_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=86400${url.protocol === "https:" ? "; Secure" : ""}`,
       });
     }
-    if (path === "payments/webhook" && request.method === "POST") {
-      if (!env.PORTONE_WEBHOOK_SECRET) throw new FortuneError('PAYMENTS_UNAVAILABLE',503);
-      try { await verifyWebhook(env.PORTONE_WEBHOOK_SECRET,rawBody,Object.fromEntries(request.headers)); }
-      catch { throw new FortuneError('INVALID_WEBHOOK',401); }
-      const eventId=request.headers.get('webhook-id') || '';
-      if(!eventId || eventId.length>200) throw new FortuneError('INVALID_WEBHOOK',401);
-      const seen=await db.prepare('SELECT completed_at FROM payment_webhooks WHERE id=?').bind(eventId).first<{completed_at:number|null}>();
-      if(seen?.completed_at) return json({ok:true});
-      const paymentId=(body.data as {paymentId?:unknown}|undefined)?.paymentId;
-      if(typeof paymentId!=='string'||!/^soulcat-[a-zA-Z0-9-]{1,80}$/.test(paymentId)) throw new FortuneError('INVALID_PAYMENT_ID');
-      const order=await db.prepare('SELECT * FROM orders WHERE payment_id=?').bind(paymentId).first<PaymentOrder>();
-      if(!order) return json({ok:true});
-      const updated=await reconcilePayment(db,order,env);
-      if(updated.status==='PAID') await prepareBook(db,updated.user_id,updated.product_id,updated.profile_id,{});
-      await db.prepare('INSERT INTO payment_webhooks(id,completed_at) VALUES (?,?) ON CONFLICT(id) DO UPDATE SET completed_at=excluded.completed_at').bind(eventId,Date.now()).run();
-      return json({ok:true});
-    }
-    const identity = env.APP_ENV === "local" ? {userId:await user(db,request),displayName:"",customer:{}} : await sharedIdentity(request,env);
+    const identity = env.APP_ENV === "local" ? {userId:await user(db,request),displayName:""} : await sharedIdentity(request,env);
     const userId=identity.userId;
-    if(path === "checkout/customer" && request.method === "GET") return json({missingFields:customerFields(identity.customer)});
     const engineEnv = {
       SWISS_EPHEMERIS_FILES_BASE_URL: `${url.origin}/_soulcat/ephe/`,
       ...(env.KASI_SERVICE_KEY
@@ -342,7 +315,7 @@ export async function handleApi(
       // 영냥이 결제는 Code Destiny 결제창(단건 결제 전용)에서만 일어난다. 이 워커는 CD 증빙을 읽어 권리를 주고 책을 만든다.
       if (
         Object.keys(body).some(
-          (k) => !["productId", "profileId", "idempotencyKey", "payMethod", "returnPath", "customer"].includes(k),
+          (k) => !["productId", "profileId", "idempotencyKey"].includes(k),
         )
       )
         throw new FortuneError("INVALID_ORDER_FIELDS");
@@ -409,37 +382,8 @@ export async function handleApi(
         String(body.idempotencyKey),
       );
       // Server-authored local fixture; never accepts a client price or paid status.
-      const config = {
-        PORTONE_STORE_ID: "local-fixture",
-        PORTONE_CHANNEL_KEY: "local-fixture",
-      };
-      await grantPaidOrder(
-        db,
-        order,
-        {
-          id: order.payment_id,
-          status: "PAID",
-          amount: { total: order.amount },
-          currency: "KRW",
-          storeId: "local-fixture",
-          channel: { key: "local-fixture" },
-        },
-        config,
-      );
+      await grantProofOrder(db, order, `local-fixture-${order.id}`, order.amount);
       return json({ orderId: order.id, mode: "local-mock" });
-    }
-    if (path === "payments/verify" && request.method === "POST") {
-      const order = await db
-        .prepare("SELECT * FROM orders WHERE id=? AND user_id=?")
-        .bind(String(body.orderId), userId)
-        .first<PaymentOrder>();
-      if (!order) throw new FortuneError("ORDER_NOT_FOUND", 404);
-      if(body.paymentId!==order.payment_id) throw new FortuneError('PAYMENT_MISMATCH',409);
-      const updated=await reconcilePayment(db,order,env);
-      if(updated.status!=='PAID') return json({status:updated.pg_status || updated.status});
-      const pending=await prepareBook(db,userId,updated.product_id,updated.profile_id,engineEnv);
-      await dispatchBook(pending.id);
-      return json({status:'PAID',requestId:pending.id,productId:updated.product_id,profileId:updated.profile_id,returnPath:updated.return_path});
     }
     if(path==='orders' && request.method==='GET') {
       const rows=await db.prepare('SELECT id,payment_id,product_id,profile_id,status,pg_status,return_path FROM orders WHERE user_id=? ORDER BY created_at DESC LIMIT 100').bind(userId).all();

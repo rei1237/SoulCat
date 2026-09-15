@@ -85,7 +85,7 @@ export async function handleEdge(
   if (kind === "api") {
     if (url.pathname === "/api/yeongnyangi/version" && request.method === "GET")
       return Response.json(
-        { sha: env.RELEASE_SHA || null, sourceDigest:env.RELEASE_SOURCE_DIGEST || null, environment: env.APP_ENV, paymentsEnabled: env.PAYMENTS_ENABLED === 'true', liveLlmEnabled: env.ALLOW_LIVE_LLM === 'true' },
+        { sha: env.RELEASE_SHA || null, sourceDigest:env.RELEASE_SOURCE_DIGEST || null, environment: env.APP_ENV, liveLlmEnabled: env.ALLOW_LIVE_LLM === 'true' },
         { headers: { "cache-control": "no-store" } },
       );
     return handleApi(request, env, waitUntil);

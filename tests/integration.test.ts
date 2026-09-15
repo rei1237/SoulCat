@@ -4,10 +4,9 @@ import { sharedUser } from "../server/auth";
 import { handleEdge, routeKind, type EdgeEnv } from "../server/edge";
 import { handleApi } from "../server/api";
 import { loginHref } from "../src/lib/service-links";
-import { verifyPayment } from "../server/payments/portone";
 
 const origin = "https://staging.code-destiny.com";
-const env: EdgeEnv = { APP_ENV: "staging", PUBLIC_ORIGIN: origin, SOULCAT_PAGES_ORIGIN: "https://1234abcd.soulcat.pages.dev", PAYMENTS_ENABLED: "false", LLM_PROVIDER: "mock" };
+const env: EdgeEnv = { APP_ENV: "staging", PUBLIC_ORIGIN: origin, SOULCAT_PAGES_ORIGIN: "https://1234abcd.soulcat.pages.dev", LLM_PROVIDER: "mock" };
 const idle = () => {};
 test("exact screen routing preserves every existing fortune subroute and other applications", async () => {
   for (const path of ["/", "/fortune/daily/", "/fortune/share/", "/fortune/prompt-hub/", "/fortune-tea-house/", "/fortune/", "/room/", "/library/", "/ggulggul-fortune/", "/roommate", "/library-old", "/api/auth/me", "/api/payments/webhook", "/terms/", "/refund/", "/_next/static/old.js", "/sitemap.xml", "/robots.txt"]) {
@@ -80,10 +79,4 @@ test("namespaced catalog is public, every product is sold only through the Code 
   assert.deepEqual([...new Set(data.products.map(p => p.priceKRW))], [1000, 3000, 5000, 10000, 20000, 30000]);
   // 판매 자격은 CD 결제창(단건 결제 전용)이 정한다 — 카탈로그 flag 는 전부 열려 있고 상품마다 CD featureKey 가 있다.
   assert.ok(data.products.every(p => p.enabled && p.currency === "KRW" && /^yeongnyangi-[a-z0-9-]+$/.test(String((p as { cdFeatureKey?: string }).cdFeatureKey))));
-});
-test("PG verification rejects forged ID, amount, currency, store, channel and cancellations", () => {
-  const order = { id: "o", user_id: "u", product_id: "saju_mackerel", profile_id: "p", amount: 1000, currency: "KRW", payment_id: "pay", status: "PENDING" };
-  const config = { PORTONE_STORE_ID: "mock-store", PORTONE_CHANNEL_KEY: "mock-channel" };
-  const valid = { id: "pay", status: "PAID", amount: { total: 1000 }, currency: "KRW", storeId: "mock-store", channel: { key: "mock-channel" } };
-  for (const patch of [{ id: "wrong" }, { amount: { total: 1 } }, { currency: "USD" }, { storeId: "old-store" }, { channel: { key: "old-channel" } }, { status: "CANCELLED" }, { amount: { total: 1000, cancelled: 500 } }]) assert.throws(() => verifyPayment({ ...valid, ...patch }, order, config));
 });

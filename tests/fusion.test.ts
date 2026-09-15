@@ -5,7 +5,7 @@ import {products,getProduct} from '../server/payments/catalog';
 import {productManifest} from '../server/fortune/product-manifest';
 import {purchaseContexts,createChart} from '../server/fortune/charts';
 import {domains} from '../server/fortune';
-import {createOrder,grantPaidOrder} from '../server/payments/orders';
+import {createOrder,grantProofOrder} from '../server/payments/orders';
 import {prepareBook,runBookStep,bookStatus,readChapter,retryBook} from '../server/fortune/books';
 import {MockChapterProvider,StructuredChapterProvider} from '../server/providers/chapter';
 import {dailyMessage,kstDay} from '../server/fortune/daily';
@@ -16,7 +16,6 @@ import fs from 'node:fs';
 import {CARD_TO_FILENAME} from '../server/vendor/code-destiny/lib/tarot/tarot-cards.mjs';
 import {fortuneSurfaces} from '../src/data/fortune';
 import {chartView} from '../server/fortune/charts';
-const pg={PORTONE_STORE_ID:'fixture',PORTONE_CHANNEL_KEY:'fixture'};
 test('every native tarot card has a local WebP image including the JPG source exception',()=>{
  assert.equal(Object.keys(CARD_TO_FILENAME).length,78);
  for(const file of Object.values(CARD_TO_FILENAME) as string[])assert.ok(fs.existsSync('public/assets/tarot/'+file.replace(/\.jpe?g$/i,'.webp')),file);
@@ -26,7 +25,7 @@ test('all consultation menu illustrations exist and relationship positions have 
  const c=chartView(await domains.tarot.calculate(domains.tarot.validateInput({question:'관계를 살펴볼까?',topicId:'love'})));
  assert.equal(c.groups.length,6);assert.ok(c.groups.every(g=>!g.label.includes('_')));
 });
-async function pay(db:ReturnType<typeof database>['db'],id:string){const o=await createOrder(db,'alice',id,'p','fixture-fusion-'+id);await grantPaidOrder(db,o,{id:o.payment_id,status:'PAID',amount:{total:o.amount},currency:'KRW',storeId:'fixture',channel:{key:'fixture'}},pg);return o;}
+async function pay(db:ReturnType<typeof database>['db'],id:string){const o=await createOrder(db,'alice',id,'p','fixture-fusion-'+id);await grantProofOrder(db,o,'fixture-'+o.id,o.amount);return o;}
 test('server packages have exact prices, scope, counts and unique chapter questions',()=>{
  for(const p of products){const manifest=productManifest(p);assert.equal(manifest.length,p.chapterCount);assert.equal(new Set(manifest.map(c=>c.title)).size,p.chapterCount);assert.ok(manifest.every(c=>c.systems?.every(d=>p.systems.includes(d))));if(p.readingKind==='single')assert.equal(p.systems.length,1);}
  assert.equal(getProduct('fusion_all').priceKRW,30000);assert.equal(getProduct('fusion_saju_ziwei').priceKRW,20000);

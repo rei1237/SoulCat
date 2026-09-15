@@ -8,7 +8,7 @@ import AxeBuilder from '@axe-core/playwright';
 import {database,seed} from '../tests/support/database.ts';
 import {handleApi} from '../server/api.ts';
 import {createChart} from '../server/fortune/charts.ts';
-import {createOrder,grantPaidOrder} from '../server/payments/orders.ts';
+import {createOrder,grantProofOrder} from '../server/payments/orders.ts';
 import {prepareBook,runBookStep,readChapter} from '../server/fortune/books.ts';
 import {MockChapterProvider} from '../server/providers/chapter.ts';
 import {bodyCharacterCount} from '../server/fortune/reading-quality.ts';
@@ -20,7 +20,7 @@ await createChart(db,'alice','p',{});
 const books=[];
 for(const tier of ['mackerel','tuna']){
  const order=await createOrder(db,'alice','saju_'+tier,'p','ui-reading-'+tier+'-fixture');
- await grantPaidOrder(db,order,{id:order.payment_id,status:'PAID',amount:{total:order.amount},currency:'KRW',storeId:'fixture',channel:{key:'fixture'}},{PORTONE_STORE_ID:'fixture',PORTONE_CHANNEL_KEY:'fixture'});
+ await grantProofOrder(db,order,'fixture-'+order.id,order.amount);
  const request=await prepareBook(db,'alice','saju_'+tier,'p',{});
  for(let i=0;i<14;i++)if(!await runBookStep(db,request.id,new MockChapterProvider()))break;
  books.push({id:request.id,tier});
@@ -31,7 +31,7 @@ const server=http.createServer(async(req,res)=>{
  const origin=`http://127.0.0.1:${server.address().port}`;
  if(req.url.startsWith('/api/')){
  const chunks=[];for await(const chunk of req)chunks.push(chunk);
- const response=await handleApi(new Request(origin+req.url,{method:req.method,headers:req.headers,...(chunks.length?{body:Buffer.concat(chunks)}:{})}),{DB:db,APP_ENV:'local',LLM_PROVIDER:'mock',ALLOW_LIVE_LLM:'false',PAYMENTS_ENABLED:'false'},p=>p.catch(()=>{}));
+ const response=await handleApi(new Request(origin+req.url,{method:req.method,headers:req.headers,...(chunks.length?{body:Buffer.concat(chunks)}:{})}),{DB:db,APP_ENV:'local',LLM_PROVIDER:'mock',ALLOW_LIVE_LLM:'false'},p=>p.catch(()=>{}));
  res.writeHead(response.status,Object.fromEntries(response.headers));res.end(Buffer.from(await response.arrayBuffer()));return;
  }
  let file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,origin).pathname));

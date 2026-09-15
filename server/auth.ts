@@ -34,7 +34,7 @@ export async function sharedIdentity(request: Request, env: AuthEnv) {
     const id = body.user?.id || body.user?._id;
     if (typeof id !== "string" || !/^[a-f0-9]{24}$/i.test(id))
       throw new FortuneError("AUTH_UNAVAILABLE", 503);
-    return {userId:`codedestiny:${id.toLowerCase()}`,displayName:typeof body.user?.name === "string" && !body.user.name.includes("@") ? body.user.name.trim().slice(0,60) : "",customer:{fullName:body.user?.name,phoneNumber:body.user?.phoneNumber,email:body.user?.email}};
+    return {userId:`codedestiny:${id.toLowerCase()}`,displayName:typeof body.user?.name === "string" && !body.user.name.includes("@") ? body.user.name.trim().slice(0,60) : ""};
   } catch (error) {
     if (error instanceof FortuneError) throw error;
     throw new FortuneError("AUTH_UNAVAILABLE", 503);

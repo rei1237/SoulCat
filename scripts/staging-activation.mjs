@@ -1,7 +1,7 @@
-const allowed = new Set(['PAYMENTS_ENABLED','ALLOW_LIVE_LLM','LLM_PROVIDER','STAGING_TEST_USER_IDS','STAGING_TEST_PRODUCT_IDS','STAGING_PAYMENT_RUN','LLM_COST_MODE','LLM_TEST_BUDGET_KRW','LLM_DAILY_BUDGET_KRW','GEMINI_MODEL','GEMINI_PRICING_MODEL','GEMINI_INPUT_USD_PER_MILLION','GEMINI_OUTPUT_USD_PER_MILLION','LLM_USD_KRW_CEILING','LLM_PRICING_VALID_UNTIL','LLM_VERIFIED_PRODUCTS','LLM_STAGING_VALIDATION_MANIFEST']);
+const allowed = new Set(['ALLOW_LIVE_LLM','LLM_PROVIDER','STAGING_TEST_USER_IDS','STAGING_TEST_PRODUCT_IDS','STAGING_PAYMENT_RUN','LLM_COST_MODE','LLM_TEST_BUDGET_KRW','LLM_DAILY_BUDGET_KRW','GEMINI_MODEL','GEMINI_PRICING_MODEL','GEMINI_INPUT_USD_PER_MILLION','GEMINI_OUTPUT_USD_PER_MILLION','LLM_USD_KRW_CEILING','LLM_PRICING_VALID_UNTIL','LLM_VERIFIED_PRODUCTS','LLM_STAGING_VALIDATION_MANIFEST']);
 export function validateStagingActivation(vars) {
   if (!vars || Object.entries(vars).some(([key,value]) => !allowed.has(key) || typeof value !== 'string')) throw new Error('Unexpected staging activation field');
-  if (vars.PAYMENTS_ENABLED !== 'true' || vars.ALLOW_LIVE_LLM !== 'true' || vars.LLM_PROVIDER !== 'gemini' ||
+  if (vars.ALLOW_LIVE_LLM !== 'true' || vars.LLM_PROVIDER !== 'gemini' ||
       vars.STAGING_PAYMENT_RUN !== 'soulcat-login-payment-20260913' || vars.STAGING_TEST_PRODUCT_IDS !== 'saju_mackerel' ||
       !/^codedestiny:[a-f0-9]{24}(,codedestiny:[a-f0-9]{24}){0,2}$/.test(vars.STAGING_TEST_USER_IDS || '') ||
       vars.LLM_COST_MODE !== 'test' || !['LLM_TEST_BUDGET_KRW','LLM_DAILY_BUDGET_KRW'].every(key => Number(vars[key]) > 0 && Number(vars[key]) <= 1000) ||
