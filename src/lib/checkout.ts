@@ -4,11 +4,11 @@ export const ticketPrefix='soulcat:checkout:';
 export interface Ticket { orderId:string; paymentId:string; productId:string; profileId:string; returnPath:string; generation:'pending'; createdAt:number; }
 export type PaymentInput=Parameters<typeof import('@portone/browser-sdk/v2').requestPayment>[0];
 export interface CheckoutOrder extends Omit<Ticket,'generation'|'createdAt'> { payment:PaymentInput; status?:string; requestId?:string; }
-export class ApiError extends Error { constructor(public code:string,message:string){super(message);} }
+export class ApiError extends Error { constructor(public code:string,message:string,public data:Record<string,unknown>={}){super(message);} }
 export async function apiRequest(path:string,body?:object) {
   const response=await (path==='session'?sessionFetch():fetch(`/api/yeongnyangi/${path}`,{credentials:'same-origin',method:body?'POST':'GET',headers:body?{'content-type':'application/json'}:undefined,body:body?JSON.stringify(body):undefined}));
   const data=await response.json();
-  if(!response.ok) throw new ApiError(data.code||'CONNECTION_FAILED',data.message||'연결을 확인한 뒤 다시 시도해 주세요.');
+  if(!response.ok) throw new ApiError(data.code||'CONNECTION_FAILED',data.message||'연결을 확인한 뒤 다시 시도해 주세요.',data);
   return data;
 }
 export function saveTicket(storage:Storage,order:CheckoutOrder,now=Date.now()) {

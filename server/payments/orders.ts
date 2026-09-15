@@ -7,6 +7,10 @@ import {
   PaymentEnv,
   verifyPayment,
 } from "./portone";
+// 이미 권리가 살아 있는 주문(PAID + ACTIVE entitlement) — 같은 프로필·상품은 다시 결제하지 않는다.
+export async function findPaidOrder(db: Database, userId: string, productId: string, profileId: string) {
+  return db.prepare("SELECT o.* FROM orders o JOIN entitlements e ON e.order_id=o.id WHERE o.user_id=? AND o.product_id=? AND o.profile_id=? AND o.status='PAID' AND e.status='ACTIVE' ORDER BY o.created_at LIMIT 1").bind(userId,productId,profileId).first<PaymentOrder>();
+}
 export async function createOrder(
   db: Database,
   userId: string,
@@ -26,7 +30,7 @@ export async function createOrder(
     throw new FortuneError("PROFILE_NOT_FOUND", 404);
   const keyed=await db.prepare('SELECT * FROM orders WHERE user_id=? AND idempotency_key=?').bind(userId,key).first<PaymentOrder>();
   if(keyed && (keyed.product_id!==productId||keyed.profile_id!==profileId))throw new FortuneError('IDEMPOTENCY_CONFLICT',409);
-  const purchased=await db.prepare("SELECT o.* FROM orders o JOIN entitlements e ON e.order_id=o.id WHERE o.user_id=? AND o.product_id=? AND o.profile_id=? AND o.status='PAID' AND e.status='ACTIVE' ORDER BY o.created_at LIMIT 1").bind(userId,productId,profileId).first<PaymentOrder>();
+  const purchased=await findPaidOrder(db,userId,productId,profileId);
   if(purchased)return purchased;
   const id = crypto.randomUUID();
   await db
@@ -85,5 +89,17 @@ export async function grantPaidOrder(
         "INSERT INTO entitlements (id,order_id,user_id,product_id,status,created_at) SELECT ?,id,user_id,product_id,'ACTIVE',? FROM orders WHERE id=? AND status='PAID' ON CONFLICT(order_id) DO NOTHING",
       )
       .bind(`ent-${order.id}`, Date.now(), order.id),
+  ]);
+}
+// Code Destiny 단건 결제 증빙으로 권리를 준다. 소유자·상태 검증은 CD 가 했고, 이 워커는 금액을 대조한 뒤 증빙 id 를 결제 행으로 남긴다.
+// PortOne 검증(grantPaidOrder)과 같은 D1 batch 라 주문·권리가 반쯤 부여되는 일은 없다.
+export async function grantProofOrder(db: Database, order: PaymentOrder, proofId: string, amountKRW: number) {
+  if (!/^[a-zA-Z0-9_:-]{1,120}$/.test(proofId)) throw new FortuneError("PAYMENT_PROOF_INVALID", 409);
+  if (order.status !== "PENDING" && order.status !== "PAID") throw new FortuneError("ORDER_NOT_PAYABLE", 409);
+  if (amountKRW !== order.amount || order.currency !== "KRW") throw new FortuneError("PAYMENT_AMOUNT_MISMATCH", 409);
+  await db.batch([
+    db.prepare("INSERT INTO payments (id,order_id,amount,currency,status,verified_at) VALUES (?,?,?,?,'PAID',?) ON CONFLICT(id) DO NOTHING").bind(`cd:${proofId}`, order.id, order.amount, order.currency, Date.now()),
+    db.prepare("UPDATE orders SET status='PAID' WHERE id=? AND status IN ('PENDING','PAID')").bind(order.id),
+    db.prepare("INSERT INTO entitlements (id,order_id,user_id,product_id,status,created_at) SELECT ?,id,user_id,product_id,'ACTIVE',? FROM orders WHERE id=? AND status='PAID' ON CONFLICT(order_id) DO NOTHING").bind(`ent-${order.id}`, Date.now(), order.id),
   ]);
 }

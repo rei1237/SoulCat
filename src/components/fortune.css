@@ -112,6 +112,23 @@
   font-size: 12px;
   margin: 24px 0;
 }
+.fortune-quote {
+  margin: -12px 0 24px;
+  padding: 10px 14px;
+  border-left: 3px solid #f3d49b;
+  border-radius: 0 10px 10px 0;
+  background: #f4e4cf12;
+  color: #f1e3d0;
+  font-style: italic;
+}
+.fortune-quote p {
+  margin: 0;
+}
+.fortune-quote footer {
+  margin-top: 4px;
+  font-style: normal;
+  color: #c7b5ce;
+}
 .fortune-form,
 .fortune-checkout {
   padding-top: 24px;

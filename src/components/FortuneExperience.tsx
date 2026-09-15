@@ -1,10 +1,9 @@
 "use client";
-import {sessionFetch,useSession} from "../lib/session";
+import {sessionFetch} from "../lib/session";
 import {depthDescriptions} from '../../server/fortune/reading-policy';
 import {productManifest} from '../../server/fortune/product-manifest';
-import {launchCheckout,ApiError} from "../lib/checkout";
+import {ApiError} from "../lib/checkout";
 import {loginHref} from "../lib/service-links";
-import {safeReturnPath} from "../lib/return-path";
 import BirthFields, {readBirthFields} from "./BirthFields";
 import "./free-fortune.css";
 import { useEffect, useRef, useState } from "react";
@@ -61,17 +60,12 @@ async function api(path: string, body?: object, signal?: AbortSignal) {
   if (!response.ok)
     throw new ApiError(data.code,
       data.message || "요청을 처리하지 못했어요. 잠시 후 다시 시도해 주세요.",
+      data,
     );
   return data;
 }
 export default function FortuneExperience() {
-  const {userId:sessionUser}=useSession();
   const [login,setLogin]=useState("");
-  const [method,setMethod]=useState<"CARD"|"KAKAOPAY">("CARD");
-  const [missing,setMissing]=useState<string[]|null>(null);
-  const [customerError,setCustomerError]=useState("");
-  const [customerRetry,setCustomerRetry]=useState(0);
-  const [customer,setCustomer]=useState({fullName:"",phoneNumber:"",email:""});
   const [domain, setDomain] = useState<FortuneDomainId>("saju");
   const [topic, setTopic] = useState("");
   // Home recommendation cards arrive with ?topic=; it steers the server manifest and the loading art.
@@ -103,8 +97,6 @@ export default function FortuneExperience() {
   const product = products.find(
     (p) => fusionId?p.id===fusionId:p.readingKind==="single"&&p.domain === domain && p.fishId === fish,
   );
-  useEffect(()=>{if(stage!=='checkout')return;let active=true;setMissing(null);setCustomerError('');api('checkout/customer').then(d=>{if(active)setMissing(d.missingFields);}).catch(e=>{if(active)setCustomerError(e.message);});return()=>{active=false;};},[stage,customerRetry,sessionUser]);
-  useEffect(()=>{setCustomer({fullName:'',phoneNumber:'',email:''});},[sessionUser]);
   const chipArt = surface.choices.find(([name]) => name === topic)?.[2];
   const topicArt = topicId !== "general" ? topicEntry[topicId].artKey : chipArt;
   const submittedTopicId = topicId !== "general" ? topicId : ["love","luck","work","money"].includes(chipArt||"") ? chipArt : "general";
@@ -288,18 +280,20 @@ export default function FortuneExperience() {
       setBusy(false);
     }
   }
-  async function purchase(event:React.FormEvent) {
-    event.preventDefault();
-    if(lock.current||!product||missing===null)return;
+  async function purchase() {
+    if(lock.current||!product)return;
     lock.current=true;setBusy(true);setError('');
     try {
       await api('session',{});
-      const order=await api('orders',{productId:product.id,profileId,idempotencyKey:crypto.randomUUID(),payMethod:method,customer,returnPath:safeReturnPath(window.location.pathname+window.location.search)});
-      const result=order.status==='PAID'?order:await launchCheckout(order);
-      setCustomer({fullName:'',phoneNumber:'',email:''});
+      // 결제는 코드 데스티니 결제창(단건 결제 전용)에서만. 워커는 CD 증빙이 있으면 바로 책을 만들고, 없으면 402 로 결제창 주소를 준다.
+      const result=await api('orders',{productId:product.id,profileId,idempotencyKey:crypto.randomUUID()});
       if(result?.status==='PAID'&&result.requestId){setPaid(true);setRequestId(result.requestId);setStage('loading');window.history.replaceState(null,'','/yeongnyangi/fortune/?request='+encodeURIComponent(result.requestId));}
-      else if(result)setError('결제가 완료되지 않았어요. 보관함에서 상태를 확인해 주세요.');
-    } catch(e){setError((e as Error).message);if(e instanceof ApiError&&e.code==='CUSTOMER_REQUIRED')setCustomerRetry(n=>n+1);if(e instanceof ApiError&&e.code==='SESSION_REQUIRED')setLogin(loginHref(window.location.pathname+window.location.search));}
+      else setError('결제가 완료되지 않았어요. 보관함에서 상태를 확인해 주세요.');
+    } catch(e){
+      if(e instanceof ApiError&&e.code==='PAYMENT_REQUIRED'&&typeof e.data.checkoutUrl==='string'&&e.data.checkoutUrl.startsWith('/checkout/')){window.location.assign(e.data.checkoutUrl);return;}
+      setError((e as Error).message);
+      if(e instanceof ApiError&&e.code==='SESSION_REQUIRED')setLogin(loginHref(window.location.pathname+window.location.search));
+    }
     finally{lock.current=false;setBusy(false);}
   }
   return (
@@ -361,9 +355,13 @@ export default function FortuneExperience() {
             ))}
           </div>
           <p className="fortune-footnote">
-            생선은 상담 상품의 가격을 나타내요. 결제 전 실제 금액을 확인할 수
-            있어요.
+            생선은 상담 상품의 가격을 나타내요. 생선값은 코드 데스티니 결제창에서 단건 결제(카드·카카오페이 등)로만 받아요.
+            영냥이의 세계는 다른 차원이라 달빛 이용권·월정석은 통하지 않습니다.
           </p>
+          <blockquote className="fortune-footnote fortune-quote">
+            <p>“이용권? 월정석? 먹지도 못하는 걸 어디에 써? 나는 꽃돼지 연이처럼 그렇게 혜자는 아니야~”</p>
+            <footer>— 영냥이</footer>
+          </blockquote>
         </>
       )}
       {stage === "input" && (
@@ -472,20 +470,12 @@ export default function FortuneExperience() {
               <FishReaction product={product}/>
             </div>
           )}
-          {!localMock && product?.enabled && <form onSubmit={purchase} className="checkout-form">
-            {missing===null&&!customerError&&<p role="status">결제 정보를 확인하고 있어요.</p>}
-            {customerError&&<p role="alert">{customerError} <button type="button" onClick={()=>setCustomerRetry(n=>n+1)}>다시 확인</button></p>}
-            <fieldset disabled={busy}><legend>결제수단</legend>
-              <label><input type="radio" name="payMethod" checked={method==='CARD'} onChange={()=>setMethod('CARD')}/> 신용카드</label>
-              <label><input type="radio" name="payMethod" checked={method==='KAKAOPAY'} onChange={()=>setMethod('KAKAOPAY')}/> 카카오페이</label>
-            </fieldset>
-             {missing?.includes("fullName") && <label>구매자 이름<input required autoComplete="name" maxLength={60} value={customer.fullName} onChange={e=>setCustomer({...customer,fullName:e.target.value})}/></label>}
-             {missing?.includes("phoneNumber") && <label>연락처<input required type="tel" autoComplete="tel" maxLength={20} value={customer.phoneNumber} onChange={e=>setCustomer({...customer,phoneNumber:e.target.value})}/></label>}
-             {missing?.includes("email") && <label>이메일<input required type="email" autoComplete="email" maxLength={120} value={customer.email} onChange={e=>setCustomer({...customer,email:e.target.value})}/></label>}
-            <button className="fortune-primary" disabled={busy||missing===null}>{busy?'결제 확인 중':product.priceKRW.toLocaleString('ko-KR')+'원 결제하기'}</button>
-          </form>}
+          {!localMock && product?.enabled && <div className="checkout-form">
+            <p className="fortune-footnote">영냥이의 세계는 코드 데스티니와 다른 차원이에요. 달빛 이용권도, 월정석도 그 문을 넘지 못합니다. 복채는 생선값 그대로, 단건 결제(카드·카카오페이 등)만 받아요.</p>
+            <button type="button" className="fortune-primary" disabled={busy} onClick={purchase}>{busy?'결제 확인 중':product.priceKRW.toLocaleString('ko-KR')+'원 단건 결제하러 가기'}</button>
+          </div>}
           {!product?.enabled && <p className="fortune-footnote">
-            상담·결제 연결을 검증하고 있어요. 현재 실제 구매는 열려 있지 않아요.
+            이 상담은 아직 준비 중인 생선이에요. 현재 실제 구매는 열려 있지 않아요.
           </p>}
           {(localMock || !product?.enabled) && <button
             className="fortune-primary"

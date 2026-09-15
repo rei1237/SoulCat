@@ -25,14 +25,15 @@ test('staging sale requires the approved account and exact product; production i
   for(const id of [undefined,'attacker','codedestiny:abcdef0123456789abcdef01'])assert.equal(stagingProductEnabled(env,id,'saju_mackerel'),false);
   assert.equal(stagingProductEnabled(env,user,'saju_tuna'),false);
 });
-test('catalog visibility uses the same verified identity as order authorization',async()=>{
+test('catalog visibility no longer depends on the staging payment allowlist',async()=>{
   for(const authenticated of [false,true]){
     const response=await handleApi(new Request('https://staging.code-destiny.com/api/yeongnyangi/products',{headers:authenticated?{cookie:'fortune_auth_token=fixture'}:{}}),{
       ...env,PUBLIC_ORIGIN:'https://staging.code-destiny.com',AUTH_SERVICE:{async fetch(){return Response.json({authenticated:true,user:{id:user.slice(12)}});}},
     },()=>{});
     assert.equal(response.status,200);
     const body=await response.json() as {products:{id:string;enabled:boolean}[]};
-    assert.deepEqual(body.products.filter(p=>p.enabled).map(p=>p.id),authenticated?['saju_mackerel']:[]);
+    // 판매 자격은 Code Destiny 결제창(단건 결제 전용)이 정한다 — 카탈로그는 로그인 여부와 무관하게 전부 열려 있다.
+    assert.equal(body.products.filter(p=>p.enabled).length,body.products.length);
     assert.equal(response.headers.get('cache-control'),'private, no-store');
   }
 });

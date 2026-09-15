@@ -1,9 +1,8 @@
-import {customerFields, resolveCustomer} from './payments/customer';
+import {customerFields} from './payments/customer';
 import {counselInRoom} from './fortune/room-counsel';
 import { verify as verifyWebhook } from '@portone/server-sdk/webhook';
 import { reconcilePayment } from './payments/reconcile';
-import { checkoutChannel } from './payments/portone';
-import { stagingProductEnabled, requireStagingProduct, validationRun } from './payments/staging-access';
+import { checkoutUrl, listUnconsumedProofs, consumeProof } from './payments/cd-entitlement';
 import { productBudgetReady } from './providers/budget';
 import { safeReturnPath } from '../src/lib/return-path';
 import {attendanceStatus,attend,unlockToday,requireDailyPass} from './fortune/free/attendance';
@@ -14,10 +13,10 @@ import { domains } from "./fortune";
 import { DomainId, FortuneError } from "./fortune/shared/contracts";
 import { prepareGeneration, runGeneration } from "./fortune/generation";
 import { ProviderEnv, createProvider } from "./providers/provider-factory";
-import { createOrder, grantPaidOrder } from "./payments/orders";
+import { createOrder, grantPaidOrder, findPaidOrder, grantProofOrder } from "./payments/orders";
 import { PaymentEnv, PaymentOrder, lookupPayment } from "./payments/portone";
 import { getProduct, products } from "./payments/catalog";
-import { AuthEnv, sharedUser, sharedIdentity } from "./auth";
+import { AuthEnv, sharedIdentity } from "./auth";
 import { createChart, purchaseContexts, chartView } from "./fortune/charts";
 import {
   prepareBook,
@@ -101,6 +100,9 @@ const messages: Record<string, string> = {
   ENTITLEMENT_REQUIRED:
     "확인된 구매 내역이 없어요. 결제 내역을 먼저 확인해 주세요.",
   PAYMENTS_UNAVAILABLE: "결제 연결을 준비하고 있어요. 아직 구매할 수 없어요.",
+  PAYMENT_REQUIRED: "복채가 아직이야. 코드 데스티니 결제창에서 단건 결제로 생선을 건네줘.",
+  PAYMENT_PROOF_UNAVAILABLE: "결제 확인 연결이 잠시 끊겼어요. 잠시 후 다시 시도해 주세요. 이미 낸 복채는 코드 데스티니에 보관되어 있어요.",
+  PAYMENT_AMOUNT_MISMATCH: "결제 금액과 상품 가격이 달라요. 보관함에서 결제 내역을 확인해 주세요.",
   BIRTH_TIME_REQUIRED:
     "이 운세에는 출생시간이 필요해요. 모르는 시간을 임의로 넣지 마세요.",
   INVALID_BIRTH_DATE: "생년월일이 실제 날짜인지 확인해 주세요.",
@@ -124,13 +126,8 @@ export async function handleApi(
       .replace(/^\/api\/(?:yeongnyangi\/)?/, "")
       .replace(/\/$/, "");
     if (path === "products" && request.method === "GET") {
-      let catalogUser: string | undefined;
-      if (env.APP_ENV === 'staging' && env.PAYMENTS_ENABLED === 'true') {
-        try { catalogUser = await sharedUser(request, env); }
-        catch (error) { if (!(error instanceof FortuneError) || error.code !== 'SESSION_REQUIRED') throw error; }
-      }
       return json({
-        products: products.map(product => ({...product, enabled: stagingProductEnabled(env, catalogUser, product.id)})),
+        products: products.map(product => ({...product})),
         mode:
           env.APP_ENV === "local" && env.LLM_PROVIDER === "mock"
             ? "local-mock"
@@ -342,49 +339,47 @@ export async function handleApi(
       return json({ id }, 201);
     }
     if (path === "orders" && request.method === "POST") {
-      if (env.PAYMENTS_ENABLED !== "true")
-        throw new FortuneError("PAYMENTS_UNAVAILABLE", 503);
-      requireStagingProduct(env, userId, String(body.productId));
+      // 영냥이 결제는 Code Destiny 결제창(단건 결제 전용)에서만 일어난다. 이 워커는 CD 증빙을 읽어 권리를 주고 책을 만든다.
       if (
         Object.keys(body).some(
           (k) => !["productId", "profileId", "idempotencyKey", "payMethod", "returnPath", "customer"].includes(k),
         )
       )
         throw new FortuneError("INVALID_ORDER_FIELDS");
-      const customer=resolveCustomer(identity.customer,body.customer);
       const product = getProduct(body.productId);
-      const channel=checkoutChannel(env,body.payMethod);
+      const profileId = String(body.profileId);
       if(env.LLM_PROVIDER!=='gemini'||env.ALLOW_LIVE_LLM!=='true'||!env.GEMINI_API_KEY||!env.BOOK_QUEUE) throw new FortuneError('LLM_NOT_CONFIGURED',503);
       productBudgetReady(env,product.id,product.chapterCount);
       await purchaseContexts(
         db,
         userId,
-        String(body.profileId),
+        profileId,
         product.domain,
         product.fishId,
         engineEnv,
       );
-      const order = await createOrder(
-        db,
-        userId,
-        String(body.productId),
-        String(body.profileId),
-        String(body.idempotencyKey),
-        {storeId:env.PORTONE_STORE_ID!,channelKey:channel,method:String(body.payMethod),returnPath:safeReturnPath(body.returnPath),validationRun},
-      );
-      if(order.status==='PAID') {
-        const pending=await prepareBook(db,userId,order.product_id,order.profile_id,engineEnv);
-        await dispatchBook(pending.id);
-        return json({status:'PAID',requestId:pending.id});
+      let order=await findPaidOrder(db,userId,product.id,profileId);
+      if(!order){
+        // 결제 복귀 경로: 결제창에서 돌아오면 같은 프로필·상담이 복원된다(safeReturnPath 허용 키만 싣는다).
+        const returnTo=safeReturnPath(`/yeongnyangi/fortune/?domain=${product.domain}&fish=${product.fishId}&profile=${profileId}${product.readingKind==='single'?'':`&product=${product.id}`}`);
+        const paymentRequired=()=>json({ok:false,code:'PAYMENT_REQUIRED',message:messages.PAYMENT_REQUIRED,featureKey:product.cdFeatureKey,amountKRW:product.priceKRW,checkoutUrl:checkoutUrl(product.cdFeatureKey,returnTo)},402);
+        const proofs=await listUnconsumedProofs(request,env,product.cdFeatureKey);
+        const proof=proofs.find(p=>p.amountKRW===product.priceKRW);
+        if(!proof) return paymentRequired();
+        const pending=await createOrder(db,userId,product.id,profileId,String(body.idempotencyKey));
+        if(pending.status==='PAID') order=pending;
+        else {
+          if(pending.status!=='PENDING') throw new FortuneError('ORDER_NOT_PAYABLE',409);
+          if(pending.amount!==proof.amountKRW) throw new FortuneError('PAYMENT_AMOUNT_MISMATCH',409);
+          // 소비 표식을 먼저 남긴다(requestId = 주문 id, 재시도는 멱등). 다른 주문이 먼저 쓴 증빙이면 다시 결제창으로.
+          if(!(await consumeProof(request,env,proof.id,pending.id))) return paymentRequired();
+          await grantProofOrder(db,pending,proof.id,proof.amountKRW);
+          order={...pending,status:'PAID'};
+        }
       }
-      if(order.status!=='PENDING'||!order.store_id||!order.channel_key) throw new FortuneError('ORDER_NOT_PAYABLE',409);
-      if(order.pay_method!==body.payMethod) throw new FortuneError('CHECKOUT_METHOD_LOCKED',409);
-      const redirect=new URL(safeReturnPath(order.return_path),url.origin);
-      redirect.searchParams.set('orderId',order.id);
-      redirect.searchParams.set('paymentId',order.payment_id);
-      return json({orderId:order.id,paymentId:order.payment_id,productId:order.product_id,profileId:order.profile_id,returnPath:order.return_path,
-        payment:{customer,storeId:order.store_id,channelKey:order.channel_key,paymentId:order.payment_id,orderName:product.name+' '+product.fishName,totalAmount:order.amount,currency:'CURRENCY_KRW',
-          payMethod:order.pay_method==='CARD'?'CARD':'EASY_PAY',...(order.pay_method==='CARD'?{bypass:{inicis_v2:{acceptmethod:['noeasypay'],P_RESERVED:['noeasypay=Y']}}}:{}),...(order.pay_method==='KAKAOPAY'?{easyPay:{easyPayProvider:'KAKAOPAY'}}:{}),noticeUrls:[`${url.origin}/api/yeongnyangi/payments/webhook`],redirectUrl:redirect.href}});
+      const pendingBook=await prepareBook(db,userId,order.product_id,order.profile_id,engineEnv);
+      await dispatchBook(pendingBook.id);
+      return json({status:'PAID',requestId:pendingBook.id});
     }
     if (path === "testing/purchase" && request.method === "POST") {
       if (env.APP_ENV !== "local" || env.LLM_PROVIDER !== "mock")
