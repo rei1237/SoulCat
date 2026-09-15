@@ -11,7 +11,7 @@
 
 ## 현재 설정과 검증 절차
 
-실결제 검증은 CD staging 결제창에서 CD 결제 문서의 승인 절차대로 한다. 이 워커의 activation 파일은 실 LLM만 켜며 결제 슬롯은 없다. 과거 등록한 `PORTONE_*` staging secret은 사용처가 없고, 삭제는 사용자 1회 승인 후 진행한다.
+실결제 검증은 CD staging 결제창에서 CD 결제 문서의 승인 절차대로 한다. 이 워커의 activation 파일은 실 LLM만 켜며 결제 슬롯은 없다. 과거 등록한 `PORTONE_*` staging secret 6종은 2026-09-15 승인 후 삭제했다.
 
 1. 각 provider에서 사용자가 직접 로그인한다. 홈 하단의 로그인 상태, POST session 200, library 200, 재접속·새 탭·로그아웃을 확인한다. 비로그인은 401이며 소유권 없는 결과는 거부되어야 한다.
 2. 검증 계정의 서버 확인된 `codedestiny:<id>`를 로컬 activation 파일의 `STAGING_TEST_USER_IDS`에 넣는다. ID나 비밀키를 Git에 기록하지 않는다.

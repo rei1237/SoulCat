@@ -73,5 +73,5 @@ preview 성공을 운영 배포 성공으로 보고하지 않는다. 실제 모�
 ## 별도 PG 신청 (폐기)
 
 영냥이 전용 KG이니시스 계약/MID를 위한 PortOne 신규 신청은 최종 확인 화면에서 제출하지 않았고, 이후 결제를 CD 결제창으로 일원화하면서 폐기했다.
-워커의 PortOne 코드·SDK·`PAYMENTS_ENABLED`·activation 결제 항목은 제거했다. `PORTONE_*` staging secret 삭제는 사용자 1회 승인 후 별도로 진행한다.
+워커의 PortOne 코드·SDK·`PAYMENTS_ENABLED`·activation 결제 항목은 제거했다. `PORTONE_*` staging secret 6종은 2026-09-15 사용자 승인 후 `wrangler secret delete --env staging` 으로 삭제했다(남은 secret 은 `GEMINI_API_KEY`).
 새 PG 계약·신청·서류 업로드·본인 인증은 자동 진행하지 않으며, 필요해지면 사용자 명시 승인이 있는 별도 변경으로 다룬다.
