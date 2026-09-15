@@ -544,5 +544,5 @@ export default function FortuneExperience() {
   );
 }
 function ProfileFields({prefix,title,domain}:{prefix:string;title:string;domain:FortuneDomainId}) {
- return <BirthFields prefix={prefix} title={title} timeRequired={domain!=="saju"}/>;
+ return <BirthFields prefix={prefix} title={title} timeRequired={domain!=="saju"} cdPrefill={prefix==="a"}/>;
 }

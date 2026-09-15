@@ -1,7 +1,8 @@
 "use client";
-import {useRef,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {Search,MapPin} from 'lucide-react';
 import type {Place} from '../../server/fortune/shared/contracts';
+import {useCdBirthPrefill} from '../lib/cd-profile';
 
 export function readBirthFields(data:FormData,prefix='a') {
  const part=(key:string)=>String(data.get(prefix+key)||'');
@@ -11,9 +12,10 @@ export function readBirthFields(data:FormData,prefix='a') {
  if(part('residenceQuery')&&!residence)throw new Error('거주지를 검색 결과에서 선택하거나 입력을 비워 주세요.');
  return {birthDate:part('date'),birthTime:part('time')||undefined,calendarType:part('calendar')||'solar',leapMonth:part('leap')==='on',gender:part('gender')||undefined,birthPlace,residence};
 }
-export function PlaceSearch({name,label,required=false}:{name:string;label:string;required?:boolean}) {
+export function PlaceSearch({name,label,required=false,initial}:{name:string;label:string;required?:boolean;initial?:Place}) {
  const [query,setQuery]=useState(''),[place,setPlace]=useState<Place|null>(null),[places,setPlaces]=useState<Place[]>([]),[busy,setBusy]=useState(false),[error,setError]=useState('');
  const version=useRef(0),lock=useRef(false);
+ useEffect(()=>{if(initial&&!place&&!query){setPlace(initial);setQuery(initial.name||'');}},[initial]);// eslint-disable-line react-hooks/exhaustive-deps
  async function search(){if(lock.current)return;lock.current=true;setBusy(true);setError('');const v=version.current;
  try{const r=await fetch('/api/yeongnyangi/places?q='+encodeURIComponent(query),{cache:'no-store'});const d=await r.json();if(!r.ok)throw Error(d.message||'장소 검색을 마치지 못했어요. 다시 검색해 주세요.');if(v===version.current){setPlaces(d.places);if(!d.places.length)setError('찾는 장소가 없어요. 도시·구 이름이나 영문 지명으로 다시 검색해 주세요.');}}
  catch(e){if(v===version.current)setError((e as Error).message);}finally{setBusy(false);lock.current=false;}}
@@ -24,18 +26,26 @@ export function PlaceSearch({name,label,required=false}:{name:string;label:strin
  {query&&!place&&!busy&&!error&&<small>검색 결과에서 장소를 선택해 줘.</small>}{error&&<p className="field-error" role="alert">{error}</p>}
  </div>;
 }
-export default function BirthFields({prefix='a',title='출생 정보',timeRequired=false}:{prefix?:string;title?:string;timeRequired?:boolean}) {
- const [date,setDate]=useState(['','','']),[time,setTime]=useState(['','']),[unknown,setUnknown]=useState(false),[calendar,setCalendar]=useState('solar');
+export default function BirthFields({prefix='a',title='출생 정보',timeRequired=false,cdPrefill=false}:{prefix?:string;title?:string;timeRequired?:boolean;cdPrefill?:boolean}) {
+ const [date,setDate]=useState(['','','']),[time,setTime]=useState(['','']),[unknown,setUnknown]=useState(false),[calendar,setCalendar]=useState('solar'),[leap,setLeap]=useState(false),[gender,setGender]=useState(''),[initialPlace,setInitialPlace]=useState<Place>(),[prefillNote,setPrefillNote]=useState('');
+ const prefill=useCdBirthPrefill(cdPrefill),applied=useRef(false);
+ // 사용자가 이미 입력을 시작했으면 늦게 도착한 프리필로 덮어쓰지 않는다.
+ useEffect(()=>{if(!prefill||applied.current)return;applied.current=true;if(date.some(Boolean)||time.some(Boolean)||gender||calendar!=='solar')return;
+  const [y,m,d]=prefill.birthDate.split('-');setDate([y,m,d]);setCalendar(prefill.calendarType);setLeap(prefill.leapMonth);
+  if(prefill.birthTime)setTime(prefill.birthTime.split(':'));if(prefill.gender)setGender(prefill.gender);if(prefill.birthPlace)setInitialPlace(prefill.birthPlace);
+  setPrefillNote(`코드 데스티니에 저장한 대표 프로필로 채워뒀어. 맞는지 확인하고 고쳐도 돼.${prefill.birthTime?'':' 출생시간은 비워뒀어.'}${prefill.birthPlace?'':' 태어난 장소는 검색해서 골라줘.'}`);
+ },[prefill]);// eslint-disable-line react-hooks/exhaustive-deps
  function digits(value:string,max:number){return value.replace(/\D/g,'').slice(0,max);}
  return <fieldset className="birth-fields"><legend>{title}</legend><div className="birth-guide"><img src="/_soulcat/assets/expression-calm.webp" width="64" height="64" alt=""/><p>작은 단서도 놓치지 않을게.<br/><span>태어난 날짜와 장소부터 알려줘.</span></p></div>
+ {prefillNote&&<p className="birth-note" role="status">{prefillNote}</p>}
  <label>달력 기준<select name={prefix+'calendar'} value={calendar} onChange={e=>setCalendar(e.target.value)}><option value="solar">양력</option><option value="lunar">음력</option></select></label>
- {calendar==='lunar'&&<label className="birth-check"><input type="checkbox" name={prefix+'leap'}/>윤달에 태어났어요</label>}
+ {calendar==='lunar'&&<label className="birth-check"><input type="checkbox" name={prefix+'leap'} checked={leap} onChange={e=>setLeap(e.target.checked)}/>윤달에 태어났어요</label>}
  <div className="birth-date-row" role="group" aria-label="생년월일">{['연도','월','일'].map((label,i)=><label key={label}>{label}<input aria-label={`출생 ${label}`} type="text" inputMode="numeric" pattern={i===0?'[0-9]{4}':'[0-9]{1,2}'} placeholder={['1997','02','10'][i]} maxLength={i===0?4:2} required value={date[i]} onPaste={e=>{const nums=e.clipboardData.getData('text').replace(/\D/g,'');if(nums.length===8){e.preventDefault();setDate([nums.slice(0,4),nums.slice(4,6),nums.slice(6,8)]);}}} onChange={e=>setDate(date.map((v,j)=>j===i?digits(e.target.value,i===0?4:2):v))}/></label>)}</div>
  <input type="hidden" name={prefix+'date'} value={date.every(Boolean)?`${date[0]}-${date[1].padStart(2,'0')}-${date[2].padStart(2,'0')}`:''}/>
- <div className="birth-time-row" role="group" aria-label="출생시간">{['시 (0~23)','분'].map((label,i)=><label key={label}>{label}<input aria-label={`출생 ${i?'분':'시'}`} type="text" inputMode="numeric" pattern="[0-9]{1,2}" placeholder={i?'30':'14'} maxLength={2} required={!unknown} disabled={unknown} value={time[i]} onChange={e=>setTime(time.map((v,j)=>j===i?digits(e.target.value,2):v))}/></label>)}<label>성별<select name={prefix+'gender'} defaultValue="" required><option value="" disabled>선택</option><option value="female">여성</option><option value="male">남성</option></select></label></div>
+ <div className="birth-time-row" role="group" aria-label="출생시간">{['시 (0~23)','분'].map((label,i)=><label key={label}>{label}<input aria-label={`출생 ${i?'분':'시'}`} type="text" inputMode="numeric" pattern="[0-9]{1,2}" placeholder={i?'30':'14'} maxLength={2} required={!unknown} disabled={unknown} value={time[i]} onChange={e=>setTime(time.map((v,j)=>j===i?digits(e.target.value,2):v))}/></label>)}<label>성별<select name={prefix+'gender'} value={gender} onChange={e=>setGender(e.target.value)} required><option value="" disabled>선택</option><option value="female">여성</option><option value="male">남성</option></select></label></div>
  <input type="hidden" name={prefix+'time'} value={!unknown&&time.every(Boolean)?time.map(x=>x.padStart(2,'0')).join(':'):''}/>
  {!timeRequired&&<label className="birth-check"><input type="checkbox" checked={unknown} onChange={e=>setUnknown(e.target.checked)}/>출생시간을 몰라요</label>}
- <PlaceSearch name={prefix+'place'} label="태어난 장소" required/><PlaceSearch name={prefix+'residence'} label="지금 사는 장소"/>
+ <PlaceSearch name={prefix+'place'} label="태어난 장소" required initial={initialPlace}/><PlaceSearch name={prefix+'residence'} label="지금 사는 장소"/>
  <p className="birth-note">출생지로 시간을 보정해요. 거주지는 출생 차트에 대신 넣지 않아요. 상세 주소 대신 도시·구까지만 알려줘.<br/><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">장소 자료 © OpenStreetMap 기여자</a> · 시간대 경계에 가까우면 선택된 시간대도 확인해 주세요.</p>
  </fieldset>;
 }

@@ -13,6 +13,7 @@ import { ProviderEnv, createProvider } from "./providers/provider-factory";
 import { createOrder, findPaidOrder, grantProofOrder } from "./payments/orders";
 import { getProduct, products } from "./payments/catalog";
 import { AuthEnv, sharedIdentity } from "./auth";
+import { currentCdBirthPrefill } from "./cd-profile";
 import { createChart, purchaseContexts, chartView } from "./fortune/charts";
 import {
   prepareBook,
@@ -215,6 +216,7 @@ export async function handleApi(
     if(path==='profiles'&&request.method==='GET'){
       const rows=await db.prepare('SELECT id,domain,created_at FROM profiles WHERE user_id=? ORDER BY created_at DESC LIMIT 40').bind(userId).all();return json({profiles:rows.results});
     }
+    if(path==='cd-profile'&&request.method==='GET')return json({profile:env.APP_ENV==='local'?null:await currentCdBirthPrefill(request,env)});
     const dispatchBook = async (id: string) => {
       if (env.APP_ENV === "local" && env.LLM_PROVIDER === "mock") {
         waitUntil(
