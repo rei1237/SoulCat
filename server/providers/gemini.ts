@@ -66,14 +66,18 @@ export class GeminiProvider implements LLMProvider {
         );
       const output = (await response.json()) as {
         usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number; thoughtsTokenCount?: number; totalTokenCount?: number };
+        promptFeedback?: { blockReason?: string };
         candidates?: {
           finishReason?: string;
           content?: { parts?: { text?: string }[] };
         }[];
       };
       const candidate = output.candidates?.[0];
-      if (candidate?.finishReason !== "STOP")
-        throw new FortuneError("INCOMPLETE_PROVIDER_RESPONSE", 502);
+      if (candidate?.finishReason !== "STOP") {
+        // Keep the provider's reason (MAX_TOKENS, SAFETY, ...) in the failure code so D1 alone explains the stop.
+        const reason = candidate?.finishReason ?? output.promptFeedback?.blockReason ?? "MISSING";
+        throw new FortuneError(`INCOMPLETE_PROVIDER_RESPONSE_${/^[A-Z_]{1,32}$/.test(reason) ? reason : "OTHER"}`, 502);
+      }
       const text = candidate.content?.parts?.map((p) => p.text || "").join("");
       if (!text) throw new FortuneError("EMPTY_PROVIDER_RESPONSE", 502);
       const u=output.usageMetadata;
