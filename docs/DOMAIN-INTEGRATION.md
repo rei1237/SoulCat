@@ -2,7 +2,8 @@
 
 ## 승인 경계
 
-운영 배포·운영 라우트·실결제는 승인되지 않았다. `ALLOW_LIVE_LLM=false`, 모든 상품 `enabled=false`를 유지한다.
+운영 배포·운영 라우트·실 LLM 활성화는 각각 명시적 1회 승인 때만 진행한다. 커밋 기본값은 `LLM_PROVIDER=mock`·`ALLOW_LIVE_LLM=false`이다.
+카탈로그의 상품별 `available`은 주문 경로와 같은 판정(실 LLM 연결 + `productBudgetReady`)이며, `false`인 상품은 화면에 "준비 중"으로 표시되고 결제창으로 가지 않는다.
 영냥이 결제는 Code Destiny 결제창(`/checkout/?featureKey=yeongnyangi-…`)에서만 일어난다.
 이 워커는 PG를 직접 다루지 않으며 CD 증빙 API(`yeongnyangi-entitlement`)로 권리를 부여한다. 별도 PG 계약·MID·PortOne 연동은 폐기했다.
 
@@ -22,7 +23,7 @@
 
 접두 Worker route에 걸린 다른 경로는 원래 origin으로 통과한다. slash 301은 query를
 보존한다. 정적 upstream에는 cookie·authorization·query를 전달하지 않는다.
-모든 영냥이 화면은 noindex이고 기존 sitemap/robots를 대체하지 않는다.
+staging 영냥이 화면은 모두 noindex이고, production은 `/yeongnyangi/library/`만 noindex다. 기존 sitemap/robots를 대체하지 않는다.
 앱 사이 이동은 일반 상대경로 링크다. 분석 SDK를 추가하지 않아 pageview를 중복 발행하지 않는다.
 
 ## 인증과 상품
@@ -44,7 +45,7 @@ D1 사용자 키는 `codedestiny:<검증된 ID>`로 임시 preview 사용자와 
 - SoulCat Pages: main 자동 운영 배포를 대시보드에서 비활성화했다. preview 자동 배포는 유지한다.
 - staging 전용 D1 `soulcat-fortune-staging`을 생성하고 0001 migration만 적용했다.
 - `wrangler.worker.jsonc`: workers.dev 및 preview_urls 비활성화, staging 기존 도메인 경로만 등록.
-- production 환경은 routes와 DB가 없으므로 승인 후 별도 운영 설정이 필요하다.
+- production 환경(`soulcat-service-production`)은 `code-destiny.com` route 5개, Queue `soulcat-book-production`(+`-dlq`), D1 `soulcat-fortune-production`을 선언한다. D1 `database_id`는 운영 D1 생성 승인 뒤에 채우며, 비어 있으면 배포 스크립트가 거부한다. 기존 `soulcat-fortune`(172413ab…) D1은 재사용하지 않는다.
 - 정적 origin은 8자리 불변 Pages 배포 ID로만 지정한다. rolling alias는 런타임이 거부한다.
 - 운영 DNS·기존 Worker·기존 DB·운영 키는 변경하지 않는다.
 
@@ -69,6 +70,27 @@ node scripts/deploy-staging.mjs https://DEPLOYMENT_ID.soulcat.pages.dev
 릴리스 증거에는 SoulCat SHA/Pages ID/Worker version과 기존 저장소 Pages/Worker SHA를 각각 기록한다.
 preview 성공을 운영 배포 성공으로 보고하지 않는다. 실제 모바일, 로그인된 사용자,
 실결제(CD 결제창 경유), 운영 DB는 별도 증거 없이는 검증하지 못함으로 기록한다.
+
+## production 배포와 롤백
+
+운영 승격 승인이 있을 때만 실행한다. production 빌드는 로그인 링크가 staging으로 굳지 않도록 origin을 지정한다.
+
+```powershell
+# clean tree, 검증·커밋 완료 상태에서
+$env:NEXT_PUBLIC_CODE_DESTINY_ORIGIN='https://code-destiny.com'; npm run build
+npx wrangler pages deploy out --project-name soulcat --branch production-release --commit-dirty=false
+# 실 LLM 을 끈 채 배포(모든 상품 available=false)
+node scripts/deploy-production.mjs https://DEPLOYMENT_ID.soulcat.pages.dev
+# 실 LLM 활성화는 로컬 미커밋 activation JSON 으로만(saju_mackerel 1종만 허용)
+node scripts/deploy-production.mjs https://DEPLOYMENT_ID.soulcat.pages.dev path/to/production-activation.json
+```
+
+`deploy-production.mjs`는 clean tree, Pages `version.json` SHA=HEAD·sourceDigest, Pages 홈에 staging origin이 없는지,
+route가 모두 `code-destiny.com/`, service 이름에 `staging` 없음, 운영 전용 D1 id·Queue, 커밋 기본값 LLM off를 확인한다.
+activation은 `scripts/production-activation.mjs` allowlist(`gemini`·`metered`·가격 모델 일치·미래 가격 유효기간·`LLM_VERIFIED_PRODUCTS` 키 `saju_mackerel` 하나)를 통과해야 한다.
+
+롤백: `npx wrangler rollback --config wrangler.worker.jsonc --env production` 또는 직전 Pages preview URL로 `deploy-production.mjs` 재실행.
+실 LLM만 끄려면 activation 파일 없이 같은 preview로 재배포한다.
 
 ## 별도 PG 신청 (폐기)
 
