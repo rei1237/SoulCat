@@ -26,7 +26,7 @@ staging 사용자 진입 주소:
 다음 실행:
 
 1. `staging.code-destiny.com`에서 Google, 네이버, 카카오 각각 실제 계정으로 로그인한다.
-2. 로그인 후 `/fortune/`, `/room/`, `/library/`, `/ggulggul-fortune/` 복귀 경로가 의도대로 동작하는지 확인한다.
+2. 로그인 후 `/yeongnyangi/fortune/`, `/yeongnyangi/room/`, `/yeongnyangi/library/`, `/yeongnyangi/ggulggul-fortune/` 복귀 경로가 의도대로 동작하는지 확인한다. 루트 `/fortune/`·`/room/`·`/library/`·`/ggulggul-fortune/` 은 Code Destiny 소유이며 SoulCat Worker 라우트에서 제외했다(2026-09-15, CD 운세 허브 하이재킹 회귀 해소).
 3. `/api/yeongnyangi/session`이 익명에서는 401, 로그인 후에는 200을 반환하는지 확인한다.
 4. Code Destiny `/api/auth/me`가 degraded 또는 token-only fallback을 반환할 때 SoulCat이 권한을 열지 않는지 확인한다.
 
@@ -37,11 +37,11 @@ staging 사용자 진입 주소:
 - 사용자 제공 꽃돼지 이미지를 `public/assets/ggulggul-fortune.webp`로 추가했다.
 - 홈에 영냥이와 꿀꿀 운세를 연결하는 카드가 추가됐다.
 - `/ggulggul-fortune/` SEO 안내 페이지를 추가했다.
-- staging Worker 라우트 허용 목록에 `/ggulggul-fortune/`를 추가했다.
+- SoulCat 안내 페이지는 `/yeongnyangi/ggulggul-fortune/` 에서만 서빙한다. 루트 `/ggulggul-fortune/` 라우트는 CD 허브 하이재킹 문제로 제거했다.
 
 다음 실행:
 
-1. staging에서 `/ggulggul-fortune/`가 SoulCat 화면으로 열리는지 확인한다.
+1. staging에서 `/yeongnyangi/ggulggul-fortune/`가 SoulCat 화면으로, 루트 `/fortune/`가 Code Destiny 허브(200)로 열리는지 확인한다.
 2. 카드의 "꿀꿀 운세로 이동" 링크가 기존 Code Destiny 운세 허브로 이동하는지 확인한다.
 3. 운영 전에는 `NEXT_PUBLIC_CODE_DESTINY_ORIGIN` 또는 production 환경의 origin 판정을 다시 확인한다.
 

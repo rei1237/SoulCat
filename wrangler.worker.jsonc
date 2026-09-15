@@ -80,22 +80,6 @@
           "zone_name": "code-destiny.com"
         },
         {
-          "pattern": "staging.code-destiny.com/fortune*",
-          "zone_name": "code-destiny.com"
-        },
-        {
-          "pattern": "staging.code-destiny.com/room*",
-          "zone_name": "code-destiny.com"
-        },
-        {
-          "pattern": "staging.code-destiny.com/library*",
-          "zone_name": "code-destiny.com"
-        },
-        {
-          "pattern": "staging.code-destiny.com/ggulggul-fortune*",
-          "zone_name": "code-destiny.com"
-        },
-        {
           "pattern": "staging.code-destiny.com/_soulcat",
           "zone_name": "code-destiny.com"
         },

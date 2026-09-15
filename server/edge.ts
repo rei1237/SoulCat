@@ -15,7 +15,6 @@ const screens = new Set([
   "/yeongnyangi/", "/yeongnyangi/fortune/", "/yeongnyangi/room/", "/yeongnyangi/library/",
   ...["free-fortune", "1000-won-fortune", "saju", "sukuyo", "ziwei", "vedic", "astrology", "tarot", "about", "ggulggul-fortune", "terms", "privacy", "refund", "contact"].map(slug => `/yeongnyangi/${slug}/`),
 ]);
-const oldScreens = new Set(["/fortune/", "/room/", "/library/", "/ggulggul-fortune/"]);
 const privateScreens = new Set(["/yeongnyangi/library/"]);
 export function routeKind(path: string) {
   if (path === "/_soulcat" || path === "/_soulcat/") return "entry";
@@ -23,7 +22,6 @@ export function routeKind(path: string) {
     /^\/share\/yeongnyangi\/[a-f0-9]{32}(?:\/(?:og|vertical)\.png)?$/.test(path)
   )
     return "share";
-  if (oldScreens.has(path) || oldScreens.has(`${path}/`)) return "old-screen";
   if (["/yeongnyangi/sitemap.xml", "/yeongnyangi/robots.txt"].includes(path)) return "metadata";
   if (screens.has(path) || screens.has(`${path}/`)) return "screen";
   if (path.startsWith("/api/yeongnyangi/")) return "api";
@@ -95,8 +93,8 @@ export async function handleEdge(
   if (kind === "missing") return new Response("Not found", { status: 404 });
   if (!["GET", "HEAD"].includes(request.method))
     return new Response("Method not allowed", { status: 405 });
-  if (kind === "entry" || kind === "old-screen") {
-    url.pathname = kind === "entry" ? "/yeongnyangi/" : "/yeongnyangi" + url.pathname.replace(/\/?$/, "/");
+  if (kind === "entry") {
+    url.pathname = "/yeongnyangi/";
     return Response.redirect(url.href, 302);
   }
   if (kind === "screen" && !url.pathname.endsWith("/")) {

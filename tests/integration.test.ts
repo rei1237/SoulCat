@@ -10,7 +10,7 @@ const origin = "https://staging.code-destiny.com";
 const env: EdgeEnv = { APP_ENV: "staging", PUBLIC_ORIGIN: origin, SOULCAT_PAGES_ORIGIN: "https://1234abcd.soulcat.pages.dev", PAYMENTS_ENABLED: "false", LLM_PROVIDER: "mock" };
 const idle = () => {};
 test("exact screen routing preserves every existing fortune subroute and other applications", async () => {
-  for (const path of ["/", "/fortune/daily/", "/fortune/share/", "/fortune/prompt-hub/", "/fortune-tea-house/", "/roommate", "/library-old", "/api/auth/me", "/api/payments/webhook", "/terms/", "/refund/", "/_next/static/old.js", "/sitemap.xml", "/robots.txt"]) {
+  for (const path of ["/", "/fortune/daily/", "/fortune/share/", "/fortune/prompt-hub/", "/fortune-tea-house/", "/fortune/", "/room/", "/library/", "/ggulggul-fortune/", "/roommate", "/library-old", "/api/auth/me", "/api/payments/webhook", "/terms/", "/refund/", "/_next/static/old.js", "/sitemap.xml", "/robots.txt"]) {
     assert.equal(routeKind(path), "legacy", path);
     const req = new Request(origin + path + "?utm_source=original");
     const response = await handleEdge(req, env, idle, async received => {
@@ -19,7 +19,6 @@ test("exact screen routing preserves every existing fortune subroute and other a
     });
     assert.equal(await response.text(), "legacy");
   }
-  for (const path of ["/fortune", "/fortune/", "/room/", "/library/"]) assert.equal(routeKind(path), "old-screen");
 });
 test("slash redirect preserves query and private credentials never reach static origin", async () => {
   const entryRedirect = await handleEdge(new Request(origin + "/_soulcat"), env, idle);
