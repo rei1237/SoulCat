@@ -1,4 +1,4 @@
-import {READING_VERSION,PROMPT_VERSION} from '../fortune/reading-policy';
+import {READING_VERSION,PROMPT_VERSION,readingPolicies} from '../fortune/reading-policy';
 import {validateReadingQuality} from '../fortune/reading-quality';
 import {selectChapterFacts} from '../fortune/chapter-facts';
 import {
@@ -263,7 +263,8 @@ export class StructuredChapterProvider implements FortuneChapterProvider {
       }}},
       sectionTitles: [input.chapter.title],
       promptVersion: input.chapter.version===READING_VERSION?PROMPT_VERSION:input.chapter.systems?"chapter-v3":"chapter-v2",
-      maxOutputTokens:input.chapter.outputTokens,
+      // Books keep their purchase-time manifest; a later cap increase must still reach retries of those chapters.
+      maxOutputTokens:input.chapter.version===READING_VERSION&&input.chapter.tier?Math.max(input.chapter.outputTokens??0,readingPolicies[input.chapter.tier].outputTokens):input.chapter.outputTokens,
     });
     this.receipt = { provider: response.provider, model: response.model };
     let candidate:any=response.result;

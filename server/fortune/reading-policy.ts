@@ -3,7 +3,7 @@ import type { DomainId, PackageId } from './shared/contracts';
 export const READING_VERSION = 'destiny-book-v4';
 export const PROMPT_VERSION = 'chapter-v4';
 export const readingPolicies = {
-  mackerel: { minimum: 3000, target: [3200, 4000], outputTokens: 4096, depth: ['핵심 결론', '계산 근거와 이유', '생활 사례', '첫 행동'] },
+  mackerel: { minimum: 3000, target: [3200, 4000], outputTokens: 8192, depth: ['핵심 결론', '계산 근거와 이유', '생활 사례', '첫 행동'] },
   salmon: { minimum: 6000, target: [7000, 9000], outputTokens: 4096, depth: ['핵심 결론', '반복 원인', '상황별 차이', '생활 사례', '실행'] },
   flounder: { minimum: 11000, target: [13000, 17000], outputTokens: 8192, depth: ['근거의 연결', '강점과 부담', '대안 비교', '상황별 사례', '선택 기준'] },
   tuna: { minimum: 20000, target: [24000, 32000], outputTokens: 8192, depth: ['전문 근거', '상충과 예외', '조건별 해석', '생활 사례', '행동 계획', '점검 기준'] },

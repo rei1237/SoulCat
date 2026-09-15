@@ -66,7 +66,7 @@ test('POST orders answers 402 with the CD checkout URL without a proof, and book
   await createChart(db,user,'p',{});
   const sent:string[]=[];
   const base={DB:db,...authEnv,LLM_PROVIDER:'gemini',ALLOW_LIVE_LLM:'true',GEMINI_API_KEY:'fixture',BOOK_QUEUE:{async send(m:{requestId:string}){sent.push(m.requestId);}},
-    STAGING_PAYMENT_RUN:validationRun,STAGING_TEST_PRODUCT_IDS:'saju_mackerel',LLM_STAGING_VALIDATION_MANIFEST:'destiny-book-v4',LLM_COST_MODE:'test',LLM_TEST_BUDGET_KRW:'1000',LLM_DAILY_BUDGET_KRW:'1000',LLM_TIMEOUT_MS:'60000',LLM_MAX_RETRIES:'2',LLM_MAX_INPUT_TOKENS:'32000',LLM_MAX_OUTPUT_TOKENS:'4096',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString()};
+    STAGING_PAYMENT_RUN:validationRun,STAGING_TEST_PRODUCT_IDS:'saju_mackerel',LLM_STAGING_VALIDATION_MANIFEST:'destiny-book-v4',LLM_COST_MODE:'test',LLM_TEST_BUDGET_KRW:'1000',LLM_DAILY_BUDGET_KRW:'1000',LLM_TIMEOUT_MS:'60000',LLM_MAX_RETRIES:'2',LLM_MAX_INPUT_TOKENS:'32000',LLM_MAX_OUTPUT_TOKENS:'8192',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString()};
   const post=(body:object)=>new Request(origin+'/api/yeongnyangi/orders',{method:'POST',headers:{...cookie,origin,'content-type':'application/json'},body:JSON.stringify(body)});
   const none=cdStub([]);
   const denied=await handleApi(post({productId:'saju_mackerel',profileId:'p',idempotencyKey:'unique-cd-order-0001'}),{...base,...none} as never,()=>{});

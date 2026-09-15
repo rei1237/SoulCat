@@ -13,7 +13,7 @@ const user='codedestiny:0123456789abcdef01234567';
 const env={APP_ENV:'staging',STAGING_PAYMENT_RUN:validationRun,STAGING_TEST_PRODUCT_IDS:'saju_mackerel',STAGING_TEST_USER_IDS:user};
 
 test('the actual validation catalog satisfies the five chapter live budget gate',()=>{
-  const live={...env,LLM_STAGING_VALIDATION_MANIFEST:'destiny-book-v4',LLM_COST_MODE:'test',LLM_TEST_BUDGET_KRW:'1000',LLM_DAILY_BUDGET_KRW:'1000',LLM_TIMEOUT_MS:'60000',LLM_MAX_RETRIES:'2',LLM_MAX_INPUT_TOKENS:'32000',LLM_MAX_OUTPUT_TOKENS:'4096',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString()};
+  const live={...env,LLM_STAGING_VALIDATION_MANIFEST:'destiny-book-v4',LLM_COST_MODE:'test',LLM_TEST_BUDGET_KRW:'1000',LLM_DAILY_BUDGET_KRW:'1000',LLM_TIMEOUT_MS:'60000',LLM_MAX_RETRIES:'2',LLM_MAX_INPUT_TOKENS:'32000',LLM_MAX_OUTPUT_TOKENS:'8192',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString()};
   const product=getProduct('saju_mackerel');
   assert.equal(product.chapterCount,5);
   assert.doesNotThrow(()=>productBudgetReady(live,product.id,product.chapterCount));
@@ -38,7 +38,7 @@ test('catalog visibility no longer depends on the staging payment allowlist',asy
   }
 });
 test('production catalog marks only the verified product available, and nothing without live activation',async()=>{
-  const live={APP_ENV:'production',PUBLIC_ORIGIN:'https://code-destiny.com',LLM_PROVIDER:'gemini',ALLOW_LIVE_LLM:'true',GEMINI_API_KEY:'fixture',BOOK_QUEUE:{async send(){}},LLM_COST_MODE:'metered',LLM_TIMEOUT_MS:'60000',LLM_MAX_RETRIES:'2',LLM_MAX_INPUT_TOKENS:'32000',LLM_MAX_OUTPUT_TOKENS:'4096',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString(),LLM_VERIFIED_PRODUCTS:JSON.stringify({saju_mackerel:{model:'fixture',chapters:5,maxKRW:300,manifestVersion:'destiny-book-v4',outputTokens:4096}})};
+  const live={APP_ENV:'production',PUBLIC_ORIGIN:'https://code-destiny.com',LLM_PROVIDER:'gemini',ALLOW_LIVE_LLM:'true',GEMINI_API_KEY:'fixture',BOOK_QUEUE:{async send(){}},LLM_COST_MODE:'metered',LLM_TIMEOUT_MS:'60000',LLM_MAX_RETRIES:'2',LLM_MAX_INPUT_TOKENS:'32000',LLM_MAX_OUTPUT_TOKENS:'8192',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString(),LLM_VERIFIED_PRODUCTS:JSON.stringify({saju_mackerel:{model:'fixture',chapters:5,maxKRW:300,manifestVersion:'destiny-book-v4',outputTokens:8192}})};
   const available=async(patch:object)=>{
     const response=await handleApi(new Request('https://code-destiny.com/api/yeongnyangi/products'),{...live,...patch} as Parameters<typeof handleApi>[1],()=>{});
     const body=await response.json() as {products:{id:string;available:boolean}[]};
@@ -49,7 +49,7 @@ test('production catalog marks only the verified product available, and nothing 
 });
 test('production activation opens only the verified saju on the committed production vars',()=>{
   const committed=JSON.parse(readFileSync('wrangler.worker.jsonc','utf8')).env.production.vars;
-  const activation={ALLOW_LIVE_LLM:'true',LLM_PROVIDER:'gemini',LLM_COST_MODE:'metered',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString(),LLM_VERIFIED_PRODUCTS:JSON.stringify({saju_mackerel:{model:'fixture',chapters:5,maxKRW:300,manifestVersion:'destiny-book-v4',outputTokens:4096}})};
+  const activation={ALLOW_LIVE_LLM:'true',LLM_PROVIDER:'gemini',LLM_COST_MODE:'metered',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString(),LLM_VERIFIED_PRODUCTS:JSON.stringify({saju_mackerel:{model:'fixture',chapters:5,maxKRW:300,manifestVersion:'destiny-book-v4',outputTokens:8192}})};
   assert.doesNotThrow(()=>validateProductionActivation(activation));
   const product=getProduct('saju_mackerel');
   // 검증기가 받아들인 activation 은 실제 운영 vars 위에서 서버 예산 판정도 통과해야 한다.

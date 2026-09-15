@@ -54,6 +54,8 @@ export class GeminiProvider implements LLMProvider {
               responseMimeType: "application/json",
               responseJsonSchema: request.outputSchema,
               maxOutputTokens: this.outputTokens(request),
+              // Gemini 2.5 counts thinking tokens against maxOutputTokens; leave half of the cap for the JSON answer.
+              thinkingConfig: { thinkingBudget: Math.floor(this.outputTokens(request) / 2) },
             },
           }),
           signal: AbortSignal.timeout(this.timeout),

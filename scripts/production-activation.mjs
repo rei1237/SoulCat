@@ -10,6 +10,6 @@ export function validateProductionActivation(vars) {
   let products;
   try { products = JSON.parse(vars.LLM_VERIFIED_PRODUCTS || ''); } catch { throw new Error('LLM_VERIFIED_PRODUCTS must be JSON'); }
   const p = products && typeof products === 'object' && !Array.isArray(products) && Object.keys(products).join(',') === 'saju_mackerel' ? products.saju_mackerel : null;
-  if (!p || p.model !== vars.GEMINI_MODEL || p.chapters !== 5 || p.manifestVersion !== 'destiny-book-v4' || p.outputTokens !== 4096 ||
+  if (!p || p.model !== vars.GEMINI_MODEL || p.chapters !== 5 || p.manifestVersion !== 'destiny-book-v4' || p.outputTokens !== 8192 ||
       !Number.isFinite(p.maxKRW) || p.maxKRW <= 0) throw new Error('Only verified 1000 KRW saju is permitted in production');
 }
