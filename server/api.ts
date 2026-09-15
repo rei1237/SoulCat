@@ -14,6 +14,7 @@ import { createOrder, findPaidOrder, grantProofOrder } from "./payments/orders";
 import { getProduct, products } from "./payments/catalog";
 import { AuthEnv, sharedIdentity } from "./auth";
 import { currentCdBirthPrefill } from "./cd-profile";
+import { deleteAccount } from "./account";
 import { createChart, purchaseContexts, chartView } from "./fortune/charts";
 import {
   prepareBook,
@@ -135,6 +136,8 @@ export async function handleApi(
     const db = env.DB;
     if(path==='places'&&request.method==='GET')return json({places:await searchPlaces(db,url.searchParams.get('q')||'',env.PLACE_SEARCH_ENDPOINT)});
     let body: Record<string, unknown> = {};
+    if (request.method === "DELETE" && request.headers.get("origin") !== url.origin)
+      throw new FortuneError("INVALID_ORIGIN", 403);
     if (request.method === "POST") {
       if (request.headers.get("origin") !== url.origin)
         throw new FortuneError("INVALID_ORIGIN", 403);
@@ -190,6 +193,8 @@ export async function handleApi(
     }
     const identity = env.APP_ENV === "local" ? {userId:await user(db,request),displayName:""} : await sharedIdentity(request,env);
     const userId=identity.userId;
+    // 코드 데스티니 회원 탈퇴가 사용자 쿠키를 그대로 넘겨 부른다(worker/lib/soulcat-account.js). 없는 계정도 성공.
+    if(path==='account'&&request.method==='DELETE')return json({ok:true,...await deleteAccount(db,userId)});
     const engineEnv = {
       SWISS_EPHEMERIS_FILES_BASE_URL: `${url.origin}/_soulcat/ephe/`,
       ...(env.KASI_SERVICE_KEY
