@@ -34,6 +34,18 @@ test('server packages have exact prices, scope, counts and unique chapter questi
  const tarot=productManifest(getProduct('tarot_tuna'));assert.ok(tarot.every(c=>! /대운|배우자 명식|10년/.test(c.title)));
  assert.notDeepEqual(productManifest(getProduct('saju_salmon'),'love'),productManifest(getProduct('saju_salmon'),'work'));
 });
+test('a topic moves its chapters right after self, labels them and stays within the allowlist',()=>{
+ const p=getProduct('saju_tuna'),m=productManifest(p,'money');assert.equal(m.length,p.chapterCount);assert.equal(new Set(m.map(c=>c.title)).size,p.chapterCount);
+ assert.equal(m[0].key,'self');assert.equal(m[1].key,'money');assert.match(m[1].title,/^재물운 · /);assert.ok(!m[0].title.includes('재물운'));assert.equal(m[m.length-1].key,'action');
+ assert.deepEqual(m.map(c=>c.id),productManifest(p).map(c=>c.id));
+ const tarot=productManifest(getProduct('tarot_tuna'),'love');assert.match(tarot[0].title,/^연애운 · /);assert.ok(tarot.every(c=>! /대운|배우자 명식|10년/.test(c.title)));
+ assert.equal(domains.ziwei.validateInput({personA:profile,topicId:'year'}).topicId,'year');assert.throws(()=>domains.ziwei.validateInput({personA:profile,topicId:'nope'}),/INVALID_TOPIC/);
+});
+test('a paid book carries its topic into the cover name and chapter order',async()=>{
+ const {db,sqlite}=database();seed(sqlite);sqlite.prepare('UPDATE profiles SET input_json=? WHERE id=?').run(JSON.stringify({personA:profile,readingMode:'personal',topicId:'money',question:'돈'}),'p');
+ await createChart(db,'alice','p',{});await pay(db,'saju_tuna');const r=await prepareBook(db,'alice','saju_tuna','p',{});const b=(await bookStatus(db,'alice',r.id))!;
+ assert.equal(b.packageName,'재물운 참치');assert.equal(b.chapters[0].key,'self');assert.match(b.chapters[1].title,/^재물운 · /);assert.equal(b.chapters.length,getProduct('saju_tuna').chapterCount);
+});
 test('tarot accepts no birth, ignores forged cards and persists one server draw',async()=>{
  const {db,sqlite}=database();seed(sqlite,'tarot');sqlite.prepare('UPDATE profiles SET input_json=? WHERE id=?').run(JSON.stringify({question:'내가 바꿀 수 있는 선택은?',topicId:'love',cards:[{cardId:'FAKE'}]}),'p');
  const [a,b]=await Promise.all([createChart(db,'alice','p',{}),createChart(db,'alice','p',{})]);assert.equal(a.id,b.id);assert.equal(a.contexts_json,b.contexts_json);

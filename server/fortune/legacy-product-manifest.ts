@@ -21,6 +21,6 @@ export function productManifest(p:Product,topicId='general'):ChapterSpec[]{
   pairs.forEach(pair=>add(comparisons.slice(0,10).map(t=>`${pair.map(d=>systemNames[d]).join('·')} · ${t}`),'조합별 비교',pair,true));
   add(comparisons.slice(10).map(t=>`전체 통합 · ${t}`),'여섯 관점의 결론',p.systems,true);add(topics.map(t=>`통합 실행 · ${t}`),'나의 실행 계획',p.systems);
  }
- const topicName=({love:'연애',luck:'운의 흐름',work:'일과 적성',money:'재물',relationship:'관계',healing:'회복',self:'나의 이해'} as Record<string,string>)[topicId];
+ const topicName=({love:'연애',luck:'운의 흐름',work:'일과 적성',money:'재물',year:'올해 운세',relationship:'관계',healing:'회복',self:'나의 이해'} as Record<string,string>)[topicId];
  return rows.map((r,i)=>({...r,title:topicName?`${topicName} · ${r.title}`:r.title,id:`${p.fishId}-${String(i+1).padStart(2,'0')}`,ordinal:i,focus:`${topicId}: ${r.title}`,periodScope:r.systems.includes('tarot')?'타로는 질문 당시 상징, 다른 체계는 제공된 계산 기간만 사용':'제공된 계산 기간만 사용'}));
 }

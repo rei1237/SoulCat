@@ -2,6 +2,7 @@ import {READING_VERSION,PROMPT_VERSION,readingPolicies} from './reading-policy';
 import {bodyCharacterCount} from './reading-quality';
 import {selectChapterFacts} from './chapter-facts';
 import {productManifest} from './product-manifest';
+import {topicLabel} from './topics';
 import {chartView} from './charts';
 import { Database } from "../db/types";
 import { domains } from "./index";
@@ -185,7 +186,7 @@ export async function bookStatus(db: Database, userId: string, id: string) {
     timeline,
     signals,
     tier: book.tier,
-    packageName:getProduct(request.product_id).fishName,
+    packageName:`${topicLabel(analysis.topicId)} ${getProduct(request.product_id).fishName}`.trim(),
     status: request.status,
     chart: chart ? JSON.parse(chart.chart_json) : null,
     charts:Object.values(analysis.contexts).map(c=>chart && c.domain===JSON.parse(chart.chart_json).domain?JSON.parse(chart.chart_json):chartView(c)),

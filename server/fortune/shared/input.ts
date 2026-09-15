@@ -1,4 +1,5 @@
 import { lunarToSolar } from '../../vendor/code-destiny/lib/korean-calendar/index.js';
+import { topicIds } from '../topics';
 import {
   BirthProfile,
   DomainId,
@@ -94,9 +95,8 @@ export function validateInput(value: unknown, domain: DomainId): FortuneInput {
   const question = v.question === undefined ? "" : v.question;
   if (typeof question !== "string" || question.length > 1000)
     throw new FortuneError("INVALID_QUESTION");
-  const topics=['general','love','luck','work','money','relationship','self','healing'];
   const topicId=typeof v.topicId==='string'?v.topicId:'general';
-  if(!topics.includes(topicId))throw new FortuneError('INVALID_TOPIC');
+  if(!topicIds.includes(topicId))throw new FortuneError('INVALID_TOPIC');
   if(domain==='tarot')return {question:question.trim(),topicId,spreadId:topicId==='relationship'||topicId==='love'?'relationship_six_card':'three_card_cause_process_outcome'};
   return {
     topicId,
