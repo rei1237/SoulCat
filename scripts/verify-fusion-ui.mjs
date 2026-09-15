@@ -1,7 +1,7 @@
 import {chromium,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs/promises';
-const origin='http://127.0.0.1:8791',proof=process.env.FUSION_RESUME?JSON.parse(await fs.readFile('docs/fusion-ui-verification.json','utf8')):[];
+const origin='http://127.0.0.1:8791/yeongnyangi',proof=process.env.FUSION_RESUME?JSON.parse(await fs.readFile('docs/fusion-ui-verification.json','utf8')):[];
 const browser=await chromium.launch({channel:'chrome',headless:true});
 await fs.mkdir('.integration/fusion-ui',{recursive:true});
 try{for(const width of [360,390,430,1280]){
@@ -10,9 +10,9 @@ try{for(const width of [360,390,430,1280]){
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
  await page.goto(origin+'/');
  await page.locator('.service-card').filter({has:page.getByRole('heading',{name:'타로',exact:true})}).click();
- await expect(page.locator('.service-panel')).not.toContainText('오늘의 한마디');await expect(page.locator('.service-panel a')).toHaveAttribute('href','/fortune/?domain=tarot');await page.getByRole('button',{name:'닫기',exact:true}).click();
+ await expect(page.locator('.service-panel')).not.toContainText('오늘의 한마디');await expect(page.locator('.service-panel a')).toHaveAttribute('href','/yeongnyangi/fortune/?domain=tarot');await page.getByRole('button',{name:'닫기',exact:true}).click();
  await page.getByRole('button',{name:/내 운명 깊게 보기/}).click();
- await expect(page.locator('.fish-catalog-grid a')).toHaveCount(10);
+ await expect(page.locator('.fish-catalog-list a')).toHaveCount(4);await expect(page.locator('.panel-body .primary-cta')).toHaveCount(0);
  await expect(page.locator('.fish-catalog')).toContainText(['30,000원','20,000원']);
  await page.screenshot({path:`.integration/fusion-ui/catalog-${width}.png`,fullPage:true});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
