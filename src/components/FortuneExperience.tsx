@@ -28,21 +28,6 @@ interface Reading {
   yeongnyangiComment: string;
   cautions: string[];
 }
-const cities = [
-  {
-    name: "서울",
-    latitude: 37.5665,
-    longitude: 126.978,
-    timezone: "Asia/Seoul",
-  },
-  {
-    name: "부산",
-    latitude: 35.1796,
-    longitude: 129.0756,
-    timezone: "Asia/Seoul",
-  },
-  { name: "직접 입력", latitude: 0, longitude: 0, timezone: "" },
-];
 async function api(path: string, body?: object, signal?: AbortSignal) {
   const response = await (path === "session" ? sessionFetch() : fetch(`/api/yeongnyangi/${path}`, {
     credentials: "same-origin",
@@ -202,23 +187,8 @@ export default function FortuneExperience() {
     setBusy(true);
     setError("");
     const data = new FormData(e.currentTarget);
-    function person(prefix: string) {
-      const city = cities[Number(data.get(`${prefix}city`) || 0)];
-      return {
-        birthDate: data.get(`${prefix}date`),
-        birthTime: data.get(`${prefix}time`) || undefined,
-        gender: data.get(`${prefix}gender`),
-        calendarType: "solar",
-        birthPlace:
-          city.name !== "직접 입력"
-            ? city
-            : {
-                latitude: Number(data.get(`${prefix}lat`)),
-                longitude: Number(data.get(`${prefix}lon`)),
-                timezone: data.get(`${prefix}zone`),
-              },
-      };
-    }
+    // 화면의 BirthFields 가 쓴 값(출생지 검색 결과·음력/윤달·거주지)을 그대로 보낸다.
+    const person = (prefix: string) => readBirthFields(data, prefix);
     try {
       await api("session", {});
       const saved = await api("profiles", {
