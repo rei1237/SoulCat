@@ -8,7 +8,6 @@ import ServiceNavigation from "@/components/ServiceNavigation";
 import { absoluteUrl, siteName, siteUrl, starterTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  robots: { index: false, follow: false },
   metadataBase: new URL(siteUrl),
   title: starterTitle,
   description:

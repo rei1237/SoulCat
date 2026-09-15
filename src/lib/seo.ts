@@ -17,6 +17,8 @@ export type SeoRoute = {
   description: string;
   keywords: string[];
   includeInSitemap: boolean;
+  // Canonical target when the route duplicates a Code Destiny page (e.g. legal documents).
+  canonicalPath?: `/${string}/`;
   jsonLdType: "WebPage" | "FAQPage";
   intent: string;
   ctaHref: string;
@@ -40,7 +42,8 @@ const legalRoutes: SeoRoute[] = [
     description:
       "사주보는 고양이 영냥이 서비스 이용 조건, 콘텐츠의 성격, 유료 상품과 문의 기준을 간결하게 안내합니다.",
     keywords: ["영냥이 이용약관", "SoulCat 약관", "운세 서비스 약관"],
-    includeInSitemap: true,
+    includeInSitemap: false,
+    canonicalPath: "/terms/",
     jsonLdType: "WebPage",
     intent:
       "방문자가 영냥이 서비스를 이용하기 전에 콘텐츠 성격, 이용자 책임, 결제 기준과 문의처를 빠르게 확인하도록 돕습니다.",
@@ -95,7 +98,8 @@ const legalRoutes: SeoRoute[] = [
     description:
       "영냥이가 어떤 정보를 언제 처리할 수 있는지, 저장되지 않는 현재 기능과 권리 요청 방법을 쉽게 안내합니다.",
     keywords: ["영냥이 개인정보처리방침", "SoulCat 개인정보", "운세 개인정보"],
-    includeInSitemap: true,
+    includeInSitemap: false,
+    canonicalPath: "/privacy/",
     jsonLdType: "WebPage",
     intent:
       "방문자가 출생 정보, 결제 정보, 문의 정보가 어떤 목적으로 쓰이는지와 삭제·정정 요청 방법을 확인하도록 돕습니다.",
@@ -150,7 +154,8 @@ const legalRoutes: SeoRoute[] = [
     description:
       "SoulCat 별도 상품 결제의 환불·취소 기준과 결과 미제공, 중복 결제 문의 방법을 안내합니다.",
     keywords: ["영냥이 환불", "SoulCat 취소", "운세 결제 환불"],
-    includeInSitemap: true,
+    includeInSitemap: false,
+    canonicalPath: "/refund-policy/",
     jsonLdType: "WebPage",
     intent:
       "결제 전후 방문자가 청약철회 가능 범위, 디지털 콘텐츠 제공 개시 이후 제한, 문의 방법을 이해하도록 돕습니다.",
@@ -310,7 +315,8 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Code Destiny의 꿀꿀 운세와 사주보는 고양이 영냥이를 같은 계정 흐름으로 이어 보는 안내 페이지입니다.",
     keywords: ["꿀꿀 운세", "꽃돼지 연이", "Code Destiny", "영냥이"],
-    includeInSitemap: true,
+    // Competes with Code Destiny /kkul-kkul-unse for the brand query.
+    includeInSitemap: false,
     jsonLdType: "FAQPage",
     intent:
       "기존 꿀꿀 운세 사용자가 영냥이 상담으로 넘어오거나, 영냥이 사용자가 Code Destiny의 꿀꿀 운세 허브로 이동할 때 로그인과 서비스 관계를 이해하도록 돕습니다.",
@@ -482,7 +488,7 @@ export function routeMetadata(route: SeoRoute): Metadata {
     title: route.title,
     description: route.description,
     keywords: route.keywords,
-    alternates: { canonical: url },
+    alternates: { canonical: absoluteUrl(route.canonicalPath || route.path) },
     openGraph: {
       type: "website",
       siteName,

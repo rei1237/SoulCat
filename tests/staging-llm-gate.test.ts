@@ -49,3 +49,12 @@ test('namespaced home, metadata and old checkout URLs preserve the legacy applic
   assert.equal(safeReturnPath('/room/#daily'),'/yeongnyangi/room/#daily');
   assert.equal(safeReturnPath('/fortune/?orderId=a&paymentId=b'),'/yeongnyangi/fortune/?orderId=a&paymentId=b');
 });
+test('production screens are indexable except the private library',async()=>{
+  const origin='https://code-destiny.com';
+  const edge={APP_ENV:'production',PUBLIC_ORIGIN:origin,SOULCAT_PAGES_ORIGIN:'https://1234abcd.soulcat.pages.dev'};
+  const pages=async()=>new Response('ok',{headers:{'x-robots-tag':'noindex, nofollow'}});
+  for(const path of ['/yeongnyangi/','/yeongnyangi/fortune/','/yeongnyangi/saju/','/yeongnyangi/sitemap.xml']){
+    assert.equal((await handleEdge(new Request(origin+path),edge,()=>{},pages)).headers.get('x-robots-tag'),null,path);
+  }
+  assert.equal((await handleEdge(new Request(origin+'/yeongnyangi/library/'),edge,()=>{},pages)).headers.get('x-robots-tag'),'noindex, nofollow');
+});
