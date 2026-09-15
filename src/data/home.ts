@@ -137,26 +137,30 @@ export const recommendations = [
     category: "연애운",
     image: "recommend-love",
     target: "tarot",
+    topic: "love",
   },
   {
     title: "나의 재물 흐름",
     category: "재물운",
     image: "recommend-wealth",
     target: "saju",
+    topic: "money",
   },
   {
     title: "올해, 남은 이야기",
     category: "올해 운세",
     image: "recommend-year",
     target: "ziwei",
+    topic: "year",
   },
   {
     title: "낯익은 인연의 비밀",
     category: "인연 이야기",
     image: "recommend-past",
     target: "sukuyo",
+    topic: "relationship",
   },
-];
+] as const;
 export const dailyMessages = [
   {
     title: "조금 느려도, 네 속도로.",

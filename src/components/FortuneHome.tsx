@@ -34,6 +34,7 @@ import {
   recommendations,
   services,
 } from "@/data/home";
+import { topicHref } from "@/data/topics";
 import { ggulggulFortuneHref, loginHref, socialLoginHref, type SocialProvider } from "@/lib/service-links";
 
 type Panel =
@@ -519,10 +520,11 @@ export default function FortuneHome() {
                 aria-label="추천 운세 가로 목록"
               >
                 {recommendations.map((item) => (
-                  <button
+                  <a
                     className="recommendation-card"
                     key={item.title}
-                    onClick={() => openService(item.target)}
+                    href={topicHref(item.target, item.topic)}
+                    aria-label={`${item.category} · ${item.title} 상담 시작`}
                   >
                     <Art name={item.image} />
                     <span className="recommendation-copy">
@@ -532,7 +534,7 @@ export default function FortuneHome() {
                         이야기 살펴보기 <ArrowRight size={14} />
                       </span>
                     </span>
-                  </button>
+                  </a>
                 ))}
               </div>
             </section>
@@ -721,12 +723,7 @@ export default function FortuneHome() {
 
           {panel === "fusion" && (
             <div className="panel-body">
-              <a className="primary-cta" href="/yeongnyangi/fortune/">
-                상담 시작하기
-                <ArrowRight size={18} />
-              </a>
-              <FishCatalog fusionOnly />
-              <FishCatalog />
+              <FishCatalog fusionOnly layout="list" />
             </div>
           )}
 

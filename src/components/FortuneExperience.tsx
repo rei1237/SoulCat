@@ -14,6 +14,7 @@ import {
   fortuneSurfaces,
   FortuneDomainId,
 } from "@/data/fortune";
+import { topicEntry, isHomeTopic, topicLabel, type HomeTopicId } from "@/data/topics";
 import "./fortune.css";
 import ChartTabs from "./ChartTabs";
 import {FishReaction} from "./FishCatalog";
@@ -73,6 +74,8 @@ export default function FortuneExperience() {
   const [customer,setCustomer]=useState({fullName:"",phoneNumber:"",email:""});
   const [domain, setDomain] = useState<FortuneDomainId>("saju");
   const [topic, setTopic] = useState("");
+  // Home recommendation cards arrive with ?topic=; it steers the server manifest and the loading art.
+  const [topicId, setTopicId] = useState<HomeTopicId | "general">("general");
   const [fusionId,setFusionId]=useState("");
   const [charts,setCharts]=useState<ChartView[]>([]);
   const [paid,setPaid]=useState(false);
@@ -102,16 +105,27 @@ export default function FortuneExperience() {
   );
   useEffect(()=>{if(stage!=='checkout')return;let active=true;setMissing(null);setCustomerError('');api('checkout/customer').then(d=>{if(active)setMissing(d.missingFields);}).catch(e=>{if(active)setCustomerError(e.message);});return()=>{active=false;};},[stage,customerRetry,sessionUser]);
   useEffect(()=>{setCustomer({fullName:'',phoneNumber:'',email:''});},[sessionUser]);
-  const topicArt = surface.choices.find(([name]) => name === topic)?.[2];
+  const chipArt = surface.choices.find(([name]) => name === topic)?.[2];
+  const topicArt = topicId !== "general" ? topicEntry[topicId].artKey : chipArt;
+  const submittedTopicId = topicId !== "general" ? topicId : ["love","luck","work","money"].includes(chipArt||"") ? chipArt : "general";
   const loadingKey = (topicArt ?? domain) as keyof typeof fortuneLoadingArt;
   const loadingArt =
     fortuneLoadingArt[loadingKey] ??
     fortuneLoadingArt[domain] ??
     fortuneLoadingArt.default;
   useEffect(() => {
-    const selected = new URLSearchParams(window.location.search).get("domain");
+    const initial = new URLSearchParams(window.location.search);
+    const selected = initial.get("domain");
     if (selected && selected in fortuneSurfaces)
       setDomain(selected as FortuneDomainId);
+    const requestedTopic = initial.get("topic");
+    const homeTopic = isHomeTopic(requestedTopic) && selected && (topicEntry[requestedTopic].domains as readonly string[]).includes(selected) ? requestedTopic : null;
+    if (homeTopic && !initial.get("product") && !initial.get("request")) {
+      setTopicId(homeTopic);
+      setTopic(`${topicLabel(homeTopic)} · ${topicEntry[homeTopic].title}`);
+      setReadingMode(topicEntry[homeTopic].readingMode);
+      if (!initial.get("profile")) setStage("input");
+    }
     api("products")
       .then(async (d) => {
         setProducts(d.products);
@@ -123,7 +137,7 @@ export default function FortuneExperience() {
         if(savedProfile&&!params.get('request')){
           const restored=await api('charts',{profileId:savedProfile,...(fusion?{productId:fusion.id}:{})});
           setProfileId(savedProfile);setDomain(restored.chart.domain);setCharts(restored.charts||[restored.chart]);setChart(restored.chart);
-          if(!fusion)setTopic(fortuneSurfaces[restored.chart.domain as FortuneDomainId].name);
+          if(!fusion&&!homeTopic)setTopic(fortuneSurfaces[restored.chart.domain as FortuneDomainId].name);
           setStage('chart');
         }
       })
@@ -220,7 +234,7 @@ export default function FortuneExperience() {
         input: {
           readingMode,
           ...(domain!=="tarot"?{personA: person("a")}:{}),
-          topicId: ["love","luck","work","money"].includes(topicArt||"")?topicArt:"general",
+          topicId: submittedTopicId,
           ...(domain === "sukuyo" && readingMode === "compatibility"
             ? { personB: person("b") }
             : {}),
@@ -228,7 +242,7 @@ export default function FortuneExperience() {
         },
       });
       setProfileId(saved.id);
-      const snapshotParams=new URLSearchParams({domain,profile:saved.id,fish,...(fusionId?{product:fusionId}:{})});
+      const snapshotParams=new URLSearchParams({domain,profile:saved.id,fish,...(fusionId?{product:fusionId}:{}),...(topicId!=='general'?{topic:topicId}:{})});
       window.history.replaceState(null,'','/yeongnyangi/fortune/?'+snapshotParams);
       const calculated = await api("charts", { profileId: saved.id, ...(fusionId?{productId:fusionId}:{}) });
       setChart(calculated.chart);
@@ -295,7 +309,7 @@ export default function FortuneExperience() {
         <a href="/yeongnyangi/" aria-label="Code Destiny 홈으로">
           <ArrowLeft size={20} /> 점술방
         </a>
-        <span>{fusionId||book?.charts?.length&&book.charts.length>1?"초융합 상담":surface.name}</span>
+        <span>{fusionId||book?.charts?.length&&book.charts.length>1?"초융합 상담":topicId!=="general"?`${surface.name} · ${topicLabel(topicId)}`:surface.name}</span>
         <a href="/yeongnyangi/library/" aria-label="나의 결과 보관함">
           <BookOpen size={21} />
         </a>
@@ -315,6 +329,7 @@ export default function FortuneExperience() {
                 className="reading-choice"
                 onClick={() => {
                   setTopic(name);
+                  setTopicId("general");
                   setReadingMode(
                     name === "나의 본명숙" ? "personal" : "compatibility",
                   );
@@ -356,7 +371,7 @@ export default function FortuneExperience() {
           <button
             type="button"
             className="fortune-back"
-            onClick={() => setStage("choose")}
+            onClick={() => { setTopicId("general"); setTopic(""); setStage("choose"); }}
           >
             <ArrowLeft size={16} /> 이야기 다시 고르기
           </button>
@@ -453,7 +468,7 @@ export default function FortuneExperience() {
                 실제 결제금액{" "}
                 <strong>{product.priceKRW.toLocaleString("ko-KR")}원</strong>
               </p>
-              <p>선택한 상담: {topic} · {product.chapterCount}챕터</p><details><summary>이 상담의 목차와 해석 범위</summary><p>{depthDescriptions[product.fishId]}</p><ol>{productManifest(product,undefined,readingMode).map(c=><li key={c.id}>{c.title}</li>)}</ol></details>
+              <p>선택한 상담: {topic} · {product.chapterCount}챕터</p><details><summary>이 상담의 목차와 해석 범위</summary><p>{depthDescriptions[product.fishId]}</p><ol>{productManifest(product,submittedTopicId,readingMode).map(c=><li key={c.id}>{c.title}</li>)}</ol></details>
               <FishReaction product={product}/>
             </div>
           )}

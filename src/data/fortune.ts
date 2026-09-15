@@ -106,4 +106,14 @@ export const fortuneLoadingArt = {
     alt: "재물 흐름을 계산하는 영냥이",
     title: "영냥이가 돈의 흐름과 지키는 힘을 맞춰보고 있어.",
   },
+  year: {
+    image: "loading-luck.webp",
+    alt: "올해의 흐름을 살펴보는 영냥이",
+    title: "영냥이가 올해 남은 이야기를 차례로 짚고 있어.",
+  },
+  relationship: {
+    image: "loading-sukuyo.webp",
+    alt: "두 사람의 인연을 살펴보는 영냥이",
+    title: "영냥이가 낯익은 인연의 실마리를 따라가고 있어.",
+  },
 } as const;

@@ -801,6 +801,11 @@ svg {
   text-align: left;
   scroll-snap-align: start;
   background: #3a264a;
+  display: block;
+}
+.recommendation-card:focus-visible {
+  outline: 3px solid #f6d7aa;
+  outline-offset: 3px;
 }
 .recommendation-card > img {
   position: absolute;
