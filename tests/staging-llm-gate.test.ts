@@ -35,6 +35,16 @@ test('catalog visibility no longer depends on the staging payment allowlist',asy
     assert.equal(response.headers.get('cache-control'),'private, no-store');
   }
 });
+test('production catalog marks only the verified product available, and nothing without live activation',async()=>{
+  const live={APP_ENV:'production',PUBLIC_ORIGIN:'https://code-destiny.com',LLM_PROVIDER:'gemini',ALLOW_LIVE_LLM:'true',GEMINI_API_KEY:'fixture',BOOK_QUEUE:{async send(){}},LLM_COST_MODE:'metered',LLM_TIMEOUT_MS:'60000',LLM_MAX_RETRIES:'2',LLM_MAX_INPUT_TOKENS:'32000',LLM_MAX_OUTPUT_TOKENS:'4096',GEMINI_MODEL:'fixture',GEMINI_PRICING_MODEL:'fixture',GEMINI_INPUT_USD_PER_MILLION:'0.3',GEMINI_OUTPUT_USD_PER_MILLION:'2.5',LLM_USD_KRW_CEILING:'2000',LLM_PRICING_VALID_UNTIL:new Date(Date.now()+86400000).toISOString(),LLM_VERIFIED_PRODUCTS:JSON.stringify({saju_mackerel:{model:'fixture',chapters:5,maxKRW:300,manifestVersion:'destiny-book-v4',outputTokens:4096}})};
+  const available=async(patch:object)=>{
+    const response=await handleApi(new Request('https://code-destiny.com/api/yeongnyangi/products'),{...live,...patch} as Parameters<typeof handleApi>[1],()=>{});
+    const body=await response.json() as {products:{id:string;available:boolean}[]};
+    return body.products.filter(p=>p.available).map(p=>p.id);
+  };
+  assert.deepEqual(await available({}),['saju_mackerel']);
+  for(const patch of [{ALLOW_LIVE_LLM:'false'},{LLM_PROVIDER:'mock'},{LLM_COST_MODE:'test'},{LLM_PRICING_VALID_UNTIL:new Date(Date.now()-1000).toISOString()}]) assert.deepEqual(await available(patch),[],JSON.stringify(patch));
+});
 test('namespaced home, metadata and old checkout URLs preserve the legacy application',async()=>{
   const origin='https://staging.code-destiny.com';
   const edge={APP_ENV:'staging',PUBLIC_ORIGIN:origin,SOULCAT_PAGES_ORIGIN:'https://1234abcd.soulcat.pages.dev'};

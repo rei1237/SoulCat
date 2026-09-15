@@ -11,7 +11,7 @@ import { DomainId, FortuneError } from "./fortune/shared/contracts";
 import { prepareGeneration, runGeneration } from "./fortune/generation";
 import { ProviderEnv, createProvider } from "./providers/provider-factory";
 import { createOrder, findPaidOrder, grantProofOrder } from "./payments/orders";
-import { getProduct, products } from "./payments/catalog";
+import { getProduct, products, type Product } from "./payments/catalog";
 import { AuthEnv, sharedIdentity } from "./auth";
 import { currentCdBirthPrefill } from "./cd-profile";
 import { deleteAccount } from "./account";
@@ -113,6 +113,14 @@ const messages: Record<string, string> = {
   BIRTH_PLACE_REQUIRED: "출생지 좌표와 시간대를 확인해 주세요.",
   AMBIGUOUS_BIRTH_TIME: "일광절약시간 경계에 해당해 출생시각 확인이 필요해요.",
 };
+// 주문 경로와 카탈로그가 같은 판정을 쓴다: 실 LLM 연결 + 상품별 검증 예산. 열리지 않은 상품은 결제창 전에 막힌다.
+function assertProductLive(env: Env, product: Product) {
+  if(env.LLM_PROVIDER!=='gemini'||env.ALLOW_LIVE_LLM!=='true'||!env.GEMINI_API_KEY||!env.BOOK_QUEUE) throw new FortuneError('LLM_NOT_CONFIGURED',503);
+  productBudgetReady(env,product.id,product.chapterCount);
+}
+function productAvailable(env: Env, product: Product) {
+  try { assertProductLive(env, product); return true; } catch { return false; }
+}
 export async function handleApi(
   request: Request,
   env: Env,
@@ -125,7 +133,7 @@ export async function handleApi(
       .replace(/\/$/, "");
     if (path === "products" && request.method === "GET") {
       return json({
-        products: products.map(product => ({...product})),
+        products: products.map(product => ({...product, available: productAvailable(env, product)})),
         mode:
           env.APP_ENV === "local" && env.LLM_PROVIDER === "mock"
             ? "local-mock"
@@ -328,8 +336,7 @@ export async function handleApi(
         throw new FortuneError("INVALID_ORDER_FIELDS");
       const product = getProduct(body.productId);
       const profileId = String(body.profileId);
-      if(env.LLM_PROVIDER!=='gemini'||env.ALLOW_LIVE_LLM!=='true'||!env.GEMINI_API_KEY||!env.BOOK_QUEUE) throw new FortuneError('LLM_NOT_CONFIGURED',503);
-      productBudgetReady(env,product.id,product.chapterCount);
+      assertProductLive(env,product);
       await purchaseContexts(
         db,
         userId,

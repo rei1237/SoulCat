@@ -18,6 +18,8 @@ import "./fortune.css";
 import ChartTabs from "./ChartTabs";
 import {FishReaction} from "./FishCatalog";
 import type {Product} from "../../server/payments/catalog";
+// available: 서버 주문 경로와 같은 판정(실 LLM·검증 예산). false 면 구매 CTA 대신 "준비 중".
+type ListedProduct = Product & {available: boolean};
 import DestinyBook, { BookView } from "./DestinyBook";
 import type { ChartView } from "../../server/fortune/charts";
 
@@ -63,7 +65,7 @@ export default function FortuneExperience() {
   const [readingMode, setReadingMode] = useState<"personal" | "compatibility">(
     "personal",
   );
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ListedProduct[]>([]);
   const [localMock, setLocalMock] = useState(false);
   const [fish, setFish] = useState("mackerel");
   const [stage, setStage] = useState<
@@ -82,6 +84,7 @@ export default function FortuneExperience() {
   const product = products.find(
     (p) => fusionId?p.id===fusionId:p.readingKind==="single"&&p.domain === domain && p.fishId === fish,
   );
+  const purchasable = !!product?.enabled && (localMock || product.available === true);
   const chipArt = surface.choices.find(([name]) => name === topic)?.[2];
   const topicArt = topicId !== "general" ? topicEntry[topicId].artKey : chipArt;
   const submittedTopicId = topicId !== "general" ? topicId : ["love","luck","work","money"].includes(chipArt||"") ? chipArt : "general";
@@ -440,16 +443,16 @@ export default function FortuneExperience() {
               <FishReaction product={product}/>
             </div>
           )}
-          {!localMock && product?.enabled && <div className="checkout-form">
+          {!localMock && purchasable && <div className="checkout-form">
             <p className="fortune-footnote">영냥이의 세계는 코드 데스티니와 다른 차원이에요. 달빛 이용권도, 월정석도 그 문을 넘지 못합니다. 복채는 생선값 그대로, 단건 결제(카드·카카오페이 등)만 받아요.</p>
             <button type="button" className="fortune-primary" disabled={busy} onClick={purchase}>{busy?'결제 확인 중':product.priceKRW.toLocaleString('ko-KR')+'원 단건 결제하러 가기'}</button>
           </div>}
-          {!product?.enabled && <p className="fortune-footnote">
+          {!purchasable && <p className="fortune-footnote">
             이 상담은 아직 준비 중인 생선이에요. 현재 실제 구매는 열려 있지 않아요.
           </p>}
-          {(localMock || !product?.enabled) && <button
+          {(localMock || !purchasable) && <button
             className="fortune-primary"
-            disabled={busy || (!product?.enabled && !localMock)}
+            disabled={busy || (!purchasable && !localMock)}
             onClick={preview}
           >
             {busy
